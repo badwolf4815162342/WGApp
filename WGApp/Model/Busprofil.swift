@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Busprofil.swift
 //  WGApp
 //
 //  Created by Anna Abad on 27.05.18.
@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 
-class User: NSManagedObject {
+class Busprofil: NSManagedObject {
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Busprofil" representedClassName="Busprofil" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="busChooser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="favouritBus" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="favouritBus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Busprofil" inverseName="busChooser" inverseEntity="Busprofil" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-326" positionY="-18" width="128" height="103"/>
+        <element name="Busprofil" positionX="-99" positionY="45" width="128" height="73"/>
+    </elements>
+</model>

@@ -197,7 +197,7 @@
             </objects>
             <point key="canvasLocation" x="-175.78125" y="772.65625"/>
         </scene>
-        <!--Homescreen-->
+        <!--Home ScreenVC-->
         <scene sceneID="o8Q-Bl-fLl">
             <objects>
                 <viewController id="jQI-I5-lnW" customClass="HomeScreenVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -231,7 +231,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2bL-dq-bjb"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Homescreen" id="Gqr-jB-1F3">
+                    <navigationItem key="navigationItem" id="Gqr-jB-1F3">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="More" id="3fU-Pl-xBy">
                             <connections>
                                 <action selector="onMoreTabbed" destination="jQI-I5-lnW" id="wfz-aH-utY"/>
