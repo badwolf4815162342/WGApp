@@ -16,6 +16,8 @@
 		5FA47C7420BAE9A60043B3C8 /* WGAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C7320BAE9A60043B3C8 /* WGAppUITests.swift */; };
 		5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */; };
 		5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */; };
+		5FA47C8C20BB0A360043B3C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8B20BB0A360043B3C8 /* User.swift */; };
+		5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		5FA47C7520BAE9A60043B3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenueVC.swift; sourceTree = "<group>"; };
 		5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
+		5FA47C8B20BB0A360043B3C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5FA47C8B20BB0A360043B3C8 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,7 +294,9 @@
 			files = (
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
+				5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
+				5FA47C8C20BB0A360043B3C8 /* User.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
