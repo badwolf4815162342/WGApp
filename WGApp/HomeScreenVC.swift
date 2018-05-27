@@ -17,13 +17,15 @@ class HomeScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showScreen), name: NSNotification.Name("ShowUsermanagement"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showScreen), name: NSNotification.Name("ShowGeldmanagement"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showScreen), name: NSNotification.Name("ShowBusprofile"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
     }
     
-    @objc func showScreen() {
-        performSegue(withIdentifier: "ShowGeldmanagement", sender: nil)
+    @objc func showUserManagement() {
+        performSegue(withIdentifier: "ShowUserManagement", sender: nil)
+    }
+    
+    @objc func showBusManagement() {
+        performSegue(withIdentifier: "ShowBusManagement", sender: nil)
     }
 }

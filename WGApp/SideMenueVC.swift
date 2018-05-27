@@ -14,9 +14,9 @@ class SideMenueVC: UITableViewController {
         print(indexPath.row)
         switch indexPath.row {
         case 0:
-            NotificationCenter.default.post(name: NSNotification.Name("ShowUsermanagement"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("ShowUserManagement"), object: nil)
         case 1:
-            NotificationCenter.default.post(name: NSNotification.Name("ShowGeldmanagement"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("ShowBusManagement"), object: nil)
         default:
             break
         }
