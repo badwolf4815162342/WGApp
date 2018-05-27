@@ -97,6 +97,9 @@
 		5FA47C5220BAE9A50043B3C8 /* WGApp */ = {
 			isa = PBXGroup;
 			children = (
+				5FA47C8320BAEA400043B3C8 /* Controller */,
+				5FA47C8220BAEA2B0043B3C8 /* View */,
+				5FA47C8120BAEA0F0043B3C8 /* Model */,
 				5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */,
 				5FA47C5520BAE9A60043B3C8 /* ViewController.swift */,
 				5FA47C5720BAE9A60043B3C8 /* Main.storyboard */,
@@ -123,6 +126,27 @@
 				5FA47C7520BAE9A60043B3C8 /* Info.plist */,
 			);
 			path = WGAppUITests;
+			sourceTree = "<group>";
+		};
+		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5FA47C8220BAEA2B0043B3C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5FA47C8320BAEA400043B3C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
