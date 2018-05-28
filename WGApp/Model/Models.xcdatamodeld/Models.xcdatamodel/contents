@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Busprofil" representedClassName=".Busprofil" syncable="YES" codeGenerationType="category">
+    <entity name="BusSettings" representedClassName=".Busprofil" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="isFavoriteOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="favoriteBusprofil" inverseEntity="User" syncable="YES"/>
+        <relationship name="isFavoriteOfProfil" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Profil" inverseName="favoriteBusSettings" inverseEntity="Profil" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Homeprofil" representedClassName=".Homeprofil" parentEntity="Profil" syncable="YES" codeGenerationType="category"/>
+    <entity name="Profil" representedClassName=".Profil" isAbstract="YES" syncable="YES" codeGenerationType="category">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="favoriteBusprofil" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Busprofil" inverseName="isFavoriteOf" inverseEntity="Busprofil" syncable="YES"/>
+        <relationship name="favoriteBusSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="isFavoriteOfProfil" inverseEntity="BusSettings" syncable="YES"/>
+    </entity>
+    <entity name="Userprofil" representedClassName=".User" parentEntity="Profil" syncable="YES" codeGenerationType="category">
+        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-2873" positionY="-108" width="128" height="103"/>
-        <element name="Busprofil" positionX="-2655" positionY="-72" width="128" height="88"/>
+        <element name="BusSettings" positionX="-2484" positionY="-268" width="128" height="88"/>
+        <element name="Userprofil" positionX="-2810" positionY="-121" width="128" height="58"/>
+        <element name="Profil" positionX="-2729" positionY="-268" width="128" height="88"/>
+        <element name="Homeprofil" positionX="-2621" positionY="-115" width="128" height="43"/>
     </elements>
 </model>
