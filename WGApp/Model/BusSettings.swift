@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 
-class Busprofil: NSManagedObject {
+class BusSettings: NSManagedObject {
 
 }

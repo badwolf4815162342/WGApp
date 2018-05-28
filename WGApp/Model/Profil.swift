@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 
-class User: NSManagedObject {
+class Profil: NSManagedObject {
 
 }
