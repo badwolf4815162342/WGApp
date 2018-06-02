@@ -17,6 +17,15 @@
 		5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */; };
 		5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */; };
 		5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */; };
+		5FFAAB1620C30F1C0010A427 /* RMVApiControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB1520C30F1C0010A427 /* RMVApiControllerTest.swift */; };
+		5FFAAB2420C311400010A427 /* RMVApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2320C311400010A427 /* RMVApiController.swift */; };
+		5FFAAB2620C3116A0010A427 /* BusProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2520C3116A0010A427 /* BusProfileEditVC.swift */; };
+		5FFAAB2820C311880010A427 /* BusProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2720C311880010A427 /* BusProfileVC.swift */; };
+		5FFAAB2A20C311CA0010A427 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2920C311CA0010A427 /* Departure.swift */; };
+		5FFAAB2C20C311E80010A427 /* StopLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2B20C311E80010A427 /* StopLocation.swift */; };
+		5FFAAB2E20C311F60010A427 /* StopLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2D20C311F60010A427 /* StopLocationResponse.swift */; };
+		5FFAAB3020C312010010A427 /* DepartureResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB2F20C312010010A427 /* DepartureResponse.swift */; };
+		5FFAAB3220C312500010A427 /* TripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAAB3120C312500010A427 /* TripResponse.swift */; };
 		8F3A9D7620BC16E000EB983B /* BusSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7520BC16E000EB983B /* BusSettings.swift */; };
 		8F3A9D7820BC16ED00EB983B /* UserProfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7720BC16ED00EB983B /* UserProfil.swift */; };
 		8F3A9D7A20BC17AA00EB983B /* HomeProfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */; };
@@ -60,6 +69,15 @@
 		5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenueVC.swift; sourceTree = "<group>"; };
 		5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 		5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
+		5FFAAB1520C30F1C0010A427 /* RMVApiControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMVApiControllerTest.swift; sourceTree = "<group>"; };
+		5FFAAB2320C311400010A427 /* RMVApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RMVApiController.swift; path = WGAppTests/RMVApiController.swift; sourceTree = SOURCE_ROOT; };
+		5FFAAB2520C3116A0010A427 /* BusProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusProfileEditVC.swift; path = WGAppTests/BusProfileEditVC.swift; sourceTree = SOURCE_ROOT; };
+		5FFAAB2720C311880010A427 /* BusProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusProfileVC.swift; path = "WGApp/Controller/New Group/BusProfileVC.swift"; sourceTree = SOURCE_ROOT; };
+		5FFAAB2920C311CA0010A427 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
+		5FFAAB2B20C311E80010A427 /* StopLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLocation.swift; sourceTree = "<group>"; };
+		5FFAAB2D20C311F60010A427 /* StopLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopLocationResponse.swift; sourceTree = "<group>"; };
+		5FFAAB2F20C312010010A427 /* DepartureResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureResponse.swift; sourceTree = "<group>"; };
+		5FFAAB3120C312500010A427 /* TripResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResponse.swift; sourceTree = "<group>"; };
 		8F3A9D7520BC16E000EB983B /* BusSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusSettings.swift; sourceTree = "<group>"; };
 		8F3A9D7720BC16ED00EB983B /* UserProfil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfil.swift; sourceTree = "<group>"; };
 		8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeProfil.swift; sourceTree = "<group>"; };
@@ -137,6 +155,7 @@
 			children = (
 				5FA47C6820BAE9A60043B3C8 /* WGAppTests.swift */,
 				5FA47C6A20BAE9A60043B3C8 /* Info.plist */,
+				5FFAAB1520C30F1C0010A427 /* RMVApiControllerTest.swift */,
 			);
 			path = WGAppTests;
 			sourceTree = "<group>";
@@ -153,6 +172,7 @@
 		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5FE8768C20C01BA500A0F193 /* RMV API Models */,
 				8F3A9D7720BC16ED00EB983B /* UserProfil.swift */,
 				8F3A9D7B20BC17CE00EB983B /* Profil.swift */,
 				8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */,
@@ -174,9 +194,41 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5FFAAB1B20C310390010A427 /* BusProfile */,
 				5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5FE8768C20C01BA500A0F193 /* RMV API Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FFAAB2920C311CA0010A427 /* Departure.swift */,
+				5FFAAB2B20C311E80010A427 /* StopLocation.swift */,
+				5FFAAB2D20C311F60010A427 /* StopLocationResponse.swift */,
+				5FFAAB2F20C312010010A427 /* DepartureResponse.swift */,
+				5FFAAB3120C312500010A427 /* TripResponse.swift */,
+			);
+			path = "RMV API Models";
+			sourceTree = "<group>";
+		};
+		5FFAAB1B20C310390010A427 /* BusProfile */ = {
+			isa = PBXGroup;
+			children = (
+				5FFAAB2020C310710010A427 /* RMV API Controller */,
+				5FFAAB2520C3116A0010A427 /* BusProfileEditVC.swift */,
+				5FFAAB2720C311880010A427 /* BusProfileVC.swift */,
+			);
+			name = BusProfile;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		5FFAAB2020C310710010A427 /* RMV API Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5FFAAB2320C311400010A427 /* RMVApiController.swift */,
+			);
+			path = "RMV API Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,14 +365,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3A9D7A20BC17AA00EB983B /* HomeProfil.swift in Sources */,
+				5FFAAB3020C312010010A427 /* DepartureResponse.swift in Sources */,
+				5FFAAB2C20C311E80010A427 /* StopLocation.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
+				5FFAAB2E20C311F60010A427 /* StopLocationResponse.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
+				5FFAAB2620C3116A0010A427 /* BusProfileEditVC.swift in Sources */,
 				8F3A9D7C20BC17CE00EB983B /* Profil.swift in Sources */,
+				5FFAAB2420C311400010A427 /* RMVApiController.swift in Sources */,
 				5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */,
 				8F90275E20BB5D6200AF5061 /* Models.xcdatamodeld in Sources */,
 				8F3A9D7820BC16ED00EB983B /* UserProfil.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
+				5FFAAB3220C312500010A427 /* TripResponse.swift in Sources */,
+				5FFAAB2A20C311CA0010A427 /* Departure.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
+				5FFAAB2820C311880010A427 /* BusProfileVC.swift in Sources */,
 				8F3A9D7620BC16E000EB983B /* BusSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFAAB1620C30F1C0010A427 /* RMVApiControllerTest.swift in Sources */,
 				5FA47C6920BAE9A60043B3C8 /* WGAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
