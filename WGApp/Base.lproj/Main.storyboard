@@ -228,6 +228,14 @@
                                     <segue destination="wHS-gX-Jjd" kind="show" id="7At-4x-mH6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdA-bC-DUN">
+                                <rect key="frame" x="476" y="617" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="users"/>
+                                <connections>
+                                    <segue destination="6SK-wc-hcA" kind="show" id="Mdu-Yl-I53"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2bL-dq-bjb"/>
@@ -328,6 +336,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="9tp-00-k95"/>
         <segue reference="J5m-5L-QcM"/>
     </inferredMetricsTieBreakers>
 </document>

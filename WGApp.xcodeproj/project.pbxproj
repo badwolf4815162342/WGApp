@@ -16,14 +16,20 @@
 		5FA47C7420BAE9A60043B3C8 /* WGAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C7320BAE9A60043B3C8 /* WGAppUITests.swift */; };
 		5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */; };
 		5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */; };
-		5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */; };
-		8F3A9D7620BC16E000EB983B /* BusSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7520BC16E000EB983B /* BusSettings.swift */; };
-		8F3A9D7820BC16ED00EB983B /* UserProfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7720BC16ED00EB983B /* UserProfil.swift */; };
-		8F3A9D7A20BC17AA00EB983B /* HomeProfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */; };
-		8F3A9D7C20BC17CE00EB983B /* Profil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A9D7B20BC17CE00EB983B /* Profil.swift */; };
+		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
+		8F006BED20C5D92D005846EB /* HomeProfil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE520C5D92D005846EB /* HomeProfil+CoreDataClass.swift */; };
+		8F006BEE20C5D92D005846EB /* HomeProfil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE620C5D92D005846EB /* HomeProfil+CoreDataProperties.swift */; };
+		8F006BEF20C5D92D005846EB /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE720C5D92D005846EB /* User+CoreDataClass.swift */; };
+		8F006BF020C5D92D005846EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */; };
+		8F006BF120C5D92D005846EB /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */; };
+		8F006BF220C5D92D005846EB /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */; };
+		8F006BF320C5D92D005846EB /* BusSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */; };
+		8F006BF420C5D92D005846EB /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */; };
+		8F006BF620C5EEDB005846EB /* SingleUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BF520C5EEDB005846EB /* SingleUserVC.swift */; };
+		8F367C2820C57A1E00BEACA5 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2720C57A1E00BEACA5 /* UserVC.swift */; };
+		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
 		8F90270920BB488600AF5061 /* Bus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F90270720BB488600AF5061 /* Bus.storyboard */; };
 		8F90270B20BB48AC00AF5061 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F90270A20BB48AC00AF5061 /* User.storyboard */; };
-		8F90275E20BB5D6200AF5061 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F90275C20BB5D6200AF5061 /* Models.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,14 +65,20 @@
 		5FA47C7520BAE9A60043B3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenueVC.swift; sourceTree = "<group>"; };
 		5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
-		5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTest.swift; sourceTree = "<group>"; };
-		8F3A9D7520BC16E000EB983B /* BusSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusSettings.swift; sourceTree = "<group>"; };
-		8F3A9D7720BC16ED00EB983B /* UserProfil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfil.swift; sourceTree = "<group>"; };
-		8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeProfil.swift; sourceTree = "<group>"; };
-		8F3A9D7B20BC17CE00EB983B /* Profil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profil.swift; sourceTree = "<group>"; };
+		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
+		8F006BE520C5D92D005846EB /* HomeProfil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8F006BE620C5D92D005846EB /* HomeProfil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F006BE720C5D92D005846EB /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F006BF520C5EEDB005846EB /* SingleUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserVC.swift; sourceTree = "<group>"; };
+		8F367C2720C57A1E00BEACA5 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		8F90270820BB488600AF5061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/Bus.storyboard; sourceTree = "<group>"; };
 		8F90270A20BB48AC00AF5061 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
-		8F90275D20BB5D6200AF5061 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +138,7 @@
 				5FA47C5720BAE9A60043B3C8 /* Main.storyboard */,
 				5FA47C5A20BAE9A60043B3C8 /* Assets.xcassets */,
 				5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */,
+				8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */,
 				5FA47C5C20BAE9A60043B3C8 /* LaunchScreen.storyboard */,
 				5FA47C5F20BAE9A60043B3C8 /* Info.plist */,
 			);
@@ -153,11 +166,15 @@
 		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8F3A9D7720BC16ED00EB983B /* UserProfil.swift */,
-				8F3A9D7B20BC17CE00EB983B /* Profil.swift */,
-				8F3A9D7920BC17AA00EB983B /* HomeProfil.swift */,
-				8F3A9D7520BC16E000EB983B /* BusSettings.swift */,
-				8F90275C20BB5D6200AF5061 /* Models.xcdatamodeld */,
+				8F006BE520C5D92D005846EB /* HomeProfil+CoreDataClass.swift */,
+				8F006BE620C5D92D005846EB /* HomeProfil+CoreDataProperties.swift */,
+				8F006BE720C5D92D005846EB /* User+CoreDataClass.swift */,
+				8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */,
+				8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */,
+				8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */,
+				8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */,
+				8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */,
+				8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,7 +191,8 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5FA47C8D20BB0A710043B3C8 /* ViewControllerTest.swift */,
+				8F367C2720C57A1E00BEACA5 /* UserVC.swift */,
+				8F006BF520C5EEDB005846EB /* SingleUserVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -312,16 +330,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F3A9D7A20BC17AA00EB983B /* HomeProfil.swift in Sources */,
+				8F006BED20C5D92D005846EB /* HomeProfil+CoreDataClass.swift in Sources */,
+				8F006BF220C5D92D005846EB /* Profil+CoreDataProperties.swift in Sources */,
+				8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */,
+				8F006BF020C5D92D005846EB /* User+CoreDataProperties.swift in Sources */,
+				8F006BEE20C5D92D005846EB /* HomeProfil+CoreDataProperties.swift in Sources */,
+				8F006BF420C5D92D005846EB /* BusSettings+CoreDataProperties.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
+				8F006BF620C5EEDB005846EB /* SingleUserVC.swift in Sources */,
+				8F367C2820C57A1E00BEACA5 /* UserVC.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
-				8F3A9D7C20BC17CE00EB983B /* Profil.swift in Sources */,
-				5FA47C8E20BB0A710043B3C8 /* ViewControllerTest.swift in Sources */,
-				8F90275E20BB5D6200AF5061 /* Models.xcdatamodeld in Sources */,
-				8F3A9D7820BC16ED00EB983B /* UserProfil.swift in Sources */,
+				8F006BF120C5D92D005846EB /* Profil+CoreDataClass.swift in Sources */,
+				8F006BF320C5D92D005846EB /* BusSettings+CoreDataClass.swift in Sources */,
+				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
+				8F006BEF20C5D92D005846EB /* User+CoreDataClass.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
-				8F3A9D7620BC16E000EB983B /* BusSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,19 +680,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8F90275C20BB5D6200AF5061 /* Models.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8F90275D20BB5D6200AF5061 /* Models.xcdatamodel */,
-			);
-			currentVersion = 8F90275D20BB5D6200AF5061 /* Models.xcdatamodel */;
-			path = Models.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 5FA47C4820BAE9A50043B3C8 /* Project object */;
 }

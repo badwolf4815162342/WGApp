@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BusSettings" representedClassName=".BusSettings" syncable="YES" codeGenerationType="category">
+    <entity name="BusSettings" representedClassName="BusSettings" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ofProfil" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profil" inverseName="busSettings" inverseEntity="Profil" syncable="YES"/>
     </entity>
-    <entity name="HomeProfil" representedClassName=".HomeProfil" parentEntity="Profil" syncable="YES" codeGenerationType="category"/>
-    <entity name="Profil" representedClassName=".Profil" isAbstract="YES" syncable="YES" codeGenerationType="category">
+    <entity name="HomeProfil" representedClassName="HomeProfil" parentEntity="Profil" syncable="YES"/>
+    <entity name="Profil" representedClassName="Profil" isAbstract="YES" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="busSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="ofProfil" inverseEntity="BusSettings" syncable="YES"/>
     </entity>
-    <entity name="UserProfil" representedClassName=".UserProfil" parentEntity="Profil" syncable="YES" codeGenerationType="category">
+    <entity name="User" representedClassName="User" parentEntity="Profil" syncable="YES">
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="BusSettings" positionX="-2484" positionY="-268" width="128" height="88"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="Profil" positionX="-2729" positionY="-268" width="128" height="88"/>
-        <element name="UserProfil" positionX="-2810" positionY="-121" width="128" height="58"/>
+        <element name="User" positionX="-2810" positionY="-121" width="128" height="58"/>
     </elements>
 </model>
