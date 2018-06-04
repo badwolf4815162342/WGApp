@@ -12,10 +12,13 @@ class SingleUserVC: UIViewController {
     
     var user: User!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var mail: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = user.name
+        mail.text = user.mail
+        
     }
 
     override func didReceiveMemoryWarning() {
