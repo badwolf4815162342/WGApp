@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StopLocation: Codable {
+struct StopLocationRMV: Codable {
     var id: String
     var name: String
     

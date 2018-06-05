@@ -23,7 +23,7 @@ struct StopLocationResponse: Codable {
 }
 
 struct StopLocationOrCoordLocation: Codable {
-    let stopLocation: StopLocation?
+    let stopLocation: StopLocationRMV?
     let coordLocation: CoordLocation?
     
     enum CodingKeys: String, CodingKey {

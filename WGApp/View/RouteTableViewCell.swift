@@ -15,7 +15,7 @@ class RouteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var destinationLocationTextField: UIStopLocationSearchTextField!
     
-    func setRoute(originStopLocation: StopLocation, destinationStopLocation: StopLocation){
+    func setRoute(originStopLocation: StopLocationRMV, destinationStopLocation: StopLocationRMV){
         originLocationTextField.placeholderLabel?.text = originStopLocation.name
         destinationLocationTextField.placeholderLabel?.text = destinationStopLocation.name
     }

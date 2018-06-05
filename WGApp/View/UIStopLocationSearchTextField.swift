@@ -12,7 +12,7 @@ class UIStopLocationSearchTextField: SearchTextField {
     
     public var rmvApiController : RMVApiController = RMVApiController()
     
-    var selectedStopLocation: StopLocation?
+    var selectedStopLocation: StopLocationRMV?
     
     /// Set an array of strings to be used for suggestions
     override open func filterStrings(_ strings: [String]) {
@@ -103,13 +103,13 @@ class UIStopLocationSearchTextField: SearchTextField {
 
     }
     
-    func getKnownStopLocations() -> Array<StopLocation> {
-        var stopLocations = [StopLocation]()
+    func getKnownStopLocations() -> Array<StopLocationRMV> {
+        var stopLocations = [StopLocationRMV]()
         // TODO: Fetch DATABASE StopLocations
-        let stopLocationWiHbf = StopLocation(id: "001", name: "Wi Hbf" )
-        let stopLocationMainzHbf = StopLocation(id: "002", name: "Mainz Hbf" )
-        let stopLocationFrHbf = StopLocation(id: "003", name: "FR Hbf" )
-        let stopLocationWiesHbf = StopLocation(id: "004", name: "Wiesloch Hbf" )
+        let stopLocationWiHbf = StopLocationRMV(id: "001", name: "Wi Hbf" )
+        let stopLocationMainzHbf = StopLocationRMV(id: "002", name: "Mainz Hbf" )
+        let stopLocationFrHbf = StopLocationRMV(id: "003", name: "FR Hbf" )
+        let stopLocationWiesHbf = StopLocationRMV(id: "004", name: "Wiesloch Hbf" )
         stopLocations.append(stopLocationWiHbf)
         stopLocations.append(stopLocationMainzHbf)
         stopLocations.append(stopLocationFrHbf)

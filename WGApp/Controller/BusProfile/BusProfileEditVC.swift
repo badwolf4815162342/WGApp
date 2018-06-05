@@ -16,7 +16,7 @@ class BusProfilEditVC: UIViewController {
     
     public var rmvApiController : RMVApiController = RMVApiController()
     
-    var stopLocationsForBusProfile = [StopLocation]()
+    var stopLocationsForBusProfile = [StopLocationRMV]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,10 @@ class BusProfilEditVC: UIViewController {
         testStopLocationSearchField.resultsListHeader = header
         // Do any additional setup after loading the view.
         
-        let stopLocationWiHbf = StopLocation(id: "001", name: "Wi Hbf" )
-        let stopLocationMainzHbf = StopLocation(id: "002", name: "Mainz Hbf" )
-        let stopLocationFrHbf = StopLocation(id: "003", name: "FR Hbf" )
-        let stopLocationWiesHbf = StopLocation(id: "004", name: "Wiesloch Hbf" )
+        let stopLocationWiHbf = StopLocationRMV(id: "001", name: "Wi Hbf" )
+        let stopLocationMainzHbf = StopLocationRMV(id: "002", name: "Mainz Hbf" )
+        let stopLocationFrHbf = StopLocationRMV(id: "003", name: "FR Hbf" )
+        let stopLocationWiesHbf = StopLocationRMV(id: "004", name: "Wiesloch Hbf" )
         stopLocationsForBusProfile.append(stopLocationWiHbf)
         stopLocationsForBusProfile.append(stopLocationMainzHbf)
         stopLocationsForBusProfile.append(stopLocationFrHbf)

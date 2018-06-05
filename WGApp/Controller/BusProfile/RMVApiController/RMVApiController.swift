@@ -18,9 +18,9 @@ protocol RMVApiControllerProtocol {
     
     var baseQueryDict: [String: String] { get set }
     
-    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocation>) ->  ())
+    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ())
     
-    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocation>) ->  ())
+    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocationRMV>) ->  ())
     
     func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) ->  ())
     
@@ -37,12 +37,12 @@ class RMVApiController: RMVApiControllerProtocol {
     var baseQueryDict = ["accessId": "59820666-0a39-4ee9-acd4-76a062d39c13", "format": "json"]
     
     // Function that calls sopLocations from Network and returns completion(Array<StopLocations>
-    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocation>) ->  ()){
+    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
         
         // add additional query params and replace spaces
         let additionalQueryDict = ["input": withEntryString.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)]
         
-        var stopLocations = [StopLocation]()
+        var stopLocations = [StopLocationRMV]()
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: locationsPath)
@@ -78,7 +78,7 @@ class RMVApiController: RMVApiControllerProtocol {
             }.resume()
     }
     
-    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocation>) -> ()) {
+    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocationRMV>) -> ()) {
         return
     }
     
@@ -132,8 +132,8 @@ class RMVApiController: RMVApiControllerProtocol {
     }
     
     // Function that calls sopLocations from Network and returns completion(Array<StopLocations>
-    func getTestStoplocations(withEntryString: String, completion: @escaping (Array<StopLocation>) ->  ()){
-        var stopLocations = [StopLocation]()
+    func getTestStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
+        var stopLocations = [StopLocationRMV]()
         
         let stopLocationString = """
         {
