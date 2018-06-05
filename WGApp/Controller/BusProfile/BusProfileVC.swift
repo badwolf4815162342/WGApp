@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusProfilVC: UIViewController {
+class BusProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
