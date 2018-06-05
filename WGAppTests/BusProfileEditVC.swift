@@ -10,6 +10,8 @@ import UIKit
 
 class BusProfilEditVC: UIViewController {
     
+    @IBOutlet weak var testStopLocationSearchField: SearchTextField!
+    
     public var rmvApiController : RMVApiController = RMVApiController()
     
     override func viewDidLoad() {
