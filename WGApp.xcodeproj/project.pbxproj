@@ -11,7 +11,7 @@
 		5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */; };
 		5F09F1A320C6FEE5008407F6 /* BusProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */; };
 		5F09F1AB20C6FF12008407F6 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A520C6FF11008407F6 /* Departure.swift */; };
-		5F09F1AC20C6FF12008407F6 /* StopLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A620C6FF11008407F6 /* StopLocation.swift */; };
+		5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A620C6FF11008407F6 /* StopLocationRMV.swift */; };
 		5F09F1AE20C6FF12008407F6 /* TripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A820C6FF11008407F6 /* TripResponse.swift */; };
 		5F09F1AF20C6FF12008407F6 /* StopLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A920C6FF11008407F6 /* StopLocationResponse.swift */; };
 		5F09F1B020C6FF12008407F6 /* DepartureResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1AA20C6FF11008407F6 /* DepartureResponse.swift */; };
@@ -19,6 +19,13 @@
 		5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1B220C6FF5E008407F6 /* UISearchTextField.swift */; };
 		5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1B320C6FF5E008407F6 /* UIStopLocationSearchTextField.swift */; };
 		5F09F1B820C70014008407F6 /* Bus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F09F1B720C70014008407F6 /* Bus.storyboard */; };
+		5F09F1BF20C708F7008407F6 /* BusSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1B920C708F7008407F6 /* BusSettings+CoreDataClass.swift */; };
+		5F09F1C020C708F7008407F6 /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1BA20C708F7008407F6 /* BusSettings+CoreDataProperties.swift */; };
+		5F09F1C120C708F7008407F6 /* StopLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1BB20C708F7008407F6 /* StopLocation+CoreDataClass.swift */; };
+		5F09F1C220C708F7008407F6 /* StopLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1BC20C708F7008407F6 /* StopLocation+CoreDataProperties.swift */; };
+		5F09F1C320C708F7008407F6 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1BD20C708F7008407F6 /* BusRoute+CoreDataClass.swift */; };
+		5F09F1C420C708F7008407F6 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1BE20C708F7008407F6 /* BusRoute+CoreDataProperties.swift */; };
+		5F09F1C620C70D22008407F6 /* RMVApiControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1C520C70D22008407F6 /* RMVApiControllerTest.swift */; };
 		5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */; };
 		5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C5520BAE9A60043B3C8 /* ContainerVC.swift */; };
 		5FA47C5920BAE9A60043B3C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FA47C5720BAE9A60043B3C8 /* Main.storyboard */; };
@@ -35,8 +42,6 @@
 		8F006BF020C5D92D005846EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */; };
 		8F006BF120C5D92D005846EB /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */; };
 		8F006BF220C5D92D005846EB /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */; };
-		8F006BF320C5D92D005846EB /* BusSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */; };
-		8F006BF420C5D92D005846EB /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */; };
 		8F006BF620C5EEDB005846EB /* SingleUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BF520C5EEDB005846EB /* SingleUserVC.swift */; };
 		8F367C2820C57A1E00BEACA5 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2720C57A1E00BEACA5 /* UserVC.swift */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
@@ -65,7 +70,7 @@
 		5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusProfileVC.swift; sourceTree = "<group>"; };
 		5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusProfileEditVC.swift; sourceTree = "<group>"; };
 		5F09F1A520C6FF11008407F6 /* Departure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
-		5F09F1A620C6FF11008407F6 /* StopLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopLocation.swift; sourceTree = "<group>"; };
+		5F09F1A620C6FF11008407F6 /* StopLocationRMV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopLocationRMV.swift; sourceTree = "<group>"; };
 		5F09F1A820C6FF11008407F6 /* TripResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripResponse.swift; sourceTree = "<group>"; };
 		5F09F1A920C6FF11008407F6 /* StopLocationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopLocationResponse.swift; sourceTree = "<group>"; };
 		5F09F1AA20C6FF11008407F6 /* DepartureResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureResponse.swift; sourceTree = "<group>"; };
@@ -73,6 +78,13 @@
 		5F09F1B220C6FF5E008407F6 /* UISearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISearchTextField.swift; sourceTree = "<group>"; };
 		5F09F1B320C6FF5E008407F6 /* UIStopLocationSearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStopLocationSearchTextField.swift; sourceTree = "<group>"; };
 		5F09F1B720C70014008407F6 /* Bus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bus.storyboard; sourceTree = "<group>"; };
+		5F09F1B920C708F7008407F6 /* BusSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BusSettings+CoreDataClass.swift"; path = "RMVApiModels/BusSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F09F1BA20C708F7008407F6 /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BusSettings+CoreDataProperties.swift"; path = "RMVApiModels/BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F09F1BB20C708F7008407F6 /* StopLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F09F1BC20C708F7008407F6 /* StopLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F09F1BD20C708F7008407F6 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F09F1BE20C708F7008407F6 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F09F1C520C70D22008407F6 /* RMVApiControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMVApiControllerTest.swift; sourceTree = "<group>"; };
 		5FA47C5020BAE9A50043B3C8 /* WGApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WGApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FA47C5520BAE9A60043B3C8 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -95,8 +107,6 @@
 		8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F006BF520C5EEDB005846EB /* SingleUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserVC.swift; sourceTree = "<group>"; };
 		8F367C2720C57A1E00BEACA5 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
@@ -151,7 +161,7 @@
 			children = (
 				5F09F1A520C6FF11008407F6 /* Departure.swift */,
 				5F09F1AA20C6FF11008407F6 /* DepartureResponse.swift */,
-				5F09F1A620C6FF11008407F6 /* StopLocation.swift */,
+				5F09F1A620C6FF11008407F6 /* StopLocationRMV.swift */,
 				5F09F1A920C6FF11008407F6 /* StopLocationResponse.swift */,
 				5F09F1A820C6FF11008407F6 /* TripResponse.swift */,
 			);
@@ -201,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				5FA47C6820BAE9A60043B3C8 /* WGAppTests.swift */,
+				5F09F1C520C70D22008407F6 /* RMVApiControllerTest.swift */,
 				5FA47C6A20BAE9A60043B3C8 /* Info.plist */,
 			);
 			path = WGAppTests;
@@ -219,14 +230,18 @@
 			isa = PBXGroup;
 			children = (
 				5F09F1A420C6FEF9008407F6 /* RMVApiModels */,
+				5F09F1B920C708F7008407F6 /* BusSettings+CoreDataClass.swift */,
+				5F09F1BA20C708F7008407F6 /* BusSettings+CoreDataProperties.swift */,
+				5F09F1BB20C708F7008407F6 /* StopLocation+CoreDataClass.swift */,
+				5F09F1BC20C708F7008407F6 /* StopLocation+CoreDataProperties.swift */,
+				5F09F1BD20C708F7008407F6 /* BusRoute+CoreDataClass.swift */,
+				5F09F1BE20C708F7008407F6 /* BusRoute+CoreDataProperties.swift */,
 				8F006BE520C5D92D005846EB /* HomeProfil+CoreDataClass.swift */,
 				8F006BE620C5D92D005846EB /* HomeProfil+CoreDataProperties.swift */,
 				8F006BE720C5D92D005846EB /* User+CoreDataClass.swift */,
 				8F006BE820C5D92D005846EB /* User+CoreDataProperties.swift */,
 				8F006BE920C5D92D005846EB /* Profil+CoreDataClass.swift */,
 				8F006BEA20C5D92D005846EB /* Profil+CoreDataProperties.swift */,
-				8F006BEB20C5D92D005846EB /* BusSettings+CoreDataClass.swift */,
-				8F006BEC20C5D92D005846EB /* BusSettings+CoreDataProperties.swift */,
 				8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */,
 			);
 			path = Model;
@@ -395,25 +410,29 @@
 				8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */,
 				8F006BF020C5D92D005846EB /* User+CoreDataProperties.swift in Sources */,
 				8F006BEE20C5D92D005846EB /* HomeProfil+CoreDataProperties.swift in Sources */,
-				8F006BF420C5D92D005846EB /* BusSettings+CoreDataProperties.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
 				8F006BF620C5EEDB005846EB /* SingleUserVC.swift in Sources */,
 				8F367C2820C57A1E00BEACA5 /* UserVC.swift in Sources */,
+				5F09F1C120C708F7008407F6 /* StopLocation+CoreDataClass.swift in Sources */,
 				5F09F19F20C6FED5008407F6 /* RMVApiController.swift in Sources */,
+				5F09F1BF20C708F7008407F6 /* BusSettings+CoreDataClass.swift in Sources */,
 				5F09F1B020C6FF12008407F6 /* DepartureResponse.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
 				8F006BF120C5D92D005846EB /* Profil+CoreDataClass.swift in Sources */,
 				5F09F1A320C6FEE5008407F6 /* BusProfileEditVC.swift in Sources */,
-				5F09F1AC20C6FF12008407F6 /* StopLocation.swift in Sources */,
+				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
+				5F09F1C420C708F7008407F6 /* BusRoute+CoreDataProperties.swift in Sources */,
+				5F09F1C320C708F7008407F6 /* BusRoute+CoreDataClass.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
-				8F006BF320C5D92D005846EB /* BusSettings+CoreDataClass.swift in Sources */,
 				5F09F1AB20C6FF12008407F6 /* Departure.swift in Sources */,
 				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
+				5F09F1C020C708F7008407F6 /* BusSettings+CoreDataProperties.swift in Sources */,
 				8F006BEF20C5D92D005846EB /* User+CoreDataClass.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
 				5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */,
+				5F09F1C220C708F7008407F6 /* StopLocation+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F09F1C620C70D22008407F6 /* RMVApiControllerTest.swift in Sources */,
 				5FA47C6920BAE9A60043B3C8 /* WGAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
