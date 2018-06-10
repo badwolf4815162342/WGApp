@@ -10,6 +10,8 @@ import Foundation
 
 protocol RMVApiControllerProtocol {
     
+    var counter: Int { get }
+    
     var host: String { get }
     
     var locationsPath: String { get }
@@ -27,6 +29,8 @@ protocol RMVApiControllerProtocol {
 }
 
 class RMVApiController: RMVApiControllerProtocol {
+    
+    var counter = 0
     
     var host = "https://www.rmv.de/hapi"
     
@@ -69,6 +73,8 @@ class RMVApiController: RMVApiControllerProtocol {
                 }
                 print("Network call done for path: '\(urlString)' with \(stopLocations.count) StopLocationsFound")
                 // return completion
+                self.counter = self.counter + 1
+                print("request nr. \(self.counter)")
                 completion(stopLocations)
             } catch DecodingError.keyNotFound(let key, let context) {
                 print("coundn't find key \(key) in JSON: \(context.debugDescription)")
@@ -109,6 +115,8 @@ class RMVApiController: RMVApiControllerProtocol {
                 departures = departureResponse.departure
                 
                 print("Network call done for path: '\(urlString)' with \(departures.count) StopLocationsFound")
+                self.counter = self.counter + 1
+                print("request nr. \(self.counter)")
                 // return completion
                 completion(departures)
             } catch DecodingError.keyNotFound(let key, let context) {

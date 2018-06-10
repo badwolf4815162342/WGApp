@@ -11,15 +11,14 @@ import UIKit
 class UIStopLocationSearchTextField: SearchTextField {
     
     public var rmvApiController : RMVApiController = RMVApiController()
-    
-    var selectedStopLocation: StopLocationRMV?
-    
-    /// Set an array of strings to be used for suggestions
-    override open func filterStrings(_ strings: [String]) {
+
+    func filterStopLocations(stopLocations: [StopLocationRMV]) {
         var items = [SearchTextFieldItem]()
-        for value in strings {
-            items.append(SearchTextFieldItem(title: value))
+        
+        for value in stopLocations {
+            items.append(SearchTextFieldItem(rmvStopLocation: value))
         }
+        
         filterItems(items)
     }
     
@@ -76,23 +75,30 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     func filterNewStopLocations(forceShowAll addAll: Bool) {
-        self.rmvApiController.getTestStoplocations(withEntryString: self.text!, completion: { stopLocations in
-            print("NetworkStoplocations for \(self.text!): \(stopLocations.count)")
-            self.filterStrings(stopLocations.map { $0.name })
-            self.filter(forceShowAll: addAll)
-            self.prepareDrawTableResult()
-            if let header = self.resultsListHeader {
-                if let headerLabel = header as? UILabel {
-                    headerLabel.text = ("\(self.filteredResults.count)/\(stopLocations.count): Onlineergebnisse")
+        self.rmvApiController.getStoplocations(withEntryString: self.text!, completion: { stopLocations in
+            DispatchQueue.main.async {
+                self.showLoadingIndicator()
+                print("NetworkStoplocations for \(self.text!): \(stopLocations.count)")
+                //self.filterStrings(stopLocations.map { $0.name })
+                self.filterStopLocations(stopLocations: stopLocations)
+                self.filter(forceShowAll: addAll)
+                self.prepareDrawTableResult()
+                if let header = self.resultsListHeader {
+                    if let headerLabel = header as? UILabel {
+                        headerLabel.text = ("\(self.filteredResults.count)/\(stopLocations.count): Onlineergebnisse")
+                    }
                 }
+                print("NetworkStoplocations for \(self.text!): \(stopLocations.count) done!")
+                self.stopLoadingIndicator()
             }
+            
             
         })
     }
     
     func filterKnownStopLocations(forceShowAll addAll: Bool) {
         let stopLocations = getKnownStopLocations()
-        self.filterStrings(stopLocations.map { $0.name })
+        self.filterStopLocations(stopLocations: stopLocations)
         self.filter(forceShowAll: addAll)
         self.prepareDrawTableResult()
         if let header = self.resultsListHeader {
@@ -118,6 +124,7 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     @objc override open func textFieldDidChange() {
+        print("-------------didchange")
         if !inlineMode && tableView == nil {
             buildSearchTableView()
         }
@@ -137,10 +144,11 @@ class UIStopLocationSearchTextField: SearchTextField {
             if text!.count < minCharactersNumberToStartFiltering {
                 //print("Eingabetextlänge: \(text!.count), filterKnownStopLocations")
                 filterKnownStopLocations(forceShowAll: forceNoFiltering)
-            } else if text!.count == minCharactersNumberToStartFiltering {
+            } else {//if text!.count == minCharactersNumberToStartFiltering {
                 //print("Eingabetextlänge: \(text!.count), filterNetworkStopLocations")
                 filterNewStopLocations(forceShowAll: forceNoFiltering)
-            } else {
+            }
+           /** else {
                 //print("Eingabetextlänge: \(text!.count), filterActStopLocations")
                 filter(forceShowAll: forceNoFiltering)
                 prepareDrawTableResult()
@@ -149,11 +157,11 @@ class UIStopLocationSearchTextField: SearchTextField {
                         headerLabel.text = ("\(filteredResults.count)/\(filterDataSource.count): Ergebnisse")
                     }
                 }
-            }
+            }**/
         }
-        
+        //self.stopLoadingIndicator()
         buildPlaceholderLabel()
     }
 
-
 }
+

@@ -2,7 +2,7 @@
 //  BusSettings+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 05.06.18.
+//  Created by Viviane Rehor on 10.06.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -17,7 +17,6 @@ extension BusSettings {
         return NSFetchRequest<BusSettings>(entityName: "BusSettings")
     }
 
-    @NSManaged public var id: Int64
     @NSManaged public var title: String?
     @NSManaged public var ofProfil: Profil?
     @NSManaged public var routes: NSSet?

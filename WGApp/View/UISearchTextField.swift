@@ -74,6 +74,8 @@ open class SearchTextField: UITextField {
     /// Closure to handle when the user pick an item
     open var itemSelectionHandler: SearchTextFieldItemHandler?
     
+    var selectedStopLocation: StopLocationRMV?
+    
     /// Closure to handle when the user stops typing
     open var userStoppedTypingHandler: (() -> Void)?
     
@@ -558,7 +560,7 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: SearchTextField.cellIdentifier)
         }
         
-        cell!.backgroundColor = UIColor.clear
+        cell!.backgroundColor = UIColor.white
         cell!.layoutMargins = UIEdgeInsets.zero
         cell!.preservesSuperviewLayoutMargins = false
         cell!.textLabel?.font = theme.font
@@ -583,6 +585,7 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedStopLocation = filteredResults[(indexPath as NSIndexPath).row].rmvStopLocation
         if itemSelectionHandler == nil {
             self.text = filteredResults[(indexPath as NSIndexPath).row].title
         } else {
@@ -631,6 +634,7 @@ public struct SearchTextFieldTheme {
 open class SearchTextFieldItem {
     var attributedTitle: NSMutableAttributedString?
     var attributedSubtitle: NSMutableAttributedString?
+    var rmvStopLocation: StopLocationRMV?
     
     // Public interface
     public var title: String
@@ -650,6 +654,11 @@ open class SearchTextFieldItem {
     
     public init(title: String) {
         self.title = title
+    }
+    
+     init(rmvStopLocation: StopLocationRMV) {
+        self.title = rmvStopLocation.name
+        self.rmvStopLocation = rmvStopLocation
     }
 }
 

@@ -7,40 +7,68 @@
 //
 
 import UIKit
+import CoreData
 
 class BusProfilEditVC: UIViewController {
     
-    @IBOutlet weak var testStopLocationSearchField: UIStopLocationSearchTextField!
+    @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var routesTableView: UITableView!
     
     public var rmvApiController : RMVApiController = RMVApiController()
     
-    var stopLocationsForBusProfile = [StopLocationRMV]()
+    var busProfile: BusSettings!
+    
+    var routesForBusProfile = [BusRoute]()
+    
+    var currentlyEditingRoute: BusRoute?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         routesTableView.delegate = self
         routesTableView.dataSource = self
-        // ab wieviel eingabe params soll gesucht werden
-        testStopLocationSearchField.minCharactersNumberToStartFiltering = 2
-        let header = UILabel(frame: CGRect(x: 0, y: 0, width: testStopLocationSearchField.frame.width, height: 30))
-        header.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        header.textAlignment = .center
-        header.font = UIFont.systemFont(ofSize: 14)
-        header.text = "Ergebnisse"
-        testStopLocationSearchField.resultsListHeader = header
-        // Do any additional setup after loading the view.
+        if busProfile == nil { setInitialBusProfile() }
+        //get Notification if BusProfile changes
+        NotificationCenter.default.addObserver(self, selector: #selector(changeBusProfile), name: NSNotification.Name("ShowBusprofileMsg"), object: nil)
+        // oberserver to load route edit view user page
+        NotificationCenter.default.addObserver(self, selector: #selector(showRouteForEdit), name: NSNotification.Name("ShowRouteMsg"), object: nil)
+          
+    }
+    
+    // setNew BusRoute
+    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+        if let busRouteEditVC = sender.source as? BusRouteEditVC {
+            let newRoute = busRouteEditVC.busRoute!
+            busProfile.addToRoutes(newRoute)
+            newRoute.addToRouteOfBusSettings(busProfile)
+            busProfile.removeFromRoutes(currentlyEditingRoute!)
+            currentlyEditingRoute?.removeFromRouteOfBusSettings(busProfile)
+            currentlyEditingRoute = nil
+            PersistenceService.saveContext()
+        }
+        if let routesSet = busProfile.routes{
+            routesForBusProfile = routesSet.allObjects as! [BusRoute]
+            print(routesSet)
+            self.routesTableView.reloadData()
+        }
+    }
+    
+    @IBAction func saveBusProfile(_ sender: Any) {
+        print(busProfile.objectID)
+        print(busProfile.title ?? "title")
+        print(busProfile.routes?.count ?? "routeslength")
+        //TODO: saving title and user
+    }
+    
+    @objc func changeBusProfile(notification: NSNotification) {
+        busProfile = notification.object as! BusSettings
+        titleTextField.text = busProfile.title
         
-        let stopLocationWiHbf = StopLocationRMV(id: "001", name: "Wi Hbf" )
-        let stopLocationMainzHbf = StopLocationRMV(id: "002", name: "Mainz Hbf" )
-        let stopLocationFrHbf = StopLocationRMV(id: "003", name: "FR Hbf" )
-        let stopLocationWiesHbf = StopLocationRMV(id: "004", name: "Wiesloch Hbf" )
-        stopLocationsForBusProfile.append(stopLocationWiHbf)
-        stopLocationsForBusProfile.append(stopLocationMainzHbf)
-        stopLocationsForBusProfile.append(stopLocationFrHbf)
-        stopLocationsForBusProfile.append(stopLocationWiesHbf)
-        
+        if let routesSet = busProfile.routes{
+            routesForBusProfile = routesSet.allObjects as! [BusRoute]
+            print(routesSet)
+            self.routesTableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,57 +76,57 @@ class BusProfilEditVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func printAllNetworkStaff(_ sender: UIButton) {
-        self.rmvApiController.getTestStoplocations(withEntryString: "Dreiwei Wi", completion: { stopLocations in
-            DispatchQueue.main.async {
-                self.stopLocationsForBusProfile = stopLocations
-                self.routesTableView?.reloadData()
-            }
-        })
-        /**
-        self.rmvApiController.getTestStoplocations(withEntryString: "Dreiwei Wi", completion: { articles in
-            print(articles.count)
-            print("TestStops")
-            for stop in articles {
-                print(stop)
-            }
-        })
-        self.rmvApiController.getDepartures(fromOriginId: "003025274", completion: { departures in
-            print(departures.count)
-            print("TestDepartures")
-            for departure in departures {
-                print(departure)
-            }
-        })**/
+    @objc func showRouteForEdit(notification: NSNotification) {
+        let route = notification.object as! BusRoute
+        currentlyEditingRoute = route
+        performSegue(withIdentifier: "ShowRoute", sender: route)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowRoute" {
+            if let destinationVC = segue.destination as? BusRouteEditVC {
+                destinationVC.busRoute = sender as? BusRoute
+            }
+        }
+    }
+    
+    
+    func setInitialBusProfile(){
+        // load core data into table
+        let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+        do {
+            let profiles = try PersistenceService.context.fetch(fetchRequest)
+            busProfile = profiles[0]
+            titleTextField.text = busProfile.title
+            
+            if let routesSet = busProfile.routes{
+                routesForBusProfile = routesSet.allObjects as! [BusRoute]
+                self.routesTableView.reloadData()
+            }
+        } catch {}
+    }
     
 }
 
 extension BusProfilEditVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stopLocationsForBusProfile.count
+        return routesForBusProfile.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let stopLocation = stopLocationsForBusProfile[indexPath.row]
+        let route = routesForBusProfile[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteCell")
         
         let rtCell = cell  as! RouteTableViewCell
         
-        rtCell.setRoute(originStopLocation: stopLocation, destinationStopLocation: stopLocation)
+        rtCell.setRoute(route: route)
         
         return rtCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name("ShowRouteMsg"), object: routesForBusProfile[indexPath.row])
     }
 }
