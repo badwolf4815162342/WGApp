@@ -2,7 +2,7 @@
 //  Profil+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 10.06.18.
+//  Created by Anna Abad on 11.06.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -17,6 +17,7 @@ extension Profil {
         return NSFetchRequest<Profil>(entityName: "Profil")
     }
 
+    @NSManaged public var profilIcon: String?
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var busSettings: NSSet?
