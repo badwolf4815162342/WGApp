@@ -20,7 +20,7 @@ class BusProfileVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        //addTestBusSettings()
+        addTestBusSettings()
         
         // load core data into table
         let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
