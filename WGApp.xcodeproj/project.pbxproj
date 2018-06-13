@@ -149,8 +149,8 @@
 		5F09F19C20C6FE53008407F6 /* BusProfile */ = {
 			isa = PBXGroup;
 			children = (
-				5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */,
 				5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */,
+				5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */,
 				5F09F1C920CBD140008407F6 /* BusRouteEditVC.swift */,
 				5F09F19D20C6FE76008407F6 /* RMVApiController */,
 			);
@@ -180,9 +180,9 @@
 		5F44D62D20D01C890014AB46 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				5F44D63220D01CCA0014AB46 /* UserVC.swift */,
 				5F44D63120D01CCA0014AB46 /* SingleUserVC.swift */,
 				5F44D63020D01CCA0014AB46 /* UserEditVC.swift */,
-				5F44D63220D01CCA0014AB46 /* UserVC.swift */,
 				5F44D62E20D01CA40014AB46 /* Image.swift */,
 			);
 			name = User;
@@ -201,9 +201,9 @@
 		5F44D63920D01F190014AB46 /* BusProfile */ = {
 			isa = PBXGroup;
 			children = (
+				5F09F1B720C70014008407F6 /* Bus.storyboard */,
 				5F09F1B220C6FF5E008407F6 /* UISearchTextField.swift */,
 				5F09F1B320C6FF5E008407F6 /* UIStopLocationSearchTextField.swift */,
-				5F09F1B720C70014008407F6 /* Bus.storyboard */,
 				5F09F1C720C97FC2008407F6 /* BusprofileTableViewCell.swift */,
 				5F09F1B120C6FF5E008407F6 /* RouteTableViewCell.swift */,
 			);

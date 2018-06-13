@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uzP-t9-ILm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uzP-t9-ILm">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -139,7 +139,6 @@
                         <outlet property="icon" destination="5Fq-9g-VjO" id="D3t-Rq-Lqm"/>
                         <outlet property="mail" destination="XAS-7Q-Xt1" id="iZa-py-Vhi"/>
                         <outlet property="name" destination="Nu2-GH-yZ9" id="t9a-YI-fv6"/>
-                        <segue destination="uzP-t9-ILm" kind="show" identifier="BackToUsers" id="bOA-nG-RWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEH-Yz-foC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -177,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="bestätigen"/>
                                 <connections>
-                                    <segue destination="I2k-wu-VF5" kind="show" identifier="BackToUser" id="L3D-6G-gQK"/>
+                                    <segue destination="TCS-mJ-Nde" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="oVX-qr-bdG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,12 +190,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kn-ca-sJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TCS-mJ-Nde" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2667" y="1723"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="D7m-Kd-1VR"/>
-        <segue reference="L3D-6G-gQK"/>
-    </inferredMetricsTieBreakers>
 </document>

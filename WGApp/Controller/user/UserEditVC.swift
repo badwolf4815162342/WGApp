@@ -20,26 +20,9 @@ class UserEditVC: UIViewController {
         super.viewDidLoad()
         name.text = user.name
         mail.text = user.mail
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showUser), name: NSNotification.Name("BackToUserMsg"), object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func save(_ sender: Any) {
+    func save() {
         var changed = false
         if name.text != user.name && name.text != ""{
             user.name = name.text
@@ -52,19 +35,10 @@ class UserEditVC: UIViewController {
         if changed{
             PersistenceService.saveContext()
         }
-        NotificationCenter.default.post(name: NSNotification.Name("BackToUserMsg"), object: nil)
-    }
-    
-    @objc func showUser(notification: NSNotification) {
-        performSegue(withIdentifier: "BackToUser", sender: nil)
+        print("save executed in edit")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "BackToUser" {
-            if let destinationVC = segue.destination as? SingleUserVC {
-                destinationVC.user = self.user
-            }
-        }
+        save()
     }
-    
 }
