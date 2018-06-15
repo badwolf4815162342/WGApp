@@ -7,18 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F05F54220CDCF2F00706E72 /* HomeProfil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53620CDCF2F00706E72 /* HomeProfil+CoreDataClass.swift */; };
-		5F05F54320CDCF2F00706E72 /* HomeProfil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53720CDCF2F00706E72 /* HomeProfil+CoreDataProperties.swift */; };
-		5F05F54420CDCF2F00706E72 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53820CDCF2F00706E72 /* Profil+CoreDataClass.swift */; };
-		5F05F54520CDCF2F00706E72 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53920CDCF2F00706E72 /* Profil+CoreDataProperties.swift */; };
-		5F05F54620CDCF2F00706E72 /* StopLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53A20CDCF2F00706E72 /* StopLocation+CoreDataClass.swift */; };
-		5F05F54720CDCF2F00706E72 /* StopLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53B20CDCF2F00706E72 /* StopLocation+CoreDataProperties.swift */; };
-		5F05F54820CDCF2F00706E72 /* BusSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53C20CDCF2F00706E72 /* BusSettings+CoreDataClass.swift */; };
-		5F05F54920CDCF2F00706E72 /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53D20CDCF2F00706E72 /* BusSettings+CoreDataProperties.swift */; };
-		5F05F54A20CDCF2F00706E72 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53E20CDCF2F00706E72 /* BusRoute+CoreDataClass.swift */; };
-		5F05F54B20CDCF2F00706E72 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F53F20CDCF2F00706E72 /* BusRoute+CoreDataProperties.swift */; };
-		5F05F54C20CDCF2F00706E72 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F54020CDCF2F00706E72 /* User+CoreDataClass.swift */; };
-		5F05F54D20CDCF2F00706E72 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05F54120CDCF2F00706E72 /* User+CoreDataProperties.swift */; };
 		5F09F19F20C6FED5008407F6 /* RMVApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F19E20C6FED5008407F6 /* RMVApiController.swift */; };
 		5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */; };
 		5F09F1A320C6FEE5008407F6 /* BusProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */; };
@@ -48,6 +36,19 @@
 		5FA47C7420BAE9A60043B3C8 /* WGAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C7320BAE9A60043B3C8 /* WGAppUITests.swift */; };
 		5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */; };
 		5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */; };
+		5FBD7CA620D3CF710007BBC3 /* BusSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CA520D3CF710007BBC3 /* BusSettingsController.swift */; };
+		5FBD7CCC20D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC120D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift */; };
+		5FBD7CCD20D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC220D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift */; };
+		5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC320D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift */; };
+		5FBD7CCF20D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC420D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift */; };
+		5FBD7CD020D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC520D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift */; };
+		5FBD7CD120D3EBFB0007BBC3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC620D3EBFB0007BBC3 /* User+CoreDataClass.swift */; };
+		5FBD7CD220D3EBFB0007BBC3 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC720D3EBFB0007BBC3 /* User+CoreDataProperties.swift */; };
+		5FBD7CD320D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC820D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift */; };
+		5FBD7CD420D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */; };
+		5FBD7CD820D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CD520D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift */; };
+		5FBD7CD920D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */; };
+		5FBD7CDC20D3ED930007BBC3 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */; };
 		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
 /* End PBXBuildFile section */
@@ -70,18 +71,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5F05F53620CDCF2F00706E72 /* HomeProfil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F53720CDCF2F00706E72 /* HomeProfil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5F05F53820CDCF2F00706E72 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F53920CDCF2F00706E72 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5F05F53A20CDCF2F00706E72 /* StopLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F53B20CDCF2F00706E72 /* StopLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5F05F53C20CDCF2F00706E72 /* BusSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F53D20CDCF2F00706E72 /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5F05F53E20CDCF2F00706E72 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F53F20CDCF2F00706E72 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5F05F54020CDCF2F00706E72 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5F05F54120CDCF2F00706E72 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F09F19E20C6FED5008407F6 /* RMVApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMVApiController.swift; sourceTree = "<group>"; };
 		5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusProfileVC.swift; sourceTree = "<group>"; };
 		5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusProfileEditVC.swift; sourceTree = "<group>"; };
@@ -117,6 +106,19 @@
 		5FA47C7520BAE9A60043B3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenueVC.swift; sourceTree = "<group>"; };
 		5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
+		5FBD7CA520D3CF710007BBC3 /* BusSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingsController.swift; sourceTree = "<group>"; };
+		5FBD7CC120D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FBD7CC220D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CC320D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CC420D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FBD7CC520D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CC620D3EBFB0007BBC3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FBD7CC720D3EBFB0007BBC3 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CC820D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CD520D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 		5F09F19C20C6FE53008407F6 /* BusProfile */ = {
 			isa = PBXGroup;
 			children = (
+				5FBD7CA520D3CF710007BBC3 /* BusSettingsController.swift */,
 				5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */,
 				5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */,
 				5F09F1C920CBD140008407F6 /* BusRouteEditVC.swift */,
@@ -271,18 +274,18 @@
 		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F05F53620CDCF2F00706E72 /* HomeProfil+CoreDataClass.swift */,
-				5F05F53720CDCF2F00706E72 /* HomeProfil+CoreDataProperties.swift */,
-				5F05F53820CDCF2F00706E72 /* Profil+CoreDataClass.swift */,
-				5F05F53920CDCF2F00706E72 /* Profil+CoreDataProperties.swift */,
-				5F05F53A20CDCF2F00706E72 /* StopLocation+CoreDataClass.swift */,
-				5F05F53B20CDCF2F00706E72 /* StopLocation+CoreDataProperties.swift */,
-				5F05F53C20CDCF2F00706E72 /* BusSettings+CoreDataClass.swift */,
-				5F05F53D20CDCF2F00706E72 /* BusSettings+CoreDataProperties.swift */,
-				5F05F53E20CDCF2F00706E72 /* BusRoute+CoreDataClass.swift */,
-				5F05F53F20CDCF2F00706E72 /* BusRoute+CoreDataProperties.swift */,
-				5F05F54020CDCF2F00706E72 /* User+CoreDataClass.swift */,
-				5F05F54120CDCF2F00706E72 /* User+CoreDataProperties.swift */,
+				5FBD7CD520D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift */,
+				5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */,
+				5FBD7CC120D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift */,
+				5FBD7CC220D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift */,
+				5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */,
+				5FBD7CC320D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift */,
+				5FBD7CC420D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift */,
+				5FBD7CC520D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift */,
+				5FBD7CC620D3EBFB0007BBC3 /* User+CoreDataClass.swift */,
+				5FBD7CC720D3EBFB0007BBC3 /* User+CoreDataProperties.swift */,
+				5FBD7CC820D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift */,
+				5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */,
 				5F09F1A420C6FEF9008407F6 /* RMVApiModels */,
 				8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */,
 			);
@@ -442,39 +445,40 @@
 			files = (
 				5F09F1AE20C6FF12008407F6 /* TripResponse.swift in Sources */,
 				5F09F1B420C6FF5E008407F6 /* RouteTableViewCell.swift in Sources */,
-				5F05F54A20CDCF2F00706E72 /* BusRoute+CoreDataClass.swift in Sources */,
 				5F44D63420D01CCA0014AB46 /* SingleUserVC.swift in Sources */,
 				5F09F1AF20C6FF12008407F6 /* StopLocationResponse.swift in Sources */,
 				8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
 				5F09F1CA20CBD140008407F6 /* BusRouteEditVC.swift in Sources */,
+				5FBD7CD320D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift in Sources */,
 				5F09F19F20C6FED5008407F6 /* RMVApiController.swift in Sources */,
 				5F09F1B020C6FF12008407F6 /* DepartureResponse.swift in Sources */,
 				5F44D62F20D01CA40014AB46 /* Image.swift in Sources */,
-				5F05F54620CDCF2F00706E72 /* StopLocation+CoreDataClass.swift in Sources */,
+				5FBD7CCF20D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift in Sources */,
+				5FBD7CD820D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
+				5FBD7CA620D3CF710007BBC3 /* BusSettingsController.swift in Sources */,
 				5F09F1A320C6FEE5008407F6 /* BusProfileEditVC.swift in Sources */,
 				5F44D63520D01CCA0014AB46 /* UserVC.swift in Sources */,
-				5F05F54820CDCF2F00706E72 /* BusSettings+CoreDataClass.swift in Sources */,
+				5FBD7CCC20D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift in Sources */,
 				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
-				5F05F54220CDCF2F00706E72 /* HomeProfil+CoreDataClass.swift in Sources */,
 				5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */,
+				5FBD7CDC20D3ED930007BBC3 /* Profil+CoreDataClass.swift in Sources */,
+				5FBD7CD920D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */,
+				5FBD7CD420D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift in Sources */,
 				5F09F1AB20C6FF12008407F6 /* Departure.swift in Sources */,
+				5FBD7CD120D3EBFB0007BBC3 /* User+CoreDataClass.swift in Sources */,
 				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
-				5F05F54C20CDCF2F00706E72 /* User+CoreDataClass.swift in Sources */,
-				5F05F54320CDCF2F00706E72 /* HomeProfil+CoreDataProperties.swift in Sources */,
-				5F05F54B20CDCF2F00706E72 /* BusRoute+CoreDataProperties.swift in Sources */,
+				5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
-				5F05F54920CDCF2F00706E72 /* BusSettings+CoreDataProperties.swift in Sources */,
-				5F05F54720CDCF2F00706E72 /* StopLocation+CoreDataProperties.swift in Sources */,
-				5F05F54420CDCF2F00706E72 /* Profil+CoreDataClass.swift in Sources */,
-				5F05F54D20CDCF2F00706E72 /* User+CoreDataProperties.swift in Sources */,
 				5F44D63320D01CCA0014AB46 /* UserEditVC.swift in Sources */,
+				5FBD7CCD20D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift in Sources */,
+				5FBD7CD220D3EBFB0007BBC3 /* User+CoreDataProperties.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
 				5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */,
-				5F05F54520CDCF2F00706E72 /* Profil+CoreDataProperties.swift in Sources */,
+				5FBD7CD020D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

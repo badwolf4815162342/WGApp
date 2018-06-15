@@ -17,6 +17,8 @@ class BusProfilEditVC: UIViewController {
     
     public var rmvApiController : RMVApiController = RMVApiController()
     
+    private var busSettingsController: BusSettingsController = BusSettingsController()
+    
     var busProfile: BusSettings!
     
     var routesForBusProfile = [BusRoute]()
@@ -39,12 +41,10 @@ class BusProfilEditVC: UIViewController {
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let busRouteEditVC = sender.source as? BusRouteEditVC {
             let newRoute = busRouteEditVC.busRoute!
-            busProfile.addToRoutes(newRoute)
-            newRoute.addToRouteOfBusSettings(busProfile)
-            busProfile.removeFromRoutes(currentlyEditingRoute!)
-            currentlyEditingRoute?.removeFromRouteOfBusSettings(busProfile)
+            // TODO: When do we want to replace?
+            print(newRoute.origin?.name)
+            BusSettingsController.replaceBusRouteOfBusProfile(newBusRoute: newRoute, oldBusRoute: currentlyEditingRoute!, busProfile: busProfile)
             currentlyEditingRoute = nil
-            PersistenceService.saveContext()
         }
         if let routesSet = busProfile.routes{
             routesForBusProfile = routesSet.allObjects as! [BusRoute]
@@ -90,6 +90,9 @@ class BusProfilEditVC: UIViewController {
         }
     }
     
+    func addNewBusRoute() {
+        
+    }
     
     func setInitialBusProfile(){
         // load core data into table

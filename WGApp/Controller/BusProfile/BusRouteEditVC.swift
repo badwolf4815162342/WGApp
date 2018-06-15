@@ -46,33 +46,17 @@ class BusRouteEditVC: UIViewController {
         if segue.identifier == "routeSaved" {
             if let destinationVC = segue.destination as? BusProfilEditVC {
                 // ifChanges
-                var newBusRoute = BusRoute(context: PersistenceService.context)
+               // var newBusRoute = BusRoute(context: PersistenceService.context)
                 
-                let actOriginLocation = StopLocation(context: PersistenceService.context)
-                let actDestinationLocation = StopLocation(context: PersistenceService.context)
-                
-                actOriginLocation.id = originLocationTextField.selectedStopLocation?.id
-                actOriginLocation.name = originLocationTextField.selectedStopLocation?.name
-                actOriginLocation.addToOriginOfBusRoutes(newBusRoute)
-                
+                busRoute = BusSettingsController.saveOriginStopLocationRMVToBusRoute(rmvStopLocation: originLocationTextField.selectedStopLocation!, busRoute: busRoute!)
                 print(originLocationTextField.selectedStopLocation?.name)
                 
-                actDestinationLocation.id = destinationLocationTextField.selectedStopLocation?.id
-                actDestinationLocation.name = destinationLocationTextField.selectedStopLocation?.name
-                actDestinationLocation.addToDestinationOfBusRoutes(newBusRoute)
+                busRoute = BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: destinationLocationTextField.selectedStopLocation!, busRoute: busRoute!)
                 
-                newBusRoute.origin = actOriginLocation
-                newBusRoute.destination = actDestinationLocation
+                print(busRoute?.origin?.name)
                 
-                //TODO: return old one if no changes
-                //if (busRoute == newBusRoute) {
-                    print("notequalroutes")
-                    busRoute = newBusRoute
-                    PersistenceService.saveContext()
-                /*} else {
-                    print("equalroutes")
-                }
-            **/
+                //busRoute = newBusRoute
+
             }
         }
         
