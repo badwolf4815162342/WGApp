@@ -29,9 +29,12 @@ class BusSettingsController: NSObject {
             newStopLocation.name = rmvStopLocation.name
             newStopLocation.id = rmvStopLocation.id
         }
-        newStopLocation.addToDestinationOfBusRoutes(busRoute)
+        //newStopLocation.addToDestinationOfBusRoutes(busRoute) Causes Bug, setzt dest for origin and dest
         busRoute.destination = newStopLocation
         PersistenceService.saveContext()
+        
+        print("after second setting:", busRoute.origin?.name ," dest " , busRoute.destination?.name)
+        
         return busRoute
     }
     
@@ -45,17 +48,26 @@ class BusSettingsController: NSObject {
         if let oldStopLocation = busRoute.origin {
             deleteOriginStopLocationFromBusRoute(stopLocation: oldStopLocation, busRoute: busRoute)
         }
+        print(busRoute.origin?.name)
+        print(busRoute.destination?.name)
         let existingStopLocation = findStopLocationByRMVStopLocation(rmvStopLocation: rmvStopLocation)
         var newStopLocation = StopLocation(context: PersistenceService.context)
+        print(busRoute.destination?.name)
         if (existingStopLocation != nil ) {
             newStopLocation = existingStopLocation!
         } else {
             newStopLocation.name = rmvStopLocation.name
             newStopLocation.id = rmvStopLocation.id
         }
-        newStopLocation.addToOriginOfBusRoutes(busRoute)
+        print(busRoute.destination?.name)
+        //newStopLocation.addToOriginOfBusRoutes(busRoute) Causes Bug sets origin for orihin and dest
+        print(busRoute.destination?.name)
         busRoute.origin = newStopLocation
+        print(busRoute.destination?.name)
         PersistenceService.saveContext()
+        print("after first setting:", busRoute.origin?.name ," dest " , busRoute.destination?.name)
+        
+        
         return busRoute
     }
     
@@ -125,12 +137,22 @@ class BusSettingsController: NSObject {
     * After editing exissting BusRoute the old one gets deleted and both its StopLocations loose
     * connection to it, the the new one is added to the busProfile
     **/
-    class func replaceBusRouteOfBusProfile(newBusRoute: BusRoute, oldBusRoute: BusRoute, busProfile: BusSettings) {
+    class func replaceBusRouteOfBusProfile(newBusRoute: BusRoute, oldBusRoute: BusRoute, busProfile: BusSettings) -> BusSettings{
         // replace route
-        busProfile.addToRoutes(newBusRoute)
-        newBusRoute.addToRouteOfBusSettings(busProfile)
-        busProfile.removeFromRoutes(oldBusRoute)
+        let busRoutesOfBusProfile = busProfile.mutableSetValue(forKey: "routes")
+        printSettings(busProfile: busProfile)
+        busRoutesOfBusProfile.remove(oldBusRoute)
+        printSettings(busProfile: busProfile)
         oldBusRoute.removeFromRouteOfBusSettings(busProfile)
+        
+        
+        busRoutesOfBusProfile.add(newBusRoute)
+        printSettings(busProfile: busProfile)
+        newBusRoute.addToRouteOfBusSettings(busProfile)
+
+        
+
+        
         do {
             try PersistenceService.saveContext()
         } catch {
@@ -138,11 +160,17 @@ class BusSettingsController: NSObject {
         }
         // unconnect stoplocations
         var origin = StopLocation(context: PersistenceService.context)
+        print(origin.originOfBusRoutes?.count)
         origin = oldBusRoute.origin!
+        print(origin.originOfBusRoutes?.count)
         origin.removeFromOriginOfBusRoutes(oldBusRoute)
+        print(origin.originOfBusRoutes?.count)
         var destination = StopLocation(context: PersistenceService.context)
+        print(origin.destinationOfBusRoutes?.count)
         destination = oldBusRoute.destination!
+        print(origin.destinationOfBusRoutes?.count)
         destination.removeFromDestinationOfBusRoutes(oldBusRoute)
+        print(origin.destinationOfBusRoutes?.count)
         do {
             try PersistenceService.saveContext()
         } catch {
@@ -156,6 +184,7 @@ class BusSettingsController: NSObject {
         } catch {
             print("Failed deleting busRoute")
         }
+        return busProfile
         
     }
     
@@ -176,6 +205,18 @@ class BusSettingsController: NSObject {
             }
         } catch let error as NSError {
             print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+    
+    class func printSettings(busProfile: BusSettings) {
+        print("------ BusSetiing: ",busProfile.title,":")
+        
+        for r in busProfile.routes! {
+            if let route = r as? BusRoute {
+                print("----- Route:s")
+                print("----- Origin: ",route.origin)
+                print("----- Destin: ",route.destination)
+            }
         }
     }
     

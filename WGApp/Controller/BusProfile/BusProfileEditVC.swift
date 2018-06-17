@@ -43,7 +43,8 @@ class BusProfilEditVC: UIViewController {
             let newRoute = busRouteEditVC.busRoute!
             // TODO: When do we want to replace?
             print(newRoute.origin?.name)
-            BusSettingsController.replaceBusRouteOfBusProfile(newBusRoute: newRoute, oldBusRoute: currentlyEditingRoute!, busProfile: busProfile)
+            busProfile = BusSettingsController.replaceBusRouteOfBusProfile(newBusRoute: newRoute, oldBusRoute: currentlyEditingRoute!, busProfile: busProfile)
+            print(newRoute.origin?.name)
             currentlyEditingRoute = nil
         }
         if let routesSet = busProfile.routes{

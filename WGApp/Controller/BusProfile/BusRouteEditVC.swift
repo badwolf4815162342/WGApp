@@ -53,7 +53,7 @@ class BusRouteEditVC: UIViewController {
                 
                 busRoute = BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: destinationLocationTextField.selectedStopLocation!, busRoute: busRoute!)
                 
-                print(busRoute?.origin?.name)
+                print("after setting:", busRoute?.origin?.name ," dest " , busRoute?.destination?.name)
                 
                 //busRoute = newBusRoute
 
