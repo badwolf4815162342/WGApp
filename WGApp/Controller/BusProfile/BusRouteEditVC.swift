@@ -43,6 +43,7 @@ class BusRouteEditVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareForSegue");
+        print("ID: ",segue.identifier)
         if segue.identifier == "routeSaved" {
             if let destinationVC = segue.destination as? BusProfilEditVC {
                 // ifChanges

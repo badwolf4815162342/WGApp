@@ -28,13 +28,13 @@ class SingleUserVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowUserEdit" {
-            let destinationVC = segue.destination as! UserEditVC
-                destinationVC.user = self.user
+            let userEditVC = segue.destination as! UserEditVC
+                userEditVC.user = self.user
             
         }
     }
     
-    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+    @IBAction func didUnwindFromUserEditVC(sender: UIStoryboardSegue) {
         if let userEditVC = sender.source as? UserEditVC {
             self.user = userEditVC.user!
             viewDidLoad()

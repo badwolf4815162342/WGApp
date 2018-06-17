@@ -9,9 +9,24 @@
 import UIKit
 import CoreData
 
+
 class UserVC: UIViewController {
     
     var placementAnswer = String()
+    
+    func getAssets(){
+        print("assets?")
+        if let path = Bundle.main.path(forResource: "assets/userIcons", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                print("data: ", data)
+            }
+            catch {
+                // let jsonObj = JSON(data: data)
+                print("error"); // error in the above string (in this case, yes)!
+            }
+        }
+    }
     
     private let userIcons:[Image] = [
         Image(named: "Bat-icon"),
@@ -27,12 +42,7 @@ class UserVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var people = [User]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // oberserver to load single user page
-        NotificationCenter.default.addObserver(self, selector: #selector(showUser), name: NSNotification.Name("ShowUserMsg"), object: nil)
-        
+    func refreshTable(){
         // load core data into table
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         do {
@@ -42,9 +52,19 @@ class UserVC: UIViewController {
         } catch {
             print("core data couldn't be loaded")
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // oberserver to load single user page
+        NotificationCenter.default.addObserver(self, selector: #selector(showUser), name: NSNotification.Name("ShowUserMsg"), object: nil)
         
         // init placementAnswer
         placementAnswer = userIcons[0].name!
+        
+        // do not work:
+        getAssets()
     }
     
     @objc func showUser(notification: NSNotification) {
@@ -60,9 +80,8 @@ class UserVC: UIViewController {
         }
     }
     
-    // doesnt work because not connected
-    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
-        viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        refreshTable()
     }
   
     
@@ -155,8 +174,6 @@ extension UserVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         placementAnswer = userIcons[row].name!
     }
-
-
 }
 
 

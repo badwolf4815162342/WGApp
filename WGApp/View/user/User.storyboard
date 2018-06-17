@@ -176,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="bestätigen"/>
                                 <connections>
-                                    <segue destination="TCS-mJ-Nde" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="oVX-qr-bdG"/>
+                                    <segue destination="TCS-mJ-Nde" kind="unwind" unwindAction="didUnwindFromUserEditVCWithSender:" id="hbi-M9-oMb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -184,9 +184,9 @@
                         <viewLayoutGuide key="safeArea" id="nEi-E0-1EV"/>
                     </view>
                     <connections>
-                        <outlet property="icon" destination="9gI-xW-xeJ" id="LVQ-zv-D5r"/>
                         <outlet property="mail" destination="inx-mv-Tbk" id="kWO-EY-m5Z"/>
                         <outlet property="name" destination="CQE-Dq-60r" id="GZC-fI-848"/>
+                        <outlet property="pickerView" destination="9gI-xW-xeJ" id="yT8-7P-f9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kn-ca-sJY" userLabel="First Responder" sceneMemberID="firstResponder"/>

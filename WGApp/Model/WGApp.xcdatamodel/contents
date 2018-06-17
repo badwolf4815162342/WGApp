@@ -27,7 +27,7 @@
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusRoute" positionX="-2178" positionY="-157" width="128" height="88"/>
+        <element name="BusRoute" positionX="-2216" positionY="-135" width="128" height="88"/>
         <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="88"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="Profil" positionX="-2729" positionY="-268" width="128" height="103"/>
