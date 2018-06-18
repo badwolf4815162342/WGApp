@@ -23,9 +23,9 @@
 		5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1C720C97FC2008407F6 /* BusprofileTableViewCell.swift */; };
 		5F09F1CA20CBD140008407F6 /* BusRouteEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F09F1C920CBD140008407F6 /* BusRouteEditVC.swift */; };
 		5F44D62F20D01CA40014AB46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D62E20D01CA40014AB46 /* Image.swift */; };
-		5F44D63320D01CCA0014AB46 /* UserEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63020D01CCA0014AB46 /* UserEditVC.swift */; };
-		5F44D63420D01CCA0014AB46 /* SingleUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* SingleUserVC.swift */; };
-		5F44D63520D01CCA0014AB46 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63220D01CCA0014AB46 /* UserVC.swift */; };
+		5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */; };
+		5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */; };
+		5F44D63520D01CCA0014AB46 /* ChooseUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63220D01CCA0014AB46 /* ChooseUserVC.swift */; };
 		5F44D63820D01D0D0014AB46 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F44D63720D01D0D0014AB46 /* User.storyboard */; };
 		5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */; };
 		5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA47C5520BAE9A60043B3C8 /* ContainerVC.swift */; };
@@ -50,6 +50,8 @@
 		5FBD7CD920D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */; };
 		5FBD7CDC20D3ED930007BBC3 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */; };
 		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
+		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
+		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,10 +88,10 @@
 		5F09F1C520C70D22008407F6 /* RMVApiControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMVApiControllerTest.swift; sourceTree = "<group>"; };
 		5F09F1C720C97FC2008407F6 /* BusprofileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusprofileTableViewCell.swift; sourceTree = "<group>"; };
 		5F09F1C920CBD140008407F6 /* BusRouteEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRouteEditVC.swift; sourceTree = "<group>"; };
-		5F44D62E20D01CA40014AB46 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = WGApp/Controller/user/Image.swift; sourceTree = SOURCE_ROOT; };
-		5F44D63020D01CCA0014AB46 /* UserEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEditVC.swift; path = WGApp/Controller/user/UserEditVC.swift; sourceTree = SOURCE_ROOT; };
-		5F44D63120D01CCA0014AB46 /* SingleUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleUserVC.swift; path = WGApp/Controller/user/SingleUserVC.swift; sourceTree = SOURCE_ROOT; };
-		5F44D63220D01CCA0014AB46 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = WGApp/Controller/user/UserVC.swift; sourceTree = SOURCE_ROOT; };
+		5F44D62E20D01CA40014AB46 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = WGApp/Model/UserModels/Image.swift; sourceTree = SOURCE_ROOT; };
+		5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilEditVC.swift; path = WGApp/Controller/user/UserProfilEditVC.swift; sourceTree = SOURCE_ROOT; };
+		5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilVC.swift; path = WGApp/Controller/user/UserProfilVC.swift; sourceTree = SOURCE_ROOT; };
+		5F44D63220D01CCA0014AB46 /* ChooseUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseUserVC.swift; path = "WGApp/Controller/New Group/ChooseUserVC.swift"; sourceTree = SOURCE_ROOT; };
 		5F44D63720D01D0D0014AB46 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = WGApp/View/user/User.storyboard; sourceTree = SOURCE_ROOT; };
 		5FA47C5020BAE9A50043B3C8 /* WGApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WGApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA47C5320BAE9A60043B3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,8 @@
 		5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
+		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
+		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,8 +157,8 @@
 			children = (
 				5FBD7CA520D3CF710007BBC3 /* BusSettingsController.swift */,
 				5F09F1A020C6FEE5008407F6 /* BusProfileVC.swift */,
-				5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */,
 				5F09F1C920CBD140008407F6 /* BusRouteEditVC.swift */,
+				5F09F1A120C6FEE5008407F6 /* BusProfileEditVC.swift */,
 				5F09F19D20C6FE76008407F6 /* RMVApiController */,
 			);
 			path = BusProfile;
@@ -183,10 +187,10 @@
 		5F44D62D20D01C890014AB46 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				5F44D63220D01CCA0014AB46 /* UserVC.swift */,
-				5F44D63120D01CCA0014AB46 /* SingleUserVC.swift */,
-				5F44D63020D01CCA0014AB46 /* UserEditVC.swift */,
-				5F44D62E20D01CA40014AB46 /* Image.swift */,
+				5F44D63220D01CCA0014AB46 /* ChooseUserVC.swift */,
+				8F12379920D7F8E90073AF5F /* UserVC.swift */,
+				5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */,
+				5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */,
 			);
 			name = User;
 			path = "New Group";
@@ -196,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				5F44D63720D01D0D0014AB46 /* User.storyboard */,
+				8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */,
 			);
 			name = User;
 			path = "New Group";
@@ -274,20 +279,10 @@
 		5FA47C8120BAEA0F0043B3C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5FBD7CD520D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift */,
-				5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */,
-				5FBD7CC120D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift */,
-				5FBD7CC220D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift */,
-				5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */,
-				5FBD7CC320D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift */,
-				5FBD7CC420D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift */,
-				5FBD7CC520D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift */,
-				5FBD7CC620D3EBFB0007BBC3 /* User+CoreDataClass.swift */,
-				5FBD7CC720D3EBFB0007BBC3 /* User+CoreDataProperties.swift */,
-				5FBD7CC820D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift */,
-				5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */,
 				5F09F1A420C6FEF9008407F6 /* RMVApiModels */,
+				8F12379B20D7F90E0073AF5F /* UserModels */,
 				8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */,
+				8F12379C20D7F9A60073AF5F /* CoreDataModels */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,10 +299,37 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5F44D62D20D01C890014AB46 /* User */,
 				5F09F19C20C6FE53008407F6 /* BusProfile */,
+				5F44D62D20D01C890014AB46 /* User */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F12379B20D7F90E0073AF5F /* UserModels */ = {
+			isa = PBXGroup;
+			children = (
+				5F44D62E20D01CA40014AB46 /* Image.swift */,
+			);
+			path = UserModels;
+			sourceTree = "<group>";
+		};
+		8F12379C20D7F9A60073AF5F /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				5FBD7CD520D3ECC10007BBC3 /* BusRoute+CoreDataClass.swift */,
+				5FBD7CD620D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift */,
+				5FBD7CC120D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift */,
+				5FBD7CC220D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift */,
+				5FBD7CDB20D3ED930007BBC3 /* Profil+CoreDataClass.swift */,
+				5FBD7CC320D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift */,
+				5FBD7CC420D3EBFB0007BBC3 /* StopLocation+CoreDataClass.swift */,
+				5FBD7CC520D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift */,
+				5FBD7CC620D3EBFB0007BBC3 /* User+CoreDataClass.swift */,
+				5FBD7CC720D3EBFB0007BBC3 /* User+CoreDataProperties.swift */,
+				5FBD7CC820D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift */,
+				5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,7 +467,7 @@
 			files = (
 				5F09F1AE20C6FF12008407F6 /* TripResponse.swift in Sources */,
 				5F09F1B420C6FF5E008407F6 /* RouteTableViewCell.swift in Sources */,
-				5F44D63420D01CCA0014AB46 /* SingleUserVC.swift in Sources */,
+				5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */,
 				5F09F1AF20C6FF12008407F6 /* StopLocationResponse.swift in Sources */,
 				8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
@@ -459,11 +481,12 @@
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
 				5FBD7CA620D3CF710007BBC3 /* BusSettingsController.swift in Sources */,
 				5F09F1A320C6FEE5008407F6 /* BusProfileEditVC.swift in Sources */,
-				5F44D63520D01CCA0014AB46 /* UserVC.swift in Sources */,
+				5F44D63520D01CCA0014AB46 /* ChooseUserVC.swift in Sources */,
 				5FBD7CCC20D3EBFB0007BBC3 /* BusSettings+CoreDataClass.swift in Sources */,
 				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
 				5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */,
+				8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */,
 				5FBD7CDC20D3ED930007BBC3 /* Profil+CoreDataClass.swift in Sources */,
 				5FBD7CD920D3ECC10007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */,
 				5FBD7CD420D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift in Sources */,
@@ -473,12 +496,13 @@
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
 				5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
-				5F44D63320D01CCA0014AB46 /* UserEditVC.swift in Sources */,
+				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
 				5FBD7CCD20D3EBFB0007BBC3 /* BusSettings+CoreDataProperties.swift in Sources */,
 				5FBD7CD220D3EBFB0007BBC3 /* User+CoreDataProperties.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
 				5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */,
 				5FBD7CD020D3EBFB0007BBC3 /* StopLocation+CoreDataProperties.swift in Sources */,
+				8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
