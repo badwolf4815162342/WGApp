@@ -16,26 +16,22 @@ class BusSettingsController: NSObject {
      * connection to busRoute and sets rmvStopLocation as a new StopLocation
      * if there isn't one if the same data, then it sets this one as new destination
      **/
-    class func saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV, busRoute: BusRoute) -> BusRoute{
+    class func saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV, busRoute: BusRoute) {
         if let oldStopLocation = busRoute.destination {
             deleteDestinationStopLocationFromBusRoute(stopLocation: oldStopLocation, busRoute: busRoute)
         }
         // check for already existing stopLocation with same values
         let existingStopLocation = findStopLocationByRMVStopLocation(rmvStopLocation: rmvStopLocation)
-        var newStopLocation = StopLocation(context: PersistenceService.context)
         if (existingStopLocation != nil ) {
-            newStopLocation = existingStopLocation!
+            busRoute.destination = existingStopLocation
         } else {
+            let newStopLocation = StopLocation(context: PersistenceService.context)
             newStopLocation.name = rmvStopLocation.name
             newStopLocation.id = rmvStopLocation.id
+            busRoute.destination = newStopLocation
         }
-        //newStopLocation.addToDestinationOfBusRoutes(busRoute) Causes Bug, setzt dest for origin and dest
-        busRoute.destination = newStopLocation
+        
         PersistenceService.saveContext()
-        
-        print("after second setting:", busRoute.origin?.name ," dest " , busRoute.destination?.name)
-        
-        return busRoute
     }
     
     /**
@@ -43,32 +39,23 @@ class BusSettingsController: NSObject {
      * connection to busRoute and sets rmvStopLocation as a new StopLocation
      * if there isn't one if the same data, then it sets this one as new origin
      **/
-    class func saveOriginStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV, busRoute: BusRoute) -> BusRoute {
+    class func saveOriginStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV, busRoute: BusRoute) {
         // eventuell alte löschen
         if let oldStopLocation = busRoute.origin {
             deleteOriginStopLocationFromBusRoute(stopLocation: oldStopLocation, busRoute: busRoute)
         }
-        print(busRoute.origin?.name)
-        print(busRoute.destination?.name)
         let existingStopLocation = findStopLocationByRMVStopLocation(rmvStopLocation: rmvStopLocation)
-        var newStopLocation = StopLocation(context: PersistenceService.context)
-        print(busRoute.destination?.name)
+        
         if (existingStopLocation != nil ) {
-            newStopLocation = existingStopLocation!
+            busRoute.origin = existingStopLocation
         } else {
+            let newStopLocation = StopLocation(context: PersistenceService.context)
             newStopLocation.name = rmvStopLocation.name
             newStopLocation.id = rmvStopLocation.id
+            busRoute.origin = newStopLocation
         }
-        print(busRoute.destination?.name)
-        //newStopLocation.addToOriginOfBusRoutes(busRoute) Causes Bug sets origin for orihin and dest
-        print(busRoute.destination?.name)
-        busRoute.origin = newStopLocation
-        print(busRoute.destination?.name)
+
         PersistenceService.saveContext()
-        print("after first setting:", busRoute.origin?.name ," dest " , busRoute.destination?.name)
-        
-        
-        return busRoute
     }
     
     class func deleteOriginStopLocationFromBusRoute(stopLocation: StopLocation, busRoute: BusRoute) {
@@ -78,15 +65,10 @@ class BusSettingsController: NSObject {
             
         //}
         busRoute.origin = nil
-        stopLocation.removeFromOriginOfBusRoutes(busRoute)
         //if (busRoute.destination == nil) {
         //    deleteBusRoute(busRoute)
         //}
-        do {
-            try PersistenceService.saveContext()
-        } catch {
-            print("Failed remove stopLocation from busRoute")
-        }
+        try PersistenceService.saveContext()
     }
     
     class func deleteDestinationStopLocationFromBusRoute(stopLocation: StopLocation, busRoute: BusRoute) {
@@ -96,18 +78,14 @@ class BusSettingsController: NSObject {
         
         //}
         busRoute.destination = nil
-        stopLocation.removeFromDestinationOfBusRoutes(busRoute)
-        do {
-            try PersistenceService.saveContext()
-        } catch {
-            print("Failed remove stopLocation from busRoute")
-        }
+        PersistenceService.saveContext()
+
     }
     
-    class func findStopLocationByRMVStopLocation(rmvStopLocation: StopLocationRMV) -> StopLocation? {
+    class func findStopLocationByNameAndId(name: String, id: String) -> StopLocation? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StopLocation")
-        request.predicate = NSPredicate(format: "id = %@", rmvStopLocation.id)
-        request.predicate = NSPredicate(format: "name = %@", rmvStopLocation.name)
+        request.predicate = NSPredicate(format: "id = %@", id)
+        request.predicate = NSPredicate(format: "name = %@", name)
         request.returnsObjectsAsFaults = false
         
         let context = PersistenceService.context
@@ -128,6 +106,10 @@ class BusSettingsController: NSObject {
         }
         return nil
     }
+    
+    class func findStopLocationByRMVStopLocation(rmvStopLocation: StopLocationRMV) -> StopLocation? {
+       return findStopLocationByNameAndId(name: rmvStopLocation.name, id: rmvStopLocation.id)
+    }
 
    // func equalRoutes(busRoute: BusRoute, otherBusRoute: BusRoute) -> Bool {
     //     return ( (busRoute.origin == otherBusRoute.origin) && (busRoute.destination == otherBusRoute.destination) )
@@ -137,53 +119,24 @@ class BusSettingsController: NSObject {
     * After editing exissting BusRoute the old one gets deleted and both its StopLocations loose
     * connection to it, the the new one is added to the busProfile
     **/
+    @warn_unqualified_access
     class func replaceBusRouteOfBusProfile(newBusRoute: BusRoute, oldBusRoute: BusRoute, busProfile: BusSettings) -> BusSettings{
         // replace route
-        let busRoutesOfBusProfile = busProfile.mutableSetValue(forKey: "routes")
-        printSettings(busProfile: busProfile)
-        busRoutesOfBusProfile.remove(oldBusRoute)
-        printSettings(busProfile: busProfile)
-        oldBusRoute.removeFromRouteOfBusSettings(busProfile)
+        newBusRoute.busSetting = busProfile
+        PersistenceService.saveContext()
         
-        
-        busRoutesOfBusProfile.add(newBusRoute)
-        printSettings(busProfile: busProfile)
-        newBusRoute.addToRouteOfBusSettings(busProfile)
+        // delete oldbusRoute
+        PersistenceService.context.delete(oldBusRoute)
 
-        
-
-        
-        do {
-            try PersistenceService.saveContext()
-        } catch {
-            print("Failed saving replace Route")
-        }
         // unconnect stoplocations
-        var origin = StopLocation(context: PersistenceService.context)
+        /** var origin = StopLocation(context: PersistenceService.context)
         print(origin.originOfBusRoutes?.count)
         origin = oldBusRoute.origin!
-        print(origin.originOfBusRoutes?.count)
-        origin.removeFromOriginOfBusRoutes(oldBusRoute)
         print(origin.originOfBusRoutes?.count)
         var destination = StopLocation(context: PersistenceService.context)
         print(origin.destinationOfBusRoutes?.count)
         destination = oldBusRoute.destination!
-        print(origin.destinationOfBusRoutes?.count)
-        destination.removeFromDestinationOfBusRoutes(oldBusRoute)
-        print(origin.destinationOfBusRoutes?.count)
-        do {
-            try PersistenceService.saveContext()
-        } catch {
-            print("Failed saving unconnecting stopLocation from busRoute")
-        }
-        // delete oldbusRoute
-        let context = PersistenceService.context
-        context.delete(oldBusRoute)
-        do {
-            PersistenceService.saveContext()
-        } catch {
-            print("Failed deleting busRoute")
-        }
+        print(origin.destinationOfBusRoutes?.count) **/       
         return busProfile
         
     }
@@ -218,6 +171,53 @@ class BusSettingsController: NSObject {
                 print("----- Destin: ",route.destination)
             }
         }
+    }
+    
+    class func getAllStopLocations() ->  [StopLocation] {
+        var stops = [StopLocation]()
+        let fetchRequest: NSFetchRequest<StopLocation> = StopLocation.fetchRequest()
+        do {
+            let sls = try PersistenceService.context.fetch(fetchRequest)
+            stops = sls
+        } catch {
+            print("ERROR while fetching all StopLocations")
+        }
+        return stops
+    }
+    
+    class func addTestBusSettings(){
+        let busProfile = BusSettings(context: PersistenceService.context)
+        busProfile.title = "Arbeit"
+        let busProfile2 = BusSettings(context: PersistenceService.context)
+        busProfile2.title = "NichtArbeit"
+        
+        let route = BusRoute(context: PersistenceService.context)
+        let route2 = BusRoute(context: PersistenceService.context)
+        let route3 = BusRoute(context: PersistenceService.context)
+        
+        let originStopLocation = StopLocation(context: PersistenceService.context)
+        originStopLocation.name =  "WI Hbf"
+        originStopLocation.id = "wiID"
+        let destStopLocation = StopLocation(context: PersistenceService.context)
+        destStopLocation.name = "Mz Hbf"
+        destStopLocation.id = "mzID"
+        let destStopLocation2 = StopLocation(context: PersistenceService.context)
+        destStopLocation2.name = "Fr Hbf"
+        destStopLocation2.id = "frID"
+        
+        
+        route.origin = originStopLocation // wi
+        route.destination = destStopLocation // mz
+        route2.origin = originStopLocation // wi
+        route2.destination = destStopLocation2 //fr
+        route3.origin = originStopLocation // wi
+        route3.destination = destStopLocation //mz
+        
+        busProfile2.addToRoutes(route)
+        busProfile2.addToRoutes(route2)
+        busProfile.addToRoutes(route3)
+        
+        PersistenceService.saveContext()
     }
     
 }

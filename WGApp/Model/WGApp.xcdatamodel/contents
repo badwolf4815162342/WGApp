@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
-        <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="originOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
-        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="destinationOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
-        <relationship name="routeOfBusSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="routes" inverseEntity="BusSettings" syncable="YES"/>
+        <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="routes" inverseEntity="BusSettings" syncable="YES"/>
+        <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="destinationOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="originOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
     </entity>
     <entity name="BusSettings" representedClassName="BusSettings" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ofProfil" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profil" inverseName="busSettings" inverseEntity="Profil" syncable="YES"/>
-        <relationship name="routes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="routeOfBusSettings" inverseEntity="BusRoute" syncable="YES"/>
+        <relationship name="routes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="busSetting" inverseEntity="BusRoute" syncable="YES"/>
     </entity>
     <entity name="HomeProfil" representedClassName="HomeProfil" parentEntity="Profil" syncable="YES"/>
     <entity name="Profil" representedClassName="Profil" isAbstract="YES" syncable="YES">
@@ -20,14 +20,14 @@
     <entity name="StopLocation" representedClassName="StopLocation" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="destinationOfBusRoutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="origin" inverseEntity="BusRoute" syncable="YES"/>
-        <relationship name="originOfBusRoutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="destination" inverseEntity="BusRoute" syncable="YES"/>
+        <relationship name="destinationOfBusRoutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="destination" inverseEntity="BusRoute" syncable="YES"/>
+        <relationship name="originOfBusRoutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="origin" inverseEntity="BusRoute" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="Profil" syncable="YES">
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusRoute" positionX="-2216" positionY="-135" width="128" height="88"/>
+        <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="88"/>
         <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="88"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="Profil" positionX="-2729" positionY="-268" width="128" height="103"/>

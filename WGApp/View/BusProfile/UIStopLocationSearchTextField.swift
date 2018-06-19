@@ -110,16 +110,7 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     func getKnownStopLocations() -> Array<StopLocationRMV> {
-        var stopLocations = [StopLocationRMV]()
-        // TODO: Fetch DATABASE StopLocations
-        let stopLocationWiHbf = StopLocationRMV(id: "001", name: "Wi Hbf" )
-        let stopLocationMainzHbf = StopLocationRMV(id: "002", name: "Mainz Hbf" )
-        let stopLocationFrHbf = StopLocationRMV(id: "003", name: "FR Hbf" )
-        let stopLocationWiesHbf = StopLocationRMV(id: "004", name: "Wiesloch Hbf" )
-        stopLocations.append(stopLocationWiHbf)
-        stopLocations.append(stopLocationMainzHbf)
-        stopLocations.append(stopLocationFrHbf)
-        stopLocations.append(stopLocationWiesHbf)
+        var stopLocations = BusSettingsController.getAllStopLocations().map {StopLocationRMV.stopLocationToRmv(stopLocation: $0)}
         return stopLocations
     }
     

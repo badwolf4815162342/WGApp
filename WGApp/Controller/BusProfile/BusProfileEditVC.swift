@@ -19,17 +19,32 @@ class BusProfilEditVC: UIViewController {
     
     private var busSettingsController: BusSettingsController = BusSettingsController()
     
-    var busProfile: BusSettings!
+    var actBusProfile: BusSettings!
     
-    var routesForBusProfile = [BusRoute]()
+    var routesForActBusProfile = [BusRoute]()
     
     var currentlyEditingRoute: BusRoute?
+    
+    var footerView = UIView()
+    
+    @IBOutlet weak var maxRoutesInfolabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         routesTableView.delegate = self
         routesTableView.dataSource = self
-        if busProfile == nil { setInitialBusProfile() }
+        // not showing empty cells
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        footerView.backgroundColor = UIColor.gray
+        routesTableView.tableFooterView = footerView
+        // add new row by '+'
+        var addButton = UIButton()
+        addButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+        addButton.setTitle("+", for: [])
+        footerView.addSubview(addButton)
+        addButton.addTarget(self, action: #selector(addNewBusRoute), for: .touchUpInside)
+        if actBusProfile == nil { setInitialBusProfile() }
+        
         //get Notification if BusProfile changes
         NotificationCenter.default.addObserver(self, selector: #selector(changeBusProfile), name: NSNotification.Name("ShowBusprofileMsg"), object: nil)
         // oberserver to load route edit view user page
@@ -40,35 +55,46 @@ class BusProfilEditVC: UIViewController {
     // setNew BusRoute
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let busRouteEditVC = sender.source as? BusRouteEditVC {
-            let newRoute = busRouteEditVC.busRoute!
-            // TODO: When do we want to replace?
-            print(newRoute.origin?.name)
-            busProfile = BusSettingsController.replaceBusRouteOfBusProfile(newBusRoute: newRoute, oldBusRoute: currentlyEditingRoute!, busProfile: busProfile)
-            print(newRoute.origin?.name)
+            print("Unwind from BusRouteEditVC")
+            for stop in BusSettingsController.getAllStopLocations() {
+                print(stop.name)
+            }
+            // not edited route but created new one
+            if (currentlyEditingRoute == nil) {
+                let newRoute = busRouteEditVC.busRoute!
+                newRoute.busSetting = actBusProfile
+            }
             currentlyEditingRoute = nil
         }
-        if let routesSet = busProfile.routes{
-            routesForBusProfile = routesSet.allObjects as! [BusRoute]
+        //BusSettingsController.printSettings(busProfile: actBusProfile)
+        if let routesSet = actBusProfile.routes{
+            routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
         }
     }
     
     @IBAction func saveBusProfile(_ sender: Any) {
-        print(busProfile.objectID)
-        print(busProfile.title ?? "title")
-        print(busProfile.routes?.count ?? "routeslength")
+        print(actBusProfile.objectID)
+        print(actBusProfile.title ?? "title")
+        print(actBusProfile.routes?.count ?? "routeslength")
         //TODO: saving title and user
     }
     
     @objc func changeBusProfile(notification: NSNotification) {
-        busProfile = notification.object as! BusSettings
-        titleTextField.text = busProfile.title
+        actBusProfile = notification.object as! BusSettings
+        titleTextField.text = actBusProfile.title
         
-        if let routesSet = busProfile.routes{
-            routesForBusProfile = routesSet.allObjects as! [BusRoute]
+        if let routesSet = actBusProfile.routes{
+            routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
+            // if more than 4 routes -> hide button +
+            if (routesForActBusProfile.count >= 4) {
+                footerView.isHidden = true
+            } else {
+                maxRoutesInfolabel.isHidden = true
+            }
         }
     }
     
@@ -91,21 +117,31 @@ class BusProfilEditVC: UIViewController {
         }
     }
     
-    func addNewBusRoute() {
+    @objc func addNewBusRoute() {
+        // load core data into table
+        currentlyEditingRoute = nil
+        performSegue(withIdentifier: "ShowRoute", sender: nil)
         
     }
     
     func setInitialBusProfile(){
+        print("Set initialBusProfile")
         // load core data into table
         let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
-            busProfile = profiles[0]
-            titleTextField.text = busProfile.title
+            actBusProfile = profiles[0]
+            titleTextField.text = actBusProfile.title
             
-            if let routesSet = busProfile.routes{
-                routesForBusProfile = routesSet.allObjects as! [BusRoute]
+            if let routesSet = actBusProfile.routes{
+                routesForActBusProfile = routesSet.allObjects as! [BusRoute]
                 self.routesTableView.reloadData()
+                // if more than 4 routes -> hide button +
+                if (routesForActBusProfile.count >= 4) {
+                    footerView.isHidden = true
+                } else {
+                    maxRoutesInfolabel.isHidden = true
+                }
             }
         } catch {}
     }
@@ -115,11 +151,11 @@ class BusProfilEditVC: UIViewController {
 extension BusProfilEditVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routesForBusProfile.count
+        return routesForActBusProfile.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let route = routesForBusProfile[indexPath.row]
+        let route = routesForActBusProfile[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteCell")
         
@@ -131,6 +167,6 @@ extension BusProfilEditVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name("ShowRouteMsg"), object: routesForBusProfile[indexPath.row])
+        NotificationCenter.default.post(name: NSNotification.Name("ShowRouteMsg"), object: routesForActBusProfile[indexPath.row])
     }
 }

@@ -17,3 +17,13 @@ struct StopLocationRMV: Codable {
         case name
     }
 }
+
+
+extension StopLocationRMV{
+
+    static func stopLocationToRmv(stopLocation: StopLocation ) -> StopLocationRMV {
+        let rmv = StopLocationRMV(id: stopLocation.id!, name: stopLocation.name!)
+        return rmv
+    }
+
+}
