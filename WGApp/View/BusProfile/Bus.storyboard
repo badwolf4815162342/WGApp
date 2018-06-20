@@ -19,13 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="340" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-hY-u1K">
-                                <rect key="frame" x="148" y="0.0" width="176" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ToDetail"/>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sm1-AA-2nf">
-                                <rect key="frame" x="0.0" y="55" width="340" height="713"/>
+                                <rect key="frame" x="0.0" y="86" width="340" height="682"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusProfileCell" rowHeight="100" id="mlt-0a-2jf" customClass="BusprofileTableViewCell" customModule="WGApp" customModuleProvider="target">
@@ -36,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LX-rb-cpK">
-                                                    <rect key="frame" x="109" y="39.5" width="202" height="21"/>
+                                                    <rect key="frame" x="109" y="39.5" width="195" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -64,13 +59,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHi-MQ-uWk">
+                                <rect key="frame" x="273" y="20" width="33" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HgR-y7-YHz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addBusProfile:" destination="O1g-f3-vEj" eventType="touchUpInside" id="wf4-zW-FLI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="0.12403681506849315" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="bottom" secondItem="fJd-3y-VKm" secondAttribute="bottom" id="7cE-1L-8Hh"/>
+                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="wHi-MQ-uWk" secondAttribute="bottom" constant="26" id="E7o-dj-khf"/>
+                            <constraint firstItem="wHi-MQ-uWk" firstAttribute="top" secondItem="fJd-3y-VKm" secondAttribute="top" id="g3J-g6-yrb"/>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="trailing" secondItem="fJd-3y-VKm" secondAttribute="trailing" id="hS3-Ri-Fm7"/>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="leading" secondItem="fJd-3y-VKm" secondAttribute="leading" id="jW5-Mb-WdJ"/>
-                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="fJd-3y-VKm" secondAttribute="top" constant="35" id="ogQ-uy-rod"/>
+                            <constraint firstItem="fJd-3y-VKm" firstAttribute="trailing" secondItem="wHi-MQ-uWk" secondAttribute="trailing" constant="34" id="st6-Rp-eEV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fJd-3y-VKm"/>
                     </view>
@@ -176,7 +184,7 @@
                                 <rect key="frame" x="0.0" y="204" width="684" height="474"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="684" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oE4-Yu-aXo" id="j37-8p-Mzg">
@@ -245,6 +253,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aktuell sind keine BusProfile vorhanden, füge diese mit '+' hinzu." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rd6-Al-NGd">
+                                <rect key="frame" x="96" y="374" width="492" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -256,7 +270,9 @@
                             <constraint firstItem="BgI-9g-2Mi" firstAttribute="leading" secondItem="zjU-rk-I9U" secondAttribute="trailing" constant="34" id="L66-nK-Z4D"/>
                             <constraint firstItem="3Fl-oZ-6EK" firstAttribute="leading" secondItem="XTd-9b-z2e" secondAttribute="leading" id="Lam-s8-C7I"/>
                             <constraint firstItem="zjU-rk-I9U" firstAttribute="leading" secondItem="tDc-Mm-V7t" secondAttribute="trailing" constant="42" id="LdD-tc-Gl3"/>
+                            <constraint firstItem="Rd6-Al-NGd" firstAttribute="centerX" secondItem="cl0-MF-tZC" secondAttribute="centerX" id="QBC-Ky-Kgb"/>
                             <constraint firstItem="3Fl-oZ-6EK" firstAttribute="top" secondItem="tDc-Mm-V7t" secondAttribute="bottom" constant="92" id="R4N-Yr-nCn"/>
+                            <constraint firstItem="Rd6-Al-NGd" firstAttribute="centerY" secondItem="cl0-MF-tZC" secondAttribute="centerY" id="Wc5-oC-31b"/>
                             <constraint firstItem="zjU-rk-I9U" firstAttribute="top" secondItem="XTd-9b-z2e" secondAttribute="top" constant="17" id="bxV-q6-fwH"/>
                             <constraint firstItem="3Fl-oZ-6EK" firstAttribute="top" secondItem="cZq-x0-edK" secondAttribute="bottom" constant="92" id="gHF-Ij-qEU"/>
                             <constraint firstItem="3Fl-oZ-6EK" firstAttribute="trailing" secondItem="XTd-9b-z2e" secondAttribute="trailing" id="mz8-rn-hV9"/>
@@ -267,6 +283,7 @@
                     </view>
                     <connections>
                         <outlet property="maxRoutesInfolabel" destination="Czz-QA-xcd" id="OOR-hS-Yuc"/>
+                        <outlet property="noRoutesLabel" destination="Rd6-Al-NGd" id="ZRF-U2-nKN"/>
                         <outlet property="routesTableView" destination="3Fl-oZ-6EK" id="YMD-Dw-7Ny"/>
                         <outlet property="titleTextField" destination="cZq-x0-edK" id="CuG-6a-S7r"/>
                         <segue destination="Zrh-EB-TtZ" kind="show" identifier="ShowRoute" id="F7H-4z-M2Z"/>

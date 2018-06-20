@@ -27,10 +27,13 @@ class BusProfilEditVC: UIViewController {
     
     var footerView = UIView()
     
+    @IBOutlet weak var noRoutesLabel: UILabel!
     @IBOutlet weak var maxRoutesInfolabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // erstmal gehen wir von routes aus
+        noRoutesLabel.isHidden  = true
         routesTableView.delegate = self
         routesTableView.dataSource = self
         // not showing empty cells
@@ -83,6 +86,11 @@ class BusProfilEditVC: UIViewController {
     @objc func changeBusProfile(notification: NSNotification) {
         actBusProfile = notification.object as! BusSettings
         titleTextField.text = actBusProfile.title
+        var subViews = self.view.subviews
+        for v in subViews {
+            v.isHidden = false
+        }
+        noRoutesLabel.isHidden = true
         
         if let routesSet = actBusProfile.routes{
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
@@ -124,14 +132,22 @@ class BusProfilEditVC: UIViewController {
         let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
-            actBusProfile = profiles[0]
-            titleTextField.text = actBusProfile.title
-            
-            if let routesSet = actBusProfile.routes{
-                routesForActBusProfile = routesSet.allObjects as! [BusRoute]
-                self.routesTableView.reloadData()
-                checkReachedMaxRoutes()
+            if (profiles.count <= 0) {
+                var subViews = self.view.subviews
+                for v in subViews {
+                    v.isHidden = true
+                }
+                noRoutesLabel.isHidden = false
+            } else {
+                actBusProfile = profiles[0]
+                titleTextField.text = actBusProfile.title
+                
+                if let routesSet = actBusProfile.routes{
+                    routesForActBusProfile = routesSet.allObjects as! [BusRoute]
+                    self.routesTableView.reloadData()
+                    checkReachedMaxRoutes()
 
+                }
             }
         } catch {}
     }
