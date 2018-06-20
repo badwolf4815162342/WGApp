@@ -16,6 +16,10 @@ class BusRouteEditVC: UIViewController {
     
     var busRoute: BusRoute?
     
+    @IBOutlet weak var destinationLabel: UILabel!
+    
+    var destinationActivated = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // set Searchtextfield theme and settings
@@ -31,6 +35,7 @@ class BusRouteEditVC: UIViewController {
         destinationLocationTextField.resultsListHeader = header
         destinationLocationTextField.clearButtonMode = .whileEditing
         
+        destinationActivated = true
         if let busRoute = busRoute {
             // set default origin text
             originLocationTextField.text = busRoute.origin?.name
@@ -50,10 +55,26 @@ class BusRouteEditVC: UIViewController {
         
     }
     
+    @IBAction func destinationActivationChanged(_ sender: UISwitch) {
+        destinationActivated = !destinationActivated
+        if (destinationActivated) {
+            destinationLocationTextField.isHidden = false
+            destinationLabel.text = "Ziel"
+        } else {
+            destinationLocationTextField.selectedStopLocation = nil
+            destinationLocationTextField.isHidden = true
+            destinationLabel.text = "Route ohne Ziel"
+        }
+    }
+    
     override func shouldPerformSegue(withIdentifier withIidentifier: String?, sender: Any?) -> Bool {
         if let ident = withIidentifier {
             if ident == "routeSaved" {
-                if (originLocationTextField.selectedStopLocation == nil || destinationLocationTextField.selectedStopLocation == nil) {
+                if ((destinationActivated == true) && (originLocationTextField.selectedStopLocation == nil || destinationLocationTextField.selectedStopLocation == nil)) {
+                    showAlert()
+                    return false
+                // Falls kein Ziel ausgewählt sein soll, aber auch kein Strat ausgewählt ist
+                } else if (originLocationTextField.selectedStopLocation == nil && destinationActivated == false) {
                     showAlert()
                     return false
                 }
@@ -73,15 +94,22 @@ class BusRouteEditVC: UIViewController {
 
                     BusSettingsController.saveOriginStopLocationRMVToBusRoute(rmvStopLocation: originLocationTextField.selectedStopLocation!, busRoute: busRoute!)
                     
-                    BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: destinationLocationTextField.selectedStopLocation!, busRoute: busRoute!)
-                    
+                    if let dest = destinationLocationTextField.selectedStopLocation {
+                        BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: dest, busRoute: busRoute!)
+                    } else {
+                        BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: nil, busRoute: busRoute!)
+                    }
                     //print("after setting:", busRoute?.origin?.name ," dest " , busRoute?.destination?.name)
                 } else {
                     // CREATE new Route
                     var newBusRoute = BusRoute(context: PersistenceService.context)
                     BusSettingsController.saveOriginStopLocationRMVToBusRoute(rmvStopLocation: originLocationTextField.selectedStopLocation!, busRoute: newBusRoute)
                     
-                    BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: destinationLocationTextField.selectedStopLocation!, busRoute: newBusRoute)
+                    if let dest = destinationLocationTextField.selectedStopLocation {
+                        BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: dest, busRoute: newBusRoute)
+                    } else {
+                        BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: nil, busRoute: newBusRoute)
+                    }
                     
                     busRoute = newBusRoute
                     

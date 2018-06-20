@@ -34,7 +34,7 @@ class BusProfilEditVC: UIViewController {
         routesTableView.delegate = self
         routesTableView.dataSource = self
         // not showing empty cells
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         footerView.backgroundColor = UIColor.gray
         routesTableView.tableFooterView = footerView
         // add new row by '+'
@@ -44,12 +44,10 @@ class BusProfilEditVC: UIViewController {
         footerView.addSubview(addButton)
         addButton.addTarget(self, action: #selector(addNewBusRoute), for: .touchUpInside)
         if actBusProfile == nil { setInitialBusProfile() }
-        
         //get Notification if BusProfile changes
         NotificationCenter.default.addObserver(self, selector: #selector(changeBusProfile), name: NSNotification.Name("ShowBusprofileMsg"), object: nil)
         // oberserver to load route edit view user page
         NotificationCenter.default.addObserver(self, selector: #selector(showRouteForEdit), name: NSNotification.Name("ShowRouteMsg"), object: nil)
-          
     }
     
     // setNew BusRoute
@@ -71,6 +69,7 @@ class BusProfilEditVC: UIViewController {
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
+            checkReachedMaxRoutes()
         }
     }
     
@@ -89,12 +88,7 @@ class BusProfilEditVC: UIViewController {
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
-            // if more than 4 routes -> hide button +
-            if (routesForActBusProfile.count >= 4) {
-                footerView.isHidden = true
-            } else {
-                maxRoutesInfolabel.isHidden = true
-            }
+            checkReachedMaxRoutes()
         }
     }
     
@@ -136,14 +130,21 @@ class BusProfilEditVC: UIViewController {
             if let routesSet = actBusProfile.routes{
                 routesForActBusProfile = routesSet.allObjects as! [BusRoute]
                 self.routesTableView.reloadData()
-                // if more than 4 routes -> hide button +
-                if (routesForActBusProfile.count >= 4) {
-                    footerView.isHidden = true
-                } else {
-                    maxRoutesInfolabel.isHidden = true
-                }
+                checkReachedMaxRoutes()
+
             }
         } catch {}
+    }
+    
+    func checkReachedMaxRoutes () {
+        // if more than 4 routes -> hide button +
+        if (routesForActBusProfile.count >= 4) {
+            footerView.isHidden = true
+            maxRoutesInfolabel.isHidden = false
+        } else {
+            footerView.isHidden = false
+            maxRoutesInfolabel.isHidden = true
+        }
     }
     
 }
@@ -168,5 +169,13 @@ extension BusProfilEditVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NotificationCenter.default.post(name: NSNotification.Name("ShowRouteMsg"), object: routesForActBusProfile[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let deletedRoute = routesForActBusProfile.remove(at: indexPath.row)
+        BusSettingsController.deleteRouteFromBusProfile(busRoute: deletedRoute, busProfile: actBusProfile)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        checkReachedMaxRoutes()
     }
 }

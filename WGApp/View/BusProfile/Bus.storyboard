@@ -176,7 +176,7 @@
                                 <rect key="frame" x="0.0" y="204" width="684" height="474"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="684" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oE4-Yu-aXo" id="j37-8p-Mzg">
@@ -231,6 +231,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="destLabel" destination="Fzl-tD-dGj" id="7Fc-TV-mG9"/>
                                             <outlet property="destinationLocationLabel" destination="K51-Pc-SWX" id="AOq-T9-lLO"/>
                                             <outlet property="originLocationLabel" destination="x2A-vY-N0R" id="CRM-SZ-MC1"/>
                                         </connections>
@@ -328,6 +329,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLb-a4-344">
+                                <rect key="frame" x="468" y="273" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="destinationActivationChanged:" destination="Zrh-EB-TtZ" eventType="valueChanged" id="yEA-pO-dyz"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -345,6 +353,7 @@
                         <viewLayoutGuide key="safeArea" id="wrw-gx-8hf"/>
                     </view>
                     <connections>
+                        <outlet property="destinationLabel" destination="xhh-WM-DDL" id="DjQ-EC-tQE"/>
                         <outlet property="destinationLocationTextField" destination="0sn-01-1Tf" id="E8c-jr-oy6"/>
                         <outlet property="originLocationTextField" destination="NON-wf-O6B" id="Hzs-yc-Fwk"/>
                     </connections>

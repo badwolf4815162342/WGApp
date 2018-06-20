@@ -10,7 +10,8 @@ import UIKit
 
 class RouteTableViewCell: UITableViewCell {
 
-
+    @IBOutlet weak var destLabel: UILabel!
+    
     @IBOutlet weak var originLocationLabel: UILabel!
     
     @IBOutlet weak var destinationLocationLabel: UILabel!
@@ -18,6 +19,10 @@ class RouteTableViewCell: UITableViewCell {
     func setRoute(route: BusRoute){
 
         originLocationLabel.text = route.origin?.name
-        destinationLocationLabel.text = route.destination?.name
+        if let dest = route.destination {
+            destinationLocationLabel.text = dest.name
+        } else {
+            destLabel.text = "Route ohne Ziel"
+        }
     }
 }

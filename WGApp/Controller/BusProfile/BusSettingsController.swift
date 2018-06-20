@@ -16,22 +16,26 @@ class BusSettingsController: NSObject {
      * connection to busRoute and sets rmvStopLocation as a new StopLocation
      * if there isn't one if the same data, then it sets this one as new destination
      **/
-    class func saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV, busRoute: BusRoute) {
-        if let oldStopLocation = busRoute.destination {
-            deleteDestinationStopLocationFromBusRoute(stopLocation: oldStopLocation, busRoute: busRoute)
-        }
-        // check for already existing stopLocation with same values
-        let existingStopLocation = findStopLocationByRMVStopLocation(rmvStopLocation: rmvStopLocation)
-        if (existingStopLocation != nil ) {
-            busRoute.destination = existingStopLocation
+    class func saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: StopLocationRMV?, busRoute: BusRoute) {
+        if let stopLocationRMV = rmvStopLocation {
+            if let oldStopLocation = busRoute.destination {
+                deleteDestinationStopLocationFromBusRoute(stopLocation: oldStopLocation, busRoute: busRoute)
+            }
+            // check for already existing stopLocation with same values
+            let existingStopLocation = findStopLocationByRMVStopLocation(rmvStopLocation: stopLocationRMV)
+            if (existingStopLocation != nil ) {
+                busRoute.destination = existingStopLocation
+            } else {
+                let newStopLocation = StopLocation(context: PersistenceService.context)
+                newStopLocation.name = stopLocationRMV.name
+                newStopLocation.id = stopLocationRMV.id
+                busRoute.destination = newStopLocation
+            }
         } else {
-            let newStopLocation = StopLocation(context: PersistenceService.context)
-            newStopLocation.name = rmvStopLocation.name
-            newStopLocation.id = rmvStopLocation.id
-            busRoute.destination = newStopLocation
+            busRoute.destination = nil
         }
-        
         PersistenceService.saveContext()
+        
     }
     
     /**
@@ -183,6 +187,10 @@ class BusSettingsController: NSObject {
             print("ERROR while fetching all StopLocations")
         }
         return stops
+    }
+    
+    class func deleteRouteFromBusProfile(busRoute: BusRoute, busProfile: BusSettings) {
+        PersistenceService.context.delete(busRoute)
     }
     
     class func addTestBusSettings(){
