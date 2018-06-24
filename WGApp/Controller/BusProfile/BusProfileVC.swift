@@ -12,7 +12,7 @@ import CoreData
 class BusProfileVC: UIViewController {
     
     
-
+    var selectedBusProfile: BusSettings?
     
     @IBOutlet weak var tableView: UITableView!
     var busSettings = [BusSettings]()
@@ -47,20 +47,32 @@ class BusProfileVC: UIViewController {
         }
         
         // alert button hinzufügen
-        let saveAction = UIAlertAction(title: "hinzufügen", style: .default) { (_) in
+        let saveAction = UIAlertAction(title: "hinzufügen", style: .default, handler: { (action) -> Void in
             let title = alert.textFields!.first!.text!
             var newBusSetting = BusSettings(context: PersistenceService.context);
             newBusSetting.title = title
+            self.selectedBusProfile = newBusSetting
             //set User = WG
             PersistenceService.saveContext()
             self.refreshTable()
             NotificationCenter.default.post(name: NSNotification.Name("ShowBusprofileMsg"), object: newBusSetting)
-        }
+        })
+        
+        /**
+         alert.addTextField(configurationHandler: { (textField) in
+         textField.placeholder = "Titel"
+         NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+         saveAction.isEnabled = textField.text!.count > 0
+         }
+         })
+         **/
+
         let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
         
         alert.addAction(saveAction)
         alert.addAction(cancleAction)
         present(alert, animated: true, completion: nil)
+        
     }
     
     
@@ -101,6 +113,20 @@ extension BusProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NotificationCenter.default.post(name: NSNotification.Name("ShowBusprofileMsg"), object: busSettings[indexPath.row])
+        selectedBusProfile = busSettings[indexPath.row]
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let deletedProfile = busSettings.remove(at: indexPath.row)
+        BusSettingsController.deleteBusProfile(busProfile: deletedProfile)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        if (selectedBusProfile == deletedProfile ) {
+            NotificationCenter.default.post(name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
+            if (busSettings.count > 0) {
+                selectedBusProfile = busSettings[0]
+            }
+        }
     }
     
 

@@ -51,6 +51,8 @@ class BusProfilEditVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(changeBusProfile), name: NSNotification.Name("ShowBusprofileMsg"), object: nil)
         // oberserver to load route edit view user page
         NotificationCenter.default.addObserver(self, selector: #selector(showRouteForEdit), name: NSNotification.Name("ShowRouteMsg"), object: nil)
+        // show first busprofile when deleting one which is selcted
+        NotificationCenter.default.addObserver(self, selector: #selector(setInitialBusProfile), name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
     }
     
     // setNew BusRoute
@@ -126,7 +128,7 @@ class BusProfilEditVC: UIViewController {
         
     }
     
-    func setInitialBusProfile(){
+    @objc func setInitialBusProfile(){
         print("Set initialBusProfile")
         // load core data into table
         let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()

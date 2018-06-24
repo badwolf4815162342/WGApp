@@ -193,6 +193,18 @@ class BusSettingsController: NSObject {
         PersistenceService.context.delete(busRoute)
     }
     
+    class func deleteBusProfile(busProfile: BusSettings) {
+        if let routes = busProfile.routes as? NSMutableSet {
+            for busRoute in routes {
+                if let route = busRoute as? BusRoute {
+                    deleteRouteFromBusProfile(busRoute: route, busProfile: busProfile)
+                }
+            }
+        }
+        PersistenceService.context.delete(busProfile)
+        
+    }
+    
     class func addTestBusSettings(){
         let busProfile = BusSettings(context: PersistenceService.context)
         busProfile.title = "Arbeit"
