@@ -51,6 +51,7 @@ class BusProfileVC: UIViewController {
             let title = alert.textFields!.first!.text!
             var newBusSetting = BusSettings(context: PersistenceService.context);
             newBusSetting.title = title
+            newBusSetting.withDestinations = true
             self.selectedBusProfile = newBusSetting
             //set User = WG
             PersistenceService.saveContext()

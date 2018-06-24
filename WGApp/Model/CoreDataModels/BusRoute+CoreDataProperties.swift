@@ -2,7 +2,7 @@
 //  BusRoute+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 19.06.18.
+//  Created by Viviane Rehor on 24.06.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -17,6 +17,7 @@ extension BusRoute {
         return NSFetchRequest<BusRoute>(entityName: "BusRoute")
     }
 
+    @NSManaged public var withDestination: Bool
     @NSManaged public var busSetting: BusSettings?
     @NSManaged public var origin: StopLocation?
     @NSManaged public var destination: StopLocation?

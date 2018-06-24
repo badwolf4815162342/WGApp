@@ -16,9 +16,9 @@ class BusRouteEditVC: UIViewController {
     
     var busRoute: BusRoute?
     
-    @IBOutlet weak var destinationLabel: UILabel!
+    var withDestinations: Bool?
     
-    var destinationActivated = true
+    @IBOutlet weak var destinationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,6 @@ class BusRouteEditVC: UIViewController {
         destinationLocationTextField.resultsListHeader = header
         destinationLocationTextField.clearButtonMode = .whileEditing
         
-        destinationActivated = true
         if let busRoute = busRoute {
             // set default origin text
             originLocationTextField.text = busRoute.origin?.name
@@ -48,16 +47,22 @@ class BusRouteEditVC: UIViewController {
             // set currently selected destination
             let oldDestinationStopLocation = StopLocationRMV(id: (busRoute.destination?.id)!, name: (busRoute.destination?.name)!)
             destinationLocationTextField.selectedStopLocation = oldDestinationStopLocation
+            destinationActivationChanged(withDestination: busRoute.withDestination)
         } else {
+            // TODO: WITHDESTINATION ????
+            if let withDet = withDestinations {
             originLocationTextField.text = "Start suchen"
             destinationLocationTextField.text = "Ziel suchen"
+            } else {
+                print("ERROR: NO INFO WithDEST")
+            }
         }
         
     }
     
-    @IBAction func destinationActivationChanged(_ sender: UISwitch) {
-        destinationActivated = !destinationActivated
-        if (destinationActivated) {
+    //todo
+    func destinationActivationChanged(withDestination: Bool) {
+        if (withDestination) {
             destinationLocationTextField.isHidden = false
             destinationLabel.text = "Ziel"
         } else {
@@ -70,11 +75,11 @@ class BusRouteEditVC: UIViewController {
     override func shouldPerformSegue(withIdentifier withIidentifier: String?, sender: Any?) -> Bool {
         if let ident = withIidentifier {
             if ident == "routeSaved" {
-                if ((destinationActivated == true) && (originLocationTextField.selectedStopLocation == nil || destinationLocationTextField.selectedStopLocation == nil)) {
+                if ((withDestinations == true) && (originLocationTextField.selectedStopLocation == nil || destinationLocationTextField.selectedStopLocation == nil)) {
                     showAlert()
                     return false
                 // Falls kein Ziel ausgewählt sein soll, aber auch kein Strat ausgewählt ist
-                } else if (originLocationTextField.selectedStopLocation == nil && destinationActivated == false) {
+                } else if (originLocationTextField.selectedStopLocation == nil && withDestinations == false) {
                     showAlert()
                     return false
                 }

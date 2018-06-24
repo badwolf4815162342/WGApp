@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
+        <attribute name="withDestination" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="routes" inverseEntity="BusSettings" syncable="YES"/>
         <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="destinationOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="originOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
     </entity>
     <entity name="BusSettings" representedClassName="BusSettings" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="withDestinations" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="ofProfil" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profil" inverseName="busSettings" inverseEntity="Profil" syncable="YES"/>
         <relationship name="routes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="busSetting" inverseEntity="BusRoute" syncable="YES"/>
     </entity>
@@ -27,8 +29,8 @@
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="88"/>
-        <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="88"/>
+        <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="103"/>
+        <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="103"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="Profil" positionX="-2729" positionY="-268" width="128" height="103"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>

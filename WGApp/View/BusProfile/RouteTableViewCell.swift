@@ -19,8 +19,8 @@ class RouteTableViewCell: UITableViewCell {
     func setRoute(route: BusRoute){
 
         originLocationLabel.text = route.origin?.name
-        if let dest = route.destination {
-            destinationLocationLabel.text = dest.name
+        if route.withDestination {
+            destinationLocationLabel.text = route.destination?.name
         } else {
             destLabel.text = "Route ohne Ziel"
         }

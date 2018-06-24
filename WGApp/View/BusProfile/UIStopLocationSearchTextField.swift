@@ -9,8 +9,6 @@
 import UIKit
 
 class UIStopLocationSearchTextField: SearchTextField {
-    
-    public var rmvApiController : RMVApiController = RMVApiController()
 
     func filterStopLocations(stopLocations: [StopLocationRMV]) {
         var items = [SearchTextFieldItem]()
@@ -75,7 +73,7 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     func filterNewStopLocations(forceShowAll addAll: Bool) {
-        self.rmvApiController.getStoplocations(withEntryString: self.text!, completion: { stopLocations in
+        RMVApiController.getStoplocations(withEntryString: self.text!, completion: { stopLocations in
             DispatchQueue.main.async {
                 self.showLoadingIndicator()
                 print("NetworkStoplocations for \(self.text!): \(stopLocations.count)")

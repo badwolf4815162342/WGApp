@@ -10,38 +10,40 @@ import Foundation
 
 protocol RMVApiControllerProtocol {
     
-    var counter: Int { get }
+    static var counter: Int { get }
     
-    var host: String { get }
+    static var host: String { get }
     
-    var locationsPath: String { get }
+    static var locationsPath: String { get }
     
-    var departuresPath: String { get }
+    static var departuresPath: String { get }
     
-    var baseQueryDict: [String: String] { get set }
+    static var baseQueryDict: [String: String] { get set }
     
-    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ())
+    static func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ())
     
-    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocationRMV>) ->  ())
+    static func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping () ->  ())
     
-    func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) ->  ())
+    static func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) ->  ())
     
 }
 
 class RMVApiController: RMVApiControllerProtocol {
     
-    var counter = 0
+    static var counter = 0
     
-    var host = "https://www.rmv.de/hapi"
+    static var host = "https://www.rmv.de/hapi"
     
-    var locationsPath = "/location.name"
+    static var locationsPath = "/location.name"
     
-    var departuresPath = "/departureBoard"
+    static var departuresPath = "/departureBoard"
     
-    var baseQueryDict = ["accessId": "59820666-0a39-4ee9-acd4-76a062d39c13", "format": "json"]
+    static var tripsPath = "/trip"
+    
+    static var baseQueryDict = ["accessId": "59820666-0a39-4ee9-acd4-76a062d39c13", "format": "json"]
     
     // Function that calls sopLocations from Network and returns completion(Array<StopLocations>
-    func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
+    static func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
         
         // add additional query params and replace spaces
         let additionalQueryDict = ["input": withEntryString.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)]
@@ -84,11 +86,46 @@ class RMVApiController: RMVApiControllerProtocol {
             }.resume()
     }
     
-    func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<StopLocationRMV>) -> ()) {
-        return
+    static func getRoutes(fromOriginId: String, toDestinationId: String, completion: @escaping () -> ()) {
+        // add additional query params and replace spaces
+        let additionalQueryDict = ["originId": fromOriginId, "destId": toDestinationId]
+        
+        var departures = [Departure]()
+        
+        // generate Url
+        let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: tripsPath)
+        print("Ready to execute network call of: '\(urlString)'")
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            //Implement JSON decoding and parsing
+            do {
+                //Decode retrived data with JSONDecoder and assing type of Article object
+                let tripResponse = try JSONDecoder().decode(TripResponse.self, from: data)
+                
+                //departures = departureResponse.departure
+                print(tripResponse)
+                //print("Network call done for path: '\(urlString)' with \(departures.count) StopLocationsFound")
+                self.counter = self.counter + 1
+                print("request nr. \(self.counter)")
+                // return completion
+                completion()
+            } catch DecodingError.keyNotFound(let key, let context) {
+                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+            } catch let jsonError {
+                print(jsonError)
+            }
+            }.resume()
     }
     
-    func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) -> ()) {
+    static func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) -> ()) {
         // add additional query params and replace spaces
         let additionalQueryDict = ["id": fromOriginId]
         
@@ -127,7 +164,7 @@ class RMVApiController: RMVApiControllerProtocol {
             }.resume()
     }
     
-    func getUrl(withQueryDict: [String: String], ofPath: String) -> String {
+    static func getUrl(withQueryDict: [String: String], ofPath: String) -> String {
         var url = self.host + ofPath + "?"
         var tempDict = [String: String]()
         tempDict.merge(baseQueryDict, uniquingKeysWith: +)
@@ -140,7 +177,7 @@ class RMVApiController: RMVApiControllerProtocol {
     }
     
     // Function that calls sopLocations from Network and returns completion(Array<StopLocations>
-    func getTestStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
+    static func getTestStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){
         var stopLocations = [StopLocationRMV]()
         
         let stopLocationString = """

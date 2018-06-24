@@ -18,9 +18,9 @@ class HomeScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //BusSettingsController.deleteAllData(entity: "BusSettings")
-        //BusSettingsController.deleteAllData(entity: "BusRoute")
-        //BusSettingsController.deleteAllData(entity: "StopLocation")
+        BusSettingsController.deleteAllData(entity: "BusSettings")
+        BusSettingsController.deleteAllData(entity: "BusRoute")
+        BusSettingsController.deleteAllData(entity: "StopLocation")
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
     }

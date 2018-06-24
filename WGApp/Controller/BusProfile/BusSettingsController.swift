@@ -205,6 +205,26 @@ class BusSettingsController: NSObject {
         
     }
     
+    class func getTrips(busProfile: BusSettings) {
+        var departures:[Departure] = [Departure]()
+        if let routes = busProfile.routes as? NSMutableSet {
+            for busRoute in routes {
+                if let route = busRoute as? BusRoute {
+                    RMVApiController.getDepartures(fromOriginId: (route.origin?.id!)!, completion:{ deps in
+                        DispatchQueue.main.async {
+                            for dep in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
+                                print(dep)
+                            }
+                        }})
+                    if (route.destination == nil) {
+                        print("ERROR")
+                    }
+                }
+            }
+        }
+        
+    }
+    
     class func addTestBusSettings(){
         let busProfile = BusSettings(context: PersistenceService.context)
         busProfile.title = "Arbeit"

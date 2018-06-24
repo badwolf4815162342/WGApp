@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 class BusProfilEditVC: UIViewController {
-    
+ 
+    @IBOutlet weak var withDestinations: UISwitch!
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var routesTableView: UITableView!
@@ -55,6 +56,35 @@ class BusProfilEditVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialBusProfile), name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
     }
     
+    @IBAction func withDestinationsChanged(_ sender: Any) {
+        if (withDestinations.isOn) {
+            actBusProfile.withDestinations = true
+            //destinationLocationTextField.isHidden = false
+            //destinationLabel.text = "Ziel"
+            if let routes = actBusProfile.routes as? NSMutableSet {
+                for busRoute in routes {
+                    if let route = busRoute as? BusRoute {
+                        route.withDestination = true
+                    }
+                }
+            }
+        } else {
+            actBusProfile.withDestinations = false
+            if let routes = actBusProfile.routes as? NSMutableSet {
+                for busRoute in routes {
+                    if let route = busRoute as? BusRoute {
+                        route.withDestination = false
+                    }
+                }
+            }
+            //destinationLocationTextField.selectedStopLocation = nil
+            //destinationLocationTextField.isHidden = true
+            //destinationLabel.text = "Route ohne Ziel"
+        }
+        PersistenceService.saveContext()
+        self.routesTableView.reloadData()
+        
+    }
     // setNew BusRoute
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let busRouteEditVC = sender.source as? BusRouteEditVC {
@@ -66,6 +96,7 @@ class BusProfilEditVC: UIViewController {
             if (currentlyEditingRoute == nil) {
                 let newRoute = busRouteEditVC.busRoute!
                 newRoute.busSetting = actBusProfile
+                BusSettingsController.getTrips(busProfile: actBusProfile)
             }
             currentlyEditingRoute = nil
         }
@@ -100,6 +131,7 @@ class BusProfilEditVC: UIViewController {
             self.routesTableView.reloadData()
             checkReachedMaxRoutes()
         }
+        withDestinations.isOn = actBusProfile.withDestinations
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,6 +149,7 @@ class BusProfilEditVC: UIViewController {
         if segue.identifier == "ShowRoute" {
             if let destinationVC = segue.destination as? BusRouteEditVC {
                 destinationVC.busRoute = sender as? BusRoute
+                destinationVC.withDestinations = actBusProfile.withDestinations
             }
         }
     }
@@ -143,7 +176,7 @@ class BusProfilEditVC: UIViewController {
             } else {
                 actBusProfile = profiles[0]
                 titleTextField.text = actBusProfile.title
-                
+                withDestinations.isOn = actBusProfile.withDestinations
                 if let routesSet = actBusProfile.routes{
                     routesForActBusProfile = routesSet.allObjects as! [BusRoute]
                     self.routesTableView.reloadData()
@@ -153,6 +186,7 @@ class BusProfilEditVC: UIViewController {
             }
         } catch {}
     }
+       
     
     func checkReachedMaxRoutes () {
         // if more than 4 routes -> hide button +
