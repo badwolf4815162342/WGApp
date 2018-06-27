@@ -13,20 +13,44 @@ class UserVC: UIViewController {
     var user: User!
     @IBOutlet weak var tabBar: UITabBar!
     
+    @IBOutlet weak var profilContainer: UIView!
+    @IBOutlet weak var profilEditContainer: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.delegate = self
     }
     
-    func showProfil(){
-        performSegue(withIdentifier: "ShowUserProfil", sender: nil)
+    @IBAction func editBtn(_ sender: Any) {
+        self.profilContainer.alpha = 0
+        self.profilEditContainer.alpha = 1
+        viewWillAppear(true)
+    }
+    @IBAction func saveBtn(_ sender: Any) {
+        self.profilContainer.alpha = 1
+        self.profilEditContainer.alpha = 0
+    }
+    
+    @IBAction func showComponent(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.profilContainer.alpha = 1
+                self.profilEditContainer.alpha = 0
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.profilContainer.alpha = 0
+                self.profilEditContainer.alpha = 1
+            })
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowUserProfil" {
-            if let userProfilVC = segue.destination as? UserProfilVC {
-                userProfilVC.user = self.user
-            }
+        if let userProfilVC = segue.destination as? UserProfilVC {
+            userProfilVC.user = self.user
+        }
+        if let userVCEdit = segue.destination as? UserProfilEditVC {
+            userVCEdit.user = self.user
         }
     }
 

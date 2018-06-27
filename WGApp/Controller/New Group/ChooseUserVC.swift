@@ -106,6 +106,3 @@ extension ChooseUserVC: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
     }
 }
-
-
-
