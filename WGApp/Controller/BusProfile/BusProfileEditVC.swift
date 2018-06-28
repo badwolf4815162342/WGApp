@@ -89,15 +89,12 @@ class BusProfilEditVC: UIViewController {
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let busRouteEditVC = sender.source as? BusRouteEditVC {
             print("Unwind from BusRouteEditVC")
-            for stop in BusSettingsController.getAllStopLocations() {
-                print(stop.name)
-            }
             // not edited route but created new one
             if (currentlyEditingRoute == nil) {
                 let newRoute = busRouteEditVC.busRoute!
                 newRoute.busSetting = actBusProfile
-                BusSettingsController.getTrips(busProfile: actBusProfile)
             }
+            BusSettingsController.getTrips(busProfile: actBusProfile)
             currentlyEditingRoute = nil
         }
         //BusSettingsController.printSettings(busProfile: actBusProfile)
@@ -124,14 +121,13 @@ class BusProfilEditVC: UIViewController {
             v.isHidden = false
         }
         noRoutesLabel.isHidden = true
-        
+        withDestinations.isOn = actBusProfile.withDestinations
         if let routesSet = actBusProfile.routes{
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
             checkReachedMaxRoutes()
         }
-        withDestinations.isOn = actBusProfile.withDestinations
     }
     
     override func didReceiveMemoryWarning() {

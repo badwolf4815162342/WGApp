@@ -35,7 +35,9 @@ class BusRouteEditVC: UIViewController {
         destinationLocationTextField.resultsListHeader = header
         destinationLocationTextField.clearButtonMode = .whileEditing
         
+        // busRoute is already there
         if let busRoute = busRoute {
+            print("busroute there")
             // set default origin text
             originLocationTextField.text = busRoute.origin?.name
             // set currently selected origin
@@ -45,14 +47,17 @@ class BusRouteEditVC: UIViewController {
             // set default destination text
             destinationLocationTextField.text = busRoute.destination?.name
             // set currently selected destination
-            let oldDestinationStopLocation = StopLocationRMV(id: (busRoute.destination?.id)!, name: (busRoute.destination?.name)!)
-            destinationLocationTextField.selectedStopLocation = oldDestinationStopLocation
+            if let dest = busRoute.destination {
+                let oldDestinationStopLocation = StopLocationRMV(id: (dest.id)!, name: (dest.name)!)
+                destinationLocationTextField.selectedStopLocation = oldDestinationStopLocation
+            }
             destinationActivationChanged(withDestination: busRoute.withDestination)
         } else {
             // TODO: WITHDESTINATION ????
-            if let withDet = withDestinations {
-            originLocationTextField.text = "Start suchen"
-            destinationLocationTextField.text = "Ziel suchen"
+            if let withDest = withDestinations {
+                originLocationTextField.text = "Start suchen"
+                destinationLocationTextField.text = "Ziel suchen"
+                destinationActivationChanged(withDestination: withDest)
             } else {
                 print("ERROR: NO INFO WithDEST")
             }

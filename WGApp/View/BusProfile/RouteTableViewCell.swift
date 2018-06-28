@@ -21,7 +21,9 @@ class RouteTableViewCell: UITableViewCell {
         originLocationLabel.text = route.origin?.name
         if route.withDestination {
             destinationLocationLabel.text = route.destination?.name
+            destLabel.text = "Ziel"
         } else {
+            destinationLocationLabel.text = ""
             destLabel.text = "Route ohne Ziel"
         }
     }

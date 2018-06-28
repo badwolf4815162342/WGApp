@@ -31,8 +31,10 @@ class BusSettingsController: NSObject {
                 newStopLocation.id = stopLocationRMV.id
                 busRoute.destination = newStopLocation
             }
+            busRoute.withDestination = true
         } else {
             busRoute.destination = nil
+            busRoute.withDestination = false
         }
         PersistenceService.saveContext()
         
@@ -206,18 +208,23 @@ class BusSettingsController: NSObject {
     }
     
     class func getTrips(busProfile: BusSettings) {
-        var departures:[Departure] = [Departure]()
-        if let routes = busProfile.routes as? NSMutableSet {
-            for busRoute in routes {
-                if let route = busRoute as? BusRoute {
-                    RMVApiController.getDepartures(fromOriginId: (route.origin?.id!)!, completion:{ deps in
-                        DispatchQueue.main.async {
-                            for dep in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
-                                print(dep)
-                            }
-                        }})
-                    if (route.destination == nil) {
-                        print("ERROR")
+        if (busProfile.withDestinations) {
+            
+        } else {
+            var departures:[Departure] = [Departure]()
+            if let routes = busProfile.routes as? NSMutableSet {
+                for busRoute in routes {
+                    if let route = busRoute as? BusRoute {
+                        RMVApiController.getDepartures(fromOriginId: (route.origin?.id!)!, completion:{ deps in
+                            DispatchQueue.main.async {
+                                  print("---------------Trips without Dest from:",route.origin?.id)
+                                for dep in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
+                                    print("Trip: ",dep)
+                                }
+                            }})
+                        if (route.destination == nil) {
+                            print("ERROR")
+                        }
                     }
                 }
             }

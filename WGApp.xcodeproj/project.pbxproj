@@ -50,6 +50,7 @@
 		5FBD7D0420E03E910007BBC3 /* BusSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0020E03E910007BBC3 /* BusSettings+CoreDataProperties.swift */; };
 		5FBD7D0520E03E910007BBC3 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */; };
 		5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */; };
+		5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6852420E5299C00B37CF8 /* TripRMV.swift */; };
 		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
 		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
 		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
@@ -123,6 +124,7 @@
 		5FBD7D0020E03E910007BBC3 /* BusSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5FC6852420E5299C00B37CF8 /* TripRMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRMV.swift; sourceTree = "<group>"; };
 		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
 		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
 		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -183,6 +185,7 @@
 				5F09F1A920C6FF11008407F6 /* StopLocationResponse.swift */,
 				5F09F1A820C6FF11008407F6 /* TripResponse.swift */,
 				5FBD7CED20E015DC0007BBC3 /* DepartureRMV.swift */,
+				5FC6852420E5299C00B37CF8 /* TripRMV.swift */,
 			);
 			path = RMVApiModels;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
 				5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */,
+				5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */,
 				8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */,
 				5FBD7CDC20D3ED930007BBC3 /* Profil+CoreDataClass.swift in Sources */,
 				5FBD7CD420D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift in Sources */,
