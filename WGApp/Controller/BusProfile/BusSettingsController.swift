@@ -207,45 +207,53 @@ class BusSettingsController: NSObject {
         
     }
     
-    class func getTrips(busProfile: BusSettings) {
+    class func getTrips(busProfile: BusSettings, completion: @escaping (Array<TripRMV>) -> ())  {
         if (busProfile.withDestinations) {
-            var trips:[Trip] = [Trip]()
+            var tripsRMV:[TripRMV] = [TripRMV]()
             if let routes = busProfile.routes as? NSMutableSet {
                 for busRoute in routes {
                     if let route = busRoute as? BusRoute {
-                        RMVApiController.getTrips(fromOriginId: (route.origin?.id!)!, toDestinationId: (route.destination?.id)!, completion:{ trips in
+                        RMVApiController.getTrips(fromOriginId: (route.origin?.id)!, toDestinationId: (route.destination?.id)!, completion:{ trips in
                             DispatchQueue.main.async {
-                                print("---------------Trips with Dest from:",route.origin?.name, " to ", route.destination?.name)
+                                print("---------------Trips without Dest from:",route.origin?.id)
                                 for trip in trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}) {
-                                    print("Trip: ",trip)
+                                    //print("Trip: ",trip)
                                 }
-                            }})
-                        if (route.destination == nil) {
-                            print("ERROR")
-                        }
+                                tripsRMV.append(contentsOf: trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}))
+                                completion(tripsRMV)
+                            }
+                        })
                     }
                 }
             }
         } else {
-            var departures:[Departure] = [Departure]()
+          print("ERROR")
+        }
+        
+    }
+    
+    class func getDepartures(busProfile: BusSettings, completion: @escaping (Array<DepartureRMV>) -> ()) {
+        if (busProfile.withDestinations) {
+            print("ERROR")
+        } else {
+            var departures:[DepartureRMV] = [DepartureRMV]()
             if let routes = busProfile.routes as? NSMutableSet {
                 for busRoute in routes {
                     if let route = busRoute as? BusRoute {
                         RMVApiController.getDepartures(fromOriginId: (route.origin?.id!)!, completion:{ deps in
                             DispatchQueue.main.async {
-                                  print("---------------Trips without Dest from:",route.origin?.id)
+                                print("---------------Departures without Dest from:",route.origin?.id)
                                 for dep in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
-                                    print("Trip: ",dep)
+                                    //print("Trip: ",dep)
                                 }
+                                departures.append(contentsOf: deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}))
+                                completion(departures)
                             }})
-                        if (route.destination == nil) {
-                            print("ERROR")
-                        }
                     }
                 }
             }
+            
         }
-        
     }
     
     class func addTestBusSettings(){
@@ -283,4 +291,82 @@ class BusSettingsController: NSObject {
         PersistenceService.saveContext()
     }
     
+    
+    class func calculateDate(ofTime: String, ofDate: String ) -> Date {
+        let inDateFormatter = DateFormatter()
+        inDateFormatter.dateFormat = "yyyy-MM-dd"
+        let inFormatter = DateFormatter()
+        inFormatter.dateFormat = "HH:mm:ss"
+        
+        
+        let date = inDateFormatter.date(from: ofDate)
+        print("ofDate")
+        print(date)
+        
+        let timeDate = inFormatter.date(from: ofTime)
+        print("ofTime")
+        print(timeDate)
+        let calendar = Calendar.current
+        
+        var dateComponents: DateComponents? = calendar.dateComponents([.year, .month, .day], from: date!)
+        
+        var component = calendar.dateComponents([.hour, .minute, .second], from: timeDate!)
+        component.year = dateComponents?.year
+        component.month = dateComponents?.month
+        component.day = dateComponents?.day
+        Calendar.current.date(from: component)
+
+      
+        let finalDate: Date? = calendar.date(from: component)
+        print(finalDate)
+        return finalDate!
+    }
+    
+}
+
+extension Date {
+    /// Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
+    }
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
+    }
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+    /// Returns the amount of nanoseconds from another date
+    func nanoseconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.nanosecond], from: date, to: self).nanosecond ?? 0
+    }
+    /// Returns the a custom time interval description from another date
+    func offset(from date: Date) -> String {
+        if years(from: date)   > 0 { return "\(years(from: date))y"   }
+        if months(from: date)  > 0 { return "\(months(from: date))M"  }
+        if weeks(from: date)   > 0 { return "\(weeks(from: date))w"   }
+        if days(from: date)    > 0 { return "\(days(from: date))d"    }
+        if hours(from: date)   > 0 { return "\(hours(from: date))h"   }
+        if minutes(from: date) > 0 { return "\(minutes(from: date))m" }
+        if seconds(from: date) > 0 { return "\(seconds(from: date))s" }
+        if nanoseconds(from: date) > 0 { return "\(nanoseconds(from: date))ns" }
+        return ""
+    }
 }

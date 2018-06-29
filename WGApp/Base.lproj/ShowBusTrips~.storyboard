@@ -210,7 +210,7 @@
                                 <rect key="frame" x="0.0" y="135" width="700" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="M5m-Uv-Gfv" kind="embed" id="HdR-Mc-bE9"/>
+                                    <segue destination="zGv-mi-EFs" kind="embed" id="HdR-Mc-bE9"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ymS-Dk-fVp">
@@ -288,6 +288,51 @@
             </objects>
             <point key="canvasLocation" x="274.8046875" y="772.65625"/>
         </scene>
+        <!--Show Bus Trips TableVC-->
+        <scene sceneID="O90-f7-jYc">
+            <objects>
+                <viewController storyboardIdentifier="busTripsTableView" modalTransitionStyle="partialCurl" id="KOz-D8-oSh" customClass="ShowBusTripsTableVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pkj-Wg-kZB">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdT-FF-wC9">
+                                <rect key="frame" x="491" y="374" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fdT-FF-wC9" firstAttribute="centerX" secondItem="Pkj-Wg-kZB" secondAttribute="centerX" id="8t7-vq-xqc"/>
+                            <constraint firstItem="fdT-FF-wC9" firstAttribute="centerY" secondItem="Pkj-Wg-kZB" secondAttribute="centerY" id="LXp-Od-ueU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="crz-MG-qhy"/>
+                    </view>
+                    <connections>
+                        <outlet property="busProfileName" destination="fdT-FF-wC9" id="abs-Q0-8Nr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kG-Ur-Pu2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2031" y="-292"/>
+        </scene>
+        <!--Show Bus Trips SlideVC-->
+        <scene sceneID="9cn-FO-9Kj">
+            <objects>
+                <viewController modalPresentationStyle="currentContext" id="zGv-mi-EFs" customClass="ShowBusTripsSlideVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yg4-PZ-jOP">
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="CEa-wa-kk2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="osk-um-k3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733" y="410"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="09j-7t-gtT">
             <objects>
@@ -318,14 +363,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVt-Ik-hRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="866" y="1288"/>
-        </scene>
-        <!--ShowBusTrips-->
-        <scene sceneID="xTb-g7-aaZ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ShowBusTrips" id="M5m-Uv-Gfv" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kDS-GL-rOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1733" y="410"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

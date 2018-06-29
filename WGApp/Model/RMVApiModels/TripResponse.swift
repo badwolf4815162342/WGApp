@@ -53,14 +53,16 @@ struct LegList: Codable {
 struct Leg: Codable {
     let origin, destination: Location
     let notes: Notes?
-    let journeyDetailRef: JourneyDetailRef
+    let journeyDetailRef: JourneyDetailRef?
     let messages: Messages?
-    let journeyStatus: String
-    let product: [String: String]
-    let idx, name, number, category: String
+    let journeyStatus: String?
+    let product: [String: String]?
+    let idx, name: String
+    let category: String?
+    let number: String?
     let type: String
-    let reachable: Bool
-    let direction: String
+    let reachable: Bool?
+    let direction: String?
     
     enum CodingKeys: String, CodingKey {
         case origin = "Origin"
@@ -80,7 +82,7 @@ struct Location: Codable {
     let id, extID: String
     let lon, lat: Double
     let routeIdx: Int?
-    let prognosisType: PrognosisTypeEnum
+    let prognosisType: PrognosisTypeEnum?
     let time, date: String
     let rtTime, rtDate: String?
     let rtAlighting: Bool?

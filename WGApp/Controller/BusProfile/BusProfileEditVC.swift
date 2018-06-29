@@ -94,7 +94,6 @@ class BusProfilEditVC: UIViewController {
                 let newRoute = busRouteEditVC.busRoute!
                 newRoute.busSetting = actBusProfile
             }
-            BusSettingsController.getTrips(busProfile: actBusProfile)
             currentlyEditingRoute = nil
         }
         //BusSettingsController.printSettings(busProfile: actBusProfile)

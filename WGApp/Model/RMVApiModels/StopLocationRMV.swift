@@ -25,5 +25,7 @@ extension StopLocationRMV{
         let rmv = StopLocationRMV(id: stopLocation.id!, name: stopLocation.name!)
         return rmv
     }
+    
 
 }
+
