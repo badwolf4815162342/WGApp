@@ -28,7 +28,7 @@ struct TripResponse: Codable {
 struct Trip: Codable {
     let serviceDays: [ServiceDay]
     let legList: LegList
-    let tariffResult: TariffResult
+    let tariffResult: TariffResult?
     let idx: Int
     let tripID, ctxRecon, duration, checksum: String
     
@@ -51,8 +51,8 @@ struct LegList: Codable {
 }
 
 struct Leg: Codable {
-    let origin, destination: Destination
-    let notes: Notes
+    let origin, destination: Location
+    let notes: Notes?
     let journeyDetailRef: JourneyDetailRef
     let messages: Messages?
     let journeyStatus: String
@@ -74,12 +74,12 @@ struct Leg: Codable {
     }
 }
 
-struct Destination: Codable {
-    let name: Name
+struct Location: Codable {
+    let name: String
     let type: TypeEnum
     let id, extID: String
     let lon, lat: Double
-    let routeIdx: Int
+    let routeIdx: Int?
     let prognosisType: PrognosisTypeEnum
     let time, date: String
     let rtTime, rtDate: String?
@@ -92,11 +92,6 @@ struct Destination: Codable {
         case extID = "extId"
         case lon, lat, routeIdx, prognosisType, time, date, rtTime, rtDate, rtAlighting, track, rtBoarding
     }
-}
-
-enum Name: String, Codable {
-    case wiesbadenDreiweidenstrasse = "Wiesbaden Dreiweidenstrasse"
-    case wiesbadenLoreleiring = "Wiesbaden Loreleiring"
 }
 
 enum PrognosisTypeEnum: String, Codable {

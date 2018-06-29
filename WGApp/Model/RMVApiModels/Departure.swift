@@ -17,7 +17,7 @@ struct Departure: Codable {
     let type: DepartureType
     let stop: String
     let stopid, stopEXTID: String
-    let prognosisType: PrognosisType?
+    let prognosisType: String?
     let time, date: String
     let rtTime, rtDate: String?
     let reachable: Bool

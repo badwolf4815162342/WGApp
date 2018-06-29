@@ -59,7 +59,7 @@ enum JourneyStatus: String, Codable {
 }
 
 struct Notes: Codable {
-    let note: [Note]
+    let note: [Note]?
     
     enum CodingKeys: String, CodingKey {
         case note = "Note"
@@ -68,26 +68,11 @@ struct Notes: Codable {
 
 struct Note: Codable {
     let value: String
-    let key: Key
-    let type: NoteType
-    let routeIdxFrom, routeIdxTo: Int
+    let key: String?
+    let type: String?
+    let routeIdxFrom, routeIdxTo: Int?
 }
 
-enum Key: String, Codable {
-    case fd = "FD"
-}
-
-enum NoteType: String, Codable {
-    case i = "I"
-}
-
-enum PrognosisType: String, Codable {
-    case prognosed = "PROGNOSED"
-}
-
-enum Stop: String, Codable {
-    case wiesbadenDreiweidenstrasse = "Wiesbaden Dreiweidenstrasse"
-}
 
 enum TrainCategory: String, Codable {
     case bb1 = "BB1"

@@ -26,6 +26,8 @@ protocol RMVApiControllerProtocol {
     
     static func getDepartures(fromOriginId: String, completion: @escaping (Array<Departure>) ->  ())
     
+    static func getTrips(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<Trip>) ->  ())
+    
 }
 
 class RMVApiController: RMVApiControllerProtocol {
@@ -451,6 +453,47 @@ class RMVApiController: RMVApiControllerProtocol {
             print(jsonError)
         }
  
+    }
+    
+    static func getTrips(fromOriginId: String, toDestinationId: String, completion: @escaping (Array<Trip>) -> ()) {
+        // add additional query params and replace spaces
+        let additionalQueryDict = ["originId": fromOriginId, "destId": toDestinationId]
+        
+        var trips = [Trip]()
+        
+        // generate Url
+        let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: tripsPath)
+        print("Ready to execute network call of: '\(urlString)'")
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            print(data)
+            
+            //Implement JSON decoding and parsing
+            do {
+                //Decode retrived data with JSONDecoder and assing type of Article object
+                let tripResponse = try JSONDecoder().decode(TripResponse.self, from: data)
+
+                trips = tripResponse.trip
+                
+                print("Network call done for path: '\(urlString)' with \(trips.count) Trips found")
+                self.counter = self.counter + 1
+                print("request nr. \(self.counter)")
+                // return completion
+                completion(trips)
+            } catch DecodingError.keyNotFound(let key, let context) {
+                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+            } catch let jsonError {
+                print(jsonError)
+            }
+            }.resume()
     }
     
     

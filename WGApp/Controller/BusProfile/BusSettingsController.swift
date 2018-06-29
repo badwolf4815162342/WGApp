@@ -209,7 +209,23 @@ class BusSettingsController: NSObject {
     
     class func getTrips(busProfile: BusSettings) {
         if (busProfile.withDestinations) {
-            
+            var trips:[Trip] = [Trip]()
+            if let routes = busProfile.routes as? NSMutableSet {
+                for busRoute in routes {
+                    if let route = busRoute as? BusRoute {
+                        RMVApiController.getTrips(fromOriginId: (route.origin?.id!)!, toDestinationId: (route.destination?.id)!, completion:{ trips in
+                            DispatchQueue.main.async {
+                                print("---------------Trips with Dest from:",route.origin?.name, " to ", route.destination?.name)
+                                for trip in trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}) {
+                                    print("Trip: ",trip)
+                                }
+                            }})
+                        if (route.destination == nil) {
+                            print("ERROR")
+                        }
+                    }
+                }
+            }
         } else {
             var departures:[Departure] = [Departure]()
             if let routes = busProfile.routes as? NSMutableSet {
