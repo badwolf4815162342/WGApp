@@ -36,7 +36,13 @@ class UIUserIconPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDe
     ]
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
+    var imageSize: CGFloat = 50
+    var imageBounds: CGFloat = 60
     
+    func setImageSize(imageSize: CGFloat, imageBounds: CGFloat){
+        self.imageSize = imageSize
+        self.imageBounds = imageBounds
+    }
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -83,12 +89,12 @@ class UIUserIconPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 60
+        return imageBounds
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let iconView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
-        let iconImageView = UIImageView(frame: CGRect(x: (pickerView.bounds.width/2)-25, y: 0, width: 50, height: 50))
+        let iconView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: imageBounds))
+        let iconImageView = UIImageView(frame: CGRect(x: (pickerView.bounds.width/2)-(imageSize/2), y: 0, width: imageSize, height: imageSize))
         
         iconImageView.image = userIcons[row].image
         iconView.addSubview(iconImageView)

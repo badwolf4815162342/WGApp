@@ -11,49 +11,64 @@ import UIKit
 class UserVC: UIViewController {
     
     var user: User!
+
     @IBOutlet weak var tabBar: UITabBar!
     
     @IBOutlet weak var profilContainer: UIView!
     @IBOutlet weak var profilEditContainer: UIView!
+    
+    var profil: UserProfilVC?
+    var edit: UserProfilEditVC?
+    
+    var userProp: User{
+        get{
+            return user
+        }
+        set{
+            user = newValue
+            profil?.user = user
+            edit?.user = user
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.delegate = self
     }
     
-    @IBAction func editBtn(_ sender: Any) {
-        self.profilContainer.alpha = 0
-        self.profilEditContainer.alpha = 1
-        viewWillAppear(true)
-    }
-    @IBAction func saveBtn(_ sender: Any) {
-        self.profilContainer.alpha = 1
-        self.profilEditContainer.alpha = 0
-    }
-    
-    @IBAction func showComponent(sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.profilContainer.alpha = 1
-                self.profilEditContainer.alpha = 0
-            })
-        } else {
+    // change Profil and Edit
+    @IBAction func unwindProfilAndEdit(sender: UIStoryboardSegue) {
+        // from Profil to Edit
+        if let profil = sender.source as? UserProfilVC {
             UIView.animate(withDuration: 0.5, animations: {
                 self.profilContainer.alpha = 0
                 self.profilEditContainer.alpha = 1
             })
+            userProp = profil.user
+            self.edit?.refresh()
+        }
+        // from Edit to Profil
+        if let edit = sender.source as? UserProfilEditVC {
+            print("unwind and set user")
+            UIView.animate(withDuration: 0.5, animations: {
+                self.profilContainer.alpha = 1
+                self.profilEditContainer.alpha = 0
+            })
+            userProp = edit.user
+            self.profil?.refresh()
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let userProfilVC = segue.destination as? UserProfilVC {
             userProfilVC.user = self.user
+            self.profil = userProfilVC
         }
-        if let userVCEdit = segue.destination as? UserProfilEditVC {
-            userVCEdit.user = self.user
+        if let userEditVC = segue.destination as? UserProfilEditVC {
+            userEditVC.user = self.user
+            self.edit = userEditVC
         }
     }
-
 }
 
 extension UserVC: UITabBarDelegate {

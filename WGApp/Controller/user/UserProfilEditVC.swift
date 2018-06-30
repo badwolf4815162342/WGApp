@@ -18,7 +18,12 @@ class UserProfilEditVC: UIViewController {
     
     
     override func viewDidLoad() {
+        pickerView.setImageSize(imageSize: 130, imageBounds: 150)
         super.viewDidLoad()
+        refresh()
+    }
+    
+    func refresh(){
         name.text = user.name
         mail.text = user.mail
         pickerView.selectedIconName = user.profilIcon!
