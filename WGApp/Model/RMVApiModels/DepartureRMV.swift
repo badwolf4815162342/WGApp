@@ -38,23 +38,16 @@ extension DepartureRMV {
         var finalRDate: Date? = nil
         print(transportationName)
         print(departure)
-        let inFormatter = DateFormatter()
-        inFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
-        inFormatter.dateFormat = "HH:mm:ss"
         if let pTime: String = departure.time {
-            finalPDate = inFormatter.date(from: pTime)!
+            finalPDate = BusSettingsController.calculateDate(ofTime: pTime,  ofDate: departure.date)
             print(finalPDate)
         }
         if let rTime: String = departure.rtTime {
-            finalRDate = inFormatter.date(from: rTime)!
+            finalRDate = BusSettingsController.calculateDate(ofTime: rTime,  ofDate: departure.rtDate!)
             print(finalRDate)
         } else {
             finalRDate = finalPDate
         }
-        /**
-         let outFormatter = NSDateFormatter()
-         outFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-         outFormatter.dateFormat = "hh:mm" **/
         return DepartureRMV(transportationType: transportationType, specificTransportationType: specificTransportationType, transportationName: transportationName, transportationNumber: transportationNumber, plannedDepartureTime: finalPDate!, realDepartureTime: finalRDate!, direction: direction, stopLocation: stopLocation)
     }
     
