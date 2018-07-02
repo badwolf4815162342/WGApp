@@ -12,18 +12,17 @@ import CoreData
 
 class ChooseUserVC: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var people = [User]()
     
-    func refreshTable(){
+    func refreshContent(){
         // load core data into table
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         do {
             let people = try PersistenceService.context.fetch(fetchRequest)
             self.people = people
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         } catch {
             print("core data couldn't be loaded")
         }
@@ -42,8 +41,10 @@ class ChooseUserVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        refreshTable()
+        refreshContent()
     }
+    
+    @IBAction func undwind2FromDeleteUser(sender: UIStoryboardSegue){}
   
     @IBAction func onPlusTapped(){
         // alert
@@ -75,7 +76,7 @@ class ChooseUserVC: UIViewController {
             user.profilIcon = pickerView.selectedIconName
             PersistenceService.saveContext()
             
-            self.refreshTable()
+            self.refreshContent()
         }
         let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
         
@@ -86,22 +87,20 @@ class ChooseUserVC: UIViewController {
    
 }
 
-extension ChooseUserVC: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ChooseUserVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return people.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = people[indexPath.row].name
-        cell.detailTextLabel?.text = people[indexPath.row].mail
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! UserCollectionViewCell
+        cell.icon.image = UIImage(named: people[indexPath.row].profilIcon!)
+        cell.name.text = people[indexPath.row].name
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(people[indexPath.row].name)
         performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
     }

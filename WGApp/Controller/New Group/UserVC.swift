@@ -59,6 +59,10 @@ class UserVC: UIViewController {
         }
     }
     
+    @IBAction func undwind1FromDeleteUser(sender: UIStoryboardSegue){
+        self.performSegue(withIdentifier: "segue2DeleteUser", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let userProfilVC = segue.destination as? UserProfilVC {
             userProfilVC.user = self.user

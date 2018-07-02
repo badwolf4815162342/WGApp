@@ -21,6 +21,23 @@ class UserProfilVC: UIViewController {
         refresh()
     }
     
+    @IBAction func deleteUser(_ sender: UIButton) {
+        // alert
+        let alert = UIAlertController(title: "Sicher, dass du den Mitbewohner löschen möchtest?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        // alert button hinzufügen
+        let saveAction = UIAlertAction(title: "löschen", style: .default) { (_) in
+            print("delete")
+            PersistenceService.context.delete(self.user)
+            PersistenceService.saveContext()
+            self.performSegue(withIdentifier: "segue1DeleteUser", sender: self)
+        }
+        let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func refresh(){
         name.text = user.name
         mail.text = user.mail
