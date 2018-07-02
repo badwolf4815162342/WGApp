@@ -99,6 +99,7 @@ struct Location: Codable {
 enum PrognosisTypeEnum: String, Codable {
     case calculated = "CALCULATED"
     case prognosed = "PROGNOSED"
+    case corrected = "CORRECTED"
 }
 
 enum TypeEnum: String, Codable {
