@@ -15,10 +15,13 @@ class ListViewController: UIViewController {
     
     var listItems = [ListItem]()
     
+    let rowHeight: CGFloat = 50
+    
     func refreshContent(){
         // load core data into table
         let fetchRequest: NSFetchRequest<ListItem> = ListItem.fetchRequest()
         do {
+            print("refreshing")
             let listItems = try PersistenceService.context.fetch(fetchRequest)
             self.listItems = listItems
             self.listTableView.reloadData()
@@ -32,6 +35,7 @@ class ListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        listTableView.rowHeight = rowHeight
         super.viewDidLoad()
         listTableView.delegate = self
         listTableView.dataSource = self
@@ -92,8 +96,58 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // edit and delete
-        print(listItems[indexPath.row].value)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // edit Item
+        let editAction =  UIContextualAction(style: .normal, title: "bearbeiten", handler: { (action,view,completionHandler ) in
+            // alert
+            let alert = UIAlertController(title: "Element bearbeiten", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            
+            // name
+            alert.addTextField { (textField) in
+                textField.text = self.listItems[indexPath.row].value
+            }
+            
+            // alert button hinzufügen
+            let saveAction = UIAlertAction(title: "speichern", style: .default) { (_) in
+                let name = alert.textFields!.first!.text!
+                let item = self.listItems[indexPath.row]
+                item.value = name
+                PersistenceService.saveContext()
+                self.refreshContent()
+            }
+            let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancleAction)
+            self.present(alert, animated: true, completion: nil)
+            completionHandler(true)
+        })
+        editAction.image = UIImage(named: "edit")
+        editAction.backgroundColor = .green
+        
+        // delete Item
+        let deleteAction =  UIContextualAction(style: .normal, title: "löschen", handler: { (action,view,completionHandler ) in
+            // alert
+            let alert = UIAlertController(title: "Sicher, dass du das Element löschen möchtest?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            // alert button hinzufügen
+            let saveAction = UIAlertAction(title: "löschen", style: .default) { (_) in
+                print("delete item")
+                PersistenceService.context.delete(self.listItems[indexPath.row])
+                PersistenceService.saveContext()
+                self.refreshContent()
+            }
+            let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancleAction)
+            self.present(alert, animated: true, completion: nil)
+            completionHandler(true)
+        })
+        deleteAction.image = UIImage(named: "delete")
+        deleteAction.backgroundColor = .red
+        
+        let confrigation = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        return confrigation
     }
 }
