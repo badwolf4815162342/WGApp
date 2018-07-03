@@ -61,6 +61,10 @@
 		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
 		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
+		8F4399E820EB697000B063BB /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4399E620EB696F00B063BB /* List.storyboard */; };
+		8F4399EA20EB6EBE00B063BB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399E920EB6EBE00B063BB /* ListViewController.swift */; };
+		8F4399FD20EB732B00B063BB /* ListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */; };
+		8F4399FE20EB732B00B063BB /* ListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399FC20EB732B00B063BB /* ListItem+CoreDataProperties.swift */; };
 		8F63293720EA68AD007175E8 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63293620EA68AD007175E8 /* UserCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +146,10 @@
 		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
 		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		8F4399E720EB696F00B063BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/List.storyboard; sourceTree = "<group>"; };
+		8F4399E920EB6EBE00B063BB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8F4399FC20EB732B00B063BB /* ListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F63293620EA68AD007175E8 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCollectionViewCell.swift; path = "WGApp/View/New Group/UserCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -317,6 +325,7 @@
 		5FA47C8220BAEA2B0043B3C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8F4399E420EB693500B063BB /* List */,
 				5F44D63920D01F190014AB46 /* BusProfile */,
 				5F44D63620D01CE00014AB46 /* User */,
 			);
@@ -326,6 +335,7 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8F4399E520EB694800B063BB /* List */,
 				5F09F19C20C6FE53008407F6 /* BusProfile */,
 				5F44D62D20D01C890014AB46 /* User */,
 			);
@@ -343,6 +353,8 @@
 		8F12379C20D7F9A60073AF5F /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */,
+				8F4399FC20EB732B00B063BB /* ListItem+CoreDataProperties.swift */,
 				5FBD7CFF20E03E910007BBC3 /* BusSettings+CoreDataClass.swift */,
 				5FBD7D0020E03E910007BBC3 /* BusSettings+CoreDataProperties.swift */,
 				5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */,
@@ -357,6 +369,22 @@
 				5FBD7CC920D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift */,
 			);
 			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		8F4399E420EB693500B063BB /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8F4399E620EB696F00B063BB /* List.storyboard */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		8F4399E520EB694800B063BB /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8F4399E920EB6EBE00B063BB /* ListViewController.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FA47C5E20BAE9A60043B3C8 /* LaunchScreen.storyboard in Resources */,
+				8F4399E820EB697000B063BB /* List.storyboard in Resources */,
 				5FA47C5B20BAE9A60043B3C8 /* Assets.xcassets in Resources */,
 				5F09F1B820C70014008407F6 /* Bus.storyboard in Resources */,
 				5FA47C5920BAE9A60043B3C8 /* Main.storyboard in Resources */,
@@ -504,6 +533,7 @@
 				5FBD7CD320D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift in Sources */,
 				5F09F19F20C6FED5008407F6 /* RMVApiController.swift in Sources */,
 				5FBD7D0420E03E910007BBC3 /* BusSettings+CoreDataProperties.swift in Sources */,
+				8F4399EA20EB6EBE00B063BB /* ListViewController.swift in Sources */,
 				5F09F1B020C6FF12008407F6 /* DepartureResponse.swift in Sources */,
 				5F44D62F20D01CA40014AB46 /* Image.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
@@ -523,6 +553,7 @@
 				5FBD7CD420D3EBFB0007BBC3 /* HomeProfil+CoreDataProperties.swift in Sources */,
 				5F09F1AB20C6FF12008407F6 /* Departure.swift in Sources */,
 				5FBD7CD120D3EBFB0007BBC3 /* User+CoreDataClass.swift in Sources */,
+				8F4399FE20EB732B00B063BB /* ListItem+CoreDataProperties.swift in Sources */,
 				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
 				5FBD7D0320E03E910007BBC3 /* BusSettings+CoreDataClass.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
@@ -530,6 +561,7 @@
 				5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */,
 				5FBD7CE320D996B50007BBC3 /* StopLocation+CoreDataClass.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
+				8F4399FD20EB732B00B063BB /* ListItem+CoreDataClass.swift in Sources */,
 				5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */,
 				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
 				5FBD7CD220D3EBFB0007BBC3 /* User+CoreDataProperties.swift in Sources */,
@@ -589,6 +621,14 @@
 				5FA47C5D20BAE9A60043B3C8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8F4399E620EB696F00B063BB /* List.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F4399E720EB696F00B063BB /* Base */,
+			);
+			name = List.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

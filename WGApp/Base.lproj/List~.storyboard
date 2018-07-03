@@ -217,7 +217,7 @@
                                 <rect key="frame" x="708" y="64" width="316" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="BAt-qg-pKT" kind="embed" id="KoJ-Rw-qKf"/>
+                                    <segue destination="tWO-g7-PTY" kind="embed" id="KoJ-Rw-qKf"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-sI-s0G">
@@ -288,6 +288,37 @@
             </objects>
             <point key="canvasLocation" x="274.8046875" y="772.65625"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="09j-7t-gtT">
+            <objects>
+                <viewController id="tWO-g7-PTY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NFt-Le-tvE">
+                        <rect key="frame" x="0.0" y="0.0" width="316" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jRf-oe-W70">
+                                <rect key="frame" x="0.0" y="0.0" width="316" height="704"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="316" id="jTg-Dd-ElH"/>
+                                    <constraint firstAttribute="height" constant="704" id="oMu-6a-g4p"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jRf-oe-W70" firstAttribute="leading" secondItem="Wz7-sr-qfa" secondAttribute="leading" id="1AZ-Mm-eMU"/>
+                            <constraint firstItem="jRf-oe-W70" firstAttribute="trailing" secondItem="Wz7-sr-qfa" secondAttribute="trailing" id="Fmc-KD-F9B"/>
+                            <constraint firstItem="jRf-oe-W70" firstAttribute="bottom" secondItem="Wz7-sr-qfa" secondAttribute="bottom" id="KCw-RO-92D"/>
+                            <constraint firstItem="jRf-oe-W70" firstAttribute="top" secondItem="NFt-Le-tvE" secondAttribute="top" id="WN6-7a-lSJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wz7-sr-qfa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugL-K4-MI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1600.78125" y="797.65625"/>
+        </scene>
         <!--Bus-->
         <scene sceneID="6h6-tC-Abd">
             <objects>
@@ -311,14 +342,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kDS-GL-rOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1426" y="555"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="RAR-Fw-aOz">
-            <objects>
-                <viewControllerPlaceholder storyboardName="List" id="BAt-qg-pKT" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1d9-fr-NhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1422" y="785"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

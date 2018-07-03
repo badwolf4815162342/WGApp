@@ -17,7 +17,7 @@ class ChooseUserVC: UIViewController {
     var people = [User]()
     
     func refreshContent(){
-        // load core data into table
+        // load core data into collection view
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         do {
             let people = try PersistenceService.context.fetch(fetchRequest)
