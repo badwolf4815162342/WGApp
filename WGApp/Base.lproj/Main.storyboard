@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -248,20 +247,11 @@
                                 <action selector="onMoreTabbed" destination="jQI-I5-lnW" id="wfz-aH-utY"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="user1" id="1LC-7O-cYj"/>
-                            <barButtonItem title="user2" id="xXg-SJ-Gc8"/>
-                            <barButtonItem title="user3" id="v6c-AH-IW4"/>
-                            <barButtonItem title="user4" id="jlc-db-mvk"/>
-                            <barButtonItem title="user5" id="GJo-9Q-e1c"/>
-                            <barButtonItem title="user6" id="5y5-Tr-qBv"/>
-                            <barButtonItem title="user7" id="wfr-SV-kTh"/>
-                            <barButtonItem title="user8" id="tvo-D6-tK0"/>
-                            <barButtonItem title="Home" width="170" id="F7z-d9-r0f"/>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="homeNavigationItem" destination="Gqr-jB-1F3" id="AKW-RF-IEn"/>
+                        <outlet property="navigationItem" destination="Gqr-jB-1F3" id="WuC-jp-8gO"/>
                         <segue destination="wHS-gX-Jjd" kind="show" identifier="ShowBusManagement" id="J5m-5L-QcM"/>
                         <segue destination="6SK-wc-hcA" kind="show" identifier="ShowUserManagement" id="9tp-00-k95"/>
                     </connections>

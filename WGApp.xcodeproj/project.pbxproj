@@ -61,6 +61,7 @@
 		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
 		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
+		8F37143820ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37143720ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift */; };
 		8F4399E820EB697000B063BB /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4399E620EB696F00B063BB /* List.storyboard */; };
 		8F4399EA20EB6EBE00B063BB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399E920EB6EBE00B063BB /* ListViewController.swift */; };
 		8F4399FD20EB732B00B063BB /* ListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */; };
@@ -146,6 +147,7 @@
 		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
 		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		8F37143720ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUIBarButtonItem.swift; sourceTree = "<group>"; };
 		8F4399E720EB696F00B063BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/List.storyboard; sourceTree = "<group>"; };
 		8F4399E920EB6EBE00B063BB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				8F4399E420EB693500B063BB /* List */,
 				5F44D63920D01F190014AB46 /* BusProfile */,
 				5F44D63620D01CE00014AB46 /* User */,
+				8F37143720ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
 				5FBD7D0320E03E910007BBC3 /* BusSettings+CoreDataClass.swift in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
+				8F37143820ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift in Sources */,
 				5FBD7CE420D996B50007BBC3 /* StopLocation+CoreDataProperties.swift in Sources */,
 				5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */,
 				5FBD7CE320D996B50007BBC3 /* StopLocation+CoreDataClass.swift in Sources */,

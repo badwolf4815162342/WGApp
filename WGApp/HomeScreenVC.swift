@@ -12,10 +12,40 @@ import CoreData
 class HomeScreenVC: UIViewController {
     
     static var wg: HomeProfil?
+    
+    var users: [User] = []
 
+    @IBOutlet weak var homeNavigationItem: UINavigationItem!
+    
     @IBAction func onMoreTabbed() {
         print("TOGGLE SIDE MENUE")
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+    }
+    func refreshUsers(){
+        // load core data into users list
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        do {
+            let users = try PersistenceService.context.fetch(fetchRequest)
+            self.users = users
+            // self.collectionView.reloadData()
+        } catch {
+            print("core data couldn't be loaded")
+        }
+    }
+    func addRightNavigationBarItems(){
+        refreshUsers()
+        var items:[UIBarButtonItem] = []
+        for user in users{
+            let button: UIButton = UIButton(type: .custom)
+            button.setImage(UIImage(named: user.profilIcon!), for: .normal)
+            button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            let userButton = UserUIBarButtonItem(customView: button)
+            userButton.user = user
+
+            items.append(userButton)
+        }
+        self.homeNavigationItem.rightBarButtonItems = items
     }
     
     override func viewDidLoad() {
@@ -26,7 +56,14 @@ class HomeScreenVC: UIViewController {
         //BusSettingsController.deleteAllData(entity: "StopLocation")
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
+
+        //addRightNavigationBarItems()
+
         createWGUser()
+    }
+    
+    @objc func switchUser(sender: UserUIBarButtonItem){
+        print(sender.user?.name)
     }
     
     @objc func showUserManagement() {
