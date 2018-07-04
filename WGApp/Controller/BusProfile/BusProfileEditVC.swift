@@ -14,17 +14,20 @@ class BusProfilEditVC: UIViewController {
     @IBOutlet weak var withDestinations: UISwitch!
     @IBOutlet weak var titleTextField: UITextField!
     
+    
+    @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var routesTableView: UITableView!
     
     public var rmvApiController : RMVApiController = RMVApiController()
     
     private var busSettingsController: BusSettingsController = BusSettingsController()
     
-    var actBusProfile: BusSettings!
-    
     var routesForActBusProfile = [BusRoute]()
     
     var currentlyEditingRoute: BusRoute?
+    
+    
+    var profilForBusSetting: Profil?
     
     var footerView = UIView()
     
@@ -47,21 +50,30 @@ class BusProfilEditVC: UIViewController {
         addButton.setTitle("+", for: [])
         footerView.addSubview(addButton)
         addButton.addTarget(self, action: #selector(addNewBusRoute), for: .touchUpInside)
-        if actBusProfile == nil { setInitialBusProfile() }
+        setInitialBusProfile()
         //get Notification if BusProfile changes
         NotificationCenter.default.addObserver(self, selector: #selector(changeBusProfile), name: NSNotification.Name("ShowBusprofileMsg"), object: nil)
         // oberserver to load route edit view user page
         NotificationCenter.default.addObserver(self, selector: #selector(showRouteForEdit), name: NSNotification.Name("ShowRouteMsg"), object: nil)
         // show first busprofile when deleting one which is selcted
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialBusProfile), name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
+
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(profilForBusSetting)
+        if let profile = profilForBusSetting {
+            BusProfileVC.selectedBusProfile?.ofProfil = profile
+        }
+    }
+
     
     @IBAction func withDestinationsChanged(_ sender: Any) {
         if (withDestinations.isOn) {
-            actBusProfile.withDestinations = true
+            BusProfileVC.selectedBusProfile?.withDestinations = true
             //destinationLocationTextField.isHidden = false
             //destinationLabel.text = "Ziel"
-            if let routes = actBusProfile.routes as? NSMutableSet {
+            if let routes = BusProfileVC.selectedBusProfile?.routes as? NSMutableSet {
                 for busRoute in routes {
                     if let route = busRoute as? BusRoute {
                         route.withDestination = true
@@ -69,8 +81,8 @@ class BusProfilEditVC: UIViewController {
                 }
             }
         } else {
-            actBusProfile.withDestinations = false
-            if let routes = actBusProfile.routes as? NSMutableSet {
+            BusProfileVC.selectedBusProfile?.withDestinations = false
+            if let routes = BusProfileVC.selectedBusProfile?.routes as? NSMutableSet {
                 for busRoute in routes {
                     if let route = busRoute as? BusRoute {
                         route.withDestination = false
@@ -92,36 +104,50 @@ class BusProfilEditVC: UIViewController {
             // not edited route but created new one
             if (currentlyEditingRoute == nil) {
                 let newRoute = busRouteEditVC.busRoute!
-                newRoute.busSetting = actBusProfile
+                newRoute.busSetting = BusProfileVC.selectedBusProfile
             }
             currentlyEditingRoute = nil
         }
+        if let chooseUserVC = sender.source as? ChooseUserVC {
+            print("Unwind from ChooseUserVC")
+            print(BusProfileVC.selectedBusProfile?.ofProfil?.name)
+        }
         //BusSettingsController.printSettings(busProfile: actBusProfile)
-        if let routesSet = actBusProfile.routes{
+        if let routesSet = BusProfileVC.selectedBusProfile?.routes {
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
             checkReachedMaxRoutes()
         }
+        
     }
     
+
+    
     @IBAction func saveBusProfile(_ sender: Any) {
-        print(actBusProfile.objectID)
-        print(actBusProfile.title ?? "title")
-        print(actBusProfile.routes?.count ?? "routeslength")
+        print(BusProfileVC.selectedBusProfile?.objectID)
+        print(BusProfileVC.selectedBusProfile?.title ?? "title")
+        print(BusProfileVC.selectedBusProfile?.routes?.count ?? "routeslength")
         //TODO: saving title and user
     }
     
     @objc func changeBusProfile(notification: NSNotification) {
-        actBusProfile = notification.object as! BusSettings
-        titleTextField.text = actBusProfile.title
+        BusProfileVC.selectedBusProfile = notification.object as! BusSettings
+        titleTextField.text = BusProfileVC.selectedBusProfile?.title
+        var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
+        if userIconString != nil, let image = UIImage(named: userIconString!) {
+            userIcon.image = image
+        } else {
+            userIcon.image = UIImage(named: "Bear-icon")
+            print("Picture of user could not be loaded !!! ")
+        }
         var subViews = self.view.subviews
         for v in subViews {
             v.isHidden = false
         }
         noRoutesLabel.isHidden = true
-        withDestinations.isOn = actBusProfile.withDestinations
-        if let routesSet = actBusProfile.routes{
+        withDestinations.isOn = (BusProfileVC.selectedBusProfile?.withDestinations)!
+        if let routesSet = BusProfileVC.selectedBusProfile?.routes{
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
             print(routesSet)
             self.routesTableView.reloadData()
@@ -144,7 +170,13 @@ class BusProfilEditVC: UIViewController {
         if segue.identifier == "ShowRoute" {
             if let destinationVC = segue.destination as? BusRouteEditVC {
                 destinationVC.busRoute = sender as? BusRoute
-                destinationVC.withDestinations = actBusProfile.withDestinations
+                destinationVC.withDestinations = BusProfileVC.selectedBusProfile?.withDestinations
+            }
+        }
+        if segue.identifier == "ChooseProfile" {
+            if let destinationVC = segue.destination as? ChooseUserVC {
+                print("Choose User")
+                destinationVC.dataType = ChooseUserVC.ChooseUserVCType.chooseUser
             }
         }
     }
@@ -159,27 +191,52 @@ class BusProfilEditVC: UIViewController {
     @objc func setInitialBusProfile(){
         print("Set initialBusProfile")
         // load core data into table
-        let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
-        do {
-            let profiles = try PersistenceService.context.fetch(fetchRequest)
-            if (profiles.count <= 0) {
-                var subViews = self.view.subviews
-                for v in subViews {
-                    v.isHidden = true
-                }
-                noRoutesLabel.isHidden = false
+        if let profile = BusProfileVC.selectedBusProfile {
+            print(profile.title! + "found")
+            titleTextField.text = profile.title
+            withDestinations.isOn = profile.withDestinations
+            var userIconString = profile.ofProfil?.profilIcon
+            if userIconString != nil, let image = UIImage(named: userIconString!) {
+                userIcon.image = image
             } else {
-                actBusProfile = profiles[0]
-                titleTextField.text = actBusProfile.title
-                withDestinations.isOn = actBusProfile.withDestinations
-                if let routesSet = actBusProfile.routes{
-                    routesForActBusProfile = routesSet.allObjects as! [BusRoute]
-                    self.routesTableView.reloadData()
-                    checkReachedMaxRoutes()
-
-                }
+                userIcon.image = UIImage(named: "Bear-icon")
+                print("Picture of user could not be loaded !!! ")
             }
-        } catch {}
+            if let routesSet = profile.routes{
+                routesForActBusProfile = routesSet.allObjects as! [BusRoute]
+                self.routesTableView.reloadData()
+                checkReachedMaxRoutes()
+            }
+        } else {
+            let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+            do {
+                let profiles = try PersistenceService.context.fetch(fetchRequest)
+                if (profiles.count <= 0) {
+                    var subViews = self.view.subviews
+                    for v in subViews {
+                        v.isHidden = true
+                    }
+                    noRoutesLabel.isHidden = false
+                } else {
+                    BusProfileVC.selectedBusProfile = profiles[0]
+                    var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
+                    if userIconString != nil, let image = UIImage(named: userIconString!) {
+                        userIcon.image = image
+                    } else {
+                        userIcon.image = UIImage(named: "Bear-icon")
+                        print("Picture of user could not be loaded !!! ")
+                    }
+                    titleTextField.text = BusProfileVC.selectedBusProfile?.title
+                    withDestinations.isOn = (BusProfileVC.selectedBusProfile?.withDestinations)!
+                    if let routesSet = BusProfileVC.selectedBusProfile?.routes{
+                        routesForActBusProfile = routesSet.allObjects as! [BusRoute]
+                        self.routesTableView.reloadData()
+                        checkReachedMaxRoutes()
+                    }
+                }
+            } catch {}
+        }
+        
     }
        
     
@@ -221,7 +278,7 @@ extension BusProfilEditVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let deletedRoute = routesForActBusProfile.remove(at: indexPath.row)
-        BusSettingsController.deleteRouteFromBusProfile(busRoute: deletedRoute, busProfile: actBusProfile)
+        BusSettingsController.deleteRouteFromBusProfile(busRoute: deletedRoute, busProfile: BusProfileVC.selectedBusProfile!)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         checkReachedMaxRoutes()
     }

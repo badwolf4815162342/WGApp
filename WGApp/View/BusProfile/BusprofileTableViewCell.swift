@@ -19,7 +19,13 @@ class BusprofileTableViewCell: UITableViewCell {
         busprofile = busSettings
         
         busprofileTitleLabel.text = busSettings.title
-        userImageView.backgroundColor = UIColor.darkGray
+        var userIconString = busprofile?.ofProfil?.profilIcon
+        if userIconString != nil, let image = UIImage(named: userIconString!) {
+            userImageView.image = image
+        } else {
+            userImageView.image = UIImage(named: "Bear-icon")
+            print("Picture of user could not be loaded !!! ")
+        }
         //userImageView.image = busSettings.
         
     }

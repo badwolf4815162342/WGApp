@@ -11,14 +11,22 @@ import CoreData
 
 
 class ChooseUserVC: UIViewController {
+    
+    enum ChooseUserVCType {
+        case userManagement
+        case chooseUser
+    }
+    
+    var dataType: ChooseUserVCType?
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var people = [User]()
-    
+    @IBOutlet weak var addUserButton: UIButton!
+    var people = [Profil]()
+
     func refreshContent(){
         // load core data into collection view
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let fetchRequest: NSFetchRequest<Profil> = Profil.fetchRequest()
         do {
             let people = try PersistenceService.context.fetch(fetchRequest)
             self.people = people
@@ -30,13 +38,26 @@ class ChooseUserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let type = dataType {
+            switch type {
+                case .userManagement:
+                    addUserButton.isHidden = false
+                case .chooseUser:
+                    addUserButton.isHidden = true
+            }
+        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowUser" {
             if let userVC = segue.destination as? UserVC {
-                userVC.user = sender as! User
+                userVC.user = sender as! Profil
             }
+        }
+        if segue.identifier == "UserChosen" {
+            print("dest found")
+            
         }
     }
     
@@ -102,6 +123,16 @@ extension ChooseUserVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(people[indexPath.row].name)
-        performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
+        if let type = self.dataType {
+            switch type {
+                case .userManagement:
+                     performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
+                case .chooseUser:
+                    print("setUserAndGoBacks")
+                    BusProfileVC.selectedBusProfile?.ofProfil = people[indexPath.row]
+                    PersistenceService.saveContext()
+                }
+        }
+       
     }
 }

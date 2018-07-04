@@ -10,6 +10,7 @@ import UIKit
 
 class BusRouteEditVC: UIViewController {
     
+   
     @IBOutlet weak var originLocationTextField: UIStopLocationSearchTextField!
     
     @IBOutlet weak var destinationLocationTextField: UIStopLocationSearchTextField!
@@ -19,6 +20,7 @@ class BusRouteEditVC: UIViewController {
     var withDestinations: Bool?
     
     @IBOutlet weak var destinationLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,7 @@ class BusRouteEditVC: UIViewController {
                 print("ERROR: NO INFO WithDEST")
             }
         }
+
         
     }
     

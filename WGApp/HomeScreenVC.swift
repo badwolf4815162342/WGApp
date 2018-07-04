@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class HomeScreenVC: UIViewController {
+    
+    static var wg: HomeProfil?
 
     @IBAction func onMoreTabbed() {
         print("TOGGLE SIDE MENUE")
@@ -24,6 +26,7 @@ class HomeScreenVC: UIViewController {
         //BusSettingsController.deleteAllData(entity: "StopLocation")
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
+        createWGUser()
     }
     
     @objc func showUserManagement() {
@@ -32,5 +35,24 @@ class HomeScreenVC: UIViewController {
     
     @objc func showBusManagement() {
         performSegue(withIdentifier: "ShowBusManagement", sender: nil)
+    }
+    
+    func createWGUser () {
+        let fetchRequest: NSFetchRequest<HomeProfil> = HomeProfil.fetchRequest()
+        do {
+            let homes = try PersistenceService.context.fetch(fetchRequest)
+            if (homes.count == 0) {
+                let home = HomeProfil(context: PersistenceService.context)
+                home.name = "WG"
+                home.profilIcon = "wg-icon"
+                PersistenceService.saveContext()
+                HomeScreenVC.wg = home
+            } else {
+                HomeScreenVC.wg = homes[0]
+            }
+        } catch {
+            print("core data couldn't be loaded")
+        }
+        
     }
 }

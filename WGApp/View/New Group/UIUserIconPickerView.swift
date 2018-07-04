@@ -32,7 +32,8 @@ class UIUserIconPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDe
         Image(named: "Bee-icon"),
         Image(named: "Bull-icon"),
         Image(named: "Cat-icon"),
-        Image(named: "Chicken-icon")
+        Image(named: "Chicken-icon"),
+        Image(named: "wg-icon")
     ]
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

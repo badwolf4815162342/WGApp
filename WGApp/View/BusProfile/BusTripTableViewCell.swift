@@ -33,7 +33,7 @@ class BusTripTableViewCell: UITableViewCell {
             destLabel.text = tripRMV.destinationStopLocation.name?.getAcronyms()
             startDirectionLabel.text = tripRMV.routeParts[0].direction
             startLineLable.text = tripRMV.routeParts[0].transportationName
-            minutesLabel.text = setMinutesLabel(time: tripRMV.routeParts[0].realDepartureTime)
+            minutesLabel.text = BusSettingsController.setMinutesLabel(time: tripRMV.routeParts[0].realDepartureTime)
             countChangesLabel.text = (String) (tripRMV.routeParts.count-1)
             durationLabel.text = tripRMV.durationMinutes
             let outFormatter = DateFormatter()
@@ -42,30 +42,8 @@ class BusTripTableViewCell: UITableViewCell {
             startTime.text = outFormatter.string(from: tripRMV.routeParts[0].plannedDepartureTime)
             realStratTime.text = outFormatter.string(from: tripRMV.routeParts[0].realDepartureTime)
         }
-        print(tripRMV)
     }
     
-    func setMinutesLabel(time: Date) -> String {
-        let currentDateTime = Date()
-        if (currentDateTime<time) {
-            print(currentDateTime)
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<")
-            print(time)
-            let minutes = time.minutes(from: currentDateTime)
-            return String(minutes)+" min"
-        } else if (time>currentDateTime){
-            print(currentDateTime)
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>=")
-            print(time)
-            let minutes = currentDateTime.minutes(from: time)
-            return "-"+String(minutes)+" min"
-        } else {
-            return "0 min"
-        }
-        
-        
-    }
-
 }
 
 extension String

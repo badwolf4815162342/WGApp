@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfilVC: UIViewController {
     
-    var user: User!
+    var user: Profil!
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mail: UILabel!
@@ -40,7 +40,9 @@ class UserProfilVC: UIViewController {
     
     func refresh(){
         name.text = user.name
-        mail.text = user.mail
+        if let singleUser = user as? User {
+            mail.text = singleUser.mail
+        }
         if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
             icon.image = image
         } else {

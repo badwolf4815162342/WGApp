@@ -10,7 +10,7 @@ import UIKit
 
 class UserVC: UIViewController {
     
-    var user: User!
+    var user: Profil!
 
     @IBOutlet weak var tabBar: UITabBar!
     
@@ -20,7 +20,7 @@ class UserVC: UIViewController {
     var profil: UserProfilVC?
     var edit: UserProfilEditVC?
     
-    var userProp: User{
+    var userProp: Profil {
         get{
             return user
         }

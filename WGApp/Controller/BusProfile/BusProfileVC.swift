@@ -12,7 +12,7 @@ import CoreData
 class BusProfileVC: UIViewController {
     
     
-    var selectedBusProfile: BusSettings?
+    static var selectedBusProfile: BusSettings?
     
     @IBOutlet weak var tableView: UITableView!
     var busSettings = [BusSettings]()
@@ -52,7 +52,8 @@ class BusProfileVC: UIViewController {
             var newBusSetting = BusSettings(context: PersistenceService.context);
             newBusSetting.title = title
             newBusSetting.withDestinations = true
-            self.selectedBusProfile = newBusSetting
+            newBusSetting.ofProfil = HomeScreenVC.wg
+            BusProfileVC.selectedBusProfile = newBusSetting
             //set User = WG
             PersistenceService.saveContext()
             self.refreshTable()
@@ -114,7 +115,7 @@ extension BusProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NotificationCenter.default.post(name: NSNotification.Name("ShowBusprofileMsg"), object: busSettings[indexPath.row])
-        selectedBusProfile = busSettings[indexPath.row]
+        BusProfileVC.selectedBusProfile = busSettings[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -122,10 +123,10 @@ extension BusProfileVC: UITableViewDelegate, UITableViewDataSource {
         let deletedProfile = busSettings.remove(at: indexPath.row)
         BusSettingsController.deleteBusProfile(busProfile: deletedProfile)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        if (selectedBusProfile == deletedProfile ) {
+        if (BusProfileVC.selectedBusProfile == deletedProfile ) {
             NotificationCenter.default.post(name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
             if (busSettings.count > 0) {
-                selectedBusProfile = busSettings[0]
+                BusProfileVC.selectedBusProfile = busSettings[0]
             }
         }
     }

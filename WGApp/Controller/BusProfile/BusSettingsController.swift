@@ -256,6 +256,24 @@ class BusSettingsController: NSObject {
         }
     }
     
+    class func setMinutesLabel(time: Date) -> String {
+        let currentDateTime = Date()
+        if (currentDateTime<time) {
+            let minutes = time.minutes(from: currentDateTime)
+            return String(minutes)+" min"
+        } else if (time>currentDateTime){
+            print(currentDateTime)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>")
+            print(time)
+            let minutes = currentDateTime.minutes(from: time)
+            return "-"+String(minutes)+" min"
+        } else {
+            return "0 min"
+        }
+        
+        
+    }
+    
     class func addTestBusSettings(){
         let busProfile = BusSettings(context: PersistenceService.context)
         busProfile.title = "Arbeit"
@@ -369,4 +387,6 @@ extension Date {
         if nanoseconds(from: date) > 0 { return "\(nanoseconds(from: date))ns" }
         return ""
     }
+    
+
 }
