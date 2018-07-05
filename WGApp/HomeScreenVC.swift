@@ -17,10 +17,12 @@ class HomeScreenVC: UIViewController {
 
     @IBOutlet weak var homeNavigationItem: UINavigationItem!
     
-    @IBAction func onMoreTabbed() {
+    /*@IBAction func onMoreTabbed() {
         print("TOGGLE SIDE MENUE")
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
-    }
+    }*/
+    
+    
     func refreshUsers(){
         // load core data into users list
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
@@ -32,21 +34,38 @@ class HomeScreenVC: UIViewController {
             print("core data couldn't be loaded")
         }
     }
-    func addRightNavigationBarItems(){
+    func addNavigationBarItems(){
+       
+        // left: burger menu
+        let moreBtn: UIButton = UIButton(type: .custom)
+        moreBtn.setImage(UIImage(named: "burger"), for: .normal)
+        moreBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        moreBtn.addTarget(self, action: #selector(more(sender:)), for: .touchUpInside)
+        moreBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let barButton = UIBarButtonItem(customView: moreBtn)
+        
+        self.homeNavigationItem.leftBarButtonItem = barButton
+        
+        // right: user icons
         refreshUsers()
         var items:[UIBarButtonItem] = []
         for user in users{
-            let button: UIButton = UIButton(type: .custom)
+            let button: UserUIButton = UserUIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
-            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            let userButton = UserUIBarButtonItem(customView: button)
-            userButton.user = user
+            button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            button.user = user
+            let barButton = UIBarButtonItem(customView: button)
 
-            items.append(userButton)
+            items.append(barButton)
         }
         self.homeNavigationItem.rightBarButtonItems = items
+    }
+    
+    @objc func more(sender: UIBarButtonItem){
+        print("TOGGLE SIDE MENUE")
+        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -58,12 +77,12 @@ class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
 
-        addRightNavigationBarItems()
+        addNavigationBarItems()
 
         createWGUser()
     }
     
-    @objc func switchUser(sender: UserUIBarButtonItem){
+    @objc func switchUser(sender: UserUIButton){
         print(sender.user?.name)
     }
     

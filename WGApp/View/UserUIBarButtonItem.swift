@@ -8,6 +8,6 @@
 
 import UIKit
 
-class UserUIBarButtonItem: UIBarButtonItem {
+class UserUIButton: UIButton {
     var user: User?
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -242,16 +242,10 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Gqr-jB-1F3">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="More" id="3fU-Pl-xBy">
-                            <connections>
-                                <action selector="onMoreTabbed" destination="jQI-I5-lnW" id="wfz-aH-utY"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="homeNavigationItem" destination="Gqr-jB-1F3" id="AKW-RF-IEn"/>
-                        <outlet property="navigationItem" destination="Gqr-jB-1F3" id="WuC-jp-8gO"/>
                         <segue destination="wHS-gX-Jjd" kind="show" identifier="ShowBusManagement" id="J5m-5L-QcM"/>
                         <segue destination="6SK-wc-hcA" kind="show" identifier="ShowUserManagement" id="9tp-00-k95"/>
                     </connections>
