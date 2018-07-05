@@ -10,6 +10,7 @@ import UIKit
 
 class ShowBusTripsTableVC: UIViewController {
     
+    @IBOutlet weak var ofProfileImage: UIImageView!
     @IBOutlet weak var showTripsTableView: UITableView!
     
     @IBOutlet weak var busProfileName: UILabel!
@@ -30,6 +31,13 @@ class ShowBusTripsTableVC: UIViewController {
         print("viewWillAppear ShowBusTripsTableVC")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
+            var userIconString = busProfile.ofProfil?.profilIcon
+            if userIconString != nil, let image = UIImage(named: userIconString!) {
+                ofProfileImage.image = image
+            } else {
+                ofProfileImage.image = UIImage(named: "Bear-icon")
+                print("Picture of user could not be loaded !!! ")
+            }
         } else {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")

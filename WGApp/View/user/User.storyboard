@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uzP-t9-ILm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uzP-t9-ILm">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,8 +51,8 @@
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="icon" destination="ct4-BK-htD" id="B1T-um-ce6"/>
-                                            <outlet property="name" destination="ncE-4L-lon" id="3xU-QR-7b9"/>
+                                            <outlet property="icon" destination="ct4-BK-htD" id="7Rc-ez-tKy"/>
+                                            <outlet property="name" destination="ncE-4L-lon" id="WQI-I5-OLd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -72,7 +72,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onPlusTapped" destination="uzP-t9-ILm" eventType="touchUpInside" id="7el-hg-ybr"/>
+                                    <action selector="onPlusTapped" destination="uzP-t9-ILm" eventType="touchUpInside" id="6Gs-gS-hNW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,25 +81,13 @@
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addUserButton" destination="Q8q-IR-XLq" id="K90-EA-BW6"/>
-                        <outlet property="collectionView" destination="Swz-Bb-egU" id="dxk-Nv-AhS"/>
+                        <outlet property="collectionView" destination="Swz-Bb-egU" id="Dfp-VA-CjO"/>
                         <segue destination="I2k-wu-VF5" kind="show" identifier="ShowUser" id="DMV-lj-8HO"/>
-                        <segue destination="kS5-V9-pod" kind="show" identifier="UserChosen" id="vaC-1S-Na9"/>
-                        <segue destination="GJs-7k-W9U" kind="unwind" unwindAction="unwindToThisViewWithSender:" id="QXj-kV-SJb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0P-N9-8LX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="GJs-7k-W9U" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1255.6640625" y="1722.65625"/>
-        </scene>
-        <!--Bus-->
-        <scene sceneID="aFv-2q-eNn">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Bus" id="kS5-V9-pod" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nUT-qk-r3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1746" y="1219"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="IUn-xk-sOa">

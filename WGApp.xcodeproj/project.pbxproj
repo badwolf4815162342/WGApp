@@ -57,6 +57,8 @@
 		5FBD7D0520E03E910007BBC3 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */; };
 		5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */; };
 		5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6852420E5299C00B37CF8 /* TripRMV.swift */; };
+		5FE2899320EE99DC0090193C /* UserSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE2899220EE99DC0090193C /* UserSelectionVC.swift */; };
+		5FE2899620EE9A040090193C /* Selection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FE2899420EE9A040090193C /* Selection.storyboard */; };
 		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
 		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
 		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
@@ -143,6 +145,8 @@
 		5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FC6852420E5299C00B37CF8 /* TripRMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRMV.swift; sourceTree = "<group>"; };
+		5FE2899220EE99DC0090193C /* UserSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionVC.swift; sourceTree = "<group>"; };
+		5FE2899520EE9A040090193C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/Selection.storyboard; sourceTree = "<group>"; };
 		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
 		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
 		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -327,6 +331,7 @@
 		5FA47C8220BAEA2B0043B3C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5FE2899420EE9A040090193C /* Selection.storyboard */,
 				8F4399E420EB693500B063BB /* List */,
 				5F44D63920D01F190014AB46 /* BusProfile */,
 				5F44D63620D01CE00014AB46 /* User */,
@@ -338,6 +343,7 @@
 		5FA47C8320BAEA400043B3C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5FE2899220EE99DC0090193C /* UserSelectionVC.swift */,
 				8F4399E520EB694800B063BB /* List */,
 				5F09F19C20C6FE53008407F6 /* BusProfile */,
 				5F44D62D20D01C890014AB46 /* User */,
@@ -495,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FA47C5E20BAE9A60043B3C8 /* LaunchScreen.storyboard in Resources */,
+				5FE2899620EE9A040090193C /* Selection.storyboard in Resources */,
 				8F4399E820EB697000B063BB /* List.storyboard in Resources */,
 				5FA47C5B20BAE9A60043B3C8 /* Assets.xcassets in Resources */,
 				5F09F1B820C70014008407F6 /* Bus.storyboard in Resources */,
@@ -565,6 +572,7 @@
 				5FBD7CCE20D3EBFB0007BBC3 /* Profil+CoreDataProperties.swift in Sources */,
 				5FBD7CE320D996B50007BBC3 /* StopLocation+CoreDataClass.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
+				5FE2899320EE99DC0090193C /* UserSelectionVC.swift in Sources */,
 				8F4399FD20EB732B00B063BB /* ListItem+CoreDataClass.swift in Sources */,
 				5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */,
 				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
@@ -625,6 +633,14 @@
 				5FA47C5D20BAE9A60043B3C8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5FE2899420EE9A040090193C /* Selection.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FE2899520EE9A040090193C /* Base */,
+			);
+			name = Selection.storyboard;
 			sourceTree = "<group>";
 		};
 		8F4399E620EB696F00B063BB /* List.storyboard */ = {

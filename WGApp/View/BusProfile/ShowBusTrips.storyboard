@@ -162,6 +162,13 @@
                                     <action selector="reloadTrips:" destination="rb0-sX-UE4" eventType="touchUpInside" id="IwN-Fe-PX5"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFG-by-rpC">
+                                <rect key="frame" x="359" y="25" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Y96-Bq-0cI"/>
+                                    <constraint firstAttribute="width" constant="90" id="ovB-eN-NeH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -169,15 +176,18 @@
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="top" secondItem="jdc-PG-2cf" secondAttribute="bottom" constant="53" id="6os-AB-4nN"/>
                             <constraint firstItem="TKb-sU-NhW" firstAttribute="leading" secondItem="jdc-PG-2cf" secondAttribute="trailing" constant="52" id="Eye-A9-kp3"/>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="trailing" secondItem="8rD-tU-pi0" secondAttribute="trailing" id="Mm3-6m-idT"/>
+                            <constraint firstItem="EFG-by-rpC" firstAttribute="leading" secondItem="8rD-tU-pi0" secondAttribute="leading" constant="359" id="MoV-5I-J4J"/>
                             <constraint firstItem="jdc-PG-2cf" firstAttribute="top" secondItem="8rD-tU-pi0" secondAttribute="top" constant="34" id="UZl-yO-brs"/>
                             <constraint firstItem="jdc-PG-2cf" firstAttribute="centerX" secondItem="2AT-rb-EYl" secondAttribute="centerX" id="Y0N-Bq-1II"/>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="leading" secondItem="8rD-tU-pi0" secondAttribute="leading" id="bMJ-Qb-qvK"/>
                             <constraint firstItem="TKb-sU-NhW" firstAttribute="baseline" secondItem="jdc-PG-2cf" secondAttribute="baseline" id="sS1-bk-OUx"/>
+                            <constraint firstItem="EFG-by-rpC" firstAttribute="top" secondItem="8rD-tU-pi0" secondAttribute="top" constant="5" id="zFp-ei-jRX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8rD-tU-pi0"/>
                     </view>
                     <connections>
                         <outlet property="busProfileName" destination="jdc-PG-2cf" id="qRF-lH-8zR"/>
+                        <outlet property="ofProfileImage" destination="EFG-by-rpC" id="csC-Du-UtP"/>
                         <outlet property="showTripsTableView" destination="SVB-Mg-NYK" id="qYk-2I-UE2"/>
                     </connections>
                 </viewController>
@@ -283,11 +293,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yM8-ke-ZRL">
+                                <rect key="frame" x="316" y="19" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Dsj-dv-ZF5"/>
+                                    <constraint firstAttribute="height" constant="90" id="w4Z-sM-kcg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sK4-wg-1GG" firstAttribute="leading" secondItem="seB-jt-qNt" secondAttribute="leading" id="4Rh-Eh-9Qo"/>
                             <constraint firstItem="sK4-wg-1GG" firstAttribute="trailing" secondItem="seB-jt-qNt" secondAttribute="trailing" id="BDl-Cs-v7t"/>
+                            <constraint firstItem="yM8-ke-ZRL" firstAttribute="centerY" secondItem="4lD-LX-Zxa" secondAttribute="centerY" id="BvM-c7-KHB"/>
+                            <constraint firstItem="yM8-ke-ZRL" firstAttribute="leading" secondItem="seB-jt-qNt" secondAttribute="leading" constant="316" id="PH5-rF-X28"/>
                             <constraint firstItem="sK4-wg-1GG" firstAttribute="top" secondItem="4lD-LX-Zxa" secondAttribute="bottom" constant="53" id="cOL-w6-cj9"/>
                             <constraint firstItem="sK4-wg-1GG" firstAttribute="bottom" secondItem="seB-jt-qNt" secondAttribute="bottom" id="hIQ-AC-mcE"/>
                             <constraint firstItem="4lD-LX-Zxa" firstAttribute="centerX" secondItem="gj1-Tv-72d" secondAttribute="centerX" id="ld5-uI-31f"/>
@@ -297,6 +316,7 @@
                     </view>
                     <connections>
                         <outlet property="busProfileName" destination="4lD-LX-Zxa" id="yPs-ah-OLs"/>
+                        <outlet property="ofProfileImageView" destination="yM8-ke-ZRL" id="fKh-M3-Kd4"/>
                         <outlet property="showDeparturesTableView" destination="sK4-wg-1GG" id="c2c-qr-3L6"/>
                     </connections>
                 </viewController>

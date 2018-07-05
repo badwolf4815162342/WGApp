@@ -10,6 +10,7 @@ import UIKit
 
 class ShowBusDepartureTableVC: UIViewController {
 
+    @IBOutlet weak var ofProfileImageView: UIImageView!
     @IBOutlet weak var busProfileName: UILabel!
 
     @IBOutlet weak var showDeparturesTableView: UITableView!
@@ -28,6 +29,13 @@ class ShowBusDepartureTableVC: UIViewController {
         
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
+            var userIconString = busProfile.ofProfil?.profilIcon
+            if userIconString != nil, let image = UIImage(named: userIconString!) {
+                ofProfileImageView.image = image
+            } else {
+                ofProfileImageView.image = UIImage(named: "Bear-icon")
+                print("Picture of user could not be loaded !!! ")
+            }
             // load core data into table
             self.refreshTable()
             

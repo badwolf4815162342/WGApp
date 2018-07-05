@@ -1,18 +1,26 @@
 //
-//  ViewControllerTest.swift
+//  SelectUseVC.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 27.05.18.
+//  Created by Viviane Rehor on 05.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
+
 import UIKit
-import CoreData
 
+class SelectUseVC: UIViewController {
 
-class ChooseUserVC: UIViewController {
+    
+    enum ChooseUserVCType {
+        case userManagement
+        case chooseUser
+    }
+    
+    var dataType: ChooseUserVCType?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var addUserButton: UIButton!
     var people = [Profil]()
     
     func refreshContent(){
@@ -29,6 +37,15 @@ class ChooseUserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let type = dataType {
+            switch type {
+            case .userManagement:
+                addUserButton.isHidden = false
+            case .chooseUser:
+                addUserButton.isHidden = true
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +53,10 @@ class ChooseUserVC: UIViewController {
             if let userVC = segue.destination as? UserVC {
                 userVC.user = sender as! Profil
             }
+        }
+        if segue.identifier == "UserChosen" {
+            print("dest found")
+            
         }
     }
     
@@ -100,6 +121,18 @@ extension ChooseUserVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
+        print(people[indexPath.row].name)
+        if let type = self.dataType {
+            switch type {
+            case .userManagement:
+                performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
+            case .chooseUser:
+                print("setUserAndGoBacks")
+                BusProfileVC.selectedBusProfile?.ofProfil = people[indexPath.row]
+                PersistenceService.saveContext()
+            }
+        }
+        
     }
+
 }

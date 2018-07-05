@@ -14,6 +14,7 @@ class BusProfilEditVC: UIViewController {
     @IBOutlet weak var withDestinations: UISwitch!
     @IBOutlet weak var titleTextField: UITextField!
     
+    @IBOutlet weak var userNameLabel: UILabel!
     
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var routesTableView: UITableView!
@@ -25,9 +26,6 @@ class BusProfilEditVC: UIViewController {
     var routesForActBusProfile = [BusRoute]()
     
     var currentlyEditingRoute: BusRoute?
-    
-    
-    var profilForBusSetting: Profil?
     
     var footerView = UIView()
     
@@ -58,13 +56,6 @@ class BusProfilEditVC: UIViewController {
         // show first busprofile when deleting one which is selcted
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialBusProfile), name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
 
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print(profilForBusSetting)
-        if let profile = profilForBusSetting {
-            BusProfileVC.selectedBusProfile?.ofProfil = profile
-        }
     }
 
     
@@ -107,18 +98,25 @@ class BusProfilEditVC: UIViewController {
                 newRoute.busSetting = BusProfileVC.selectedBusProfile
             }
             currentlyEditingRoute = nil
+            //BusSettingsController.printSettings(busProfile: actBusProfile)
+            if let routesSet = BusProfileVC.selectedBusProfile?.routes {
+                routesForActBusProfile = routesSet.allObjects as! [BusRoute]
+                print(routesSet)
+                self.routesTableView.reloadData()
+                checkReachedMaxRoutes()
+            }
         }
-        if let chooseUserVC = sender.source as? ChooseUserVC {
+        if let userSelectionVC = sender.source as? UserSelectionVC {
             print("Unwind from ChooseUserVC")
-            print(BusProfileVC.selectedBusProfile?.ofProfil?.name)
+            if let profil = userSelectionVC.selectedProfil {
+                print(profil.name)
+                BusProfileVC.selectedBusProfile?.ofProfil = profil
+                PersistenceService.saveContext()
+                setOfProfil()
+                NotificationCenter.default.post(name: NSNotification.Name("ReloadBusProfileTable"), object: nil)
+            }
         }
-        //BusSettingsController.printSettings(busProfile: actBusProfile)
-        if let routesSet = BusProfileVC.selectedBusProfile?.routes {
-            routesForActBusProfile = routesSet.allObjects as! [BusRoute]
-            print(routesSet)
-            self.routesTableView.reloadData()
-            checkReachedMaxRoutes()
-        }
+        
         
     }
     
@@ -141,6 +139,7 @@ class BusProfilEditVC: UIViewController {
             userIcon.image = UIImage(named: "Bear-icon")
             print("Picture of user could not be loaded !!! ")
         }
+        userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name
         var subViews = self.view.subviews
         for v in subViews {
             v.isHidden = false
@@ -173,10 +172,10 @@ class BusProfilEditVC: UIViewController {
                 destinationVC.withDestinations = BusProfileVC.selectedBusProfile?.withDestinations
             }
         }
-        if segue.identifier == "ChooseProfile" {
-            if let destinationVC = segue.destination as? ChooseUserVC {
-                print("Choose User")
-                destinationVC.dataType = ChooseUserVC.ChooseUserVCType.chooseUser
+        if segue.identifier == "selectProfile" {
+            if let destinationVC = segue.destination as? UserSelectionVC {
+                print("Select User")
+                destinationVC.dataType = UserSelectionVC.UserSelectionVCType.chooseSingleUser
             }
         }
     }
@@ -195,13 +194,7 @@ class BusProfilEditVC: UIViewController {
             print(profile.title! + "found")
             titleTextField.text = profile.title
             withDestinations.isOn = profile.withDestinations
-            var userIconString = profile.ofProfil?.profilIcon
-            if userIconString != nil, let image = UIImage(named: userIconString!) {
-                userIcon.image = image
-            } else {
-                userIcon.image = UIImage(named: "Bear-icon")
-                print("Picture of user could not be loaded !!! ")
-            }
+            setOfProfil()
             if let routesSet = profile.routes{
                 routesForActBusProfile = routesSet.allObjects as! [BusRoute]
                 self.routesTableView.reloadData()
@@ -219,14 +212,7 @@ class BusProfilEditVC: UIViewController {
                     noRoutesLabel.isHidden = false
                 } else {
                     BusProfileVC.selectedBusProfile = profiles[0]
-                    var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
-                    if userIconString != nil, let image = UIImage(named: userIconString!) {
-                        userIcon.image = image
-                    } else {
-                        userIcon.image = UIImage(named: "Bear-icon")
-                        print("Picture of user could not be loaded !!! ")
-                    }
-                    titleTextField.text = BusProfileVC.selectedBusProfile?.title
+                    setOfProfil()
                     withDestinations.isOn = (BusProfileVC.selectedBusProfile?.withDestinations)!
                     if let routesSet = BusProfileVC.selectedBusProfile?.routes{
                         routesForActBusProfile = routesSet.allObjects as! [BusRoute]
@@ -237,6 +223,17 @@ class BusProfilEditVC: UIViewController {
             } catch {}
         }
         
+    }
+    
+    func setOfProfil() {
+        var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
+        if userIconString != nil, let image = UIImage(named: userIconString!) {
+            userIcon.image = image
+        } else {
+            userIcon.image = UIImage(named: "Bear-icon")
+            print("Picture of user could not be loaded !!! ")
+        }
+        userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name
     }
        
     

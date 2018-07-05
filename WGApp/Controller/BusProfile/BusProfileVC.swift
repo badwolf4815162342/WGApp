@@ -32,6 +32,7 @@ class BusProfileVC: UIViewController {
         for bs in busSettings {
             print(bs.routes!.count)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name("ReloadBusProfileTable"), object: nil)
     }
     
  
@@ -78,7 +79,7 @@ class BusProfileVC: UIViewController {
     }
     
     
-    func refreshTable(){
+    @objc func refreshTable(){
         // load core data into table
         let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
         do {
