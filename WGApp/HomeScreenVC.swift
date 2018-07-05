@@ -38,6 +38,7 @@ class HomeScreenVC: UIViewController {
         for user in users{
             let button: UIButton = UIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
+            button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
             button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             let userButton = UserUIBarButtonItem(customView: button)
@@ -57,7 +58,7 @@ class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
 
-        //addRightNavigationBarItems()
+        addRightNavigationBarItems()
 
         createWGUser()
     }
