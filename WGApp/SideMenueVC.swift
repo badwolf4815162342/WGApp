@@ -20,6 +20,7 @@ class SideMenueVC: UITableViewController {
         default:
             break
         }
+        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
 
 }

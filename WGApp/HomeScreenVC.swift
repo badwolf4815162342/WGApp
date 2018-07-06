@@ -51,9 +51,12 @@ class HomeScreenVC: UIViewController {
         
         self.homeNavigationItem.leftBarButtonItem = barButton
         
-        // right: user icons
-        refreshUsers()
         
+        // right: user icons
+        
+        refreshUsers()
+        items = []
+
         for user in profiles {
             let button: UserUIButton = UserUIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
@@ -62,13 +65,24 @@ class HomeScreenVC: UIViewController {
             button.layer.cornerRadius = 5
             button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
-            button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            //button.translatesAutoresizingMaskIntoConstraints = false
             button.user = user
+           
             let barButton = UIBarButtonItem(customView: button)
 
             items.append(barButton)
         }
-        self.homeNavigationItem.rightBarButtonItems = items
+        let buttonsView: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
+        buttonsView.items = items
+        let barButtonsRight = UIBarButtonItem(customView: buttonsView)
+
+        self.homeNavigationItem.rightBarButtonItem = barButtonsRight
+        
+        // add Space?
+        /*let negativeSpacer: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: self, action: nil)
+        negativeSpacer.width = -100
+        self.homeNavigationItem.rightBarButtonItems = [barButtonRight, negativeSpacer]*/
     }
     
     @objc func more(sender: UIBarButtonItem){
@@ -85,10 +99,18 @@ class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
 
-        addNavigationBarItems()
-
         createWGUser()
         HomeScreenVC.selectedUser = HomeScreenVC.wg
+        
+        //let mask = UIView(self.frame window.frame)
+        //mask.set
+        /*mask = [[UIView alloc] initWithFrame:window.frame];
+        [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.78]];
+        [self.view addSubview:mask];*/
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addNavigationBarItems()
     }
     
     @objc func switchUser(sender: UserUIButton){

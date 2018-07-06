@@ -10,4 +10,11 @@ import UIKit
 
 class UserUIButton: UIButton {
     var user: Profil?
+    var insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 30)
+    
+    override var alignmentRectInsets: UIEdgeInsets{
+        get{
+            return insets
+        }
+    }
 }
