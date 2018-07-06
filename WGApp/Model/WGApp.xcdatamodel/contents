@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
         <attribute name="withDestination" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="routes" inverseEntity="BusSettings" syncable="YES"/>
@@ -9,6 +9,7 @@
     <entity name="BusSettings" representedClassName="BusSettings" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="withDestinations" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="favoriteOfProfiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Profil" inverseName="favoriteBusSettings" inverseEntity="Profil" syncable="YES"/>
         <relationship name="ofProfil" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profil" inverseName="busSettings" inverseEntity="Profil" syncable="YES"/>
         <relationship name="routes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusRoute" inverseName="busSetting" inverseEntity="BusRoute" syncable="YES"/>
     </entity>
@@ -22,6 +23,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profilIcon" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="busSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="ofProfil" inverseEntity="BusSettings" syncable="YES"/>
+        <relationship name="favoriteBusSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="favoriteOfProfiles" inverseEntity="BusSettings" syncable="YES"/>
     </entity>
     <entity name="StopLocation" representedClassName="StopLocation" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,11 +36,11 @@
     </entity>
     <elements>
         <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="103"/>
-        <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="103"/>
+        <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="118"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
-        <element name="Profil" positionX="-2729" positionY="-268" width="128" height="103"/>
+        <element name="ListItem" positionX="-2817" positionY="-3" width="128" height="73"/>
+        <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
         <element name="User" positionX="-2810" positionY="-121" width="128" height="58"/>
-        <element name="ListItem" positionX="-2817" positionY="-3" width="128" height="73"/>
     </elements>
 </model>

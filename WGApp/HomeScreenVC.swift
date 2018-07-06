@@ -13,7 +13,11 @@ class HomeScreenVC: UIViewController {
     
     static var wg: HomeProfil?
     
-    var users: [User] = []
+    static var selectedUser: Profil?
+    
+    var items:[UIBarButtonItem] = []
+    
+    var profiles: [Profil] = []
 
     @IBOutlet weak var homeNavigationItem: UINavigationItem!
     
@@ -25,15 +29,16 @@ class HomeScreenVC: UIViewController {
     
     func refreshUsers(){
         // load core data into users list
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let fetchRequest: NSFetchRequest<Profil> = Profil.fetchRequest()
         do {
-            let users = try PersistenceService.context.fetch(fetchRequest)
-            self.users = users
+            let profiles = try PersistenceService.context.fetch(fetchRequest)
+            self.profiles = profiles
             // self.collectionView.reloadData()
         } catch {
             print("core data couldn't be loaded")
         }
     }
+    
     func addNavigationBarItems(){
        
         // left: burger menu
@@ -48,11 +53,14 @@ class HomeScreenVC: UIViewController {
         
         // right: user icons
         refreshUsers()
-        var items:[UIBarButtonItem] = []
-        for user in users{
+        
+        for user in profiles {
             let button: UserUIButton = UserUIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+            button.layer.borderWidth = 1
+            button.layer.cornerRadius = 5
+            button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
             button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             button.user = user
@@ -80,10 +88,18 @@ class HomeScreenVC: UIViewController {
         addNavigationBarItems()
 
         createWGUser()
+        HomeScreenVC.selectedUser = HomeScreenVC.wg
     }
     
     @objc func switchUser(sender: UserUIButton){
         print(sender.user?.name)
+        HomeScreenVC.selectedUser = sender.user
+        for item in items {
+            item.customView?.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        sender.layer.borderColor = UIColor.darkGray.cgColor
+        
+        NotificationCenter.default.post(name: NSNotification.Name("globalSelectedUserChanged"), object: nil)
     }
     
     @objc func showUserManagement() {

@@ -2,7 +2,7 @@
 //  Profil+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Anna Abad on 11.06.18.
+//  Created by Viviane Rehor on 06.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -17,10 +17,11 @@ extension Profil {
         return NSFetchRequest<Profil>(entityName: "Profil")
     }
 
-    @NSManaged public var profilIcon: String?
     @NSManaged public var id: String?
     @NSManaged public var name: String?
+    @NSManaged public var profilIcon: String?
     @NSManaged public var busSettings: NSSet?
+    @NSManaged public var favoriteBusSettings: NSSet?
 
 }
 
@@ -38,5 +39,22 @@ extension Profil {
 
     @objc(removeBusSettings:)
     @NSManaged public func removeFromBusSettings(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for favoriteBusSettings
+extension Profil {
+
+    @objc(addFavoriteBusSettingsObject:)
+    @NSManaged public func addToFavoriteBusSettings(_ value: BusSettings)
+
+    @objc(removeFavoriteBusSettingsObject:)
+    @NSManaged public func removeFromFavoriteBusSettings(_ value: BusSettings)
+
+    @objc(addFavoriteBusSettings:)
+    @NSManaged public func addToFavoriteBusSettings(_ values: NSSet)
+
+    @objc(removeFavoriteBusSettings:)
+    @NSManaged public func removeFromFavoriteBusSettings(_ values: NSSet)
 
 }

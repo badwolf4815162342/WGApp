@@ -13,6 +13,11 @@ class ShowBusDepartureTableVC: UIViewController {
     @IBOutlet weak var ofProfileImageView: UIImageView!
     @IBOutlet weak var busProfileName: UILabel!
 
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     @IBOutlet weak var showDeparturesTableView: UITableView!
     
     var departures = [DepartureRMV]()
@@ -27,6 +32,39 @@ class ShowBusDepartureTableVC: UIViewController {
         showDeparturesTableView.tableFooterView = footerView
         print("init ShowBusDepartureTableVC")
         
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.activityIndicator.frame = CGRect(x: 300, y: 200, width: 45, height: 45)
+        self.activityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(self.activityIndicator)
+    }
+    
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
+    
+     override func viewWillAppear(_ animated: Bool) {
+        self.activityIndicator("Aktualisieren")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
             var userIconString = busProfile.ofProfil?.profilIcon
@@ -43,15 +81,15 @@ class ShowBusDepartureTableVC: UIViewController {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")
         }
-        
-        
-        
+        self.refreshTable()
     }
+        
     
     func refreshTable(){
         // load core data into table
         BusSettingsController.getDepartures(busProfile: selectedBusProfile!, completion:{ rmvDepartues in
             DispatchQueue.main.async {
+                self.effectView.removeFromSuperview()
                 self.departures = rmvDepartues
                 self.showDeparturesTableView.reloadData()
             }

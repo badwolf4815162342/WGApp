@@ -16,9 +16,13 @@ class UserVC: UIViewController {
     
     @IBOutlet weak var profilContainer: UIView!
     @IBOutlet weak var profilEditContainer: UIView!
+    @IBOutlet weak var profilFavoritesContainer: UIView!
+    
+    var actContainer: UIView?
     
     var profil: UserProfilVC?
     var edit: UserProfilEditVC?
+    var favorites: UserFavoritesVC?
     
     var userProp: Profil {
         get{
@@ -28,11 +32,13 @@ class UserVC: UIViewController {
             user = newValue
             profil?.user = user
             edit?.user = user
+            favorites?.user = user
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        actContainer = profilContainer
         tabBar.delegate = self
     }
     
@@ -40,30 +46,35 @@ class UserVC: UIViewController {
     @IBAction func unwindProfilAndEdit(sender: UIStoryboardSegue) {
         // from Profil to Edit
         if let profil = sender.source as? UserProfilVC {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.profilContainer.alpha = 0
-                self.profilEditContainer.alpha = 1
-            })
+            changeActViewContainer(destinationContainer: self.profilEditContainer)
             userProp = profil.user
             self.edit?.refresh()
         }
         // from Edit to Profil
         if let edit = sender.source as? UserProfilEditVC {
             print("unwind and set user")
-            UIView.animate(withDuration: 0.5, animations: {
-                self.profilContainer.alpha = 1
-                self.profilEditContainer.alpha = 0
-            })
+            changeActViewContainer(destinationContainer: self.profilContainer)
             userProp = edit.user
             self.profil?.refresh()
         }
     }
+    
+    func changeActViewContainer(destinationContainer: UIView){
+        UIView.animate(withDuration: 0.5, animations: {
+            destinationContainer.alpha = 1
+            self.actContainer?.alpha = 0
+        })
+        actContainer = destinationContainer
+    }
+    
+    
     
     @IBAction func undwind1FromDeleteUser(sender: UIStoryboardSegue){
         self.performSegue(withIdentifier: "segue2DeleteUser", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
         if let userProfilVC = segue.destination as? UserProfilVC {
             userProfilVC.user = self.user
             self.profil = userProfilVC
@@ -72,11 +83,21 @@ class UserVC: UIViewController {
             userEditVC.user = self.user
             self.edit = userEditVC
         }
+        if let userFavoritesVC = segue.destination as? UserFavoritesVC {
+            userFavoritesVC.user = self.user
+            self.favorites = userFavoritesVC
+        }
     }
 }
 
 extension UserVC: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print(item.title)
+        if (item.title == "Favoriten") {
+            self.changeActViewContainer(destinationContainer: self.profilFavoritesContainer)
+            self.favorites?.refreshTable()
+        } else if (item.title == "Profil") {
+            self.changeActViewContainer(destinationContainer: self.profilContainer)
+        }
     }
 }

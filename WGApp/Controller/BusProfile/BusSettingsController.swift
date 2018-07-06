@@ -207,6 +207,15 @@ class BusSettingsController: NSObject {
         
     }
     
+    class func changeProfilFavorite(busSetting: BusSettings, profil: Profil) {
+        if (profil.favoriteBusSettings?.contains(busSetting))! {
+            profil.removeFromFavoriteBusSettings(busSetting)
+        } else {
+            profil.addToFavoriteBusSettings(busSetting)
+        }
+        PersistenceService.saveContext()
+    }
+    
     class func getTrips(busProfile: BusSettings, completion: @escaping (Array<TripRMV>) -> ())  {
         if (busProfile.withDestinations) {
             var tripsRMV:[TripRMV] = [TripRMV]()

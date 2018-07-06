@@ -2,7 +2,7 @@
 //  BusSettings+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 24.06.18.
+//  Created by Viviane Rehor on 06.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -21,6 +21,7 @@ extension BusSettings {
     @NSManaged public var withDestinations: Bool
     @NSManaged public var ofProfil: Profil?
     @NSManaged public var routes: NSSet?
+    @NSManaged public var favoriteOfProfiles: NSSet?
 
 }
 
@@ -38,5 +39,22 @@ extension BusSettings {
 
     @objc(removeRoutes:)
     @NSManaged public func removeFromRoutes(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for favoriteOfProfiles
+extension BusSettings {
+
+    @objc(addFavoriteOfProfilesObject:)
+    @NSManaged public func addToFavoriteOfProfiles(_ value: Profil)
+
+    @objc(removeFavoriteOfProfilesObject:)
+    @NSManaged public func removeFromFavoriteOfProfiles(_ value: Profil)
+
+    @objc(addFavoriteOfProfiles:)
+    @NSManaged public func addToFavoriteOfProfiles(_ values: NSSet)
+
+    @objc(removeFavoriteOfProfiles:)
+    @NSManaged public func removeFromFavoriteOfProfiles(_ values: NSSet)
 
 }

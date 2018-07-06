@@ -14,22 +14,29 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
     var pages = [UIViewController]()
 
     //var busSettingVCs = [BusSettings]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
 
-       
+        // selected User changed
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name("globalSelectedUserChanged"), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear of ShowBusTripsSlideVC")
-        let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
-        do {
-            let profiles = try PersistenceService.context.fetch(fetchRequest)
-            var busSettings = profiles
-            for profile in busSettings {
+    @objc func refresh() {
+        var profiles: [BusSettings]?
+        pages = []
+        if (HomeScreenVC.selectedUser == HomeScreenVC.wg) {
+            let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+            do {
+                profiles = try PersistenceService.context.fetch(fetchRequest)
+            } catch {}
+        } else {
+            profiles = (((HomeScreenVC.selectedUser?.favoriteBusSettings)!).allObjects as? [BusSettings])!
+        }
+        if let profiles = profiles {
+            for profile in profiles {
                 if (profile.withDestinations) {
                     let vc: ShowBusTripsTableVC! = (storyboard?.instantiateViewController(withIdentifier: "busTripsTableView"))! as! ShowBusTripsTableVC
                     vc.selectedBusProfile = profile
@@ -40,9 +47,24 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
                     pages.append(vc)
                 }
             }
-        } catch {}
+            print("label found")
+            if(profiles.count==0) {
+                let vc: NoTripsVC! = (storyboard?.instantiateViewController(withIdentifier: "noTripsView"))! as! NoTripsVC
+                pages.append(vc)
+                self.view.isUserInteractionEnabled = false
+            } else {
+                self.view.isUserInteractionEnabled = true
+            }
+            setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+
+        }
         
-         setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear of ShowBusTripsSlideVC")
+        refresh()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController)-> UIViewController? {

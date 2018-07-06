@@ -14,17 +14,47 @@
         <!--Show Bus Trips SlideVC-->
         <scene sceneID="9cn-FO-9Kj">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="zGv-mi-EFs" customClass="ShowBusTripsSlideVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="currentContext" id="zGv-mi-EFs" customClass="ShowBusTripsSlideVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yg4-PZ-jOP">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="CEa-wa-kk2"/>
                     </view>
+                    <connections>
+                        <outlet property="noBusSettingsLabel" destination="LUi-bo-CeI" id="TKu-4b-UBY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osk-um-k3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1733" y="410"/>
+        </scene>
+        <!--No TripsVC-->
+        <scene sceneID="9jb-FH-N8E">
+            <objects>
+                <viewController restorationIdentifier="noTripsView" storyboardIdentifier="noTripsView" id="3eJ-Iu-PkC" customClass="NoTripsVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YBO-KB-PnL">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine favorisierten Busprofile für aktuellen User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUi-bo-CeI">
+                                <rect key="frame" x="330" y="373" width="363" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LUi-bo-CeI" firstAttribute="centerX" secondItem="YBO-KB-PnL" secondAttribute="centerX" id="5MR-dB-QmZ"/>
+                            <constraint firstItem="LUi-bo-CeI" firstAttribute="centerY" secondItem="YBO-KB-PnL" secondAttribute="centerY" id="ON5-RR-GbE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2fv-hL-kQS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUV-dx-BGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1741" y="1082"/>
         </scene>
         <!--Show Bus Trips TableVC-->
         <scene sceneID="ceE-HX-i8m">
@@ -155,13 +185,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKb-sU-NhW">
-                                <rect key="frame" x="585" y="50" width="47" height="30"/>
-                                <state key="normal" title="Reload"/>
-                                <connections>
-                                    <action selector="reloadTrips:" destination="rb0-sX-UE4" eventType="touchUpInside" id="IwN-Fe-PX5"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFG-by-rpC">
                                 <rect key="frame" x="359" y="25" width="90" height="90"/>
                                 <constraints>
@@ -174,13 +197,11 @@
                         <constraints>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="bottom" secondItem="8rD-tU-pi0" secondAttribute="bottom" id="4Mm-Sd-cLx"/>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="top" secondItem="jdc-PG-2cf" secondAttribute="bottom" constant="53" id="6os-AB-4nN"/>
-                            <constraint firstItem="TKb-sU-NhW" firstAttribute="leading" secondItem="jdc-PG-2cf" secondAttribute="trailing" constant="52" id="Eye-A9-kp3"/>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="trailing" secondItem="8rD-tU-pi0" secondAttribute="trailing" id="Mm3-6m-idT"/>
                             <constraint firstItem="EFG-by-rpC" firstAttribute="leading" secondItem="8rD-tU-pi0" secondAttribute="leading" constant="359" id="MoV-5I-J4J"/>
                             <constraint firstItem="jdc-PG-2cf" firstAttribute="top" secondItem="8rD-tU-pi0" secondAttribute="top" constant="34" id="UZl-yO-brs"/>
                             <constraint firstItem="jdc-PG-2cf" firstAttribute="centerX" secondItem="2AT-rb-EYl" secondAttribute="centerX" id="Y0N-Bq-1II"/>
                             <constraint firstItem="SVB-Mg-NYK" firstAttribute="leading" secondItem="8rD-tU-pi0" secondAttribute="leading" id="bMJ-Qb-qvK"/>
-                            <constraint firstItem="TKb-sU-NhW" firstAttribute="baseline" secondItem="jdc-PG-2cf" secondAttribute="baseline" id="sS1-bk-OUx"/>
                             <constraint firstItem="EFG-by-rpC" firstAttribute="top" secondItem="8rD-tU-pi0" secondAttribute="top" constant="5" id="zFp-ei-jRX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8rD-tU-pi0"/>

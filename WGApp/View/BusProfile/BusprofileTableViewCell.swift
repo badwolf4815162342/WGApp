@@ -13,6 +13,7 @@ class BusprofileTableViewCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var busprofileTitleLabel: UILabel!
     
+    @IBOutlet weak var favoriteImage: UIImageView!
     var busprofile: BusSettings?
     
     func setBusprofile(busSettings: BusSettings) {
@@ -26,8 +27,17 @@ class BusprofileTableViewCell: UITableViewCell {
             userImageView.image = UIImage(named: "Bear-icon")
             print("Picture of user could not be loaded !!! ")
         }
-        //userImageView.image = busSettings.
         
+       
+        
+    }
+    
+    func setFavorite(busSetting: BusSettings, profil: Profil) {
+        if (busSetting.favoriteOfProfiles?.contains(profil))! {
+            favoriteImage.isHidden = false
+        } else {
+            favoriteImage.isHidden = true
+        }
     }
 
 }

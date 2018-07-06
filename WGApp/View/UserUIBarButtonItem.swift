@@ -9,5 +9,5 @@
 import UIKit
 
 class UserUIButton: UIButton {
-    var user: User?
+    var user: Profil?
 }

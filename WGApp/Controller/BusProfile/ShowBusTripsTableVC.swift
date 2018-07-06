@@ -13,6 +13,11 @@ class ShowBusTripsTableVC: UIViewController {
     @IBOutlet weak var ofProfileImage: UIImageView!
     @IBOutlet weak var showTripsTableView: UITableView!
     
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    
+    let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     @IBOutlet weak var busProfileName: UILabel!
     var selectedBusProfile: BusSettings?
     
@@ -25,9 +30,40 @@ class ShowBusTripsTableVC: UIViewController {
         showTripsTableView.dataSource = self
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 0))
         showTripsTableView.tableFooterView = footerView
+        
+        
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.activityIndicator.frame = CGRect(x: 50, y: 50, width: 45, height: 45)
+        self.activityIndicator.hidesWhenStopped = true
+        view.addSubview(self.activityIndicator)
+    }
+    
+    func activityIndicator(_ title: String) {
+        
+        strLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
+        effectView.removeFromSuperview()
+        
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityIndicator.startAnimating()
+        
+        effectView.contentView.addSubview(activityIndicator)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.activityIndicator("Aktualisieren")
         print("viewWillAppear ShowBusTripsTableVC")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
@@ -47,17 +83,15 @@ class ShowBusTripsTableVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func reloadTrips(_ sender: Any) {
-        refreshTable()
-    }
-
   
     func refreshTable(){
         // load core data into table
         BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
             DispatchQueue.main.async {
+                self.effectView.removeFromSuperview()
                 self.trips = rmvTrips
                 self.filterList()
+                
             }
         })
     }
