@@ -16,6 +16,8 @@ class ShowBusDepartureTableVC: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
     
+    var myTimer = Timer()
+    
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     @IBOutlet weak var showDeparturesTableView: UITableView!
@@ -64,7 +66,6 @@ class ShowBusDepartureTableVC: UIViewController {
     }
     
      override func viewWillAppear(_ animated: Bool) {
-        self.activityIndicator("Aktualisieren")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
             var userIconString = busProfile.ofProfil?.profilIcon
@@ -81,11 +82,19 @@ class ShowBusDepartureTableVC: UIViewController {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")
         }
-        self.refreshTable()
+        refreshTable()
+        // load core data into table
+        self.myTimer = Timer(timeInterval: CONFIG.BUSSETTINGS.BUS_TRIPS_RELOAD_INTERVAL, target: self, selector: #selector(refreshTable), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer, forMode: RunLoopMode.defaultRunLoopMode)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.myTimer.invalidate()
     }
         
     
-    func refreshTable(){
+    @objc func refreshTable(){
+        self.activityIndicator("Aktualisieren")
         // load core data into table
         BusSettingsController.getDepartures(busProfile: selectedBusProfile!, completion:{ rmvDepartues in
             DispatchQueue.main.async {

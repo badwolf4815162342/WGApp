@@ -239,7 +239,7 @@ class BusProfilEditVC: UIViewController {
     
     func checkReachedMaxRoutes () {
         // if more than 4 routes -> hide button +
-        if (routesForActBusProfile.count >= 4) {
+        if (routesForActBusProfile.count >= CONFIG.BUSSETTINGS.MAX_ROUTES_PER_BUSPROFILE) {
             footerView.isHidden = true
             maxRoutesInfolabel.isHidden = false
         } else {

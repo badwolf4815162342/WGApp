@@ -27,7 +27,10 @@ class BusDepartureTableViewCell: UITableViewCell {
         originLabel.text = departureRMV.stopLocation.name?.getAcronyms()
         directionLabel.text = departureRMV.direction
         lineLabel.text = departureRMV.transportationName
-        minutesLabel.text = BusSettingsController.setMinutesLabel(time: departureRMV.realDepartureTime)
+        let retValues = BusSettingsController.getMinutes(time: departureRMV.realDepartureTime)
+        let min = retValues.minutes
+        let futureDeparture = retValues.futureDeparture
+        minutesLabel.text = BusSettingsController.getMinutesLabel(minutes: min, futureDeparture: futureDeparture)
         let outFormatter = DateFormatter()
         outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
         outFormatter.dateFormat = "hh:mm"

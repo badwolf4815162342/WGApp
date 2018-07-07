@@ -61,6 +61,7 @@
 		5FE289AB20EF68530090193C /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE289A720EF68530090193C /* Profil+CoreDataClass.swift */; };
 		5FE289AC20EF68530090193C /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE289A820EF68530090193C /* Profil+CoreDataProperties.swift */; };
 		5FE289AE20EF9D340090193C /* NoTripsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE289AD20EF9D340090193C /* NoTripsVC.swift */; };
+		5FE289B020F11A610090193C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE289AF20F11A610090193C /* Config.swift */; };
 		8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */; };
 		8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */; };
 		8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12379920D7F8E90073AF5F /* UserVC.swift */; };
@@ -151,6 +152,7 @@
 		5FE289A720EF68530090193C /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FE289A820EF68530090193C /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FE289AD20EF9D340090193C /* NoTripsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTripsVC.swift; sourceTree = "<group>"; };
+		5FE289AF20F11A610090193C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		8F006BCF20C5D69C005846EB /* WGApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WGApp.xcdatamodel; sourceTree = "<group>"; };
 		8F12379720D7E6100073AF5F /* UIUserIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIUserIconPickerView.swift; path = "WGApp/View/New Group/UIUserIconPickerView.swift"; sourceTree = SOURCE_ROOT; };
 		8F12379920D7F8E90073AF5F /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVC.swift; path = "WGApp/Controller/New Group/UserVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -291,6 +293,7 @@
 				5FA47C8320BAEA400043B3C8 /* Controller */,
 				5FA47C8220BAEA2B0043B3C8 /* View */,
 				5FA47C8120BAEA0F0043B3C8 /* Model */,
+				5FE289AF20F11A610090193C /* Config.swift */,
 				5FA47C8420BAF4300043B3C8 /* SideMenueVC.swift */,
 				5FA47C5520BAE9A60043B3C8 /* ContainerVC.swift */,
 				5FA47C8620BAF9480043B3C8 /* HomeScreenVC.swift */,
@@ -586,6 +589,7 @@
 				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
 				5FBD7CD220D3EBFB0007BBC3 /* User+CoreDataProperties.swift in Sources */,
 				5FBD7D0520E03E910007BBC3 /* BusRoute+CoreDataClass.swift in Sources */,
+				5FE289B020F11A610090193C /* Config.swift in Sources */,
 				5FA47C8720BAF9480043B3C8 /* HomeScreenVC.swift in Sources */,
 				5F09F1A220C6FEE5008407F6 /* BusProfileVC.swift in Sources */,
 				8F12379820D7E6100073AF5F /* UIUserIconPickerView.swift in Sources */,

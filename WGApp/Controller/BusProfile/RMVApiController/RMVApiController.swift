@@ -42,7 +42,7 @@ class RMVApiController: RMVApiControllerProtocol {
     
     static var tripsPath = "/trip"
     
-    static var baseQueryDict = ["accessId": "59820666-0a39-4ee9-acd4-76a062d39c13", "format": "json"]
+    static var baseQueryDict = ["accessId": CONFIG.RMVAPI.API_KEY, "format": "json"]
     
     // Function that calls sopLocations from Network and returns completion(Array<StopLocations>
     static func getStoplocations(withEntryString: String, completion: @escaping (Array<StopLocationRMV>) ->  ()){

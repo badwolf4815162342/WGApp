@@ -16,12 +16,16 @@ class ShowBusTripsTableVC: UIViewController {
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
     
+    var myTimer = Timer()
+    
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     @IBOutlet weak var busProfileName: UILabel!
     var selectedBusProfile: BusSettings?
     
     var trips = [TripRMV]()
+    
+    var selectedTrips = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,8 @@ class ShowBusTripsTableVC: UIViewController {
         self.activityIndicator.frame = CGRect(x: 50, y: 50, width: 45, height: 45)
         self.activityIndicator.hidesWhenStopped = true
         view.addSubview(self.activityIndicator)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        self.view.addGestureRecognizer(longPressRecognizer)
     }
     
     func activityIndicator(_ title: String) {
@@ -63,7 +69,6 @@ class ShowBusTripsTableVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.activityIndicator("Aktualisieren")
         print("viewWillAppear ShowBusTripsTableVC")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
@@ -78,13 +83,19 @@ class ShowBusTripsTableVC: UIViewController {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")
         }
+        refreshTable()
         // load core data into table
-        self.refreshTable()
-        // Do any additional setup after loading the view.
+        self.myTimer = Timer(timeInterval: CONFIG.BUSSETTINGS.BUS_TRIPS_RELOAD_INTERVAL, target: self, selector: #selector(refreshTable), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer, forMode: RunLoopMode.defaultRunLoopMode)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.myTimer.invalidate()
     }
     
   
-    func refreshTable(){
+    @objc func refreshTable(){
+        self.activityIndicator("Aktualisieren")
         // load core data into table
         BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
             DispatchQueue.main.async {
@@ -103,7 +114,24 @@ class ShowBusTripsTableVC: UIViewController {
     }
     
     
-    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizerState.began {
+            
+            let touchPoint = sender.location(in: self.view)
+            if let indexPath = showTripsTableView.indexPathForRow(at: touchPoint) {
+                var trip = trips[indexPath.row]
+                print("LONG PRESS row: \(indexPath.row) \(trip.id)")
+                let index = selectedTrips.index(of: trip.id)
+                if let index = index {
+                    selectedTrips.remove(at: index)
+                } else {
+                    selectedTrips.append(trip.id)
+                }
+                refreshTable()
+            }
+        }
+    }
     
 }
 
@@ -122,7 +150,7 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
         
         let btCell = cell  as! BusTripTableViewCell
         
-        btCell.setTrip(tripRMV: trip)
+        btCell.setTrip(tripRMV: trip, selectedTrips: selectedTrips)
         
         return btCell
     }

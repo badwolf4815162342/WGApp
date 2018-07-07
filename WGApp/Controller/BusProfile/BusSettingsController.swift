@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class BusSettingsController: NSObject {
     
@@ -265,22 +266,39 @@ class BusSettingsController: NSObject {
         }
     }
     
-    class func setMinutesLabel(time: Date) -> String {
+    class func getMinutesLabel(minutes: Int, futureDeparture: Bool) -> String {
+        if !(futureDeparture){
+            return "-"+String(minutes)+" min"
+        } else {
+            return "\(minutes) min"
+        }
+    }
+    
+    class func getMinutes(time: Date) -> (minutes :Int, futureDeparture: Bool) {
         let currentDateTime = Date()
         if (currentDateTime<time) {
             let minutes = time.minutes(from: currentDateTime)
-            return String(minutes)+" min"
+            return (minutes, true)
         } else if (time>currentDateTime){
-            print(currentDateTime)
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>")
-            print(time)
+            //print(currentDateTime)
+            //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>")
+            //print(time)
             let minutes = currentDateTime.minutes(from: time)
-            return "-"+String(minutes)+" min"
+            return (minutes, false)
         } else {
-            return "0 min"
+            return (0, true)
         }
-        
-        
+    }
+    
+    class func setSelectedColor(minutes: Int, futureDeparture: Bool) -> UIColor {
+        if (futureDeparture) {
+            if (minutes <= CONFIG.BUSSETTINGS.HIGH_PRIO_TRIP_MINUTES) {
+                return UIColor.red
+            } else if (minutes > CONFIG.BUSSETTINGS.HIGH_PRIO_TRIP_MINUTES && minutes <= CONFIG.BUSSETTINGS.NORMAL_PRIO_TRIP_MINUTES) {
+                return UIColor.yellow
+            }
+        }
+        return UIColor.green
     }
     
     class func addTestBusSettings(){
@@ -327,12 +345,7 @@ class BusSettingsController: NSObject {
         
         
         let date = inDateFormatter.date(from: ofDate)
-        print("ofDate")
-        print(date)
-        
         let timeDate = inFormatter.date(from: ofTime)
-        print("ofTime")
-        print(timeDate)
         let calendar = Calendar.current
         
         var dateComponents: DateComponents? = calendar.dateComponents([.year, .month, .day], from: date!)
@@ -345,7 +358,7 @@ class BusSettingsController: NSObject {
 
       
         let finalDate: Date? = calendar.date(from: component)
-        print(finalDate)
+        //print(finalDate)
         return finalDate!
     }
     

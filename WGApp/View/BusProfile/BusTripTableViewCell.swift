@@ -25,7 +25,7 @@ class BusTripTableViewCell: UITableViewCell {
     @IBOutlet weak var realStratTime: UILabel!
     
     
-    func setTrip(tripRMV: TripRMV){
+    func setTrip(tripRMV: TripRMV, selectedTrips: [String]){
         if tripRMV.routeParts[0].feet {
             print("feet")
         } else {
@@ -33,7 +33,10 @@ class BusTripTableViewCell: UITableViewCell {
             destLabel.text = tripRMV.destinationStopLocation.name?.getAcronyms()
             startDirectionLabel.text = tripRMV.routeParts[0].direction
             startLineLable.text = tripRMV.routeParts[0].transportationName
-            minutesLabel.text = BusSettingsController.setMinutesLabel(time: tripRMV.routeParts[0].realDepartureTime)
+            let retValues = BusSettingsController.getMinutes(time: tripRMV.routeParts[0].realDepartureTime)
+            let min = retValues.minutes
+            let futureDeparture = retValues.futureDeparture
+            minutesLabel.text = BusSettingsController.getMinutesLabel(minutes: min, futureDeparture: futureDeparture)
             countChangesLabel.text = (String) (tripRMV.routeParts.count-1)
             durationLabel.text = tripRMV.durationMinutes
             let outFormatter = DateFormatter()
@@ -41,6 +44,9 @@ class BusTripTableViewCell: UITableViewCell {
             outFormatter.dateFormat = "hh:mm"
             startTime.text = outFormatter.string(from: tripRMV.routeParts[0].plannedDepartureTime)
             realStratTime.text = outFormatter.string(from: tripRMV.routeParts[0].realDepartureTime)
+            if (selectedTrips.contains(tripRMV.id)){
+                self.backgroundColor = BusSettingsController.setSelectedColor(minutes: min, futureDeparture: futureDeparture)
+            }
         }
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 
 struct TripRMV {
+    var id: String
     var durationMinutes: String
     var routeParts:[TripPartRMV]
     var originStopLocation: StopLocation
@@ -86,8 +87,9 @@ extension TripRMV {
         }
 
         let duration = trip.duration
+        let id = trip.checksum
         
-        return TripRMV(durationMinutes: duration, routeParts: routeParts, originStopLocation: stopLocationOrigin, destinationStopLocation: stopLocationDestination)
+        return TripRMV(id: id, durationMinutes: duration, routeParts: routeParts, originStopLocation: stopLocationOrigin, destinationStopLocation: stopLocationDestination)
     }
     
     func getShowString() -> String {
