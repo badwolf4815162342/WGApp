@@ -14,9 +14,9 @@ class BusprofileTableViewCell: UITableViewCell {
     @IBOutlet weak var busprofileTitleLabel: UILabel!
     
     @IBOutlet weak var favoriteImage: UIImageView!
-    var busprofile: BusSettings?
+    var busprofile: BusSetting?
     
-    func setBusprofile(busSettings: BusSettings) {
+    func setBusprofile(busSettings: BusSetting) {
         busprofile = busSettings
         
         busprofileTitleLabel.text = busSettings.title
@@ -32,7 +32,7 @@ class BusprofileTableViewCell: UITableViewCell {
         
     }
     
-    func setFavorite(busSetting: BusSettings, profil: Profil) {
+    func setFavorite(busSetting: BusSetting, profil: Profil) {
         if (busSetting.favoriteOfProfiles?.contains(profil))! {
             favoriteImage.isHidden = false
         } else {

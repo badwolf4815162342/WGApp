@@ -2,7 +2,7 @@
 //  Profil+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 06.07.18.
+//  Created by Viviane Rehor on 08.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -29,10 +29,10 @@ extension Profil {
 extension Profil {
 
     @objc(addBusSettingsObject:)
-    @NSManaged public func addToBusSettings(_ value: BusSettings)
+    @NSManaged public func addToBusSettings(_ value: BusSetting)
 
     @objc(removeBusSettingsObject:)
-    @NSManaged public func removeFromBusSettings(_ value: BusSettings)
+    @NSManaged public func removeFromBusSettings(_ value: BusSetting)
 
     @objc(addBusSettings:)
     @NSManaged public func addToBusSettings(_ values: NSSet)
@@ -46,10 +46,10 @@ extension Profil {
 extension Profil {
 
     @objc(addFavoriteBusSettingsObject:)
-    @NSManaged public func addToFavoriteBusSettings(_ value: BusSettings)
+    @NSManaged public func addToFavoriteBusSettings(_ value: BusSetting)
 
     @objc(removeFavoriteBusSettingsObject:)
-    @NSManaged public func removeFromFavoriteBusSettings(_ value: BusSettings)
+    @NSManaged public func removeFromFavoriteBusSettings(_ value: BusSetting)
 
     @objc(addFavoriteBusSettings:)
     @NSManaged public func addToFavoriteBusSettings(_ values: NSSet)

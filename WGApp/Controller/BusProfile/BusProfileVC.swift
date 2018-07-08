@@ -12,10 +12,10 @@ import CoreData
 class BusProfileVC: UIViewController {
     
     
-    static var selectedBusProfile: BusSettings?
+    static var selectedBusProfile: BusSetting?
     
     @IBOutlet weak var tableView: UITableView!
-    var busSettings = [BusSettings]()
+    var busSettings = [BusSetting]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class BusProfileVC: UIViewController {
         // alert button hinzufügen
         let saveAction = UIAlertAction(title: "hinzufügen", style: .default, handler: { (action) -> Void in
             let title = alert.textFields!.first!.text!
-            var newBusSetting = BusSettings(context: PersistenceService.context);
+            var newBusSetting = BusSetting(context: PersistenceService.context);
             newBusSetting.title = title
             newBusSetting.withDestinations = true
             newBusSetting.ofProfil = HomeScreenVC.wg
@@ -81,7 +81,7 @@ class BusProfileVC: UIViewController {
     
     @objc func refreshTable(){
         // load core data into table
-        let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+        let fetchRequest: NSFetchRequest<BusSetting> = BusSetting.fetchRequest()
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             self.busSettings = profiles

@@ -127,7 +127,7 @@ class BusSettingsController: NSObject {
     * connection to it, the the new one is added to the busProfile
     **/
     @warn_unqualified_access
-    class func replaceBusRouteOfBusProfile(newBusRoute: BusRoute, oldBusRoute: BusRoute, busProfile: BusSettings) -> BusSettings{
+    class func replaceBusRouteOfBusProfile(newBusRoute: BusRoute, oldBusRoute: BusRoute, busProfile: BusSetting) -> BusSetting{
         // replace route
         newBusRoute.busSetting = busProfile
         PersistenceService.saveContext()
@@ -168,7 +168,7 @@ class BusSettingsController: NSObject {
         }
     }
     
-    class func printSettings(busProfile: BusSettings) {
+    class func printSettings(busProfile: BusSetting) {
         print("------ BusSetiing: ",busProfile.title,":")
         
         for r in busProfile.routes! {
@@ -192,11 +192,11 @@ class BusSettingsController: NSObject {
         return stops
     }
     
-    class func deleteRouteFromBusProfile(busRoute: BusRoute, busProfile: BusSettings) {
+    class func deleteRouteFromBusProfile(busRoute: BusRoute, busProfile: BusSetting) {
         PersistenceService.context.delete(busRoute)
     }
     
-    class func deleteBusProfile(busProfile: BusSettings) {
+    class func deleteBusProfile(busProfile: BusSetting) {
         if let routes = busProfile.routes as? NSMutableSet {
             for busRoute in routes {
                 if let route = busRoute as? BusRoute {
@@ -208,7 +208,7 @@ class BusSettingsController: NSObject {
         
     }
     
-    class func changeProfilFavorite(busSetting: BusSettings, profil: Profil) {
+    class func changeProfilFavorite(busSetting: BusSetting, profil: Profil) {
         if (profil.favoriteBusSettings?.contains(busSetting))! {
             profil.removeFromFavoriteBusSettings(busSetting)
         } else {
@@ -217,7 +217,7 @@ class BusSettingsController: NSObject {
         PersistenceService.saveContext()
     }
     
-    class func getTrips(busProfile: BusSettings, completion: @escaping (Array<TripRMV>) -> ())  {
+    class func getTrips(busProfile: BusSetting, completion: @escaping (Array<TripRMV>) -> ())  {
         if (busProfile.withDestinations) {
             var tripsRMV:[TripRMV] = [TripRMV]()
             if let routes = busProfile.routes as? NSMutableSet {
@@ -242,7 +242,7 @@ class BusSettingsController: NSObject {
         
     }
     
-    class func getDepartures(busProfile: BusSettings, completion: @escaping (Array<DepartureRMV>) -> ()) {
+    class func getDepartures(busProfile: BusSetting, completion: @escaping (Array<DepartureRMV>) -> ()) {
         if (busProfile.withDestinations) {
             print("ERROR")
         } else {
@@ -305,9 +305,9 @@ class BusSettingsController: NSObject {
     }
     
     class func addTestBusSettings(){
-        let busProfile = BusSettings(context: PersistenceService.context)
+        let busProfile = BusSetting(context: PersistenceService.context)
         busProfile.title = "Arbeit"
-        let busProfile2 = BusSettings(context: PersistenceService.context)
+        let busProfile2 = BusSetting(context: PersistenceService.context)
         busProfile2.title = "NichtArbeit"
         
         let route = BusRoute(context: PersistenceService.context)

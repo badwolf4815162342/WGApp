@@ -18,7 +18,7 @@ extension BusRoute {
     }
 
     @NSManaged public var withDestination: Bool
-    @NSManaged public var busSetting: BusSettings?
+    @NSManaged public var busSetting: BusSetting?
     @NSManaged public var origin: StopLocation?
     @NSManaged public var destination: StopLocation?
 

@@ -2,11 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
         <attribute name="withDestination" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="routes" inverseEntity="BusSettings" syncable="YES"/>
+        <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSetting" inverseName="routes" inverseEntity="BusSetting" syncable="YES"/>
         <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="destinationOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopLocation" inverseName="originOfBusRoutes" inverseEntity="StopLocation" syncable="YES"/>
     </entity>
-    <entity name="BusSettings" representedClassName="BusSettings" syncable="YES">
+    <entity name="BusSetting" representedClassName="BusSetting" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="withDestinations" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="favoriteOfProfiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Profil" inverseName="favoriteBusSettings" inverseEntity="Profil" syncable="YES"/>
@@ -22,8 +22,21 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profilIcon" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <relationship name="busSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="ofProfil" inverseEntity="BusSettings" syncable="YES"/>
-        <relationship name="favoriteBusSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSettings" inverseName="favoriteOfProfiles" inverseEntity="BusSettings" syncable="YES"/>
+        <relationship name="busSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSetting" inverseName="ofProfil" inverseEntity="BusSetting" syncable="YES"/>
+        <relationship name="favoriteBusSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusSetting" inverseName="favoriteOfProfiles" inverseEntity="BusSetting" syncable="YES"/>
+    </entity>
+    <entity name="PutzSetting" representedClassName="PutzSetting" syncable="YES">
+        <attribute name="aktiv" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profilIcon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatEveryXWeeks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="participatingUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="participatesOnPutzSetting" inverseEntity="User" syncable="YES"/>
+        <relationship name="weekItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PutzWeekItem" inverseName="putzSetting" inverseEntity="PutzWeekItem" syncable="YES"/>
+    </entity>
+    <entity name="PutzWeekItem" representedClassName="PutzWeekItem" syncable="YES">
+        <attribute name="weekStartDay" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="putzSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PutzSetting" inverseName="weekItems" inverseEntity="PutzSetting" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="putzWeekItems" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="StopLocation" representedClassName="StopLocation" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,14 +46,18 @@
     </entity>
     <entity name="User" representedClassName="User" parentEntity="Profil" syncable="YES">
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="participatesOnPutzSetting" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PutzSetting" inverseName="participatingUsers" inverseEntity="PutzSetting" syncable="YES"/>
+        <relationship name="putzWeekItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PutzWeekItem" inverseName="user" inverseEntity="PutzWeekItem" syncable="YES"/>
     </entity>
     <elements>
         <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="103"/>
-        <element name="BusSettings" positionX="-2468" positionY="-234" width="128" height="118"/>
+        <element name="BusSetting" positionX="-2439" positionY="-252" width="128" height="118"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="ListItem" positionX="-2817" positionY="-3" width="128" height="73"/>
         <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
+        <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="133"/>
+        <element name="PutzWeekItem" positionX="-3015" positionY="-178" width="128" height="88"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
-        <element name="User" positionX="-2810" positionY="-121" width="128" height="58"/>
+        <element name="User" positionX="-2810" positionY="-121" width="128" height="88"/>
     </elements>
 </model>

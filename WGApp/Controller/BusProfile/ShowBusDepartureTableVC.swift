@@ -24,7 +24,7 @@ class ShowBusDepartureTableVC: UIViewController {
     
     var departures = [DepartureRMV]()
     
-    var selectedBusProfile: BusSettings?
+    var selectedBusProfile: BusSetting?
     
     override func viewDidLoad() {
         super.viewDidLoad()

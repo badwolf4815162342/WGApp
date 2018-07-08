@@ -1,8 +1,8 @@
 //
-//  BusSettings+CoreDataProperties.swift
+//  BusSetting+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 06.07.18.
+//  Created by Viviane Rehor on 08.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension BusSettings {
+extension BusSetting {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<BusSettings> {
-        return NSFetchRequest<BusSettings>(entityName: "BusSettings")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<BusSetting> {
+        return NSFetchRequest<BusSetting>(entityName: "BusSetting")
     }
 
     @NSManaged public var title: String?
@@ -26,7 +26,7 @@ extension BusSettings {
 }
 
 // MARK: Generated accessors for routes
-extension BusSettings {
+extension BusSetting {
 
     @objc(addRoutesObject:)
     @NSManaged public func addToRoutes(_ value: BusRoute)
@@ -43,7 +43,7 @@ extension BusSettings {
 }
 
 // MARK: Generated accessors for favoriteOfProfiles
-extension BusSettings {
+extension BusSetting {
 
     @objc(addFavoriteOfProfilesObject:)
     @NSManaged public func addToFavoriteOfProfiles(_ value: Profil)

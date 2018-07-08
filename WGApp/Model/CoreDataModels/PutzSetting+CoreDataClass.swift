@@ -1,5 +1,5 @@
 //
-//  User+CoreDataClass.swift
+//  PutzSetting+CoreDataClass.swift
 //  WGApp
 //
 //  Created by Viviane Rehor on 08.07.18.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(User)
-public class User: Profil {
+@objc(PutzSetting)
+public class PutzSetting: NSManagedObject {
 
 }

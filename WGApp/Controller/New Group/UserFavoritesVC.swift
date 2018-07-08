@@ -18,11 +18,11 @@ class UserFavoritesVC: UIViewController {
     
     var user: Profil!
     
-    static var selectedBusProfile: BusSettings?
+    static var selectedBusProfile: BusSetting?
     
     @IBOutlet weak var tableView: UITableView!
     
-    var busSettings = [BusSettings]()
+    var busSettings = [BusSetting]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class UserFavoritesVC: UIViewController {
     
     @objc func refreshTable(){
         // load core data into table
-        let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+        let fetchRequest: NSFetchRequest<BusSetting> = BusSetting.fetchRequest()
         do {
             let busSettings = try PersistenceService.context.fetch(fetchRequest)
             print(busSettings.count)

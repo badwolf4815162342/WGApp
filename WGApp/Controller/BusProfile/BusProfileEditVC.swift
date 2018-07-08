@@ -130,7 +130,7 @@ class BusProfilEditVC: UIViewController {
     }
     
     @objc func changeBusProfile(notification: NSNotification) {
-        BusProfileVC.selectedBusProfile = notification.object as! BusSettings
+        BusProfileVC.selectedBusProfile = notification.object as! BusSetting
         titleTextField.text = BusProfileVC.selectedBusProfile?.title
         var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
@@ -201,7 +201,7 @@ class BusProfilEditVC: UIViewController {
                 checkReachedMaxRoutes()
             }
         } else {
-            let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+            let fetchRequest: NSFetchRequest<BusSetting> = BusSetting.fetchRequest()
             do {
                 let profiles = try PersistenceService.context.fetch(fetchRequest)
                 if (profiles.count <= 0) {

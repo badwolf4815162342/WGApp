@@ -21,7 +21,7 @@ class ShowBusTripsTableVC: UIViewController {
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     @IBOutlet weak var busProfileName: UILabel!
-    var selectedBusProfile: BusSettings?
+    var selectedBusProfile: BusSetting?
     
     var trips = [TripRMV]()
     

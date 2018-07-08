@@ -21,6 +21,10 @@ struct CONFIG {
         static let NORMAL_PRIO_TRIP_MINUTES = 10
     }
     
+    struct PUTZSETTINGS {
+        static let PRE_CALCULATED_WEEK_ITEMS = 20
+    }
+    
 }
 
 

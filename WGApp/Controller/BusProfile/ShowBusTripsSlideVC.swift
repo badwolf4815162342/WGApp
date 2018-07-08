@@ -25,15 +25,15 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
     }
     
     @objc func refresh() {
-        var profiles: [BusSettings]?
+        var profiles: [BusSetting]?
         pages = []
         if (HomeScreenVC.selectedUser == HomeScreenVC.wg) {
-            let fetchRequest: NSFetchRequest<BusSettings> = BusSettings.fetchRequest()
+            let fetchRequest: NSFetchRequest<BusSetting> = BusSetting.fetchRequest()
             do {
                 profiles = try PersistenceService.context.fetch(fetchRequest)
             } catch {}
         } else {
-            profiles = (((HomeScreenVC.selectedUser?.favoriteBusSettings)!).allObjects as? [BusSettings])!
+            profiles = (((HomeScreenVC.selectedUser?.favoriteBusSettings)!).allObjects as? [BusSetting])!
         }
         if let profiles = profiles {
             for profile in profiles {
