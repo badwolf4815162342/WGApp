@@ -278,16 +278,19 @@ class BusSettingsController: NSObject {
         let currentDateTime = Date()
         if (currentDateTime<time) {
             let minutes = time.minutes(from: currentDateTime)
+            //print("Time current: \(currentDateTime) time bus \(time) minutes \(minutes) future? \(true)")
             return (minutes, true)
         } else if (time>currentDateTime){
             //print(currentDateTime)
             //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>")
             //print(time)
             let minutes = currentDateTime.minutes(from: time)
+            //print("Time current: \(currentDateTime) time bus \(time) minutes \(minutes) future? \(false)")
             return (minutes, false)
         } else {
-            return (0, true)
-        }
+            //print("Time current: \(currentDateTime) time bus \(time) minutes \(0) future? \(true)")
+            return (0, true)}
+       
     }
     
     class func setSelectedColor(minutes: Int, futureDeparture: Bool) -> UIColor {

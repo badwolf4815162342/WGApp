@@ -121,11 +121,16 @@ class ShowBusTripsTableVC: UIViewController {
             let touchPoint = sender.location(in: self.view)
             if let indexPath = showTripsTableView.indexPathForRow(at: touchPoint) {
                 var trip = trips[indexPath.row]
-                print("LONG PRESS row: \(indexPath.row) \(trip.id)")
+                for s in self.selectedTrips {
+                    //print("LONG: \(s)")
+                }
+                //print("LONG PRESS row: \(indexPath.row) \(trip.id)")
                 let index = selectedTrips.index(of: trip.id)
                 if let index = index {
+                    //print("LONG remove: \(trip.id)")
                     selectedTrips.remove(at: index)
                 } else {
+                    //print("LONG add: \(trip.id)")
                     selectedTrips.append(trip.id)
                 }
                 refreshTable()
