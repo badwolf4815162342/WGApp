@@ -21,12 +21,16 @@ class ContainerVC: UIViewController {
 
     @objc func toggleSideMenu() {
         print("toggeling")
+        print(sideMenuConstraint.constant)
         if sideMenuOpen {
             sideMenuConstraint.constant = -340
+            
         } else {
             sideMenuConstraint.constant = 0
         }
         sideMenuOpen = !sideMenuOpen
+
+        print(sideMenuConstraint.constant)
     }
 
 }

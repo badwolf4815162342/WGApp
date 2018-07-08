@@ -66,7 +66,6 @@ class HomeScreenVC: UIViewController {
             button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
             button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            //button.translatesAutoresizingMaskIntoConstraints = false
             button.user = user
            
             let barButton = UIBarButtonItem(customView: button)
@@ -102,11 +101,13 @@ class HomeScreenVC: UIViewController {
         createWGUser()
         HomeScreenVC.selectedUser = HomeScreenVC.wg
         
-        //let mask = UIView(self.frame window.frame)
+        //let mask = UIView(coder: self.nscoder)
         //mask.set
         /*mask = [[UIView alloc] initWithFrame:window.frame];
         [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.78]];
         [self.view addSubview:mask];*/
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
