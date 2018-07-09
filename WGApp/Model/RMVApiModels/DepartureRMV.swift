@@ -10,6 +10,7 @@ import Foundation
 import Foundation
 
 struct DepartureRMV {
+    var id:String
     var transportationType: String
     var specificTransportationType: String
     var transportationName: String
@@ -27,7 +28,7 @@ extension DepartureRMV {
     
     static func toDepartureRMV(departure: Departure, stopLocation: StopLocation) -> DepartureRMV {
 
-
+        let id = departure.journeyDetailRef.ref
         let transportationType = departure.product["catOut"]!
         let specificTransportationType = departure.product["catOutL"]!
         let transportationName = departure.productName
@@ -48,7 +49,18 @@ extension DepartureRMV {
         } else {
             finalRDate = finalPDate
         }
-        return DepartureRMV(transportationType: transportationType, specificTransportationType: specificTransportationType, transportationName: transportationName, transportationNumber: transportationNumber, plannedDepartureTime: finalPDate!, realDepartureTime: finalRDate!, direction: direction, stopLocation: stopLocation)
+        return DepartureRMV(id: id, transportationType: transportationType, specificTransportationType: specificTransportationType, transportationName: transportationName, transportationNumber: transportationNumber, plannedDepartureTime: finalPDate!, realDepartureTime: finalRDate!, direction: direction, stopLocation: stopLocation)
+    }
+    
+    func getShowString() -> String {
+        let outFormatter = DateFormatter()
+        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
+        outFormatter.dateFormat = "hh:mm"
+        var ret = ""
+        ret += " Mit " + (transportationName ?? "no name") + " Richtung " + (direction ?? "no dir") + "\n"
+        ret += " " + outFormatter.string(from: realDepartureTime) + "/" + outFormatter.string(from: plannedDepartureTime)
+        ret += " Von: " + stopLocation.name! + "\n"
+        return ret
     }
     
 }

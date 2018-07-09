@@ -40,12 +40,20 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
                 if (profile.withDestinations) {
                     let vc: ShowBusTripsTableVC! = (storyboard?.instantiateViewController(withIdentifier: "busTripsTableView"))! as! ShowBusTripsTableVC
                     vc.selectedBusProfile = profile
+                    vc.tripsTableType = ShowBusTripsTableVC.TripsTableType.trip
                     pages.append(vc)
                 } else {
+                    let vc: ShowBusTripsTableVC! = (storyboard?.instantiateViewController(withIdentifier: "busTripsTableView"))! as! ShowBusTripsTableVC
+                    vc.selectedBusProfile = profile
+                    vc.tripsTableType = ShowBusTripsTableVC.TripsTableType.departure
+                    pages.append(vc)
+                }
+                
+                /**else {
                     let vc: ShowBusDepartureTableVC! = (storyboard?.instantiateViewController(withIdentifier: "busDeparturesTableView"))! as! ShowBusDepartureTableVC
                     vc.selectedBusProfile = profile
                     pages.append(vc)
-                }
+                }**/
             }
             print("label found")
             if(profiles.count==0) {

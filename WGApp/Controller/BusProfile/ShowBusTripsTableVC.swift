@@ -10,6 +10,13 @@ import UIKit
 
 class ShowBusTripsTableVC: UIViewController {
     
+    enum TripsTableType {
+        case trip
+        case departure
+    }
+    
+    var tripsTableType: TripsTableType?
+    
     @IBOutlet weak var ofProfileImage: UIImageView!
     @IBOutlet weak var showTripsTableView: UITableView!
     
@@ -26,6 +33,7 @@ class ShowBusTripsTableVC: UIViewController {
     var selectedBusProfile: BusSetting?
     
     var trips = [TripRMV]()
+    var departures = [DepartureRMV]()
     
     var selectedTrips = [String]()
 
@@ -105,20 +113,43 @@ class ShowBusTripsTableVC: UIViewController {
             print("LONG: \(s)")
         }
         // load core data into table
-        BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
-            DispatchQueue.main.async {
-                self.currentlyReloading = true
-                self.effectView.removeFromSuperview()
-                self.trips = rmvTrips
-                self.filterList()
-                self.currentlyReloading = false
+        if let type = tripsTableType {
+            switch type {
+            case .trip:
+                BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
+                    DispatchQueue.main.async {
+                        self.currentlyReloading = true
+                        self.effectView.removeFromSuperview()
+                        self.trips = rmvTrips
+                        self.filterTripList()
+                        self.currentlyReloading = false
+                    }
+                })
+            case .departure:
+                BusSettingsController.getDepartures(busProfile: selectedBusProfile!, completion:{ rmvDepartues in
+                    DispatchQueue.main.async {
+                        self.currentlyReloading = true
+                        self.effectView.removeFromSuperview()
+                        self.departures = rmvDepartues
+                        self.filterDepList()
+                        self.currentlyReloading = false
+                    }
+                })
             }
-        })
+        }
+       
     }
     
-    func filterList() { // should probably be called sort and not filter
+    func filterTripList() { // should probably be called sort and not filter
         trips.sort() { $0.routeParts[0].realDepartureTime > $1.routeParts[0].realDepartureTime } // sort the fruit by name
         trips.reverse()
+        showTripsTableView.reloadData(); // notify the table view the data has changed
+    }
+    
+    func filterDepList() { // should probably be called sort and not filter
+        print("DEPS count \(departures.count)")
+        departures.sort() { $0.realDepartureTime > $1.realDepartureTime } // sort the fruit by name
+        departures.reverse()
         showTripsTableView.reloadData(); // notify the table view the data has changed
     }
     
@@ -131,10 +162,25 @@ class ShowBusTripsTableVC: UIViewController {
             
             let touchPoint = sender.location(in: self.showTripsTableView)
             if let indexPath = showTripsTableView.indexPathForRow(at: touchPoint) {
-                var trip = trips[indexPath.row]
+                var index: Int?
+                var id: String?
+                var infoString: String?
+                if let type = tripsTableType {
+                    switch type {
+                    case .trip:
+                        var trip = trips[indexPath.row]
+                        id = trip.id
+                        infoString = trip.getShowString()
+                        index = self.selectedTrips.index(of: id!)
+                    case .departure:
+                        var trip = departures[indexPath.row]
+                        id = trip.id
+                        infoString = trip.getShowString()
+                        index = self.selectedTrips.index(of: id!)
+                    }
+                }
                 var buttonTitle = ""
                 var mainTitle = ""
-                                    let index = self.selectedTrips.index(of: trip.id)
                 if let index = index {
                     buttonTitle = "demarkieren"
                     mainTitle = "Bus Trip demarkieren:"
@@ -144,7 +190,7 @@ class ShowBusTripsTableVC: UIViewController {
                 }
 
                 // alert
-                let alert = UIAlertController(title: mainTitle, message: trip.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: mainTitle, message: infoString!, preferredStyle: UIAlertControllerStyle.alert)
                 
                 // alert button hinzufügen
                 let saveAction = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
@@ -154,7 +200,7 @@ class ShowBusTripsTableVC: UIViewController {
                         self.selectedTrips.remove(at: index)
                     } else {
                         //print("LONG add: \(trip.id)")
-                        self.selectedTrips.append(trip.id)
+                        self.selectedTrips.append(id!)
                     }
                     self.refreshTable()
                 })
@@ -180,25 +226,56 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let trip = trips[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusTripCell")
-        
-        let btCell = cell  as! BusTripTableViewCell
-        
-        btCell.setTrip(tripRMV: trip, selectedTrips: selectedTrips)
-        
-        return btCell
+        print("DEPS")
+        if let type = tripsTableType {
+            switch type {
+            case .trip:
+                let trip = trips[indexPath.row]
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "BusTripCell")
+                
+                let btCell = cell  as! BusTripTableViewCell
+                
+                btCell.setTrip(tripRMV: trip, selectedTrips: selectedTrips)
+                
+                return btCell
+            case .departure:
+                let departure = departures[indexPath.row]
+                print("DEPS setDepCell \(departure)")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "BusDepartureCell")
+                
+                let dCell = cell  as! BusDepartureTableViewCell
+                
+                dCell.setDeparture(departureRMV: departure)
+                
+                return dCell
+            }
+        }
+        return tableView.dequeueReusableCell(withIdentifier: "BusDepartureCell")!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var trip = trips[indexPath.row]
-        let alert = UIAlertController(title: "Info zur Fahrt", message: trip.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+        if let type = tripsTableType {
+            switch type {
+            case .trip:
+                var trip = trips[indexPath.row]
+                let alert = UIAlertController(title: "Info zur Fahrt", message: trip.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+                
+                let cancleAction = UIAlertAction(title: "ok", style: .default) { (_) in }
+                
+                alert.addAction(cancleAction)
+                present(alert, animated: true, completion: nil)
+            case .departure:
+                var dep = departures[indexPath.row]
+                let alert = UIAlertController(title: "Info zur Fahrt", message: dep.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+                
+                let cancleAction = UIAlertAction(title: "ok", style: .default) { (_) in }
+                
+                alert.addAction(cancleAction)
+                present(alert, animated: true, completion: nil)
+            }
+        }
         
-        let cancleAction = UIAlertAction(title: "ok", style: .default) { (_) in }
-
-        alert.addAction(cancleAction)
-        present(alert, animated: true, completion: nil)
     }
     
 
