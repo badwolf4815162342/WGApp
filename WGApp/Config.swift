@@ -14,7 +14,7 @@ struct CONFIG {
     }
     
     struct BUSSETTINGS {
-        static let BUS_TRIPS_RELOAD_INTERVAL = 10.0
+        static let BUS_TRIPS_RELOAD_INTERVAL = 20.0
         //static let MAX_SHOWN_TRIPS_PER_BUSPROFILE = 20 unused
         static let MAX_ROUTES_PER_BUSPROFILE = 4
         static let HIGH_PRIO_TRIP_MINUTES = 5

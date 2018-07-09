@@ -45,8 +45,10 @@ class BusTripTableViewCell: UITableViewCell {
             startTime.text = outFormatter.string(from: tripRMV.routeParts[0].plannedDepartureTime)
             realStratTime.text = outFormatter.string(from: tripRMV.routeParts[0].realDepartureTime)
             if (selectedTrips.contains(tripRMV.id)){
-                //print("LONG: contains \(tripRMV.id)")
+                print("LONG: contains \(tripRMV.id) \(realStratTime.text)")
                 self.backgroundColor = BusSettingsController.setSelectedColor(minutes: min, futureDeparture: futureDeparture)
+            } else {
+                self.backgroundColor = UIColor.white
             }
         }
     }

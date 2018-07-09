@@ -18,6 +18,8 @@ class ShowBusTripsTableVC: UIViewController {
     
     var myTimer = Timer()
     
+    var currentlyReloading = false
+    
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     @IBOutlet weak var busProfileName: UILabel!
@@ -95,14 +97,21 @@ class ShowBusTripsTableVC: UIViewController {
     
   
     @objc func refreshTable(){
+        if (currentlyReloading) {
+            return
+        }
         self.activityIndicator("Aktualisieren")
+        for s in self.selectedTrips {
+            print("LONG: \(s)")
+        }
         // load core data into table
         BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
             DispatchQueue.main.async {
+                self.currentlyReloading = true
                 self.effectView.removeFromSuperview()
                 self.trips = rmvTrips
                 self.filterList()
-                
+                self.currentlyReloading = false
             }
         })
     }
@@ -115,25 +124,47 @@ class ShowBusTripsTableVC: UIViewController {
     
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
-        
+        if (currentlyReloading) {
+            return
+        }
         if sender.state == UIGestureRecognizerState.began {
             
-            let touchPoint = sender.location(in: self.view)
+            let touchPoint = sender.location(in: self.showTripsTableView)
             if let indexPath = showTripsTableView.indexPathForRow(at: touchPoint) {
                 var trip = trips[indexPath.row]
-                for s in self.selectedTrips {
-                    //print("LONG: \(s)")
-                }
-                //print("LONG PRESS row: \(indexPath.row) \(trip.id)")
-                let index = selectedTrips.index(of: trip.id)
+                var buttonTitle = ""
+                var mainTitle = ""
+                                    let index = self.selectedTrips.index(of: trip.id)
                 if let index = index {
-                    //print("LONG remove: \(trip.id)")
-                    selectedTrips.remove(at: index)
+                    buttonTitle = "demarkieren"
+                    mainTitle = "Bus Trip demarkieren:"
                 } else {
-                    //print("LONG add: \(trip.id)")
-                    selectedTrips.append(trip.id)
+                    buttonTitle = "markieren"
+                    mainTitle = "Bus Trip markieren:"
                 }
-                refreshTable()
+
+                // alert
+                let alert = UIAlertController(title: mainTitle, message: trip.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+                
+                // alert button hinzufügen
+                let saveAction = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
+                    //print("LONG PRESS row: \(indexPath.row) \(trip.id)")
+                    if let index = index {
+                        //print("LONG remove: \(trip.id)")
+                        self.selectedTrips.remove(at: index)
+                    } else {
+                        //print("LONG add: \(trip.id)")
+                        self.selectedTrips.append(trip.id)
+                    }
+                    self.refreshTable()
+                })
+                
+                
+                let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+                
+                alert.addAction(saveAction)
+                alert.addAction(cancleAction)
+                present(alert, animated: true, completion: nil)
             }
         }
     }
