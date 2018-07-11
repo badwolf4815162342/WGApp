@@ -23,7 +23,7 @@ class BusDepartureTableViewCell: UITableViewCell {
     @IBOutlet weak var realStratTime: UILabel!
 
     
-    func setDeparture(departureRMV: DepartureRMV){
+    func setDeparture(departureRMV: DepartureRMV, selectedDepartures: [String]){
         originLabel.text = departureRMV.stopLocation.name?.getAcronyms()
         directionLabel.text = departureRMV.direction
         lineLabel.text = departureRMV.transportationName
@@ -37,6 +37,12 @@ class BusDepartureTableViewCell: UITableViewCell {
         startTime.text = outFormatter.string(from: departureRMV.plannedDepartureTime)
         realStratTime.text = outFormatter.string(from: departureRMV.realDepartureTime)
         //print(departureRMV)
+        if (selectedDepartures.contains(departureRMV.id)){
+            print("LONG: contains \(departureRMV.id) \(realStratTime.text)")
+            self.backgroundColor = BusSettingsController.setSelectedColor(minutes: min, futureDeparture: futureDeparture)
+        } else {
+            self.backgroundColor = UIColor.white
+        }
     }
 
 }

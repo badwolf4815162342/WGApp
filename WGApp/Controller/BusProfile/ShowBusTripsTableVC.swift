@@ -147,7 +147,6 @@ class ShowBusTripsTableVC: UIViewController {
     }
     
     func filterDepList() { // should probably be called sort and not filter
-        print("DEPS count \(departures.count)")
         departures.sort() { $0.realDepartureTime > $1.realDepartureTime } // sort the fruit by name
         departures.reverse()
         showTripsTableView.reloadData(); // notify the table view the data has changed
@@ -222,11 +221,18 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trips.count
+        if let type = tripsTableType {
+            switch type {
+            case .trip:
+                return trips.count
+            case .departure:
+                return departures.count
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("DEPS")
         if let type = tripsTableType {
             switch type {
             case .trip:
@@ -246,7 +252,7 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
                 
                 let dCell = cell  as! BusDepartureTableViewCell
                 
-                dCell.setDeparture(departureRMV: departure)
+                dCell.setDeparture(departureRMV: departure, selectedDepartures: selectedTrips)
                 
                 return dCell
             }

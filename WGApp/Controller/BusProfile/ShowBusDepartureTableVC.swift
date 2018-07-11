@@ -124,7 +124,7 @@ extension ShowBusDepartureTableVC: UITableViewDelegate, UITableViewDataSource {
         
         let dCell = cell  as! BusDepartureTableViewCell
         
-        dCell.setDeparture(departureRMV: departure)
+        //dCell.setDeparture(departureRMV: departure, selectedDepartures: sele)
         
         return dCell
     }
