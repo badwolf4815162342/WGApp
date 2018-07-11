@@ -97,6 +97,7 @@ class HomeScreenVC: UIViewController {
         //BusSettingsController.deleteAllData(entity: "StopLocation")
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPutzManagement), name: NSNotification.Name("ShowPutzManagement"), object: nil)
 
         createWGUser()
         HomeScreenVC.selectedUser = HomeScreenVC.wg
@@ -131,6 +132,10 @@ class HomeScreenVC: UIViewController {
     
     @objc func showBusManagement() {
         performSegue(withIdentifier: "ShowBusManagement", sender: nil)
+    }
+    
+    @objc func showPutzManagement() {
+        performSegue(withIdentifier: "ShowPutzManagement", sender: nil)
     }
     
     func createWGUser () {

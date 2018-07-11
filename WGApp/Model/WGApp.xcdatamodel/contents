@@ -30,6 +30,7 @@
         <attribute name="profilIcon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatEveryXWeeks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userOrder" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="participatingUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="participatesOnPutzSetting" inverseEntity="User" syncable="YES"/>
         <relationship name="weekItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PutzWeekItem" inverseName="putzSetting" inverseEntity="PutzWeekItem" syncable="YES"/>
     </entity>
@@ -55,7 +56,7 @@
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="ListItem" positionX="-2817" positionY="-3" width="128" height="73"/>
         <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
-        <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="133"/>
+        <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="148"/>
         <element name="PutzWeekItem" positionX="-3015" positionY="-178" width="128" height="88"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
         <element name="User" positionX="-2810" positionY="-121" width="128" height="88"/>
