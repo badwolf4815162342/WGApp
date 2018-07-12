@@ -8,28 +8,30 @@
 
 import UIKit
 
-class PutzProfilCalenderVC: UIViewController {
+let reuseIdentifier = "customCell"
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class PutzProfilCalenderVC: UICollectionViewController {
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   
+    // MARK: UICollectionViewDataSource
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        //#warning Incomplete method implementation -- Return the number of sections
+        return 50
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //#warning Incomplete method implementation -- Return the number of items in the section
+        return 30
     }
-    */
-
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomCollectionViewCell
+        
+        // Configure the cell
+        cell.label.text = "Sec " + indexPath.section.description + "/Item " + indexPath.item.description
+        
+        return cell
+    }
 }

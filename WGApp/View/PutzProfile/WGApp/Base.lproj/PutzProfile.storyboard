@@ -38,6 +38,9 @@
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gng-Qf-Y0Z">
                                 <rect key="frame" x="0.0" y="113" width="1024" height="655"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="ubC-Vz-zxs" kind="embed" identifier="ShowPutzProfilCalender" id="4ZQ-z3-LCg"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,6 +55,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pB-k6-ojW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1440" y="1663"/>
+        </scene>
+        <!--Putz Profil CalenderVC-->
+        <scene sceneID="Mio-ig-dt2">
+            <objects>
+                <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="ubC-Vz-zxs" customClass="PutzProfilCalenderVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" id="PH2-95-DDG">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="655"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewLayout key="collectionViewLayout" id="2pu-w7-UTV" customClass="CustomCollectionViewLayout" customModule="WGApp" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="customCell" id="LqT-yh-inh" customClass="CustomCollectionViewCell" customModule="MultiDirectionCollectionView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="35" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sec 0 / Item 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="92" translatesAutoresizingMaskIntoConstraints="NO" id="pvI-3g-vYu">
+                                            <rect key="frame" x="12" y="8" width="77" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="pvI-3g-vYu" secondAttribute="centerY" constant="0.5" id="vfe-TC-uoJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="pvI-3g-vYu" secondAttribute="centerX" id="wrE-zq-YWL"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="30"/>
+                                <connections>
+                                    <outlet property="label" destination="pvI-3g-vYu" id="84w-65-bhJ"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="putzItemCell" id="bfc-41-vnJ" customClass="CustomCollectionViewCell" customModule="MultiDirectionCollectionView" customModuleProvider="target">
+                                <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4LL-9e-KpE">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="1zH-Ml-qPP"/>
+                                                <constraint firstAttribute="height" constant="60" id="Leo-lU-U4r"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i0O-0k-7vA">
+                                            <rect key="frame" x="60" y="0.0" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="62Y-0M-iNx"/>
+                                                <constraint firstAttribute="height" constant="40" id="Zkd-kG-k7P"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bad Putzen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN2-BC-54k">
+                                            <rect key="frame" x="6.5" y="70" width="87.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="i0O-0k-7vA" secondAttribute="trailing" id="Dt4-Qx-cBN"/>
+                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="leading" secondItem="bfc-41-vnJ" secondAttribute="leading" id="HzY-jz-mkA"/>
+                                    <constraint firstItem="JN2-BC-54k" firstAttribute="centerX" secondItem="bfc-41-vnJ" secondAttribute="centerX" id="L8d-kx-rNp"/>
+                                    <constraint firstItem="i0O-0k-7vA" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" id="Rhb-Ro-zuE"/>
+                                    <constraint firstAttribute="bottom" secondItem="JN2-BC-54k" secondAttribute="bottom" constant="9" id="j9b-Ng-SqO"/>
+                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" id="pcm-xB-owT"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="100"/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ubC-Vz-zxs" id="GZR-45-caO"/>
+                            <outlet property="delegate" destination="ubC-Vz-zxs" id="AQt-o7-LP9"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b2f-2g-kuZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2203.7109375" y="1432.421875"/>
         </scene>
         <!--Putz Profil EditVC-->
         <scene sceneID="faJ-al-xDj">
@@ -177,23 +266,73 @@
                                     <constraint firstAttribute="width" constant="110" id="Hh4-4e-a1f"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-JR-m37">
-                                <rect key="frame" x="330" y="170" width="25" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bad Putzen" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-JR-m37">
+                                <rect key="frame" x="295" y="170" width="95" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IZP-jT-1tS">
-                                <rect key="frame" x="182.5" y="317" width="319.5" height="20.5"/>
+                                <rect key="frame" x="342.5" y="327.5" width="0.0" height="0.0"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Es sind noch keine Putzprofile vorhanden." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-aa-PLI">
-                                        <rect key="frame" x="0.0" y="0.0" width="319.5" height="20.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Es sind noch keine Putzprofile vorhanden." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-aa-PLI">
+                                        <rect key="frame" x="-342.5" y="-327.5" width="319.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alle X Wochen wiederholen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhc-UE-ha1">
+                                <rect key="frame" x="58" y="243" width="209" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-NL-UYP">
+                                <rect key="frame" x="296" y="239" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stepper>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="41i-aP-jMn">
+                                <rect key="frame" x="296" y="305" width="368" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="fyM-1x-rNC"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Teilnehmende Mitbewohner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG7-6q-l6m">
+                                <rect key="frame" x="58" y="317" width="212" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Putzprofil aktiv?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds4-tH-FZD">
+                                <rect key="frame" x="58" y="389" width="123" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6am-rx-nw4">
+                                <rect key="frame" x="296" y="384" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reihenfolge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJV-4z-svU">
+                                <rect key="frame" x="58" y="464" width="91" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pn-Sh-DAC">
+                                <rect key="frame" x="296" y="452" width="368" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="BWV-1J-uqa"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -210,6 +349,8 @@
                         <outlet property="noPutzProfilesLabel" destination="Br3-aa-PLI" id="1i3-9C-vca"/>
                         <outlet property="putzIcon" destination="M9J-La-qki" id="5Xg-Nu-fUr"/>
                         <outlet property="titleTextField" destination="gN0-JR-m37" id="ZKd-dX-7Ee"/>
+                        <outlet property="userOrderBar" destination="2pn-Sh-DAC" id="s5F-Fk-nfj"/>
+                        <outlet property="userSelectionBar" destination="41i-aP-jMn" id="wPI-0Z-diG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXH-eq-AT2" userLabel="First Responder" sceneMemberID="firstResponder"/>

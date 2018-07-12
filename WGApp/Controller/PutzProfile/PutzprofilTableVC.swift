@@ -46,8 +46,7 @@ class PutzprofilTableVC: UIViewController {
         // alert button hinzufügen
         let saveAction = UIAlertAction(title: "hinzufügen", style: .default, handler: { (action) -> Void in
             let title = alert.textFields!.first!.text!
-            var newPutzSetting = PutzSetting(context: PersistenceService.context);
-            newPutzSetting.title = title
+            var newPutzSetting = PutzSettingsController.createEmptyPutzSetting(title: title)
             PutzprofilTableVC.selectedPutzProfile = newPutzSetting
             //set User = WG
             PersistenceService.saveContext()
