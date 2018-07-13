@@ -23,6 +23,11 @@ struct CONFIG {
     
     struct PUTZSETTINGS {
         static let PRE_CALCULATED_WEEK_ITEMS = 20
+        static let ONE_WEEK_REPEAT_LABEL_TEXT = "Jede Woche wiederholen"
+        static let X_WEEK_REPEAT_LABEL_TEXT =  "Alle %d Wochen wiederholen"
+        static let NEXT_X_WEEKS_PUTZSETTINGS_ARE_CALCULATED_FOR = 26
+        //static let START_DAY_OF_WEEK: Date =  Date.monday
+        
     }
     
 }

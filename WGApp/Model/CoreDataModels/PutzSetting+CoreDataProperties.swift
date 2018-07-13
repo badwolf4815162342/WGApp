@@ -21,6 +21,7 @@ extension PutzSetting {
     @NSManaged public var profilIcon: String?
     @NSManaged public var repeatEveryXWeeks: Int64
     @NSManaged public var title: String?
+    @NSManaged public var userOrder: NSObject?
     @NSManaged public var participatingUsers: NSSet?
     @NSManaged public var weekItems: NSSet?
 

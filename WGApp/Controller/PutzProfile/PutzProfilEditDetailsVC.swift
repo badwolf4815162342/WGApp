@@ -12,20 +12,25 @@ import CoreData
 class PutzProfilEditDetailsVC: UIViewController {
 
   
+    @IBOutlet weak var currentActiveButton: UISwitch!
+    @IBOutlet weak var weeksLabel: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var titleTextField: UITextField!
  
     @IBOutlet weak var putzIcon: UIImageView!
 
     @IBOutlet weak var noPutzProfilesLabel: UILabel!
     
+    @IBOutlet weak var userOrderScrollView: UIScrollView!
+    @IBOutlet weak var userSelectionScrollView: UIScrollView!
     var users: [User] = []
     
-    var items:[UIBarButtonItem] = []
+    var currentNumberOfWeeks = 1
     
     var currentlySelectedUsers: [User] = []
     
-    @IBOutlet weak var userOrderBar: UIToolbar!
-    @IBOutlet weak var userSelectionBar: UIToolbar!
+    var userSelectionStackView = UIStackView()
+    var userOrderStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,33 @@ class PutzProfilEditDetailsVC: UIViewController {
         // show first busprofile when deleting one which is selcted
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialPutzProfile), name: NSNotification.Name("ShowInitialPutzProfileMsg"), object: nil)
         
+        userSelectionStackView.translatesAutoresizingMaskIntoConstraints = false
+        userSelectionStackView.axis = .horizontal
+        userSelectionStackView.spacing = 23.0
+        userSelectionScrollView.addSubview(userSelectionStackView)
+        
+        userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
+        userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
+        
+        userOrderStackView.translatesAutoresizingMaskIntoConstraints = false
+        userOrderStackView.axis = .horizontal
+        userOrderStackView.spacing = 23.0
+        userOrderScrollView.addSubview(userOrderStackView)
+        
+        userOrderScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userOrderStackView]))
+        userOrderScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userOrderStackView]))
+        
+    }
+    
+    @IBAction func saveChangings(_ sender: Any) {
+        PutzprofilTableVC.selectedPutzProfile?.title = titleTextField.text
+        PutzprofilTableVC.selectedPutzProfile?.aktiv = currentActiveButton.isOn
+        PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks = Int64(Int(stepper.value))
+        PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
+        if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
+            PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
+        }
+        setInitValuesOfProfil()
     }
     
     @objc func changePutzProfile(notification: NSNotification) {
@@ -48,6 +80,21 @@ class PutzProfilEditDetailsVC: UIViewController {
             v.isHidden = false
         }
         noPutzProfilesLabel.isHidden = true
+    }
+    
+    @IBAction func onWeekManipulated(_ sender: Any) {
+        var number = Int(stepper.value)
+        setWeekLabel(number: number)
+        currentNumberOfWeeks = Int(stepper.value)
+    }
+    
+    func setWeekLabel(number: Int) {
+        if (number == 1) {
+            weeksLabel.text = CONFIG.PUTZSETTINGS.ONE_WEEK_REPEAT_LABEL_TEXT
+        } else {
+            var formattedString = String(format: CONFIG.PUTZSETTINGS.X_WEEK_REPEAT_LABEL_TEXT, number)
+            weeksLabel.text = formattedString
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,6 +130,8 @@ class PutzProfilEditDetailsVC: UIViewController {
     }
     
     func setInitValuesOfProfil() {
+        userOrderStackView.subviews.forEach { $0.removeFromSuperview() }
+        userSelectionStackView.subviews.forEach { $0.removeFromSuperview() }
         titleTextField.text = PutzprofilTableVC.selectedPutzProfile?.title
         var profilIconString = PutzprofilTableVC.selectedPutzProfile?.profilIcon
         if profilIconString != nil, let image = UIImage(named: profilIconString!) {
@@ -94,23 +143,24 @@ class PutzProfilEditDetailsVC: UIViewController {
         if let userSet = PutzprofilTableVC.selectedPutzProfile?.participatingUsers {
             currentlySelectedUsers = userSet.allObjects as! [User]
             addUserSelectionItems()
-            if let ordered = userSet as? NSOrderedSet {
-                addUserOrderItems(set:ordered)
-            }
+            addUserOrderItems(set:userSet)
         }
+        setWeekLabel(number: Int((PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks)!))
+        currentActiveButton.isOn = (PutzprofilTableVC.selectedPutzProfile?.aktiv)!
+        
     }
     
     func addUserSelectionItems(){
         // right: user icons
-        
         refreshUsers()
-        items = []
         
         for user in users {
             let button: UserUIButton = UserUIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-            button.layer.borderWidth = 1
+            button.imageView?.backgroundColor = UIColor.cyan
+
+            button.layer.borderWidth = 2
             button.layer.cornerRadius = 5
             if (currentlySelectedUsers.contains(user)){
                 button.layer.borderColor = UIColor.darkGray.cgColor
@@ -119,32 +169,36 @@ class PutzProfilEditDetailsVC: UIViewController {
             }
             
             button.addTarget(self, action: #selector(toggleUser(sender:)), for: .touchUpInside)
-            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             button.user = user
-            
-            let barButton = UIBarButtonItem(customView: button)
-            
-            items.append(barButton)
+
+            button.translatesAutoresizingMaskIntoConstraints = false
+            self.userSelectionStackView.addArrangedSubview(button)
+            // all constaints
+            let widthContraints =  NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+            let heightContraints = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+            NSLayoutConstraint.activate([heightContraints,widthContraints])
         }
-        self.userSelectionBar.items = items
     }
     
-    func addUserOrderItems(set: NSOrderedSet){
-        // right: user icons
-        var userItems: [UIBarButtonItem] = []
-        
-        for user in users {
-            let imageView: UIImageView = UIImageView()
-            imageView.image =  UIImage(named: user.profilIcon!)
-            imageView.contentMode = UIViewContentMode.scaleAspectFit
-           
-            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            
-            let barButton = UIBarButtonItem(customView: imageView)
-            
-            userItems.append(barButton)
+    func addUserOrderItems(set: NSSet){
+        if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
+            let users: [User] = PutzSettingsController.getOrderedUsers(ofProfile: PutzprofilTableVC.selectedPutzProfile!)
+            for user in users {
+                print(user.name)
+            }
+            for user in users {
+                let imageView: UIImageView = UIImageView()
+                imageView.image = UIImage(named: user.profilIcon!)
+                imageView.contentMode = UIViewContentMode.scaleAspectFit
+
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                self.userOrderStackView.addArrangedSubview(imageView)
+                // all constaints
+                let widthContraints =  NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+                let heightContraints = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+                NSLayoutConstraint.activate([heightContraints,widthContraints])
+            }
         }
-        self.userOrderBar.items = userItems
     }
     
     func refreshUsers(){
@@ -175,4 +229,12 @@ class PutzProfilEditDetailsVC: UIViewController {
     
 
     
+}
+
+
+extension NSSet {
+    func toArray<T>() -> [T] {
+        let array = self.map({ $0 as! T})
+        return array
+    }
 }

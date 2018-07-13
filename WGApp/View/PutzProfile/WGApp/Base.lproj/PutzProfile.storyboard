@@ -67,7 +67,7 @@
                         <collectionViewLayout key="collectionViewLayout" id="2pu-w7-UTV" customClass="CustomCollectionViewLayout" customModule="WGApp" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="customCell" id="LqT-yh-inh" customClass="CustomCollectionViewCell" customModule="MultiDirectionCollectionView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="35" width="100" height="30"/>
+                                <rect key="frame" x="0.0" y="60" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -90,29 +90,29 @@
                                     <outlet property="label" destination="pvI-3g-vYu" id="84w-65-bhJ"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="putzItemCell" id="bfc-41-vnJ" customClass="CustomCollectionViewCell" customModule="MultiDirectionCollectionView" customModuleProvider="target">
-                                <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="putzItemCell" id="bfc-41-vnJ" customClass="PutzItemViewCell" customModule="WGApp" customModuleProvider="target">
+                                <rect key="frame" x="110" y="0.0" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4LL-9e-KpE">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="1zH-Ml-qPP"/>
-                                                <constraint firstAttribute="height" constant="60" id="Leo-lU-U4r"/>
+                                                <constraint firstAttribute="width" constant="90" id="1zH-Ml-qPP"/>
+                                                <constraint firstAttribute="height" constant="90" id="Leo-lU-U4r"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i0O-0k-7vA">
-                                            <rect key="frame" x="60" y="0.0" width="40" height="40"/>
+                                            <rect key="frame" x="90" y="0.0" width="60" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="62Y-0M-iNx"/>
-                                                <constraint firstAttribute="height" constant="40" id="Zkd-kG-k7P"/>
+                                                <constraint firstAttribute="width" constant="60" id="62Y-0M-iNx"/>
+                                                <constraint firstAttribute="height" constant="60" identifier="putzItemCell" id="Zkd-kG-k7P"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bad Putzen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN2-BC-54k">
-                                            <rect key="frame" x="6.5" y="70" width="87.5" height="21"/>
+                                            <rect key="frame" x="32" y="119" width="87.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -128,7 +128,12 @@
                                     <constraint firstAttribute="bottom" secondItem="JN2-BC-54k" secondAttribute="bottom" constant="9" id="j9b-Ng-SqO"/>
                                     <constraint firstItem="4LL-9e-KpE" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" id="pcm-xB-owT"/>
                                 </constraints>
-                                <size key="customSize" width="100" height="100"/>
+                                <size key="customSize" width="150" height="150"/>
+                                <connections>
+                                    <outlet property="putzItemImageView" destination="4LL-9e-KpE" id="EYb-Pb-Ytz"/>
+                                    <outlet property="putzProfileTitle" destination="JN2-BC-54k" id="5Sb-K0-eFZ"/>
+                                    <outlet property="userImageView" destination="i0O-0k-7vA" id="Pkh-eP-htX"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -272,17 +277,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IZP-jT-1tS">
-                                <rect key="frame" x="342.5" y="327.5" width="0.0" height="0.0"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Es sind noch keine Putzprofile vorhanden." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-aa-PLI">
-                                        <rect key="frame" x="-342.5" y="-327.5" width="319.5" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Es sind noch keine Putzprofile vorhanden." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-aa-PLI">
+                                <rect key="frame" x="182" y="327" width="319.5" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alle X Wochen wiederholen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhc-UE-ha1">
                                 <rect key="frame" x="58" y="243" width="209" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -290,17 +291,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-NL-UYP">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="26" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-NL-UYP">
                                 <rect key="frame" x="296" y="239" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onWeekManipulated:" destination="nkt-AC-S6w" eventType="valueChanged" id="mhg-Xq-wP3"/>
+                                </connections>
                             </stepper>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="41i-aP-jMn">
-                                <rect key="frame" x="296" y="305" width="368" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="fyM-1x-rNC"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Teilnehmende Mitbewohner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG7-6q-l6m">
                                 <rect key="frame" x="58" y="317" width="212" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -319,38 +316,48 @@
                                 <rect key="frame" x="296" y="384" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reihenfolge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJV-4z-svU">
-                                <rect key="frame" x="58" y="464" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zufällige Reihenfolge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJV-4z-svU">
+                                <rect key="frame" x="58" y="587" width="161" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pn-Sh-DAC">
-                                <rect key="frame" x="296" y="452" width="368" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="BWV-1J-uqa"/>
-                                </items>
-                            </toolbar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I33-G7-53h">
+                                <rect key="frame" x="295" y="302" width="369" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXy-kx-URm">
+                                <rect key="frame" x="296" y="572" width="368" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtn-0i-9uO">
+                                <rect key="frame" x="295" y="481" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Änderungen Speichern"/>
+                                <connections>
+                                    <action selector="saveChangings:" destination="nkt-AC-S6w" eventType="touchUpInside" id="E3X-Gk-EUX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gN0-JR-m37" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="4U4-nK-BOn"/>
-                            <constraint firstItem="IZP-jT-1tS" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="91v-as-3ch"/>
                             <constraint firstItem="gN0-JR-m37" firstAttribute="top" secondItem="M9J-La-qki" secondAttribute="bottom" constant="20" id="byn-4N-cIk"/>
                             <constraint firstItem="M9J-La-qki" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="cFj-s2-Q0C"/>
-                            <constraint firstItem="IZP-jT-1tS" firstAttribute="centerY" secondItem="bXW-Tk-Ijm" secondAttribute="centerY" id="oF5-tZ-Jn9"/>
                             <constraint firstItem="M9J-La-qki" firstAttribute="top" secondItem="Z49-hh-5PL" secondAttribute="top" constant="20" id="xDf-zY-4Uo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z49-hh-5PL"/>
                     </view>
                     <connections>
+                        <outlet property="currentActiveButton" destination="6am-rx-nw4" id="G7i-Wn-3A2"/>
                         <outlet property="noPutzProfilesLabel" destination="Br3-aa-PLI" id="1i3-9C-vca"/>
                         <outlet property="putzIcon" destination="M9J-La-qki" id="5Xg-Nu-fUr"/>
+                        <outlet property="stepper" destination="RGl-NL-UYP" id="vWD-re-lMB"/>
                         <outlet property="titleTextField" destination="gN0-JR-m37" id="ZKd-dX-7Ee"/>
-                        <outlet property="userOrderBar" destination="2pn-Sh-DAC" id="s5F-Fk-nfj"/>
-                        <outlet property="userSelectionBar" destination="41i-aP-jMn" id="wPI-0Z-diG"/>
+                        <outlet property="userOrderScrollView" destination="BXy-kx-URm" id="0s8-tE-YDo"/>
+                        <outlet property="userSelectionScrollView" destination="I33-G7-53h" id="Teh-MP-J7p"/>
+                        <outlet property="weeksLabel" destination="Uhc-UE-ha1" id="ADA-lu-Kji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXH-eq-AT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
