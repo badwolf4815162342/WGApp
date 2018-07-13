@@ -30,12 +30,12 @@ class PutzProfileTableViewCell: UITableViewCell {
         putzprofile = putzProfile
         
         putzProfileTitleLabel.text = putzprofile?.title
-        var userIconString = putzprofile?.profilIcon
+        let userIconString = putzprofile?.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             putzIcon.image = image
         } else {
             putzIcon.image = UIImage(named: "Fish-icon")
-            print("Picture of putzprofile could not be loaded !!! ")
+            print("Picture of user could not be loaded !!! ")
         }
         
     }

@@ -27,6 +27,7 @@ struct CONFIG {
         static let X_WEEK_REPEAT_LABEL_TEXT =  "Alle %d Wochen wiederholen"
         static let NEXT_X_WEEKS_PUTZSETTINGS_ARE_CALCULATED_FOR = 26
         //static let START_DAY_OF_WEEK: Date =  Date.monday
+        static let WEEKS_BACK_IN_CALENDER = 1
         
     }
     

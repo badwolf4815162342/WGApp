@@ -36,6 +36,8 @@
 		5F0A8ED320F8005100E06836 /* PutzSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED120F8005100E06836 /* PutzSetting+CoreDataClass.swift */; };
 		5F0A8ED420F8005100E06836 /* PutzSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED220F8005100E06836 /* PutzSetting+CoreDataProperties.swift */; };
 		5F0A8ED620F81D4100E06836 /* PutzItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */; };
+		5F0A8ED920F8C2EA00E06836 /* PutzWeekItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED720F8C2EA00E06836 /* PutzWeekItem+CoreDataClass.swift */; };
+		5F0A8EDA20F8C2EA00E06836 /* PutzWeekItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED820F8C2EA00E06836 /* PutzWeekItem+CoreDataProperties.swift */; };
 		5F44D62F20D01CA40014AB46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D62E20D01CA40014AB46 /* Image.swift */; };
 		5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */; };
 		5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */; };
@@ -65,8 +67,6 @@
 		5FBD7D0520E03E910007BBC3 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */; };
 		5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */; };
 		5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6852420E5299C00B37CF8 /* TripRMV.swift */; };
-		5FCC3F2020F23F1000F98529 /* PutzWeekItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC3F1C20F23F1000F98529 /* PutzWeekItem+CoreDataClass.swift */; };
-		5FCC3F2120F23F1000F98529 /* PutzWeekItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC3F1D20F23F1000F98529 /* PutzWeekItem+CoreDataProperties.swift */; };
 		5FCC3F3220F242C500F98529 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC3F2E20F242C500F98529 /* Profil+CoreDataClass.swift */; };
 		5FCC3F3320F242C500F98529 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC3F2F20F242C500F98529 /* Profil+CoreDataProperties.swift */; };
 		5FCC3F3420F242C500F98529 /* BusSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC3F3020F242C500F98529 /* BusSetting+CoreDataClass.swift */; };
@@ -137,6 +137,8 @@
 		5F0A8ED120F8005100E06836 /* PutzSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5F0A8ED220F8005100E06836 /* PutzSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzItemViewCell.swift; sourceTree = "<group>"; };
+		5F0A8ED720F8C2EA00E06836 /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F0A8ED820F8C2EA00E06836 /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F44D62E20D01CA40014AB46 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = WGApp/Model/UserModels/Image.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilEditVC.swift; path = WGApp/Controller/user/UserProfilEditVC.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilVC.swift; path = WGApp/Controller/user/UserProfilVC.swift; sourceTree = SOURCE_ROOT; };
@@ -172,8 +174,6 @@
 		5FBD7D0120E03E910007BBC3 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FBD7D0220E03E910007BBC3 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FC6852420E5299C00B37CF8 /* TripRMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRMV.swift; sourceTree = "<group>"; };
-		5FCC3F1C20F23F1000F98529 /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		5FCC3F1D20F23F1000F98529 /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FCC3F2E20F242C500F98529 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FCC3F2F20F242C500F98529 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5FCC3F3020F242C500F98529 /* BusSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -431,14 +431,14 @@
 		8F12379C20D7F9A60073AF5F /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				5F0A8ED720F8C2EA00E06836 /* PutzWeekItem+CoreDataClass.swift */,
+				5F0A8ED820F8C2EA00E06836 /* PutzWeekItem+CoreDataProperties.swift */,
 				5F0A8ED120F8005100E06836 /* PutzSetting+CoreDataClass.swift */,
 				5F0A8ED220F8005100E06836 /* PutzSetting+CoreDataProperties.swift */,
 				5FCC3F2E20F242C500F98529 /* Profil+CoreDataClass.swift */,
 				5FCC3F2F20F242C500F98529 /* Profil+CoreDataProperties.swift */,
 				5FCC3F3020F242C500F98529 /* BusSetting+CoreDataClass.swift */,
 				5FCC3F3120F242C500F98529 /* BusSetting+CoreDataProperties.swift */,
-				5FCC3F1C20F23F1000F98529 /* PutzWeekItem+CoreDataClass.swift */,
-				5FCC3F1D20F23F1000F98529 /* PutzWeekItem+CoreDataProperties.swift */,
 				5FF7877420F2364B00FC7F49 /* User+CoreDataClass.swift */,
 				5FF7877520F2364B00FC7F49 /* User+CoreDataProperties.swift */,
 				8F4399FB20EB732B00B063BB /* ListItem+CoreDataClass.swift */,
@@ -616,6 +616,7 @@
 				5F09F1AF20C6FF12008407F6 /* StopLocationResponse.swift in Sources */,
 				8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */,
 				5FA47C5620BAE9A60043B3C8 /* ContainerVC.swift in Sources */,
+				5F0A8ED920F8C2EA00E06836 /* PutzWeekItem+CoreDataClass.swift in Sources */,
 				5F09F1CA20CBD140008407F6 /* BusRouteEditVC.swift in Sources */,
 				5FF7877620F2364B00FC7F49 /* User+CoreDataClass.swift in Sources */,
 				5FBD7CD320D3EBFB0007BBC3 /* HomeProfil+CoreDataClass.swift in Sources */,
@@ -651,18 +652,17 @@
 				8F006BD020C5D69C005846EB /* WGApp.xcdatamodel in Sources */,
 				5FA47C8520BAF4300043B3C8 /* SideMenueVC.swift in Sources */,
 				8F37143820ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift in Sources */,
-				5FCC3F2020F23F1000F98529 /* PutzWeekItem+CoreDataClass.swift in Sources */,
 				5F0A8EC220F63F6100E06836 /* PutzProfilEditDetailsVC.swift in Sources */,
 				5FBD7CE420D996B50007BBC3 /* StopLocation+CoreDataProperties.swift in Sources */,
 				5FBD7CE320D996B50007BBC3 /* StopLocation+CoreDataClass.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
 				5FE2899320EE99DC0090193C /* UserSelectionVC.swift in Sources */,
+				5F0A8EDA20F8C2EA00E06836 /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				5F0A8ECC20F7605B00E06836 /* CustomCollectionViewController.swift in Sources */,
 				8F4399FD20EB732B00B063BB /* ListItem+CoreDataClass.swift in Sources */,
 				5F0A8EBA20F6397B00E06836 /* PutzProfilCalenderVC.swift in Sources */,
 				5FBD7D0620E03E910007BBC3 /* BusRoute+CoreDataProperties.swift in Sources */,
 				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
-				5FCC3F2120F23F1000F98529 /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				5FBD7D0520E03E910007BBC3 /* BusRoute+CoreDataClass.swift in Sources */,
 				5F0A8EC020F63F4D00E06836 /* PutzprofilTableVC.swift in Sources */,
 				5FE289B020F11A610090193C /* Config.swift in Sources */,

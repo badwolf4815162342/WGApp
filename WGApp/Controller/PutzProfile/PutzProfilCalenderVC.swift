@@ -17,19 +17,22 @@ class PutzProfilCalenderVC: UICollectionViewController {
     var numberOfPutzSettings = 0
     var thisWeekStart : Date?
     var thisWeekEnd: Date?
-    var profiles: [PutzSetting]?
+    var lastWeekStart : Date?
+    var lastWeekEnd: Date?
+    static var profiles: [PutzSetting]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func refresh() {
         super.viewWillAppear(true)
         let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             numberOfPutzSettings = profiles.count
-            self.profiles = profiles
+            PutzProfilCalenderVC.profiles = profiles
         } catch {
             print("core data couldn't be loaded")
         }
@@ -37,6 +40,9 @@ class PutzProfilCalenderVC: UICollectionViewController {
                                                   considerToday: true)
         thisWeekEnd = Date.today().previous(.monday,
                                                 considerToday: true).add(days: 6)
+        lastWeekStart = thisWeekStart?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
+        lastWeekEnd = thisWeekEnd?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
+        
         
     }
 
@@ -46,7 +52,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         // number of
-        return numberOfPutzSettings
+        return numberOfPutzSettings+1
     }
     
     
@@ -60,22 +66,30 @@ class PutzProfilCalenderVC: UICollectionViewController {
        
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomCollectionViewCell
         if (Int(indexPath.section.description) == 0) {
-            print("Weeks from current \(Int(indexPath.item.description)!)")
+            //print("Weeks from current \(Int(indexPath.item.description)!)")
             cell.label.text = getWeekDates(weeksFromCurrent: Int(indexPath.item.description)!)
+            var addingDays = (7 * (Int(indexPath.item.description)!))
+            var actWeekStart = lastWeekStart?.add(days: addingDays)
+            if (actWeekStart == thisWeekStart) {
+                cell.backgroundColor = UIColor.green
+            }
         } else {
-            let icell = collectionView.dequeueReusableCell(withReuseIdentifier: itemIdentifier, for: indexPath) as! PutzItemViewCell
+            let icell = collectionView.dequeueReusableCell(withReuseIdentifier: itemIdentifier, for: indexPath) as!
+            PutzItemViewCell
+            let actPutzSetting = PutzProfilCalenderVC.profiles![Int(indexPath.section.description)!-1]
             // Configure the cell
-            icell.putzProfileTitle.text = "Sec " + profiles![Int(indexPath.section.description)!].title! + "/Item " + indexPath.item.description
-            icell.putzItemImageView.image = UIImage(named: "Fish-icon")
+            var addingDays = (7 * (Int(indexPath.item.description)!))
+            var actWeekStart = lastWeekStart?.add(days: addingDays)
+            icell.setPutzItem(putzProfile: actPutzSetting, startDate: actWeekStart!)
             return icell
         }
         return cell
     }
     
     func getWeekDates(weeksFromCurrent: Int) -> String{
-        var addingDays = (7 * (weeksFromCurrent-1))
-        var weekStart = thisWeekStart?.add(days: addingDays)
-        var weekEnd = thisWeekEnd?.add(days: addingDays)
+        var addingDays = (7 * (weeksFromCurrent))
+        var weekStart = lastWeekStart?.add(days: addingDays)
+        var weekEnd = lastWeekEnd?.add(days: addingDays)
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         return "\(outFormatter.string(from: weekStart!)) bis \(outFormatter.string(from: weekEnd!))"

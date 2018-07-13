@@ -35,6 +35,8 @@
         <relationship name="weekItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PutzWeekItem" inverseName="putzSetting" inverseEntity="PutzWeekItem" syncable="YES"/>
     </entity>
     <entity name="PutzWeekItem" representedClassName="PutzWeekItem" syncable="YES">
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfWeeks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weekStartDay" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="putzSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PutzSetting" inverseName="weekItems" inverseEntity="PutzSetting" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="putzWeekItems" inverseEntity="User" syncable="YES"/>
@@ -57,7 +59,7 @@
         <element name="ListItem" positionX="-2817" positionY="-3" width="128" height="73"/>
         <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
         <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="148"/>
-        <element name="PutzWeekItem" positionX="-3015" positionY="-178" width="128" height="88"/>
+        <element name="PutzWeekItem" positionX="-3015" positionY="-178" width="128" height="118"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
         <element name="User" positionX="-2810" positionY="-135" width="128" height="88"/>
     </elements>

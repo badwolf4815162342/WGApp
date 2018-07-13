@@ -13,4 +13,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     @IBOutlet weak var name: UILabel!
+    
+    
 }
