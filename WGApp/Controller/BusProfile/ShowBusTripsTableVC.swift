@@ -29,6 +29,11 @@ class ShowBusTripsTableVC: UIViewController {
     
     let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
+    @IBOutlet weak var tableWithDestinationHeaderView: UIView!
+    @IBOutlet weak var tableHeaderView: UIView!
+    @IBOutlet weak var ZielLabel: UILabel!
+    @IBOutlet weak var stopLocationLabel: UILabel!
+    @IBOutlet weak var startLocationLabel: UILabel!
     @IBOutlet weak var busProfileName: UILabel!
     var selectedBusProfile: BusSetting?
     
@@ -89,10 +94,25 @@ class ShowBusTripsTableVC: UIViewController {
                 ofProfileImage.image = UIImage(named: "Bear-icon")
                 print("Picture of user could not be loaded !!! ")
             }
+            if let type = tripsTableType {
+                switch type {
+                case .trip:
+                    tableHeaderView.isHidden = true
+                    tableWithDestinationHeaderView.isHidden = false
+                    ZielLabel.isHidden = false
+                case .departure:
+                    tableHeaderView.isHidden = false
+                    tableWithDestinationHeaderView.isHidden = true
+                    ZielLabel.isHidden = true
+                    stopLocationLabel.isHidden = true
+                }
+            }
         } else {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")
         }
+        
+        
         refreshTable()
         // load core data into table
         self.myTimer = Timer(timeInterval: CONFIG.BUSSETTINGS.BUS_TRIPS_RELOAD_INTERVAL, target: self, selector: #selector(refreshTable), userInfo: nil, repeats: true)
@@ -126,6 +146,8 @@ class ShowBusTripsTableVC: UIViewController {
                     }
                 })
             case .departure:
+                tableHeaderView.isHidden = false
+                tableWithDestinationHeaderView.isHidden = true
                 BusSettingsController.getDepartures(busProfile: selectedBusProfile!, completion:{ rmvDepartues in
                     DispatchQueue.main.async {
                         self.currentlyReloading = true
