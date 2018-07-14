@@ -14,9 +14,10 @@ class ShowBusTripsTableVC: UIViewController {
         case trip
         case departure
     }
-    
+
     var tripsTableType: TripsTableType?
     
+    @IBOutlet weak var noRoutesLabel: UILabel!
     @IBOutlet weak var ofProfileImage: UIImageView!
     @IBOutlet weak var showTripsTableView: UITableView!
     
@@ -31,9 +32,6 @@ class ShowBusTripsTableVC: UIViewController {
     
     @IBOutlet weak var tableWithDestinationHeaderView: UIView!
     @IBOutlet weak var tableHeaderView: UIView!
-    @IBOutlet weak var ZielLabel: UILabel!
-    @IBOutlet weak var stopLocationLabel: UILabel!
-    @IBOutlet weak var startLocationLabel: UILabel!
     @IBOutlet weak var busProfileName: UILabel!
     var selectedBusProfile: BusSetting?
     
@@ -44,7 +42,6 @@ class ShowBusTripsTableVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showTripsTableView.delegate = self
         showTripsTableView.dataSource = self
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 0))
@@ -70,7 +67,8 @@ class ShowBusTripsTableVC: UIViewController {
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
         strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
         
-        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        //effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
+        effectView.frame = CGRect(x: 50, y: 50, width: 160, height: 46)
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
         
@@ -99,12 +97,9 @@ class ShowBusTripsTableVC: UIViewController {
                 case .trip:
                     tableHeaderView.isHidden = true
                     tableWithDestinationHeaderView.isHidden = false
-                    ZielLabel.isHidden = false
                 case .departure:
                     tableHeaderView.isHidden = false
                     tableWithDestinationHeaderView.isHidden = true
-                    ZielLabel.isHidden = true
-                    stopLocationLabel.isHidden = true
                 }
             }
         } else {
@@ -125,10 +120,12 @@ class ShowBusTripsTableVC: UIViewController {
     
   
     @objc func refreshTable(){
+        print("trips \(tripsTableType)")
         if (currentlyReloading) {
             return
         }
         self.activityIndicator("Aktualisieren")
+        print("ADD")
         for s in self.selectedTrips {
             print("LONG: \(s)")
         }
@@ -136,13 +133,22 @@ class ShowBusTripsTableVC: UIViewController {
         if let type = tripsTableType {
             switch type {
             case .trip:
+                print("trip")
                 BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
                     DispatchQueue.main.async {
+                        print("trips \(rmvTrips.count)")
                         self.currentlyReloading = true
-                        self.effectView.removeFromSuperview()
                         self.trips = rmvTrips
                         self.filterTripList()
-                        self.currentlyReloading = false
+                        if (self.trips.count == 0) {
+                            print("HERE")
+                            self.effectView.removeFromSuperview()
+                            self.currentlyReloading = false
+                        } else {
+                            self.currentlyReloading = false
+                            self.effectView.removeFromSuperview()
+                        }
+                       
                     }
                 })
             case .departure:
@@ -151,10 +157,17 @@ class ShowBusTripsTableVC: UIViewController {
                 BusSettingsController.getDepartures(busProfile: selectedBusProfile!, completion:{ rmvDepartues in
                     DispatchQueue.main.async {
                         self.currentlyReloading = true
-                        self.effectView.removeFromSuperview()
                         self.departures = rmvDepartues
                         self.filterDepList()
-                        self.currentlyReloading = false
+                        if (self.departures.count == 0) {
+                            print("HERE")
+                            self.effectView.removeFromSuperview()
+                            self.currentlyReloading = false
+                        } else {
+                            self.currentlyReloading = false
+                            self.effectView.removeFromSuperview()
+                        }
+
                     }
                 })
             }

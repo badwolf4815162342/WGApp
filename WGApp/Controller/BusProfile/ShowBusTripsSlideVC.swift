@@ -66,7 +66,11 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
             setViewControllers([pages[0]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
 
         }
-        
+        if (pages.count == 1) {
+            self.view.isUserInteractionEnabled = false
+        } else {
+            self.view.isUserInteractionEnabled = true
+        }
        
     }
     
@@ -81,7 +85,6 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
         
         // if you prefer to NOT scroll circularly, simply add here:
         // if cur == 0 { return nil }
-        
         let prev = abs((cur - 1) % pages.count)
         return pages[prev]
         
@@ -93,7 +96,6 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
         
         // if you prefer to NOT scroll circularly, simply add here:
         // if cur == (pages.count - 1) { return nil }
-        
         let nxt = abs((cur + 1) % pages.count)
         return pages[nxt]
     }

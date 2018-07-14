@@ -19,6 +19,8 @@ class PutzItemViewCell: UICollectionViewCell {
     var putzItem:PutzWeekItem?
     
     func setPutzItem(putzProfile: PutzSetting, startDate: Date) {
+        self.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
+        self.layer.borderWidth = 10.0
         var putzItem = getPutzItem(putzProfile: putzProfile, startDate: startDate)
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"

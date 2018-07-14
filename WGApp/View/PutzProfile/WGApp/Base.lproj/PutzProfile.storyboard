@@ -64,7 +64,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" id="PH2-95-DDG">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="655"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="DARK_GRAY"/>
                         <collectionViewLayout key="collectionViewLayout" id="2pu-w7-UTV" customClass="CustomCollectionViewLayout" customModule="WGApp" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="customCell" id="LqT-yh-inh" customClass="CustomCollectionViewCell" customModule="WGApp">
@@ -99,35 +99,41 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4LL-9e-KpE">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            <rect key="frame" x="5" y="5" width="85" height="86"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="1zH-Ml-qPP"/>
-                                                <constraint firstAttribute="height" constant="90" id="Leo-lU-U4r"/>
+                                                <constraint firstAttribute="width" constant="85" id="1zH-Ml-qPP"/>
+                                                <constraint firstAttribute="height" constant="86" id="Leo-lU-U4r"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i0O-0k-7vA">
-                                            <rect key="frame" x="90" y="0.0" width="60" height="60"/>
+                                            <rect key="frame" x="90" y="5" width="55" height="55"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="62Y-0M-iNx"/>
-                                                <constraint firstAttribute="height" constant="60" identifier="putzItemCell" id="Zkd-kG-k7P"/>
+                                                <constraint firstAttribute="width" constant="55" id="62Y-0M-iNx"/>
+                                                <constraint firstAttribute="height" constant="55" identifier="putzItemCell" id="Zkd-kG-k7P"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bad Putzen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN2-BC-54k">
-                                            <rect key="frame" x="32" y="119" width="87.5" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad Putzen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN2-BC-54k">
+                                            <rect key="frame" x="5" y="115" width="140" height="30"/>
+                                            <color key="backgroundColor" name="LIGHT_YELLOW"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="1Fk-Wm-6Cu"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="textColor" name="DARK_GRAY"/>
+                                            <color key="highlightedColor" name="YELLOW"/>
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="LIGHT_GRAY"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="i0O-0k-7vA" secondAttribute="trailing" id="Dt4-Qx-cBN"/>
-                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="leading" secondItem="bfc-41-vnJ" secondAttribute="leading" id="HzY-jz-mkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="JN2-BC-54k" secondAttribute="trailing" constant="5" id="9bV-3e-e3i"/>
+                                    <constraint firstAttribute="trailing" secondItem="i0O-0k-7vA" secondAttribute="trailing" constant="5" id="Dt4-Qx-cBN"/>
+                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="leading" secondItem="bfc-41-vnJ" secondAttribute="leading" constant="5" id="HzY-jz-mkA"/>
+                                    <constraint firstItem="JN2-BC-54k" firstAttribute="leading" secondItem="bfc-41-vnJ" secondAttribute="leading" constant="5" id="Ix6-HN-Vin"/>
                                     <constraint firstItem="JN2-BC-54k" firstAttribute="centerX" secondItem="bfc-41-vnJ" secondAttribute="centerX" id="L8d-kx-rNp"/>
-                                    <constraint firstItem="i0O-0k-7vA" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" id="Rhb-Ro-zuE"/>
-                                    <constraint firstAttribute="bottom" secondItem="JN2-BC-54k" secondAttribute="bottom" constant="9" id="j9b-Ng-SqO"/>
-                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" id="pcm-xB-owT"/>
+                                    <constraint firstItem="i0O-0k-7vA" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="5" id="Rhb-Ro-zuE"/>
+                                    <constraint firstItem="JN2-BC-54k" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="115" id="brr-hJ-eea"/>
+                                    <constraint firstItem="4LL-9e-KpE" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="5" id="pcm-xB-owT"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
@@ -190,7 +196,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q5E-hQ-oF9">
                                 <rect key="frame" x="0.0" y="68" width="340" height="587"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="GRAY"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PutzProfileCell" rowHeight="120" id="5EN-OQ-T0m" customClass="PutzProfileTableViewCell" customModule="WGApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="340" height="120"/>
@@ -200,9 +206,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-ET-UQN">
-                                                    <rect key="frame" x="109" y="49.5" width="202" height="21"/>
+                                                    <rect key="frame" x="109" y="49.5" width="195" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="YELLOW"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dR5-Ew-aVs">
@@ -222,6 +228,7 @@
                                                 <constraint firstItem="bzt-ET-UQN" firstAttribute="leading" secondItem="dR5-Ew-aVs" secondAttribute="trailing" constant="24" id="XiH-4A-eXQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="LIGHT_GRAY"/>
                                         <connections>
                                             <outlet property="putzIcon" destination="dR5-Ew-aVs" id="HdK-1M-QUU"/>
                                             <outlet property="putzProfileTitleLabel" destination="bzt-ET-UQN" id="Ch5-v0-52L"/>
@@ -235,13 +242,15 @@
                                     <constraint firstAttribute="height" constant="40" id="xFX-uH-t1e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="53"/>
-                                <state key="normal" title="+"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" name="YELLOW"/>
+                                </state>
                                 <connections>
                                     <action selector="addPutzProfile:" destination="eR8-RB-Ppt" eventType="touchUpInside" id="dUi-F4-xcg"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="GRAY"/>
                         <constraints>
                             <constraint firstItem="Keo-iH-DQq" firstAttribute="top" secondItem="DmJ-G7-U9N" secondAttribute="top" constant="13" id="KMy-8t-fwa"/>
                             <constraint firstItem="3iM-1t-EiC" firstAttribute="trailing" secondItem="Keo-iH-DQq" secondAttribute="trailing" constant="20" id="rMi-wk-NPU"/>
@@ -274,7 +283,8 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bad Putzen" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-JR-m37">
                                 <rect key="frame" x="295" y="170" width="95" height="30"/>
-                                <nil key="textColor"/>
+                                <color key="backgroundColor" name="WHITE"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -289,12 +299,13 @@
                                 <rect key="frame" x="58" y="243" width="209" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="YELLOW"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="26" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-NL-UYP">
                                 <rect key="frame" x="296" y="239" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="YELLOW"/>
                                 <connections>
                                     <action selector="onWeekManipulated:" destination="nkt-AC-S6w" eventType="valueChanged" id="mhg-Xq-wP3"/>
                                 </connections>
@@ -303,25 +314,27 @@
                                 <rect key="frame" x="58" y="317" width="212" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="YELLOW"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Putzprofil aktiv?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds4-tH-FZD">
                                 <rect key="frame" x="58" y="389" width="123" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="YELLOW"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6am-rx-nw4">
                                 <rect key="frame" x="296" y="384" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" name="YELLOW"/>
+                                <color key="thumbTintColor" name="GRAY"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zufällige Reihenfolge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJV-4z-svU">
                                 <rect key="frame" x="58" y="587" width="161" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="YELLOW"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I33-G7-53h">
@@ -333,15 +346,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtn-0i-9uO">
-                                <rect key="frame" x="295" y="481" width="158" height="30"/>
+                                <rect key="frame" x="295" y="481" width="222" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Änderungen Speichern"/>
+                                <color key="backgroundColor" name="PETROL"/>
+                                <state key="normal" title="Änderungen Speichern">
+                                    <color key="titleColor" name="YELLOW"/>
+                                </state>
                                 <connections>
                                     <action selector="saveChangings:" destination="nkt-AC-S6w" eventType="touchUpInside" id="E3X-Gk-EUX"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="DARK_GRAY"/>
                         <constraints>
                             <constraint firstItem="gN0-JR-m37" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="4U4-nK-BOn"/>
                             <constraint firstItem="gN0-JR-m37" firstAttribute="top" secondItem="M9J-La-qki" secondAttribute="bottom" constant="20" id="byn-4N-cIk"/>
@@ -367,8 +383,29 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="GRAY">
             <color red="0.21199999749660492" green="0.2669999897480011" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GRAY">
+            <color red="0.21199999749660492" green="0.2669999897480011" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LIGHT_GRAY">
+            <color red="0.25900000333786011" green="0.32499998807907104" blue="0.41600000858306885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LIGHT_YELLOW">
+            <color red="0.97299998998641968" green="0.9100000262260437" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PETROL">
+            <color red="0.21199999749660492" green="0.50599998235702515" blue="0.5690000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WHITE">
+            <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YELLOW">
+            <color red="0.97600001096725464" green="0.78799998760223389" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

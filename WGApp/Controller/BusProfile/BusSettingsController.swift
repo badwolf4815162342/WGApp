@@ -236,6 +236,7 @@ class BusSettingsController: NSObject {
                     }
                 }
             }
+            completion(tripsRMV)
         } else {
           print("ERROR")
         }
@@ -262,7 +263,7 @@ class BusSettingsController: NSObject {
                     }
                 }
             }
-            
+            completion(departures)
         }
     }
     
@@ -296,12 +297,12 @@ class BusSettingsController: NSObject {
     class func setSelectedColor(minutes: Int, futureDeparture: Bool) -> UIColor {
         if (futureDeparture) {
             if (minutes <= CONFIG.BUSSETTINGS.HIGH_PRIO_TRIP_MINUTES) {
-                return UIColor.red
+                return UIColor(named: "RED")!
             } else if (minutes > CONFIG.BUSSETTINGS.HIGH_PRIO_TRIP_MINUTES && minutes <= CONFIG.BUSSETTINGS.NORMAL_PRIO_TRIP_MINUTES) {
-                return UIColor.yellow
+                return UIColor(named: "YELLOW")!
             }
         }
-        return UIColor.green
+        return UIColor(named: "GREEN")!
     }
     
     class func addTestBusSettings(){

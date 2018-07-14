@@ -186,7 +186,8 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cZq-x0-edK">
                                 <rect key="frame" x="343" y="64" width="321" height="30"/>
-                                <color key="textColor" name="WHITE"/>
+                                <color key="backgroundColor" name="WHITE"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -360,11 +361,11 @@
             <objects>
                 <viewController id="Zrh-EB-TtZ" customClass="BusRouteEditVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ga0-Pb-CBl">
-                        <rect key="frame" x="0.0" y="0.0" width="684" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kln-pj-8Jr">
-                                <rect key="frame" x="539" y="708" width="125" height="40"/>
+                                <rect key="frame" x="879" y="708" width="125" height="40"/>
                                 <color key="backgroundColor" name="PETROL"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3W6-gl-Mdb"/>
@@ -384,7 +385,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routeneinstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upx-BN-RGQ">
-                                <rect key="frame" x="264" y="70" width="156" height="21"/>
+                                <rect key="frame" x="434" y="70" width="156" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="LIGHT_YELLOW"/>
                                 <nil key="highlightedColor"/>
@@ -397,20 +398,22 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NON-wf-O6B" customClass="UIStopLocationSearchTextField" customModule="WGApp" customModuleProvider="target">
                                 <rect key="frame" x="40" y="369" width="300" height="30"/>
+                                <color key="backgroundColor" name="WHITE"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YHL-ze-8zd"/>
                                     <constraint firstAttribute="width" constant="300" id="vMZ-cK-WVD"/>
                                 </constraints>
-                                <color key="textColor" name="WHITE"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0sn-01-1Tf" customClass="UIStopLocationSearchTextField" customModule="WGApp" customModuleProvider="target">
-                                <rect key="frame" x="439" y="369" width="300" height="30"/>
+                                <rect key="frame" x="704" y="369" width="300" height="30"/>
+                                <color key="backgroundColor" name="WHITE"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="OCO-wp-tS1"/>
                                 </constraints>
-                                <color key="textColor" name="WHITE"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -432,6 +435,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wrw-gx-8hf"/>
                     </view>
+                    <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="destinationLabel" destination="xhh-WM-DDL" id="DjQ-EC-tQE"/>
                         <outlet property="destinationLocationTextField" destination="0sn-01-1Tf" id="E8c-jr-oy6"/>
@@ -446,6 +450,9 @@
     </scenes>
     <resources>
         <image name="bus" width="512" height="512"/>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

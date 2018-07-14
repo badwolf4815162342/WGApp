@@ -41,7 +41,7 @@ class BusDepartureTableViewCell: UITableViewCell {
             print("LONG: contains \(departureRMV.id) \(realStratTime.text)")
             self.backgroundColor = BusSettingsController.setSelectedColor(minutes: min, futureDeparture: futureDeparture)
         } else {
-            self.backgroundColor = UIColor.white
+            self.backgroundColor = UIColor(named: "LIGHT_GRAY")
         }
     }
 

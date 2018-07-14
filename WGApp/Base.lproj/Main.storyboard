@@ -208,7 +208,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gK-RO-Ssb" customClass="UIPageV">
-                                <rect key="frame" x="0.0" y="71" width="700" height="400"/>
+                                <rect key="frame" x="8" y="71" width="692" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="M5m-Uv-Gfv" kind="embed" id="HdR-Mc-bE9"/>
@@ -221,20 +221,20 @@
                                     <segue destination="BAt-qg-pKT" kind="embed" id="KoJ-Rw-qKf"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-sI-s0G">
-                                <rect key="frame" x="593" y="147" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Einstellungen"/>
-                                <connections>
-                                    <segue destination="wHS-gX-Jjd" kind="show" id="7At-4x-mH6"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdA-bC-DUN">
                                 <rect key="frame" x="476" y="617" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="users"/>
                                 <connections>
                                     <segue destination="6SK-wc-hcA" kind="show" id="Mdu-Yl-I53"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz4-sI-s0G">
+                                <rect key="frame" x="650" y="80" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bus"/>
+                                <connections>
+                                    <segue destination="wHS-gX-Jjd" kind="show" id="7At-4x-mH6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -322,9 +322,7 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="DARK_GRAY">
-            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="bus" width="512" height="512"/>
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

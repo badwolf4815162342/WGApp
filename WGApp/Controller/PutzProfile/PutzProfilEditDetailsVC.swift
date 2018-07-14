@@ -163,14 +163,13 @@ class PutzProfilEditDetailsVC: UIViewController {
             // button bild hinzufügen
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-            button.imageView?.backgroundColor = UIColor.cyan
 
-            button.layer.borderWidth = 2
+            button.layer.borderWidth = 5
             button.layer.cornerRadius = 5
             if (currentlySelectedUsers.contains(user)){
-                button.layer.borderColor = UIColor.darkGray.cgColor
+                button.layer.borderColor = UIColor(named: "YELLOW")?.cgColor
             } else {
-                button.layer.borderColor = UIColor.lightGray.cgColor
+                button.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
             }
             
             button.addTarget(self, action: #selector(toggleUser(sender:)), for: .touchUpInside)
