@@ -113,13 +113,15 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                         var preitem = item + CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER
                         var repeatEveryWeeks = 0
                         if (section != 0) {
+                            var putzProfil = PutzProfilCalenderVC.profiles![section-1]
+                            var posDiff = posDiffFromStartDayOnTable(putzProfil: putzProfil)
                             repeatEveryWeeks = Int(PutzProfilCalenderVC.profiles![section-1].repeatEveryXWeeks)
                             // breite x mal (repeatEveryXWeeks)
                             calculatedCellWidth = Double(Int(CELL_WIDTH) * repeatEveryWeeks)
                             if (repeatEveryWeeks == 1) {
-                                xPos = Double(item/repeatEveryWeeks) * calculatedCellWidth
+                                xPos = Double(posDiff) + (Double(item/repeatEveryWeeks) * calculatedCellWidth)
                             } else {
-                                xPos = Double((preitem/repeatEveryWeeks)) * calculatedCellWidth
+                                xPos = Double(posDiff) + (Double(item/repeatEveryWeeks) * calculatedCellWidth)
                             }
                         } else {
                             calculatedCellWidth = CELL_WIDTH
@@ -136,7 +138,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
  **/
                         if (section != 0) {
                             // jedes xte zeichnen, da es über x spalten geht
-                            if (preitem % repeatEveryWeeks == 0) {
+                            if (item % repeatEveryWeeks == 0) {
                                 calculatedCellHeight = CELL_HEIGHT_NORMAL
                                 yPos = (Double(section) * calculatedCellHeight) - calculatedCellHeight + CELL_HEIGHT_HEADER
                             } else {
@@ -190,6 +192,19 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
+    }
+    
+    func posDiffFromStartDayOnTable(putzProfil: PutzSetting) -> Int{
+        var length = Int(putzProfil.repeatEveryXWeeks)
+        var startDate: Date = putzProfil.startDate as! Date
+        var startDateOfCalender = PutzProfilCalenderVC.calenderFirstWeekStart
+        while (startDate < startDateOfCalender!) {
+            startDate = startDate.add(days: (length*7))
+        }
+        var weekDiff = startDate.days(from: startDateOfCalender!)/7
+        var posDiff = Int(CELL_WIDTH) * weekDiff
+        print("posDiff \(posDiff)")
+        return posDiff
     }
     
 }

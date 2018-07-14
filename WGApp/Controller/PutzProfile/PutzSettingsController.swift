@@ -29,6 +29,8 @@ class PutzSettingsController: NSObject {
         newPutzProfile.repeatEveryXWeeks = 1
         //calculateOrder(putzProfile: newPutzProfile)
         newPutzProfile.aktiv = false
+        newPutzProfile.startDate = (Date.today().previous(.monday,
+                                              considerToday: true)) as NSDate
         
         PersistenceService.saveContext()
         //for user in getOrderedUsers(ofProfile: newPutzProfile) {

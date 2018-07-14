@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
         <attribute name="withDestination" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSetting" inverseName="routes" inverseEntity="BusSetting" syncable="YES"/>
@@ -46,6 +46,7 @@
         <attribute name="aktiv" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="profilIcon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatEveryXWeeks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userOrder" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="participatingUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="participatesOnPutzSetting" inverseEntity="User" syncable="YES"/>
@@ -76,14 +77,14 @@
     <elements>
         <element name="BusRoute" positionX="-2243" positionY="-18" width="128" height="103"/>
         <element name="BusSetting" positionX="-2448" positionY="-262" width="128" height="118"/>
+        <element name="Debt" positionX="-3152" positionY="53" width="128" height="118"/>
         <element name="HomeProfil" positionX="-2621" positionY="-115" width="128" height="43"/>
         <element name="ListItem" positionX="-2621" positionY="90" width="128" height="103"/>
         <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
-        <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="148"/>
+        <element name="Purchase" positionX="-2846" positionY="74" width="128" height="133"/>
+        <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="165"/>
         <element name="PutzWeekItem" positionX="-3015" positionY="-234" width="128" height="118"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
         <element name="User" positionX="-2799" positionY="-135" width="162" height="148"/>
-        <element name="Debt" positionX="-3152" positionY="53" width="128" height="118"/>
-        <element name="Purchase" positionX="-2846" positionY="74" width="128" height="133"/>
     </elements>
 </model>

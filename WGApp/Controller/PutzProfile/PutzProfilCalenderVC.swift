@@ -17,8 +17,8 @@ class PutzProfilCalenderVC: UICollectionViewController {
     var numberOfPutzSettings = 0
     var thisWeekStart : Date?
     var thisWeekEnd: Date?
-    var lastWeekStart : Date?
-    var lastWeekEnd: Date?
+    static var calenderFirstWeekStart : Date?
+    static var calenderFirstlastWeekEnd: Date?
     static var profiles: [PutzSetting]?
     
     override func viewDidLoad() {
@@ -40,8 +40,8 @@ class PutzProfilCalenderVC: UICollectionViewController {
                                                   considerToday: true)
         thisWeekEnd = Date.today().previous(.monday,
                                                 considerToday: true).add(days: 6)
-        lastWeekStart = thisWeekStart?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
-        lastWeekEnd = thisWeekEnd?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
+        PutzProfilCalenderVC.calenderFirstWeekStart = thisWeekStart?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
+        PutzProfilCalenderVC.calenderFirstlastWeekEnd = thisWeekEnd?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
         
         
     }
@@ -69,7 +69,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
             //print("Weeks from current \(Int(indexPath.item.description)!)")
             cell.label.text = getWeekDates(weeksFromCurrent: Int(indexPath.item.description)!)
             var addingDays = (7 * (Int(indexPath.item.description)!))
-            var actWeekStart = lastWeekStart?.add(days: addingDays)
+            var actWeekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
             if (actWeekStart == thisWeekStart) {
                 cell.backgroundColor = UIColor.green
             }
@@ -79,7 +79,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
             let actPutzSetting = PutzProfilCalenderVC.profiles![Int(indexPath.section.description)!-1]
             // Configure the cell
             var addingDays = (7 * (Int(indexPath.item.description)!))
-            var actWeekStart = lastWeekStart?.add(days: addingDays)
+            var actWeekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
             icell.setPutzItem(putzProfile: actPutzSetting, startDate: actWeekStart!)
             return icell
         }
@@ -88,8 +88,8 @@ class PutzProfilCalenderVC: UICollectionViewController {
     
     func getWeekDates(weeksFromCurrent: Int) -> String{
         var addingDays = (7 * (weeksFromCurrent))
-        var weekStart = lastWeekStart?.add(days: addingDays)
-        var weekEnd = lastWeekEnd?.add(days: addingDays)
+        var weekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
+        var weekEnd = PutzProfilCalenderVC.calenderFirstlastWeekEnd?.add(days: addingDays)
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         return "\(outFormatter.string(from: weekStart!)) bis \(outFormatter.string(from: weekEnd!))"

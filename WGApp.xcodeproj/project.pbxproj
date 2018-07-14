@@ -39,6 +39,10 @@
 		5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */; };
 		5F44D63520D01CCA0014AB46 /* ChooseUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63220D01CCA0014AB46 /* ChooseUserVC.swift */; };
 		5F44D63820D01D0D0014AB46 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F44D63720D01D0D0014AB46 /* User.storyboard */; };
+		5F5BFEE220F9F4C300235D6F /* PutzSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE020F9F4C300235D6F /* PutzSetting+CoreDataClass.swift */; };
+		5F5BFEE320F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE120F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift */; };
+		5F5BFEE620F9FC6E00235D6F /* BusSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE420F9FC6E00235D6F /* BusSetting+CoreDataClass.swift */; };
+		5F5BFEE720F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE520F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift */; };
 		5F6204DB20E65E2500890135 /* ShowBusTripsSlideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6204DA20E65E2500890135 /* ShowBusTripsSlideVC.swift */; };
 		5F6204DD20E66E6B00890135 /* ShowBusTripsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6204DC20E66E6B00890135 /* ShowBusTripsTableVC.swift */; };
 		5F639C4F20E682B8002CC7D4 /* BusTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F639C4E20E682B8002CC7D4 /* BusTripTableViewCell.swift */; };
@@ -70,8 +74,6 @@
 		8F4399E820EB697000B063BB /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4399E620EB696F00B063BB /* List.storyboard */; };
 		8F4399EA20EB6EBE00B063BB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399E920EB6EBE00B063BB /* ListViewController.swift */; };
 		8F63293720EA68AD007175E8 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63293620EA68AD007175E8 /* UserCollectionViewCell.swift */; };
-		8F69319920F9796200731BE6 /* BusSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318320F9796200731BE6 /* BusSetting+CoreDataClass.swift */; };
-		8F69319A20F9796200731BE6 /* BusSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318420F9796200731BE6 /* BusSetting+CoreDataProperties.swift */; };
 		8F69319B20F9796200731BE6 /* PutzWeekItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318520F9796200731BE6 /* PutzWeekItem+CoreDataClass.swift */; };
 		8F69319C20F9796200731BE6 /* PutzWeekItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318620F9796200731BE6 /* PutzWeekItem+CoreDataProperties.swift */; };
 		8F69319D20F9796200731BE6 /* HomeProfil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318720F9796200731BE6 /* HomeProfil+CoreDataClass.swift */; };
@@ -82,8 +84,6 @@
 		8F6931A220F9796200731BE6 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318C20F9796200731BE6 /* User+CoreDataProperties.swift */; };
 		8F6931A320F9796200731BE6 /* BusRoute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318D20F9796200731BE6 /* BusRoute+CoreDataClass.swift */; };
 		8F6931A420F9796200731BE6 /* BusRoute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318E20F9796200731BE6 /* BusRoute+CoreDataProperties.swift */; };
-		8F6931A520F9796200731BE6 /* PutzSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69318F20F9796200731BE6 /* PutzSetting+CoreDataClass.swift */; };
-		8F6931A620F9796200731BE6 /* PutzSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319020F9796200731BE6 /* PutzSetting+CoreDataProperties.swift */; };
 		8F6931A720F9796200731BE6 /* Profil+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319120F9796200731BE6 /* Profil+CoreDataClass.swift */; };
 		8F6931A820F9796200731BE6 /* Profil+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319220F9796200731BE6 /* Profil+CoreDataProperties.swift */; };
 		8F6931A920F9796200731BE6 /* Purchase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319320F9796200731BE6 /* Purchase+CoreDataClass.swift */; };
@@ -144,6 +144,10 @@
 		5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilVC.swift; path = WGApp/Controller/user/UserProfilVC.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63220D01CCA0014AB46 /* ChooseUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseUserVC.swift; path = "WGApp/Controller/New Group/ChooseUserVC.swift"; sourceTree = SOURCE_ROOT; };
 		5F44D63720D01D0D0014AB46 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = User.storyboard; path = WGApp/View/user/User.storyboard; sourceTree = SOURCE_ROOT; };
+		5F5BFEE020F9F4C300235D6F /* PutzSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PutzSetting+CoreDataClass.swift"; path = "../../../PutzSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F5BFEE120F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PutzSetting+CoreDataProperties.swift"; path = "../../../PutzSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F5BFEE420F9FC6E00235D6F /* BusSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F5BFEE520F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F6204DA20E65E2500890135 /* ShowBusTripsSlideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusTripsSlideVC.swift; sourceTree = "<group>"; };
 		5F6204DC20E66E6B00890135 /* ShowBusTripsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusTripsTableVC.swift; sourceTree = "<group>"; };
 		5F639C4E20E682B8002CC7D4 /* BusTripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTripTableViewCell.swift; sourceTree = "<group>"; };
@@ -181,8 +185,6 @@
 		8F4399E720EB696F00B063BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/List.storyboard; sourceTree = "<group>"; };
 		8F4399E920EB6EBE00B063BB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8F63293620EA68AD007175E8 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCollectionViewCell.swift; path = "WGApp/View/New Group/UserCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		8F69318320F9796200731BE6 /* BusSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8F69318420F9796200731BE6 /* BusSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69318520F9796200731BE6 /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F69318620F9796200731BE6 /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69318720F9796200731BE6 /* HomeProfil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeProfil+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -193,8 +195,6 @@
 		8F69318C20F9796200731BE6 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69318D20F9796200731BE6 /* BusRoute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F69318E20F9796200731BE6 /* BusRoute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusRoute+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8F69318F20F9796200731BE6 /* PutzSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8F69319020F9796200731BE6 /* PutzSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69319120F9796200731BE6 /* Profil+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F69319220F9796200731BE6 /* Profil+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profil+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69319320F9796200731BE6 /* Purchase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Purchase+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -439,8 +439,10 @@
 		8F12379C20D7F9A60073AF5F /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				8F69318320F9796200731BE6 /* BusSetting+CoreDataClass.swift */,
-				8F69318420F9796200731BE6 /* BusSetting+CoreDataProperties.swift */,
+				5F5BFEE420F9FC6E00235D6F /* BusSetting+CoreDataClass.swift */,
+				5F5BFEE520F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift */,
+				5F5BFEE020F9F4C300235D6F /* PutzSetting+CoreDataClass.swift */,
+				5F5BFEE120F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift */,
 				8F69318520F9796200731BE6 /* PutzWeekItem+CoreDataClass.swift */,
 				8F69318620F9796200731BE6 /* PutzWeekItem+CoreDataProperties.swift */,
 				8F69318720F9796200731BE6 /* HomeProfil+CoreDataClass.swift */,
@@ -451,8 +453,6 @@
 				8F69318C20F9796200731BE6 /* User+CoreDataProperties.swift */,
 				8F69318D20F9796200731BE6 /* BusRoute+CoreDataClass.swift */,
 				8F69318E20F9796200731BE6 /* BusRoute+CoreDataProperties.swift */,
-				8F69318F20F9796200731BE6 /* PutzSetting+CoreDataClass.swift */,
-				8F69319020F9796200731BE6 /* PutzSetting+CoreDataProperties.swift */,
 				8F69319120F9796200731BE6 /* Profil+CoreDataClass.swift */,
 				8F69319220F9796200731BE6 /* Profil+CoreDataProperties.swift */,
 				8F69319320F9796200731BE6 /* Purchase+CoreDataClass.swift */,
@@ -619,9 +619,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F0A8EC420F6421C00E06836 /* PutzProfileTableViewCell.swift in Sources */,
+				5F5BFEE720F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift in Sources */,
 				5FBD7CEE20E015DC0007BBC3 /* DepartureRMV.swift in Sources */,
 				8F6931AA20F9796200731BE6 /* Purchase+CoreDataProperties.swift in Sources */,
-				8F6931A620F9796200731BE6 /* PutzSetting+CoreDataProperties.swift in Sources */,
+				5F5BFEE320F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift in Sources */,
 				5F09F1AE20C6FF12008407F6 /* TripResponse.swift in Sources */,
 				5F09F1B420C6FF5E008407F6 /* RouteTableViewCell.swift in Sources */,
 				5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */,
@@ -647,10 +648,10 @@
 				5F6204DB20E65E2500890135 /* ShowBusTripsSlideVC.swift in Sources */,
 				5F44D63520D01CCA0014AB46 /* ChooseUserVC.swift in Sources */,
 				5F0A8EB820F6396900E06836 /* PutzProfilEditVC.swift in Sources */,
-				8F69319920F9796200731BE6 /* BusSetting+CoreDataClass.swift in Sources */,
+				5F5BFEE620F9FC6E00235D6F /* BusSetting+CoreDataClass.swift in Sources */,
 				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
-				8F69319A20F9796200731BE6 /* BusSetting+CoreDataProperties.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
+				5F5BFEE220F9F4C300235D6F /* PutzSetting+CoreDataClass.swift in Sources */,
 				8F69319E20F9796200731BE6 /* HomeProfil+CoreDataProperties.swift in Sources */,
 				8F69319D20F9796200731BE6 /* HomeProfil+CoreDataClass.swift in Sources */,
 				5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */,
@@ -672,7 +673,6 @@
 				5F0A8EC220F63F6100E06836 /* PutzProfilEditDetailsVC.swift in Sources */,
 				5F09F1B520C6FF5E008407F6 /* UISearchTextField.swift in Sources */,
 				5FE2899320EE99DC0090193C /* UserSelectionVC.swift in Sources */,
-				8F6931A520F9796200731BE6 /* PutzSetting+CoreDataClass.swift in Sources */,
 				8F69319C20F9796200731BE6 /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				8F6931A820F9796200731BE6 /* Profil+CoreDataProperties.swift in Sources */,
 				5F0A8ECC20F7605B00E06836 /* CustomCollectionViewController.swift in Sources */,
