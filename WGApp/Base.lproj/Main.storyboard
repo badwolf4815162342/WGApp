@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -236,7 +237,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="DARK_GRAY"/>
                         <viewLayoutGuide key="safeArea" id="2bL-dq-bjb"/>
                     </view>
                     <toolbarItems/>
@@ -314,6 +315,11 @@
             <point key="canvasLocation" x="1094" y="1288"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9tp-00-k95"/>
         <segue reference="7At-4x-mH6"/>
