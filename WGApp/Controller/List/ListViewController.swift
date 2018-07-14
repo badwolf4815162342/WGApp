@@ -90,9 +90,19 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return listItems.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = UIColor(named: "GREY")
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = UIColor(named: "WHITE")
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = listItems[indexPath.row].value
+        cell.backgroundColor = UIColor(named: "GREY")
+        cell.textLabel?.textColor = UIColor(named: "WHITE")
         return cell
     }
     
