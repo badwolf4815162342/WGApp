@@ -15,23 +15,39 @@ class UserSelectionVC: UIViewController {
 
     enum UserSelectionVCType {
         case chooseSingleUser
+        case choosePurchaseBuyer
     }
     
     var dataType: UserSelectionVCType?
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var label: UILabel!
     
     var people = [Profil]()
     
     func refreshContent(){
-        // load core data into collection view
-        let fetchRequest: NSFetchRequest<Profil> = Profil.fetchRequest()
-        do {
-            let people = try PersistenceService.context.fetch(fetchRequest)
-            self.people = people
-            self.collectionView.reloadData()
-        } catch {
-            print("core data couldn't be loaded")
+        
+        if let type = self.dataType {
+            switch type {
+            case .choosePurchaseBuyer:
+                let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+                do {
+                    let people = try PersistenceService.context.fetch(fetchRequest)
+                    self.people = people
+                    self.collectionView.reloadData()
+                } catch {
+                    print("core data couldn't be loaded")
+                }
+            case .chooseSingleUser:
+                let fetchRequest: NSFetchRequest<Profil> = Profil.fetchRequest()
+                do {
+                    let people = try PersistenceService.context.fetch(fetchRequest)
+                    self.people = people
+                    self.collectionView.reloadData()
+                } catch {
+                    print("core data couldn't be loaded")
+                }
+            }
         }
     }
     
@@ -39,8 +55,16 @@ class UserSelectionVC: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        if let type = dataType {
-            //change start view
+        self.label.isHidden = true
+        if let type = self.dataType {
+            switch type {
+            case UserSelectionVCType.chooseSingleUser:
+                self.label.isHidden = true
+                
+            case UserSelectionVCType.choosePurchaseBuyer:
+                self.label.isHidden = false
+                self.label.text = "Wer zahlt gerade?"
+            }
         }
         
     }
@@ -51,7 +75,14 @@ class UserSelectionVC: UIViewController {
             print("dest found")
             
         }
+        if segue.identifier == "ShowPurchaseItems" {
+            print("prepare show")
+            if let purchaseItemsVC = segue.destination as? PurchaseItemsViewController {
+                purchaseItemsVC.buyer = sender as! User
+            }
+        }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         refreshContent()
@@ -80,7 +111,11 @@ extension UserSelectionVC: UICollectionViewDelegate, UICollectionViewDataSource 
                 self.selectedProfil = people[indexPath.row]
                 print("setUserAndGoBacks")
                 performSegue(withIdentifier: "UnwindToBusProfileEditVC", sender: people[indexPath.row])
-
+            
+            case UserSelectionVCType.choosePurchaseBuyer:
+                self.selectedProfil = people[indexPath.row]
+                print("go to purchase")
+                performSegue(withIdentifier: "ShowPurchaseItems", sender: people[indexPath.row])
             }
         }
         

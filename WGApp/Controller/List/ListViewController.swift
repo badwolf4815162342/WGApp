@@ -40,7 +40,7 @@ class ListViewController: UIViewController {
         listTableView.delegate = self
         listTableView.dataSource = self
     }
-
+    
     @IBAction func addItem(_ sender: UIButton) {
         // alert
         let alert = UIAlertController(title: "Element hinzufügen", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -66,19 +66,19 @@ class ListViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "selectBuyer" {
+            if let destinationVC = segue.destination as? UserSelectionVC {
+                destinationVC.dataType = UserSelectionVC.UserSelectionVCType.choosePurchaseBuyer
+            }
+        }
     }
-    */
-
 }
+
+
+
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -157,7 +157,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         deleteAction.image = UIImage(named: "delete")
         deleteAction.backgroundColor = .red
         
-        let confrigation = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
-        return confrigation
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        return configuration
     }
 }
