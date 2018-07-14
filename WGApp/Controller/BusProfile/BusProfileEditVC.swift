@@ -40,12 +40,13 @@ class BusProfilEditVC: UIViewController {
         routesTableView.dataSource = self
         // not showing empty cells
         footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
-        footerView.backgroundColor = UIColor.init(named: "PETROL")
+        footerView.backgroundColor = UIColor.init(named: "GRAY")
         routesTableView.tableFooterView = footerView
         // add new row by '+'
         var addButton = UIButton()
         addButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
         addButton.setTitle("+", for: [])
+        addButton.setTitleColor(UIColor.init(named: "LIGHT_YELLOW"), for: .normal)
         footerView.addSubview(addButton)
         addButton.addTarget(self, action: #selector(addNewBusRoute), for: .touchUpInside)
         setInitialBusProfile()
