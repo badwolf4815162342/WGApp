@@ -56,6 +56,25 @@ class HomeScreenVC: UIViewController {
         
         refreshUsers()
         items = []
+        
+        let userIconsWidth: CGFloat = 420
+        
+        let userSelectionStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))
+        let userSelectionScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))
+
+        let widthContraints =  NSLayoutConstraint(item: userSelectionScrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: userIconsWidth)
+        let heightContraints = NSLayoutConstraint(item: userSelectionScrollView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+        NSLayoutConstraint.activate([heightContraints,widthContraints])
+        
+        // STackview in scrollview für userSelection
+        userSelectionStackView.translatesAutoresizingMaskIntoConstraints = false
+        userSelectionStackView.axis = .horizontal
+        userSelectionStackView.spacing = 25.0
+        userSelectionScrollView.addSubview(userSelectionStackView)
+        
+        userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
+        userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
+        
 
         for user in profiles {
             let button: UserUIButton = UserUIButton(type: .custom)
@@ -65,23 +84,26 @@ class HomeScreenVC: UIViewController {
             button.layer.cornerRadius = 5
             button.layer.borderColor = UIColor.lightGray.cgColor
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
-            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+
             button.user = user
-           
-            let barButton = UIBarButtonItem(customView: button)
-
-            items.append(barButton)
+            
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            userSelectionStackView.addArrangedSubview(button)
+            
+            // all constaints to set size IMPORTANT!!!!
+            let widthContraints =  NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+            let heightContraints = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+            NSLayoutConstraint.activate([heightContraints,widthContraints])
+            
         }
-        let buttonsView: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
-        buttonsView.items = items
-        let barButtonsRight = UIBarButtonItem(customView: buttonsView)
-
+        
+        userSelectionStackView.semanticContentAttribute = .forceRightToLeft
+        userSelectionScrollView.transform = CGAffineTransform.init(scaleX: -1, y: 1)
+        
+        let barButtonsRight = UIBarButtonItem(customView: userSelectionScrollView)
         self.homeNavigationItem.rightBarButtonItem = barButtonsRight
         
-        // add Space?
-        /*let negativeSpacer: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: self, action: nil)
-        negativeSpacer.width = -100
-        self.homeNavigationItem.rightBarButtonItems = [barButtonRight, negativeSpacer]*/
     }
     
     @objc func more(sender: UIBarButtonItem){
