@@ -43,6 +43,7 @@ class PutzProfilEditDetailsVC: UIViewController {
         // show first busprofile when deleting one which is selcted
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialPutzProfile), name: NSNotification.Name("ShowInitialPutzProfileMsg"), object: nil)
         
+        // STackview in scrollview für userSelection
         userSelectionStackView.translatesAutoresizingMaskIntoConstraints = false
         userSelectionStackView.axis = .horizontal
         userSelectionStackView.spacing = 23.0
@@ -51,6 +52,7 @@ class PutzProfilEditDetailsVC: UIViewController {
         userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
         userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
         
+        // STackview in scrollview für userOrder
         userOrderStackView.translatesAutoresizingMaskIntoConstraints = false
         userOrderStackView.axis = .horizontal
         userOrderStackView.spacing = 23.0
@@ -152,10 +154,13 @@ class PutzProfilEditDetailsVC: UIViewController {
     
     func addUserSelectionItems(){
         // right: user icons
+        // user aus db holen
         refreshUsers()
         
+        // je user buttons erstellen
         for user in users {
             let button: UserUIButton = UserUIButton(type: .custom)
+            // button bild hinzufügen
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
             button.imageView?.backgroundColor = UIColor.cyan
@@ -172,8 +177,9 @@ class PutzProfilEditDetailsVC: UIViewController {
             button.user = user
 
             button.translatesAutoresizingMaskIntoConstraints = false
+            //buttons stackview hinzufügen
             self.userSelectionStackView.addArrangedSubview(button)
-            // all constaints
+            // all constaints to set size IMPORTANT!!!!
             let widthContraints =  NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
             let heightContraints = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
             NSLayoutConstraint.activate([heightContraints,widthContraints])
