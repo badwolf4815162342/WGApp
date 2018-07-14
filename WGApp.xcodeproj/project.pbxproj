@@ -93,6 +93,7 @@
 		8F6931AC20F9796200731BE6 /* StopLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319620F9796200731BE6 /* StopLocation+CoreDataProperties.swift */; };
 		8F6931AD20F9796200731BE6 /* Debt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319720F9796200731BE6 /* Debt+CoreDataClass.swift */; };
 		8F6931AE20F9796200731BE6 /* Debt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69319820F9796200731BE6 /* Debt+CoreDataProperties.swift */; };
+		8F792DC520FA490A00945EA2 /* PurchaseItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F792DC420FA490A00945EA2 /* PurchaseItemsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +206,7 @@
 		8F69319620F9796200731BE6 /* StopLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F69319720F9796200731BE6 /* Debt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F69319820F9796200731BE6 /* Debt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F792DC420FA490A00945EA2 /* PurchaseItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseItemsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				8F4399E920EB6EBE00B063BB /* ListViewController.swift */,
+				8F792DC420FA490A00945EA2 /* PurchaseItemsViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				5F5BFEE720F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift in Sources */,
 				5FBD7CEE20E015DC0007BBC3 /* DepartureRMV.swift in Sources */,
 				8F6931AA20F9796200731BE6 /* Purchase+CoreDataProperties.swift in Sources */,
+				8F792DC520FA490A00945EA2 /* PurchaseItemsViewController.swift in Sources */,
 				5F5BFEE320F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift in Sources */,
 				5F09F1AE20C6FF12008407F6 /* TripResponse.swift in Sources */,
 				5F09F1B420C6FF5E008407F6 /* RouteTableViewCell.swift in Sources */,
