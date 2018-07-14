@@ -42,7 +42,7 @@ class RMVApiControllerTest: XCTestCase {
         let expectation = self.expectation(description: "Scaling")
         var results = [StopLocationRMV]()
         
-        rmvApiController.getStoplocations(withEntryString: "Dreiwei Wi", completion: { articles in
+        RMVApiController.getStoplocations(withEntryString: "Dreiwei Wi", completion: { articles in
             //filter by wished StopId
             results = articles.filter { $0.id == "003025274" }
             // Fullfil the expectation to let the test runner
@@ -65,7 +65,7 @@ class RMVApiControllerTest: XCTestCase {
         let expectation = self.expectation(description: "Scaling")
         var result: Departure? = nil
         
-        rmvApiController.getDepartures(fromOriginId: "003025274", completion: { departures in
+        RMVApiController.getDepartures(fromOriginId: "003025274", completion: { departures in
             //filter by wished StopId
             result = departures[0]
             // Fullfil the expectation to let the test runner

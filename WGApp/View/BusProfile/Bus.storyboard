@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,8 +21,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sm1-AA-2nf">
-                                <rect key="frame" x="0.0" y="86" width="340" height="682"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="80" width="340" height="688"/>
+                                <color key="backgroundColor" name="PETROL"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusProfileCell" rowHeight="120" id="mlt-0a-2jf" customClass="BusprofileTableViewCell" customModule="WGApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="340" height="120"/>
@@ -33,7 +34,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LX-rb-cpK">
                                                     <rect key="frame" x="109" y="49.5" width="202" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="WHITE"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qoh-uU-oRc">
@@ -52,6 +53,7 @@
                                                 <constraint firstItem="8LX-rb-cpK" firstAttribute="centerY" secondItem="GO2-FJ-wUe" secondAttribute="centerY" id="nGO-By-2K2"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="PETROL"/>
                                         <connections>
                                             <outlet property="busprofileTitleLabel" destination="8LX-rb-cpK" id="gWX-ou-Uu6"/>
                                             <outlet property="userImageView" destination="qoh-uU-oRc" id="reA-p7-UvU"/>
@@ -65,16 +67,29 @@
                                     <constraint firstAttribute="height" constant="40" id="HgR-y7-YHz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="53"/>
-                                <state key="normal" title="+"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" name="LIGHT_YELLOW"/>
+                                </state>
                                 <connections>
                                     <action selector="addBusProfile:" destination="O1g-f3-vEj" eventType="touchUpInside" id="wf4-zW-FLI"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bus" translatesAutoresizingMaskIntoConstraints="NO" id="UWq-Qe-zfa">
+                                <rect key="frame" x="16" y="55" width="68" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="FSM-XQ-08O"/>
+                                    <constraint firstAttribute="height" constant="68" id="zjG-W3-gOG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="0.12403681506849315" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="PETROL"/>
                         <constraints>
+                            <constraint firstItem="UWq-Qe-zfa" firstAttribute="top" secondItem="e8j-hI-2m1" secondAttribute="top" constant="55" id="2U7-oV-KAs"/>
+                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="UWq-Qe-zfa" secondAttribute="bottom" constant="7" id="3yq-i4-6KA"/>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="bottom" secondItem="fJd-3y-VKm" secondAttribute="bottom" id="7cE-1L-8Hh"/>
-                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="wHi-MQ-uWk" secondAttribute="bottom" constant="26" id="E7o-dj-khf"/>
+                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="wHi-MQ-uWk" secondAttribute="bottom" constant="20" id="E7o-dj-khf"/>
+                            <constraint firstItem="Sm1-AA-2nf" firstAttribute="top" secondItem="UWq-Qe-zfa" secondAttribute="bottom" constant="7" id="VZI-BI-y7b"/>
+                            <constraint firstItem="UWq-Qe-zfa" firstAttribute="leading" secondItem="fJd-3y-VKm" secondAttribute="leading" constant="16" id="fbS-wb-GTh"/>
                             <constraint firstItem="wHi-MQ-uWk" firstAttribute="top" secondItem="fJd-3y-VKm" secondAttribute="top" id="g3J-g6-yrb"/>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="trailing" secondItem="fJd-3y-VKm" secondAttribute="trailing" id="hS3-Ri-Fm7"/>
                             <constraint firstItem="Sm1-AA-2nf" firstAttribute="leading" secondItem="fJd-3y-VKm" secondAttribute="leading" id="jW5-Mb-WdJ"/>
@@ -143,7 +158,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Für wen?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDc-Mm-V7t">
                                 <rect key="frame" x="25" y="91" width="69" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="zjU-rk-I9U" customClass="UIImageView">
@@ -160,13 +175,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgI-9g-2Mi">
                                 <rect key="frame" x="280" y="82.5" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routen mit Ziel?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L85-tl-mbM">
                                 <rect key="frame" x="288" y="130.5" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cZq-x0-edK">
@@ -185,9 +200,9 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Fl-oZ-6EK">
                                 <rect key="frame" x="0.0" y="186" width="684" height="492"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="LIGHT_PETROL"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="101" id="oE4-Yu-aXo" customClass="RouteTableViewCell" customModule="WGApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="684" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oE4-Yu-aXo" id="j37-8p-Mzg">
@@ -197,13 +212,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uha-m7-WWK">
                                                     <rect key="frame" x="15" y="39" width="38" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="PETROL"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ziel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzl-tD-dGj">
                                                     <rect key="frame" x="333" y="39" width="28" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="PETROL"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2A-vY-N0R">
@@ -213,17 +228,17 @@
                                                         <constraint firstAttribute="width" constant="200" id="Xs3-C7-stH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="PETROL"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K51-Pc-SWX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K51-Pc-SWX">
                                                     <rect key="frame" x="391" y="39" width="200" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="ljI-js-04Q"/>
                                                         <constraint firstAttribute="height" constant="21" id="qiQ-uV-BEV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="PETROL"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -241,6 +256,7 @@
                                                 <constraint firstItem="K51-Pc-SWX" firstAttribute="width" secondItem="x2A-vY-N0R" secondAttribute="width" id="ySQ-2M-QiE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="LIGHT_YELLOW"/>
                                         <connections>
                                             <outlet property="destLabel" destination="Fzl-tD-dGj" id="7Fc-TV-mG9"/>
                                             <outlet property="destinationLocationLabel" destination="K51-Pc-SWX" id="AOq-T9-lLO"/>
@@ -253,17 +269,19 @@
                                 <rect key="frame" x="45" y="711" width="345" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aktuell sind keine BusProfile vorhanden, füge diese mit '+' hinzu." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rd6-Al-NGd">
                                 <rect key="frame" x="96" y="374" width="492" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N86-7f-8sb">
                                 <rect key="frame" x="461" y="116" width="51" height="31"/>
+                                <color key="onTintColor" name="LIGHT_YELLOW"/>
+                                <color key="thumbTintColor" name="PETROL"/>
                                 <connections>
                                     <action selector="withDestinationsChanged:" destination="9CN-yG-Vf1" eventType="valueChanged" id="1WE-Qg-mJB"/>
                                 </connections>
@@ -271,11 +289,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxb-iZ-Hu0">
                                 <rect key="frame" x="152" y="155" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="DARK_GRAY"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="LIGHT_PETROL"/>
+                        <color key="tintColor" name="LIGHT_YELLOW"/>
                         <constraints>
                             <constraint firstItem="cZq-x0-edK" firstAttribute="leading" secondItem="BgI-9g-2Mi" secondAttribute="trailing" constant="30" id="0Xh-lV-rsS"/>
                             <constraint firstItem="XTd-9b-z2e" firstAttribute="trailing" secondItem="N86-7f-8sb" secondAttribute="trailing" constant="174" id="25C-nn-osX"/>
@@ -411,4 +430,22 @@
             <point key="canvasLocation" x="1364.6484375" y="3162.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bus" width="512" height="512"/>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LIGHT_PETROL">
+            <color red="0.52899998426437378" green="0.77300000190734863" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LIGHT_YELLOW">
+            <color red="0.97299998998641968" green="0.9100000262260437" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PETROL">
+            <color red="0.21199999749660492" green="0.50599998235702515" blue="0.5690000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WHITE">
+            <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
