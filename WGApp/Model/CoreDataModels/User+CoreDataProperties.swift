@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 08.07.18.
+//  Created by Anna Abad on 13.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -20,6 +20,10 @@ extension User {
     @NSManaged public var mail: String?
     @NSManaged public var participatesOnPutzSetting: NSSet?
     @NSManaged public var putzWeekItems: NSSet?
+    @NSManaged public var purchase: NSSet?
+    @NSManaged public var participantOfPurchase: NSSet?
+    @NSManaged public var debts: NSSet?
+    @NSManaged public var credits: NSSet?
 
 }
 
@@ -54,5 +58,73 @@ extension User {
 
     @objc(removePutzWeekItems:)
     @NSManaged public func removeFromPutzWeekItems(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for purchase
+extension User {
+
+    @objc(addPurchaseObject:)
+    @NSManaged public func addToPurchase(_ value: Purchase)
+
+    @objc(removePurchaseObject:)
+    @NSManaged public func removeFromPurchase(_ value: Purchase)
+
+    @objc(addPurchase:)
+    @NSManaged public func addToPurchase(_ values: NSSet)
+
+    @objc(removePurchase:)
+    @NSManaged public func removeFromPurchase(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for participantOfPurchase
+extension User {
+
+    @objc(addParticipantOfPurchaseObject:)
+    @NSManaged public func addToParticipantOfPurchase(_ value: Purchase)
+
+    @objc(removeParticipantOfPurchaseObject:)
+    @NSManaged public func removeFromParticipantOfPurchase(_ value: Purchase)
+
+    @objc(addParticipantOfPurchase:)
+    @NSManaged public func addToParticipantOfPurchase(_ values: NSSet)
+
+    @objc(removeParticipantOfPurchase:)
+    @NSManaged public func removeFromParticipantOfPurchase(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for debts
+extension User {
+
+    @objc(addDebtsObject:)
+    @NSManaged public func addToDebts(_ value: Debt)
+
+    @objc(removeDebtsObject:)
+    @NSManaged public func removeFromDebts(_ value: Debt)
+
+    @objc(addDebts:)
+    @NSManaged public func addToDebts(_ values: NSSet)
+
+    @objc(removeDebts:)
+    @NSManaged public func removeFromDebts(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for credits
+extension User {
+
+    @objc(addCreditsObject:)
+    @NSManaged public func addToCredits(_ value: Debt)
+
+    @objc(removeCreditsObject:)
+    @NSManaged public func removeFromCredits(_ value: Debt)
+
+    @objc(addCredits:)
+    @NSManaged public func addToCredits(_ values: NSSet)
+
+    @objc(removeCredits:)
+    @NSManaged public func removeFromCredits(_ values: NSSet)
 
 }

@@ -2,7 +2,7 @@
 //  BusSetting+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 08.07.18.
+//  Created by Anna Abad on 13.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -19,26 +19,9 @@ extension BusSetting {
 
     @NSManaged public var title: String?
     @NSManaged public var withDestinations: Bool
+    @NSManaged public var favoriteOfProfiles: NSSet?
     @NSManaged public var ofProfil: Profil?
     @NSManaged public var routes: NSSet?
-    @NSManaged public var favoriteOfProfiles: NSSet?
-
-}
-
-// MARK: Generated accessors for routes
-extension BusSetting {
-
-    @objc(addRoutesObject:)
-    @NSManaged public func addToRoutes(_ value: BusRoute)
-
-    @objc(removeRoutesObject:)
-    @NSManaged public func removeFromRoutes(_ value: BusRoute)
-
-    @objc(addRoutes:)
-    @NSManaged public func addToRoutes(_ values: NSSet)
-
-    @objc(removeRoutes:)
-    @NSManaged public func removeFromRoutes(_ values: NSSet)
 
 }
 
@@ -56,5 +39,22 @@ extension BusSetting {
 
     @objc(removeFavoriteOfProfiles:)
     @NSManaged public func removeFromFavoriteOfProfiles(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for routes
+extension BusSetting {
+
+    @objc(addRoutesObject:)
+    @NSManaged public func addToRoutes(_ value: BusRoute)
+
+    @objc(removeRoutesObject:)
+    @NSManaged public func removeFromRoutes(_ value: BusRoute)
+
+    @objc(addRoutes:)
+    @NSManaged public func addToRoutes(_ values: NSSet)
+
+    @objc(removeRoutes:)
+    @NSManaged public func removeFromRoutes(_ values: NSSet)
 
 }

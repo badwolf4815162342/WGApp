@@ -1,5 +1,5 @@
 //
-//  BusSetting+CoreDataClass.swift
+//  Debt+CoreDataClass.swift
 //  WGApp
 //
 //  Created by Anna Abad on 13.07.18.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(BusSetting)
-public class BusSetting: NSManagedObject {
+@objc(Debt)
+public class Debt: NSManagedObject {
 
 }
