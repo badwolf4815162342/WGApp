@@ -107,11 +107,13 @@ class HomeScreenVC: UIViewController {
         /*mask = [[UIView alloc] initWithFrame:window.frame];
         [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.78]];
         [self.view addSubview:mask];*/
+
         
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         addNavigationBarItems()
     }
     
