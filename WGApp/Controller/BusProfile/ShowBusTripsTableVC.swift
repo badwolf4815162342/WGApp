@@ -102,6 +102,11 @@ class ShowBusTripsTableVC: UIViewController {
                     tableWithDestinationHeaderView.isHidden = true
                 }
             }
+            if (busProfile.routes?.count == 0) {
+                noRoutesLabel.isHidden = false
+            } else {
+                noRoutesLabel.isHidden = true
+            }
         } else {
             busProfileName.text = "No Bus Setting Found"
             print("ERROR: No Bus Setting Found")
