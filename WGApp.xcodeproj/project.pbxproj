@@ -43,6 +43,7 @@
 		5F5BFEE320F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE120F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift */; };
 		5F5BFEE620F9FC6E00235D6F /* BusSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE420F9FC6E00235D6F /* BusSetting+CoreDataClass.swift */; };
 		5F5BFEE720F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE520F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift */; };
+		5F5BFEEA20FA0ED200235D6F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F5BFEE920FA0ED200235D6F /* Colors.xcassets */; };
 		5F6204DB20E65E2500890135 /* ShowBusTripsSlideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6204DA20E65E2500890135 /* ShowBusTripsSlideVC.swift */; };
 		5F6204DD20E66E6B00890135 /* ShowBusTripsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6204DC20E66E6B00890135 /* ShowBusTripsTableVC.swift */; };
 		5F639C4F20E682B8002CC7D4 /* BusTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F639C4E20E682B8002CC7D4 /* BusTripTableViewCell.swift */; };
@@ -148,6 +149,7 @@
 		5F5BFEE120F9F4C300235D6F /* PutzSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PutzSetting+CoreDataProperties.swift"; path = "../../../PutzSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F5BFEE420F9FC6E00235D6F /* BusSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5F5BFEE520F9FC6E00235D6F /* BusSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F5BFEE920FA0ED200235D6F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5F6204DA20E65E2500890135 /* ShowBusTripsSlideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusTripsSlideVC.swift; sourceTree = "<group>"; };
 		5F6204DC20E66E6B00890135 /* ShowBusTripsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBusTripsTableVC.swift; sourceTree = "<group>"; };
 		5F639C4E20E682B8002CC7D4 /* BusTripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTripTableViewCell.swift; sourceTree = "<group>"; };
@@ -333,6 +335,14 @@
 			path = BusProfile;
 			sourceTree = "<group>";
 		};
+		5F5BFEE820FA0C9700235D6F /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				5F5BFEE920FA0ED200235D6F /* Colors.xcassets */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
 		5FA47C4720BAE9A50043B3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +366,7 @@
 		5FA47C5220BAE9A50043B3C8 /* WGApp */ = {
 			isa = PBXGroup;
 			children = (
+				5F5BFEE820FA0C9700235D6F /* Ressources */,
 				5FA47C8320BAEA400043B3C8 /* Controller */,
 				5FA47C8220BAEA2B0043B3C8 /* View */,
 				5FA47C8120BAEA0F0043B3C8 /* Model */,
@@ -590,6 +601,7 @@
 				8F4399E820EB697000B063BB /* List.storyboard in Resources */,
 				5FA47C5B20BAE9A60043B3C8 /* Assets.xcassets in Resources */,
 				5F0A8EBD20F63ABD00E06836 /* PutzProfile.storyboard in Resources */,
+				5F5BFEEA20FA0ED200235D6F /* Colors.xcassets in Resources */,
 				5F09F1B820C70014008407F6 /* Bus.storyboard in Resources */,
 				5FA47C5920BAE9A60043B3C8 /* Main.storyboard in Resources */,
 				5F44D63820D01D0D0014AB46 /* User.storyboard in Resources */,
