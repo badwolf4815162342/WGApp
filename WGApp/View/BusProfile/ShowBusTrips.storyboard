@@ -41,11 +41,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine favorisierten Busprofile für aktuellen User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUi-bo-CeI">
                                 <rect key="frame" x="330.5" y="373.5" width="363" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="WHITE"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="GRAY"/>
                         <constraints>
                             <constraint firstItem="LUi-bo-CeI" firstAttribute="centerX" secondItem="YBO-KB-PnL" secondAttribute="centerX" id="5MR-dB-QmZ"/>
                             <constraint firstItem="LUi-bo-CeI" firstAttribute="centerY" secondItem="YBO-KB-PnL" secondAttribute="centerY" id="ON5-RR-GbE"/>
