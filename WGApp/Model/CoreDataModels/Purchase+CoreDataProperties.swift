@@ -2,7 +2,7 @@
 //  Purchase+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Anna Abad on 13.07.18.
+//  Created by Anna Abad on 15.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -17,11 +17,11 @@ extension Purchase {
         return NSFetchRequest<Purchase>(entityName: "Purchase")
     }
 
-    @NSManaged public var sum: Int64
     @NSManaged public var date: NSDate?
     @NSManaged public var id: Int64
-    @NSManaged public var items: NSSet?
+    @NSManaged public var sum: Double
     @NSManaged public var buyer: User?
+    @NSManaged public var items: NSSet?
     @NSManaged public var participants: NSSet?
 
 }

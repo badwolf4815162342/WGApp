@@ -19,10 +19,11 @@ class ListViewController: UIViewController {
     
     func refreshContent(){
         // load core data into table
-        let fetchRequest: NSFetchRequest<ListItem> = ListItem.fetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ListItem")
+        fetchRequest.predicate = NSPredicate(format: "bought = %@", false)
+        fetchRequest.returnsObjectsAsFaults = false
         do {
-            print("refreshing")
-            let listItems = try PersistenceService.context.fetch(fetchRequest)
+            let listItems = try PersistenceService.context.fetch(fetchRequest) as! [ListItem]
             self.listItems = listItems
             self.listTableView.reloadData()
         } catch {

@@ -2,7 +2,7 @@
 //  PutzSetting+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Viviane Rehor on 14.07.18.
+//  Created by Anna Abad on 15.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -20,9 +20,9 @@ extension PutzSetting {
     @NSManaged public var aktiv: Bool
     @NSManaged public var profilIcon: String?
     @NSManaged public var repeatEveryXWeeks: Int64
+    @NSManaged public var startDate: NSDate?
     @NSManaged public var title: String?
     @NSManaged public var userOrder: NSObject?
-    @NSManaged public var startDate: NSDate?
     @NSManaged public var participatingUsers: NSSet?
     @NSManaged public var weekItems: NSSet?
 

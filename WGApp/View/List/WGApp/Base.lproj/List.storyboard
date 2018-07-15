@@ -90,14 +90,9 @@
             <objects>
                 <viewController storyboardIdentifier="PurchaseItemsID" id="agj-S2-eNr" customClass="PurchaseItemsViewController" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GtJ-iD-u5b">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c3e-tS-Y7K">
-                                <rect key="frame" x="25" y="268" width="975" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teG-UG-BqQ">
                                 <rect key="frame" x="631" y="134" width="336" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,20 +114,12 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vy6-CP-YMe">
                                 <rect key="frame" x="920" y="77" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeParticipantsValue:" destination="agj-S2-eNr" eventType="valueChanged" id="4Qy-zE-FIX"/>
+                                </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLo-zA-NTw">
-                                <rect key="frame" x="45" y="156" width="112" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0sR-pI-g0T">
-                                <rect key="frame" x="45" y="44" width="112" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Was hast du gekauft?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wq-VV-dAh">
-                                <rect key="frame" x="45" y="212" width="242" height="32"/>
+                                <rect key="frame" x="85" y="212" width="882" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
@@ -142,23 +129,166 @@
                                 <rect key="frame" x="920" y="643" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="weiter"/>
+                                <connections>
+                                    <segue destination="PNV-g2-RaW" kind="show" identifier="ShowPurchasePrice" id="agl-0l-4g7"/>
+                                </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c3e-tS-Y7K">
+                                <rect key="frame" x="58" y="252" width="909" height="344"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0sR-pI-g0T">
+                                <rect key="frame" x="20" y="20" width="51" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Prj-Xb-Q7K"/>
                     </view>
+                    <size key="freeformSize" width="1024" height="704"/>
                     <connections>
-                        <outlet property="buyerIcon" destination="0sR-pI-g0T" id="H7v-XL-9Mz"/>
+                        <outlet property="buyerIcon" destination="0sR-pI-g0T" id="ngC-ZX-YGM"/>
+                        <outlet property="listTableView" destination="c3e-tS-Y7K" id="8KC-Rz-IV1"/>
+                        <outlet property="participantsLabel" destination="84O-iG-pjs" id="Sjl-ux-Gmr"/>
+                        <outlet property="participantsScrollView" destination="teG-UG-BqQ" id="fCK-CC-lNd"/>
+                        <outlet property="questionLabel" destination="8wq-VV-dAh" id="HMr-LY-uXB"/>
+                        <segue destination="uuJ-yd-u1A" kind="unwind" identifier="unwindCreatePurchaseID" unwindAction="unwindCreatePurchaseWithSender:" id="Eyh-1T-exz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpZ-hs-b61" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uuJ-yd-u1A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2198.4375" y="789.84375"/>
+        </scene>
+        <!--Purchase Price View Controller-->
+        <scene sceneID="CHB-ww-1LO">
+            <objects>
+                <viewController id="PNV-g2-RaW" customClass="PurchasePriceViewController" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DKx-R2-eC8">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-22-Swr">
+                                <rect key="frame" x="424" y="273" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPX-mS-S1o">
+                                <rect key="frame" x="615" y="278" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjH-qU-hKH">
+                                <rect key="frame" x="869" y="273" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="weiter"/>
+                                <connections>
+                                    <action selector="checkPrice:" destination="PNV-g2-RaW" eventType="touchUpInside" id="7Za-aa-S6J"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdQ-hT-vE3">
+                                <rect key="frame" x="20" y="20" width="51" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Bei der Eingabe muss es sich um eine Zahl handeln, dessen Nachkommastellen durch einen Punkt getrennt werden können!" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ogv-9Y-mWx">
+                                <rect key="frame" x="698" y="157" width="213" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="RED"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="bFd-8z-n9x"/>
+                    </view>
+                    <size key="freeformSize" width="1024" height="704"/>
+                    <connections>
+                        <outlet property="amountField" destination="h2i-22-Swr" id="Bj4-1Q-bXb"/>
+                        <outlet property="buyerIcon" destination="gdQ-hT-vE3" id="LzT-jM-eQR"/>
+                        <outlet property="warnText" destination="ogv-9Y-mWx" id="dlw-V3-rGN"/>
+                        <segue destination="vFL-De-4IC" kind="unwind" identifier="unwindCreatePurchaseFromPriceID" unwindAction="unwindCreatePurchaseFromPriceWithSender:" id="gAS-Dm-DvV"/>
+                        <segue destination="Gwp-ea-QyA" kind="show" identifier="ShowPurchaseConfirmation" id="iGW-FI-Ocv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PfG-56-HT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vFL-De-4IC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2937.890625" y="789.84375"/>
+        </scene>
+        <!--Purchase Confirmation View Controller-->
+        <scene sceneID="eLC-7i-cff">
+            <objects>
+                <viewController id="Gwp-ea-QyA" customClass="PurchaseConfirmationViewController" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u83-5V-3H4">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dG0-Pz-dsQ">
+                                <rect key="frame" x="68" y="144" width="888" height="303"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUW-Ei-J8H">
+                                <rect key="frame" x="203" y="493" width="240" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Betrag" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC8-X4-Kat">
+                                <rect key="frame" x="724" y="496" width="232" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6o-Uv-VIg">
+                                <rect key="frame" x="20" y="20" width="51" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ich zahle für:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxL-cA-sQG">
+                                <rect key="frame" x="68" y="501" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bha-Ot-OGf">
+                                <rect key="frame" x="882" y="596" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Bestätigen"/>
+                                <connections>
+                                    <action selector="savePurchase:" destination="Gwp-ea-QyA" eventType="touchUpInside" id="sqS-ih-idO"/>
+                                    <segue destination="cDN-3I-y04" kind="unwind" identifier="unwindCreatePurchaseFromConfirmation" unwindAction="unwindCreatePurchaseFromConfirmationWithSender:" id="Q7c-j5-NHS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kAh-rA-rYj"/>
+                    </view>
+                    <size key="freeformSize" width="1024" height="704"/>
+                    <connections>
+                        <outlet property="buyerIcon" destination="u6o-Uv-VIg" id="qvL-HK-6at"/>
+                        <outlet property="itemsTableView" destination="dG0-Pz-dsQ" id="HAZ-aG-jFA"/>
+                        <outlet property="participantsScrollView" destination="ZUW-Ei-J8H" id="V4g-RY-vbU"/>
+                        <outlet property="priceLabel" destination="gC8-X4-Kat" id="KBM-9z-spv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uJ5-QW-gce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cDN-3I-y04" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3635.7421874999995" y="789.84375"/>
         </scene>
     </scenes>
     <resources>
         <namedColor name="GRAY">
             <color red="0.21199999749660492" green="0.2669999897480011" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RED">
+            <color red="0.96899998188018799" green="0.3449999988079071" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="WHITE">
             <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

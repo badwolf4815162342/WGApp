@@ -17,12 +17,14 @@ class UserVC: UIViewController {
     @IBOutlet weak var profilContainer: UIView!
     @IBOutlet weak var profilEditContainer: UIView!
     @IBOutlet weak var profilFavoritesContainer: UIView!
+    @IBOutlet weak var profilMoneyContainer: UIView!
     
     var actContainer: UIView?
     
     var profil: UserProfilVC?
     var edit: UserProfilEditVC?
     var favorites: UserFavoritesVC?
+    var money: UserMoneyVC?
     
     var userProp: Profil {
         get{
@@ -33,6 +35,7 @@ class UserVC: UIViewController {
             profil?.user = user
             edit?.user = user
             favorites?.user = user
+            money?.user = user
         }
     }
     
@@ -87,6 +90,10 @@ class UserVC: UIViewController {
             userFavoritesVC.user = self.user
             self.favorites = userFavoritesVC
         }
+        if let userMoneyVC = segue.destination as? UserMoneyVC {
+            userMoneyVC.user = self.user
+            self.money = userMoneyVC
+        }
     }
 }
 
@@ -98,6 +105,8 @@ extension UserVC: UITabBarDelegate {
             self.favorites?.refreshTable()
         } else if (item.title == "Profil") {
             self.changeActViewContainer(destinationContainer: self.profilContainer)
+        } else if item.title == "Geld" {
+            self.changeActViewContainer(destinationContainer: self.profilMoneyContainer)
         }
     }
 }
