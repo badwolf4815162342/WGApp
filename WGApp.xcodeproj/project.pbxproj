@@ -34,6 +34,7 @@
 		5F0A8ECB20F7605B00E06836 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8EC820F7605A00E06836 /* CustomCollectionViewCell.swift */; };
 		5F0A8ECC20F7605B00E06836 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8EC920F7605B00E06836 /* CustomCollectionViewController.swift */; };
 		5F0A8ED620F81D4100E06836 /* PutzItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */; };
+		5F1D3B8D20FD0069001BDCD6 /* UIPutzItemPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */; };
 		5F44D62F20D01CA40014AB46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D62E20D01CA40014AB46 /* Image.swift */; };
 		5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */; };
 		5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */; };
@@ -146,6 +147,7 @@
 		5F0A8EC820F7605A00E06836 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		5F0A8EC920F7605B00E06836 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzItemViewCell.swift; sourceTree = "<group>"; };
+		5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPutzItemPickerView.swift; sourceTree = "<group>"; };
 		5F44D62E20D01CA40014AB46 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = WGApp/Model/UserModels/Image.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilEditVC.swift; path = WGApp/Controller/user/UserProfilEditVC.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilVC.swift; path = WGApp/Controller/user/UserProfilVC.swift; sourceTree = SOURCE_ROOT; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				5F0A8EBB20F63ABD00E06836 /* PutzProfile.storyboard */,
+				5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */,
 				5F0A8EC320F6421C00E06836 /* PutzProfileTableViewCell.swift */,
 				5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */,
 			);
@@ -675,6 +678,7 @@
 				8F31F48E20FBC4E200CEA6AB /* Profil+CoreDataClass.swift in Sources */,
 				5FA47C5420BAE9A60043B3C8 /* AppDelegate.swift in Sources */,
 				5FBD7CA620D3CF710007BBC3 /* BusSettingsController.swift in Sources */,
+				5F1D3B8D20FD0069001BDCD6 /* UIPutzItemPickerView.swift in Sources */,
 				8F31F49A20FBC4E200CEA6AB /* BusRoute+CoreDataClass.swift in Sources */,
 				8F31F49020FBC4E200CEA6AB /* Purchase+CoreDataClass.swift in Sources */,
 				5FE289A420EF5EEA0090193C /* UserFavoritesVC.swift in Sources */,

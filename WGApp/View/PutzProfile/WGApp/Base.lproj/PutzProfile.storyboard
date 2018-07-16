@@ -213,7 +213,6 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dR5-Ew-aVs">
                                                     <rect key="frame" x="15" y="24.5" width="70" height="70.5"/>
-                                                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="SIm-D7-Xjc"/>
                                                         <constraint firstAttribute="width" constant="70" id="xCB-YT-Jov"/>
@@ -273,21 +272,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="684" height="655"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M9J-La-qki">
-                                <rect key="frame" x="287" y="40" width="110" height="110"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="Gfa-7J-nso"/>
-                                    <constraint firstAttribute="width" constant="110" id="Hh4-4e-a1f"/>
-                                </constraints>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bad Putzen" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-JR-m37">
-                                <rect key="frame" x="295" y="170" width="95" height="30"/>
-                                <color key="backgroundColor" name="WHITE"/>
-                                <color key="textColor" name="DARK_GRAY"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Es sind noch keine Putzprofile vorhanden." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-aa-PLI">
                                 <rect key="frame" x="182" y="327" width="319.5" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -356,20 +340,27 @@
                                     <action selector="saveChangings:" destination="nkt-AC-S6w" eventType="touchUpInside" id="E3X-Gk-EUX"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-AU-eh2" customClass="UIPutzItemPickerView" customModule="WGApp" customModuleProvider="target">
+                                <rect key="frame" x="277" y="38" width="150" height="193"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="DARK_GRAY"/>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bad Putzen" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-JR-m37">
+                                <rect key="frame" x="115" y="106" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="WHITE"/>
+                                <color key="textColor" name="DARK_GRAY"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" name="DARK_GRAY"/>
-                        <constraints>
-                            <constraint firstItem="gN0-JR-m37" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="4U4-nK-BOn"/>
-                            <constraint firstItem="gN0-JR-m37" firstAttribute="top" secondItem="M9J-La-qki" secondAttribute="bottom" constant="20" id="byn-4N-cIk"/>
-                            <constraint firstItem="M9J-La-qki" firstAttribute="centerX" secondItem="bXW-Tk-Ijm" secondAttribute="centerX" id="cFj-s2-Q0C"/>
-                            <constraint firstItem="M9J-La-qki" firstAttribute="top" secondItem="Z49-hh-5PL" secondAttribute="top" constant="20" id="xDf-zY-4Uo"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Z49-hh-5PL"/>
                     </view>
                     <connections>
                         <outlet property="currentActiveButton" destination="6am-rx-nw4" id="G7i-Wn-3A2"/>
                         <outlet property="noPutzProfilesLabel" destination="Br3-aa-PLI" id="1i3-9C-vca"/>
-                        <outlet property="putzIcon" destination="M9J-La-qki" id="5Xg-Nu-fUr"/>
+                        <outlet property="picturePicker" destination="Xax-AU-eh2" id="RXe-Ni-MQT"/>
                         <outlet property="stepper" destination="RGl-NL-UYP" id="vWD-re-lMB"/>
                         <outlet property="titleTextField" destination="gN0-JR-m37" id="ZKd-dX-7Ee"/>
                         <outlet property="userOrderScrollView" destination="BXy-kx-URm" id="0s8-tE-YDo"/>
@@ -386,8 +377,8 @@
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="GRAY">
-            <color red="0.21199999749660492" green="0.2669999897480011" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GRAY">
             <color red="0.21199999749660492" green="0.2669999897480011" blue="0.33700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
