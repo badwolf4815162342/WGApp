@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfilEditVC: UIViewController {
     
-    var user: Profil!
+    var user: User!
 
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var mail: UITextField!
@@ -25,7 +25,7 @@ class UserProfilEditVC: UIViewController {
     
     func refresh(){
         name.text = user.name
-        if let singleUser = user as? User {
+        if let singleUser = user {
             mail.text = singleUser.mail
         }
         pickerView.selectedIconName = user.profilIcon!

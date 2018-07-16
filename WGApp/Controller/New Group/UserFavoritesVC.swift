@@ -11,7 +11,7 @@ import CoreData
 
 class UserFavoritesVC: UIViewController {
     
-    var user: Profil!
+    var user: User!
     static var selectedBusProfile: BusSetting?
     var busSettings = [BusSetting]()
     

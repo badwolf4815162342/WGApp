@@ -13,7 +13,7 @@ class ChooseUserVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var people = [Profil]()
+    var people = [User]()
     
     func refreshContent(){
         // load core data into collection view
@@ -34,7 +34,7 @@ class ChooseUserVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowUser" {
             if let userVC = segue.destination as? UserVC {
-                userVC.user = sender as! Profil
+                userVC.user = sender as! User
             }
         }
     }

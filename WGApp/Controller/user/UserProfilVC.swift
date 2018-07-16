@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfilVC: UIViewController {
     
-    var user: Profil!
+    var user: User!
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mail: UILabel!
@@ -43,14 +43,14 @@ class UserProfilVC: UIViewController {
     
     func refresh(){
         name.text = user.name
-        if let singleUser = user as? User {
+        if let singleUser = user {
             mail.text = singleUser.mail
         }
         if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
             icon.image = image
         } else {
             icon.image = UIImage(named: "Bear-icon")
-            print("Picture of user could not be loaded !!! ")
+            print("Picture of user could not be loaded !!! ") // TODO questionmark image
         }
     }
 }
