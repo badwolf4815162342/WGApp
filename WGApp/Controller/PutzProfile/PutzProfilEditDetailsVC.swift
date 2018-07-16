@@ -11,13 +11,15 @@ import CoreData
 
 class PutzProfilEditDetailsVC: UIViewController {
 
-  
+    @IBOutlet weak var picturePicker: UIPutzItemPickerView!
+
+    
     @IBOutlet weak var currentActiveButton: UISwitch!
     @IBOutlet weak var weeksLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var titleTextField: UITextField!
  
-    @IBOutlet weak var putzIcon: UIImageView!
+    //@IBOutlet weak var putzIcon: UIImageView!
 
     @IBOutlet weak var noPutzProfilesLabel: UILabel!
     
@@ -34,6 +36,7 @@ class PutzProfilEditDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // erstmal gehen wir von routes aus
         noPutzProfilesLabel.isHidden  = true
     
@@ -63,13 +66,71 @@ class PutzProfilEditDetailsVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        picturePicker.setImageSize(imageSize: 130, imageBounds: 150)
+    }
+    
     @IBAction func saveChangings(_ sender: Any) {
-        PutzprofilTableVC.selectedPutzProfile?.title = titleTextField.text
-        PutzprofilTableVC.selectedPutzProfile?.aktiv = currentActiveButton.isOn
-        PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks = Int64(Int(stepper.value))
-        PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
+        var message = ""
+        if (PutzprofilTableVC.selectedPutzProfile?.participatingUsers != NSSet(array : currentlySelectedUsers)) {
+            // User changed message
+            message += "Wenn du die teilnehmenden User änderst werden die Reihenfolge und alle im Kaledender eingetragenen Putztermine neu generiert."
+        }
+        if (PutzprofilTableVC.selectedPutzProfile?.aktiv != currentActiveButton.isOn) {
+            // delete all items while turning of
+            if (!currentActiveButton.isOn) {
+                message += "Mit dem ausschalten des Putzprofils werden die Reihenfolge und alle im Kaledender eingetragenen Putztermine gelöscht."
+            } else {
+                message += "Mit dem einschalten des Putzprofils werden die Reihenfolge und alle im Kaledender eingetragenen Putztermine generiert."
+            }
+        }
+        if (message == "") {
+            message = "Wirklich speichern?"
+        }
+        showAlert(message: message)
+    }
+    
+    func showAlert(message: String){
+        // alert
+        let alert = UIAlertController(title: "Achtung!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+      
+        // alert button hinzufügen
+        let saveAction = UIAlertAction(title: "hinzufügen", style: .default) { (_) in
+            self.save()
+        }
+        let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func save() {
+        var leftTableChange = false
+        if (PutzprofilTableVC.selectedPutzProfile?.participatingUsers != NSSet(array : currentlySelectedUsers)) {
+            PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
+        }
+        if (PutzprofilTableVC.selectedPutzProfile?.aktiv != currentActiveButton.isOn) {
+            PutzprofilTableVC.selectedPutzProfile?.aktiv = currentActiveButton.isOn
+        }
+        
         if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
             PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
+        }
+        if picturePicker.selectedIconName != PutzprofilTableVC.selectedPutzProfile?.profilIcon {
+            PutzprofilTableVC.selectedPutzProfile?.profilIcon = picturePicker.selectedIconName
+            leftTableChange = true
+            
+        }
+        if (PutzprofilTableVC.selectedPutzProfile?.title != titleTextField.text){
+            PutzprofilTableVC.selectedPutzProfile?.title = titleTextField.text
+            leftTableChange = true
+        }
+        PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks = Int64(Int(stepper.value))
+        PersistenceService.saveContext()
+        if (leftTableChange) {
+             NotificationCenter.default.post(name: NSNotification.Name("ReloadPutzProfileTable"), object: nil)
         }
         setInitValuesOfProfil()
     }
@@ -135,13 +196,14 @@ class PutzProfilEditDetailsVC: UIViewController {
         userOrderStackView.subviews.forEach { $0.removeFromSuperview() }
         userSelectionStackView.subviews.forEach { $0.removeFromSuperview() }
         titleTextField.text = PutzprofilTableVC.selectedPutzProfile?.title
-        var profilIconString = PutzprofilTableVC.selectedPutzProfile?.profilIcon
+        //PutzprofilTableVC.selectedPutzProfile?.profilIcon = "021-shower"
+        /*var profilIconString = PutzprofilTableVC.selectedPutzProfile?.profilIcon
         if profilIconString != nil, let image = UIImage(named: profilIconString!) {
             putzIcon.image = image
         } else {
             putzIcon.image = UIImage(named: "Fish-icon")
             print("Picture of putzprofile could not be loaded !!! ")
-        }
+        }*/
         if let userSet = PutzprofilTableVC.selectedPutzProfile?.participatingUsers {
             currentlySelectedUsers = userSet.allObjects as! [User]
             addUserSelectionItems()
@@ -149,6 +211,7 @@ class PutzProfilEditDetailsVC: UIViewController {
         }
         setWeekLabel(number: Int((PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks)!))
         currentActiveButton.isOn = (PutzprofilTableVC.selectedPutzProfile?.aktiv)!
+        picturePicker.selectedIconName = (PutzprofilTableVC.selectedPutzProfile?.profilIcon)!
         
     }
     
