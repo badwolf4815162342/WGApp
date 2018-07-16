@@ -36,6 +36,11 @@ class UserVC: UIViewController {
             edit?.user = user
             favorites?.user = user
             money?.user = user
+            
+            self.edit?.refresh()
+            self.profil?.refresh()
+            self.favorites?.refresh()
+            self.money?.refresh()
         }
     }
     
@@ -99,13 +104,12 @@ class UserVC: UIViewController {
 
 extension UserVC: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(item.title)
-        if (item.title == "Favoriten") {
+        if item.title == "Favoriten" && actContainer != profilFavoritesContainer  {
             self.changeActViewContainer(destinationContainer: self.profilFavoritesContainer)
             self.favorites?.refreshTable()
-        } else if (item.title == "Profil") {
+        } else if (item.title == "Profil" && actContainer != profilContainer) {
             self.changeActViewContainer(destinationContainer: self.profilContainer)
-        } else if item.title == "Geld" {
+        } else if item.title == "Geld" && actContainer != profilMoneyContainer {
             self.changeActViewContainer(destinationContainer: self.profilMoneyContainer)
         }
     }

@@ -11,18 +11,14 @@ import CoreData
 
 class UserFavoritesVC: UIViewController {
     
-    @IBOutlet weak var userIconImageView: UIImageView!
-    
-    
-    @IBOutlet weak var userNameLabel: UILabel!
-    
     var user: Profil!
-    
     static var selectedBusProfile: BusSetting?
+    var busSettings = [BusSetting]()
     
+    @IBOutlet weak var userIconImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var busSettings = [BusSetting]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +29,7 @@ class UserFavoritesVC: UIViewController {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 0))
         tableView.tableFooterView = footerView
         
-        setShowProfil()
+        refresh()
     }
     
     
@@ -48,12 +44,12 @@ class UserFavoritesVC: UIViewController {
         } catch {}
     }
     
-    func setShowProfil() {
-        var userIconString = user.profilIcon
+    func refresh() {
+        let userIconString = user.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIconImageView.image = image
         } else {
-            userIconImageView.image = UIImage(named: "Bear-icon")
+            userIconImageView.image = UIImage(named: "Bear-icon") // TODO questionmark
             print("Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = user.name

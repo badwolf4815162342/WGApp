@@ -12,26 +12,35 @@ class UserMoneyVC: UIViewController {
 
     var user: Profil!
     
+    @IBOutlet weak var userIcon: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var purchaseList: UITableView!
+    @IBOutlet weak var debtList: UITableView!
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        refresh()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func refresh(){
+        name.text = user.name
+        if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
+            userIcon.image = image
+        } else {
+            userIcon.image = UIImage(named: "Bear-icon") // TODO questionmark image
+            print("Picture of user could not be loaded !!! ")
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     
     }
-    */
 
 }
