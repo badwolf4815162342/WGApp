@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusRoute" representedClassName="BusRoute" syncable="YES">
         <attribute name="withDestination" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="busSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusSetting" inverseName="routes" inverseEntity="BusSetting" syncable="YES"/>
@@ -55,6 +55,7 @@
     <entity name="PutzWeekItem" representedClassName="PutzWeekItem" syncable="YES">
         <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numberOfWeeks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weekEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="weekStartDay" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="putzSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PutzSetting" inverseName="weekItems" inverseEntity="PutzSetting" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="putzWeekItems" inverseEntity="User" syncable="YES"/>
@@ -83,7 +84,7 @@
         <element name="Profil" positionX="-2747" positionY="-297" width="128" height="118"/>
         <element name="Purchase" positionX="-2846" positionY="74" width="128" height="133"/>
         <element name="PutzSetting" positionX="-3231" positionY="-154" width="128" height="165"/>
-        <element name="PutzWeekItem" positionX="-3015" positionY="-234" width="128" height="118"/>
+        <element name="PutzWeekItem" positionX="-3015" positionY="-234" width="128" height="135"/>
         <element name="StopLocation" positionX="-2475" positionY="-45" width="128" height="103"/>
         <element name="User" positionX="-2799" positionY="-135" width="162" height="148"/>
     </elements>

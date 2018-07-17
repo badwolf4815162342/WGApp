@@ -37,17 +37,23 @@ class PutzItemViewCell: UICollectionViewCell {
                 print("Picture of putzprofile could not be loaded !!! ")
             }
         } else {
+            self.putzProfileTitle.text = "No Item found on date \(outFormatter.string(from: startDate)) for profile \(putzProfile)"
             //self.isHidden = true
         }
     }
     
     func getPutzItem(putzProfile: PutzSetting, startDate: Date) -> PutzWeekItem? {
         for item in putzProfile.weekItems! {
+            print("Item of \((item as! PutzWeekItem).user?.name) ond datestart \((item as! PutzWeekItem).weekStartDay)")
             if (startDate == ((item as! PutzWeekItem).weekStartDay! as Date) ) {
                 return (item as! PutzWeekItem)
             }
         }
         return nil
+    }
+    
+    func setPutzItem(putzItem: PutzWeekItem){
+        
     }
 
 }

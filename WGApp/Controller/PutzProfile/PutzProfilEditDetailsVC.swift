@@ -110,14 +110,15 @@ class PutzProfilEditDetailsVC: UIViewController {
         var leftTableChange = false
         if (PutzprofilTableVC.selectedPutzProfile?.participatingUsers != NSSet(array : currentlySelectedUsers)) {
             PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
+            if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
+                PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
+            }
         }
         if (PutzprofilTableVC.selectedPutzProfile?.aktiv != currentActiveButton.isOn) {
             PutzprofilTableVC.selectedPutzProfile?.aktiv = currentActiveButton.isOn
         }
         
-        if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
-            PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
-        }
+       
         if picturePicker.selectedIconName != PutzprofilTableVC.selectedPutzProfile?.profilIcon {
             PutzprofilTableVC.selectedPutzProfile?.profilIcon = picturePicker.selectedIconName
             leftTableChange = true
@@ -287,11 +288,11 @@ class PutzProfilEditDetailsVC: UIViewController {
         
         let index = currentlySelectedUsers.index(of: sender.user as! User)
         if (index != nil) {
-            sender.layer.borderColor = UIColor.lightGray.cgColor
             currentlySelectedUsers.remove(at: index!)
+            sender.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
         } else {
+           sender.layer.borderColor = UIColor(named: "YELLOW")?.cgColor
             currentlySelectedUsers.append(sender.user as! User)
-            sender.layer.borderColor = UIColor.darkGray.cgColor
         }
     }
     
