@@ -10,7 +10,7 @@ import UIKit
 
 class UserVC: UIViewController {
     
-    var user: Profil!
+    var user: User!
 
     @IBOutlet weak var tabBar: UITabBar!
     
@@ -26,7 +26,7 @@ class UserVC: UIViewController {
     var favorites: UserFavoritesVC?
     var money: UserMoneyVC?
     
-    var userProp: Profil {
+    var userProp: User {
         get{
             return user
         }
@@ -69,8 +69,8 @@ class UserVC: UIViewController {
     
     func changeActViewContainer(destinationContainer: UIView){
         UIView.animate(withDuration: 0.5, animations: {
-            destinationContainer.alpha = 1
             self.actContainer?.alpha = 0
+            destinationContainer.alpha = 1
         })
         actContainer = destinationContainer
     }
