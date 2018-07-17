@@ -13,6 +13,7 @@ class PutzSettingsController: NSObject {
     
     class func deletePutzProfile(putzProfile: PutzSetting) {
         deleteAllItems(ofPutzSetting: putzProfile)
+        PersistenceService.saveContext()
         PersistenceService.context.delete(putzProfile)
     }
     

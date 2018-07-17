@@ -18,6 +18,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
     static var calenderFirstWeekStart : Date?
     static var calenderFirstlastWeekEnd: Date?
     static var profiles: [PutzSetting]?
+    static var items: [PutzSetting: [PutzWeekItem]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +34,19 @@ class PutzProfilCalenderVC: UICollectionViewController {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             numberOfPutzSettings = profiles.count
             PutzProfilCalenderVC.profiles = profiles
+            setItems()
         } catch {
             print("core data couldn't be loaded")
         }
         self.collectionView?.reloadData()
+    }
+    
+    func setItems() {
+        for profile in PutzProfilCalenderVC.profiles! {
+            var putzItems = profile.weekItems?.allObjects as! [PutzWeekItem]
+            putzItems = putzItems.sorted(by: { ($0.weekEndDate as! Date).compare($1.weekEndDate as! Date) == .orderedAscending })
+            PutzProfilCalenderVC.items[profile] = putzItems
+        }
     }
 
    
@@ -74,6 +84,32 @@ class PutzProfilCalenderVC: UICollectionViewController {
             return icell
         }
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // alert
+        /**var item = items[indexPath.row]
+        let alert = UIAlertController(title: "Erledigt?", message: item.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+        
+        // alert button hinzufügen
+        let saveAction = UIAlertAction(title: "Jap", style: .default) { (_) in
+            if !(item.done) {
+                item.done = true
+                PersistenceService.saveContext()
+                self.refresh()
+            }
+        }
+        let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
+            if (item.done) {
+                item.done = false
+                PersistenceService.saveContext()
+                self.refresh()
+            }
+        }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)**/
     }
     
     func getWeekDates(weeksFromCurrent: Int) -> String{
