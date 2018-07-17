@@ -18,6 +18,9 @@ class HomeScreenVC: UIViewController {
     var items:[UIBarButtonItem] = []
     
     var profiles: [Profil] = []
+    
+    static var thisWeekStart : Date?
+    static var thisWeekEnd: Date?
 
     @IBOutlet weak var homeNavigationItem: UINavigationItem!
     
@@ -113,8 +116,14 @@ class HomeScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        HomeScreenVC.thisWeekStart = Date.today().previous(.monday,
+                                              considerToday: true)
+        HomeScreenVC.thisWeekEnd = Date.today().previous(.monday,
+                                            considerToday: true).add(days: 6)
         // DELETE all busprofile Data
-        //BusSettingsController.deleteAllData(entity: "BusSetting")
+        //BusSettingsController.deleteAllData(entity: "PutzWeekItem")
+        //print("items deleted")
         //BusSettingsController.deleteAllData(entity: "BusRoute")
         //BusSettingsController.deleteAllData(entity: "StopLocation")
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)

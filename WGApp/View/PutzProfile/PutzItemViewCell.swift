@@ -10,6 +10,7 @@ import UIKit
 
 class PutzItemViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var checkedImage: UIImageView!
     @IBOutlet weak var putzItemImageView: UIImageView!
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -25,22 +26,7 @@ class PutzItemViewCell: UICollectionViewCell {
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         if let putzItem = putzItem {
-            self.putzItem = putzItem
-            let putzIconString = putzItem.putzSetting?.profilIcon
-            if putzIconString != nil, let image = UIImage(named: putzIconString!) {
-                putzItemImageView.image = image
-            } else {
-                putzItemImageView.image = UIImage(named: "info")
-                print("Picture of putzprofile could not be loaded !!! ")
-            }
-            putzProfileTitle.text = "Sec " + (putzProfile.title)! + "/Item " + outFormatter.string(from: startDate)
-            let userIconString = putzItem.user?.profilIcon
-            if userIconString != nil, let image = UIImage(named: userIconString!) {
-                userImageView.image = image
-            } else {
-                userImageView.image = UIImage(named: "Bear-icon")
-                print("Picture of putzprofile could not be loaded !!! ")
-            }
+            setPutzItem(putzItem: putzItem)
         } else {
             self.putzProfileTitle.text = "No Item found on date \(outFormatter.string(from: startDate)) for profile \(putzProfile)"
             //self.isHidden = true
@@ -58,6 +44,7 @@ class PutzItemViewCell: UICollectionViewCell {
     }
     
     func setPutzItem(putzItem: PutzWeekItem){
+
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         self.putzItem = putzItem
@@ -76,12 +63,46 @@ class PutzItemViewCell: UICollectionViewCell {
             userImageView.image = UIImage(named: "Bear-icon")
             print("Picture of putzprofile could not be loaded !!! ")
         }
-        //setColor()
-        //setDone()
+        setColor(putzItem: self.putzItem!)
+        setDone(putzItem: self.putzItem!)
     }
     
-    /**func setColor() {
-        
-    }**/
+    func setDone(putzItem: PutzWeekItem) {
+        if (putzItem.done) {
+            checkedImage.isHidden = false
+            checkedImage.alpha = 0.9
+            self.backgroundColor = UIColor.init(named: "GRAY")
+        } else {
+            checkedImage.isHidden = true
+        }
+    }
+    
+    func setColor(putzItem: PutzWeekItem) {
+        let outFormatter = DateFormatter()
+        outFormatter.dateFormat = "dd.MM.yy"
+        var deadline = (putzItem.weekEndDate! as! Date)
+        print("DEADLINE \(outFormatter.string(from: deadline)) days \( deadline.days(from: Date())+1 ) <= \(CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_GREEN)")
+        if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_RED ) {
+            self.backgroundColor = UIColor.init(named: "RED")
+        } else if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_YELLOW ){
+            print("DEADLINE yellow")
+            self.backgroundColor = UIColor.init(named: "YELLOW")
+        } else if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_GREEN ){
+            print("DEADLINE green")
+            self.backgroundColor = UIColor.init(named: "GREEN")
+        } else {
+            self.backgroundColor = UIColor.init(named: "GRAY")
+        }
+    }
 
+}
+
+extension UIImage {
+    func image(alpha: CGFloat) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: .zero, blendMode: .normal, alpha: alpha)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }

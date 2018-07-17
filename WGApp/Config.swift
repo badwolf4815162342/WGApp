@@ -31,6 +31,10 @@ struct CONFIG {
         //static let START_DAY_OF_WEEK: Date =  Date.monday
         static let WEEKS_BACK_IN_CALENDER = 1
         
+        static let ITEM_DAYS_UNTIL_DEADLINE_RED = 1
+        static let ITEM_DAYS_UNTIL_DEADLINE_YELLOW = 4
+        static let ITEM_DAYS_UNTIL_DEADLINE_GREEN = 7
+        
     }
     
     

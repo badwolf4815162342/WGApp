@@ -122,6 +122,13 @@
                                             <color key="textColor" name="DARK_GRAY"/>
                                             <color key="highlightedColor" name="YELLOW"/>
                                         </label>
+                                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checked-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-r7-tAx">
+                                            <rect key="frame" x="25" y="25" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="2y1-ZU-QaM"/>
+                                                <constraint firstAttribute="width" constant="100" id="sXz-b9-k3b"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" name="LIGHT_GRAY"/>
@@ -133,10 +140,13 @@
                                     <constraint firstItem="JN2-BC-54k" firstAttribute="centerX" secondItem="bfc-41-vnJ" secondAttribute="centerX" id="L8d-kx-rNp"/>
                                     <constraint firstItem="i0O-0k-7vA" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="5" id="Rhb-Ro-zuE"/>
                                     <constraint firstItem="JN2-BC-54k" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="115" id="brr-hJ-eea"/>
+                                    <constraint firstItem="ZGp-r7-tAx" firstAttribute="centerX" secondItem="bfc-41-vnJ" secondAttribute="centerX" id="dsi-nG-5cg"/>
                                     <constraint firstItem="4LL-9e-KpE" firstAttribute="top" secondItem="bfc-41-vnJ" secondAttribute="top" constant="5" id="pcm-xB-owT"/>
+                                    <constraint firstItem="ZGp-r7-tAx" firstAttribute="centerY" secondItem="bfc-41-vnJ" secondAttribute="centerY" id="rz3-XO-IjV"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
+                                    <outlet property="checkedImage" destination="ZGp-r7-tAx" id="nY0-5V-2tK"/>
                                     <outlet property="putzItemImageView" destination="4LL-9e-KpE" id="EYb-Pb-Ytz"/>
                                     <outlet property="putzProfileTitle" destination="JN2-BC-54k" id="5Sb-K0-eFZ"/>
                                     <outlet property="userImageView" destination="i0O-0k-7vA" id="Pkh-eP-htX"/>
@@ -374,6 +384,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checked-1" width="512" height="512"/>
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

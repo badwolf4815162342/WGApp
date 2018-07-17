@@ -19,20 +19,22 @@ class ShowActPutzItemsVC: UIViewController {
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        refreshContent()
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("items refreshed")
+        refreshContent()
     }
    
     func refreshContent(){
         // load core data into collection view
-        let fetchRequest: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
-        let fromPredicate = NSPredicate(format: "%@ >= %@", Date() as NSDate)
-        let toPredicate = NSPredicate(format: "%@ < %@", (Date().add(days: 7) as NSDate))
-        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
-        fetchRequest.predicate = datePredicate
-        fetchRequest.returnsObjectsAsFaults = false
+        let request: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
+         request.predicate =  NSPredicate(format: "(weekStartDay <= %@) AND (weekEndDate >= %@)", Date() as NSDate, Date() as NSDate)
+        request.returnsObjectsAsFaults = false
         do {
-            let items = try PersistenceService.context.fetch(fetchRequest)
+            let items = try PersistenceService.context.fetch(request)
             print("items \(items.count)")
             self.items = items
             self.collectionView.reloadData()
@@ -58,6 +60,23 @@ extension ShowActPutzItemsVC: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "ShowUser", sender: people[indexPath.row])
+        // alert
+        let alert = UIAlertController(title: "Erledigt?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        var item = items[indexPath.row]
+        // alert button hinzufügen
+        let saveAction = UIAlertAction(title: "Jap", style: .default) { (_) in
+            item.done = true
+            PersistenceService.saveContext()
+            self.refreshContent()
+        }
+        let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
+            item.done = false
+            PersistenceService.saveContext()
+            self.refreshContent()
+        }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
     }
 }
