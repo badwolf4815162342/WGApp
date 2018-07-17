@@ -112,5 +112,18 @@ extension TripRMV {
         ret += "Dauer: " + self.durationMinutes
         return ret
     }
+    
+    func getDurationMinutes() -> String {
+        if (durationMinutes.count<=5){
+            return "\(durationMinutes.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)) m"
+        } else {
+            var parts = durationMinutes.split(separator: "H")
+            let hours = parts[0].trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
+            let minutes = parts[1].trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
+            var ret = "\(hours)h \(minutes)m"
+            return ret
+        }
+        return self.durationMinutes
+    }
 }
 

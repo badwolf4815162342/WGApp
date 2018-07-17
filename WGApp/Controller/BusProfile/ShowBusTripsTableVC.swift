@@ -40,6 +40,7 @@ class ShowBusTripsTableVC: UIViewController {
     
     var selectedTrips = [String]()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         showTripsTableView.delegate = self
@@ -79,7 +80,13 @@ class ShowBusTripsTableVC: UIViewController {
         effectView.contentView.addSubview(activityIndicator)
         effectView.contentView.addSubview(strLabel)
         view.addSubview(effectView)
+        UIApplication.shared.keyWindow!.bringSubview(toFront: effectView)
     }
+    
+    @IBAction func onReloadTapped(_ sender: Any) {
+        refreshTable()
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear ShowBusTripsTableVC")

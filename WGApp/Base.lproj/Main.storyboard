@@ -274,6 +274,13 @@
                                 <color key="backgroundColor" name="DARK_GRAY"/>
                                 <viewLayoutGuide key="safeArea" id="07H-Zp-JXu"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f02-Db-5ZF">
+                                <rect key="frame" x="0.0" y="5" width="680" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" name="LIGHT_YELLOW"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xI2-sa-4ob">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -292,6 +299,7 @@
                     <connections>
                         <outlet property="homeNavigationItem" destination="Gqr-jB-1F3" id="AKW-RF-IEn"/>
                         <outlet property="overlayView" destination="xI2-sa-4ob" id="cFy-Pb-h9q"/>
+                        <outlet property="timeLabel" destination="f02-Db-5ZF" id="tSW-Pg-dBo"/>
                         <segue destination="wHS-gX-Jjd" kind="show" identifier="ShowBusManagement" id="J5m-5L-QcM"/>
                         <segue destination="6SK-wc-hcA" kind="show" identifier="ShowUserManagement" id="9tp-00-k95"/>
                         <segue destination="v0u-xw-nKM" kind="show" identifier="ShowPutzManagement" id="9Xq-3c-Hw1"/>
@@ -392,6 +400,9 @@
         <image name="bus" width="512" height="512"/>
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LIGHT_YELLOW">
+            <color red="0.97299998998641968" green="0.9100000262260437" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="WHITE">
             <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

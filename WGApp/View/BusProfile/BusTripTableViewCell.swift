@@ -38,10 +38,10 @@ class BusTripTableViewCell: UITableViewCell {
             let futureDeparture = retValues.futureDeparture
             minutesLabel.text = BusSettingsController.getMinutesLabel(minutes: min, futureDeparture: futureDeparture)
             countChangesLabel.text = (String) (tripRMV.routeParts.count-1)
-            durationLabel.text = tripRMV.durationMinutes
+            durationLabel.text = tripRMV.getDurationMinutes()
             let outFormatter = DateFormatter()
             outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
-            outFormatter.dateFormat = "hh:mm"
+            outFormatter.dateFormat = "HH:mm"
             startTime.text = outFormatter.string(from: tripRMV.routeParts[0].plannedDepartureTime)
             realStratTime.text = outFormatter.string(from: tripRMV.routeParts[0].realDepartureTime)
             if (selectedTrips.contains(tripRMV.id)){

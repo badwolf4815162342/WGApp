@@ -12,6 +12,8 @@ import CoreData
 class HomeScreenVC: UIViewController {
     
    
+    @IBOutlet weak var timeLabel: UILabel!
+    var timer = Timer()
     
     @IBOutlet weak var overlayView: UIImageView!
     static var wg: HomeProfil?
@@ -124,8 +126,18 @@ class HomeScreenVC: UIViewController {
         }
     }
     
+    @objc func tick() {
+
+        timeLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .medium)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+            target: self,
+            selector: #selector(tick),
+            userInfo: nil,
+            repeats: true)
         overlayView.isUserInteractionEnabled = false
         self.view.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleSideMenu))
