@@ -197,10 +197,12 @@ class HomeScreenVC: UIViewController {
     }
     
     @objc func showPutzManagement() {
+        PutzProfilVC.typeEinst = true
         performSegue(withIdentifier: "ShowPutzManagement", sender: nil)
     }
     
     @objc func showPutzPlan() {
+        PutzProfilVC.typeEinst = false
         performSegue(withIdentifier: "ShowPutzPlan", sender: nil)
     }
     

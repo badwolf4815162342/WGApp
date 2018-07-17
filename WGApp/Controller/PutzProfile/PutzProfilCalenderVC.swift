@@ -20,6 +20,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
     static var profiles: [PutzSetting]?
     static var items: [PutzSetting: [PutzWeekItem]] = [:]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +29,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
         refresh()
     }
     
-    func refresh() {
+    @objc func refresh() {
         let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
         fetchRequest.predicate =  NSPredicate(format: "aktiv = %@", NSNumber(value: true))
         fetchRequest.returnsObjectsAsFaults = false

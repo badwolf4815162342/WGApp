@@ -9,6 +9,8 @@
 import UIKit
 
 class PutzProfilVC: UIViewController {
+    
+    static var typeEinst = true
 
     //var user: Profil!
     
@@ -25,8 +27,14 @@ class PutzProfilVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        actContainer = putzProfilCalenderContainer
-        changeActViewContainer(destinationContainer: putzProfilEditContainer)
+        if (PutzProfilVC.typeEinst) {
+            actContainer = putzProfilCalenderContainer
+            changeActViewContainer(destinationContainer: putzProfilEditContainer)
+        } else {
+            actContainer = putzProfilEditContainer
+            changeActViewContainer(destinationContainer: putzProfilCalenderContainer)
+        }
+        PutzProfilVC.typeEinst = true
         tabBar.delegate = self
     }
     
@@ -51,7 +59,8 @@ extension PutzProfilVC: UITabBarDelegate {
         } else if (item.title == "Putzplan") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
             print("refresh \(self.putzProfilCalenderVC)")
-            putzProfilCalenderVC?.refresh()
+            NotificationCenter.default.post(name: NSNotification.Name("RefreshPutzPlan"), object: nil)
+            
         }
     }
 }
