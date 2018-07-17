@@ -48,7 +48,7 @@ extension PutzProfilVC: UITabBarDelegate {
         if (item.title == "Putzprofil Einstellungen") {
             self.changeActViewContainer(destinationContainer: self.putzProfilEditContainer)
 //            self.favorites?.refreshTable()
-        } else if (item.title == "Putzkalender") {
+        } else if (item.title == "Putzplan") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
             print("refresh \(self.putzProfilCalenderVC)")
             putzProfilCalenderVC?.refresh()

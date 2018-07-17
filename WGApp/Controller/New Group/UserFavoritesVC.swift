@@ -49,7 +49,7 @@ class UserFavoritesVC: UIViewController {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIconImageView.image = image
         } else {
-            userIconImageView.image = UIImage(named: "Bear-icon") // TODO questionmark
+            userIconImageView.image = UIImage(named: "info") // TODO questionmark
             print("Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = user.name

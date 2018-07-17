@@ -72,7 +72,7 @@ class ShowBusDepartureTableVC: UIViewController {
             if userIconString != nil, let image = UIImage(named: userIconString!) {
                 ofProfileImageView.image = image
             } else {
-                ofProfileImageView.image = UIImage(named: "Bear-icon")
+                ofProfileImageView.image = UIImage(named: "info")
                 print("Picture of user could not be loaded !!! ")
             }
             // load core data into table

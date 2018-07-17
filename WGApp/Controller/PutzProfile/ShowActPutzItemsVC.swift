@@ -19,6 +19,7 @@ class ShowActPutzItemsVC: UIViewController {
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshContent), name: NSNotification.Name("RefreshHomeScreenPutzItems"), object: nil)
         super.viewDidLoad()
     }
     
@@ -27,7 +28,7 @@ class ShowActPutzItemsVC: UIViewController {
         refreshContent()
     }
    
-    func refreshContent(){
+    @objc func refreshContent(){
         print("refresh")
         // load core data into collection view
         let request: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
@@ -66,29 +67,7 @@ extension ShowActPutzItemsVC: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // alert
-        var item = items[indexPath.row]
-        let alert = UIAlertController(title: "Erledigt?", message: item.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
-        
-        // alert button hinzufügen
-        let saveAction = UIAlertAction(title: "Jap", style: .default) { (_) in
-            if !(item.done) {
-                item.done = true
-                PersistenceService.saveContext()
-                self.refreshContent()
-            }
-        }
-        let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
-            if (item.done) {
-                item.done = false
-                PersistenceService.saveContext()
-                self.refreshContent()
-            }
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancleAction)
-        present(alert, animated: true, completion: nil)
+   
     }
 }
 
@@ -100,7 +79,11 @@ extension PutzWeekItem {
         outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
         outFormatter.dateFormat = "dd.MM.yy"
         var ret = ""
-        ret += " \(self.user!.name!): \(self.putzSetting!.title!) \n"
+        if let user = self.user {
+             ret += " \(user.name!): \(self.putzSetting!.title!) \n"
+        } else {
+             ret += " Gelöschter User: \(self.putzSetting!.title!) \n"
+        }
         ret += "Zeiraum: " + outFormatter.string(from: (self.weekStartDay as! Date)) + " bis " + outFormatter.string(from: (self.weekEndDate as! Date))
         return ret
     }

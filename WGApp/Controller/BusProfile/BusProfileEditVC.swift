@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 class BusProfilEditVC: UIViewController {
- 
+
+    
     @IBOutlet weak var withDestinations: UISwitch!
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -57,6 +58,13 @@ class BusProfilEditVC: UIViewController {
         // show first busprofile when deleting one which is selcted
         NotificationCenter.default.addObserver(self, selector: #selector(setInitialBusProfile), name: NSNotification.Name("ShowInitialBusProfileMsg"), object: nil)
 
+    }
+    
+    @IBAction func titleChanged(_ sender: Any) {
+        if (titleTextField.text != BusProfileVC.selectedBusProfile?.title) {
+            BusProfileVC.selectedBusProfile?.title = titleTextField.text
+            NotificationCenter.default.post(name: NSNotification.Name("ReloadBusProfileTable"), object: nil)
+        }
     }
 
     
@@ -123,13 +131,6 @@ class BusProfilEditVC: UIViewController {
     
 
     
-    @IBAction func saveBusProfile(_ sender: Any) {
-        print(BusProfileVC.selectedBusProfile?.objectID)
-        print(BusProfileVC.selectedBusProfile?.title ?? "title")
-        print(BusProfileVC.selectedBusProfile?.routes?.count ?? "routeslength")
-        //TODO: saving title and user
-    }
-    
     @objc func changeBusProfile(notification: NSNotification) {
         BusProfileVC.selectedBusProfile = notification.object as! BusSetting
         titleTextField.text = BusProfileVC.selectedBusProfile?.title
@@ -137,7 +138,7 @@ class BusProfilEditVC: UIViewController {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIcon.image = image
         } else {
-            userIcon.image = UIImage(named: "Bear-icon")
+            userIcon.image = UIImage(named: "info")
             print("Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name
@@ -231,7 +232,7 @@ class BusProfilEditVC: UIViewController {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIcon.image = image
         } else {
-            userIcon.image = UIImage(named: "Bear-icon")
+            userIcon.image = UIImage(named: "info")
             print("Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name

@@ -88,7 +88,7 @@ class UserMoneyVC: UIViewController {
         if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
             userIcon.image = image
         } else {
-            userIcon.image = UIImage(named: "Bear-icon") // TODO questionmark image
+            userIcon.image = UIImage(named: "info") // TODO questionmark image
             print("Picture of user could not be loaded !!! ")
         }
     }

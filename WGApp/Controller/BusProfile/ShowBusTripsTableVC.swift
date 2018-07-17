@@ -89,7 +89,7 @@ class ShowBusTripsTableVC: UIViewController {
             if userIconString != nil, let image = UIImage(named: userIconString!) {
                 ofProfileImage.image = image
             } else {
-                ofProfileImage.image = UIImage(named: "Bear-icon")
+                ofProfileImage.image = UIImage(named: "info")
                 print("Picture of user could not be loaded !!! ")
             }
             if let type = tripsTableType {

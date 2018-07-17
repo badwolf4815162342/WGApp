@@ -49,7 +49,7 @@ class UserProfilVC: UIViewController {
         if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
             icon.image = image
         } else {
-            icon.image = UIImage(named: "Bear-icon")
+            icon.image = UIImage(named: "info")
             print("Picture of user could not be loaded !!! ") // TODO questionmark image
         }
     }

@@ -80,7 +80,7 @@ class PutzItemViewCell: UICollectionViewCell {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userImageView.image = image
         } else {
-            userImageView.image = UIImage(named: "Bear-icon")
+            userImageView.image = UIImage(named: "info")
             print("Picture of putzprofile could not be loaded !!! ")
         }
         setColor(putzItem: self.putzItem!)
@@ -128,6 +128,7 @@ class PutzItemViewCell: UICollectionViewCell {
                             item.done = true
                             PersistenceService.saveContext()
                             self.setDone(putzItem: item)
+                            NotificationCenter.default.post(name: NSNotification.Name("RefreshHomeScreenPutzItems"), object: nil)
                         }
                     }
                     let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
@@ -135,12 +136,14 @@ class PutzItemViewCell: UICollectionViewCell {
                             item.done = false
                             PersistenceService.saveContext()
                             self.setDone(putzItem: item)
+                            NotificationCenter.default.post(name: NSNotification.Name("RefreshHomeScreenPutzItems"), object: nil)
                         }
                     }
                     
                     alert.addAction(saveAction)
                     alert.addAction(cancleAction)
                     UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+                    
             } else {
                 // animate deselection
             }

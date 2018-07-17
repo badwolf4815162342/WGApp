@@ -24,7 +24,7 @@ class BusprofileTableViewCell: UITableViewCell {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userImageView.image = image
         } else {
-            userImageView.image = UIImage(named: "Bear-icon")
+            userImageView.image = UIImage(named: "info")
             print("Picture of user could not be loaded !!! ")
         }
         
