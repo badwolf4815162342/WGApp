@@ -2,7 +2,7 @@
 //  PutzWeekItem+CoreDataProperties.swift
 //  WGApp
 //
-//  Created by Anna Abad on 15.07.18.
+//  Created by Viviane Rehor on 16.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //
@@ -20,6 +20,7 @@ extension PutzWeekItem {
     @NSManaged public var done: Bool
     @NSManaged public var numberOfWeeks: Int64
     @NSManaged public var weekStartDay: NSDate?
+    @NSManaged public var weekEndDate: NSDate?
     @NSManaged public var putzSetting: PutzSetting?
     @NSManaged public var user: User?
 

@@ -2,7 +2,7 @@
 //  PutzWeekItem+CoreDataClass.swift
 //  WGApp
 //
-//  Created by Anna Abad on 15.07.18.
+//  Created by Viviane Rehor on 16.07.18.
 //  Copyright © 2018 Viviane Rehor. All rights reserved.
 //
 //

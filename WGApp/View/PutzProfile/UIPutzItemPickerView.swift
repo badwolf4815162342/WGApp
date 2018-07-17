@@ -34,7 +34,8 @@ class UIPutzItemPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDe
         Image(named: "023-toilet"),
         Image(named: "029-glass-cleaning"),
         Image(named: "038-garbage"),
-        Image(named: "021-shower")
+        Image(named: "021-shower"),
+        Image(named: "info")
     ]
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

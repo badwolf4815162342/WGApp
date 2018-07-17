@@ -62,11 +62,11 @@
             <objects>
                 <viewController storyboardIdentifier="busTripsTableView" id="rb0-sX-UE4" customClass="ShowBusTripsTableVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2AT-rb-EYl">
-                        <rect key="frame" x="0.0" y="0.0" width="692" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="692" height="465"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SVB-Mg-NYK">
-                                <rect key="frame" x="0.0" y="176.5" width="692" height="223.5"/>
+                                <rect key="frame" x="0.0" y="176.5" width="692" height="288.5"/>
                                 <color key="backgroundColor" name="LIGHT_GRAY"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusDepartureCell" rowHeight="45" id="gtg-EK-ajN" customClass="BusDepartureTableViewCell" customModule="WGApp" customModuleProvider="target">
@@ -431,7 +431,7 @@
                                 <color key="backgroundColor" name="WHITE"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dieses Profil hat leider keine Rouen, gehe in die Buseinstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAI-vU-kQW">
-                                <rect key="frame" x="98" y="190" width="496.5" height="20.5"/>
+                                <rect key="frame" x="98" y="222.5" width="496.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="WHITE"/>
                                 <nil key="highlightedColor"/>
@@ -458,7 +458,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8rD-tU-pi0"/>
                     </view>
-                    <size key="freeformSize" width="692" height="400"/>
+                    <size key="freeformSize" width="692" height="465"/>
                     <connections>
                         <outlet property="busProfileName" destination="jdc-PG-2cf" id="qRF-lH-8zR"/>
                         <outlet property="noRoutesLabel" destination="xAI-vU-kQW" id="DYo-4V-Lea"/>

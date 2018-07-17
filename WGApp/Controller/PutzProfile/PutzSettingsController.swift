@@ -12,6 +12,8 @@ import CoreData
 class PutzSettingsController: NSObject {
     
     class func deletePutzProfile(putzProfile: PutzSetting) {
+        deleteAllItems(ofPutzSetting: putzProfile)
+        PersistenceService.saveContext()
         PersistenceService.context.delete(putzProfile)
     }
     
@@ -31,15 +33,40 @@ class PutzSettingsController: NSObject {
         newPutzProfile.aktiv = false
         newPutzProfile.startDate = (Date.today().previous(.monday,
                                               considerToday: true)) as NSDate
-        
+        newPutzProfile.profilIcon = "info"
         PersistenceService.saveContext()
-        //for user in getOrderedUsers(ofProfile: newPutzProfile) {
-            //print(user.name)
-        //}
         return newPutzProfile
     }
     
+    class func deleteAllItems(ofPutzSetting: PutzSetting) {
+        ofPutzSetting.userOrder = nil
+        for item in ofPutzSetting.weekItems! {
+           PersistenceService.context.delete((item as! PutzWeekItem))
+        }
+        /**
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PutzWeekItem")
+        fetch.predicate = NSPredicate(format: "putzSetting = %@", ofPutzSetting)
+        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        do {
+            try PersistenceService.context.execute(request)
+        } catch {
+            fatalError("Failed to execute request: \(error)")
+        }**/
+        PersistenceService.saveContext()
+        /**let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
+        do {
+            print("deleted of \(ofPutzSetting.title)")
+            let profiles = try PersistenceService.context.fetch(fetchRequest)
+            for profile in profiles {
+                for item in ofPutzSetting.weekItems! {
+                    print ("Remaining Item of Profile \(ofPutzSetting.title): \((item as! PutzWeekItem).user?.name) start \((item as! PutzWeekItem).weekStartDay)")
+                }
+            }
+        } catch {}**/
+    }
+    
     class func calculateOrder(putzProfile: PutzSetting){
+        deleteAllItems(ofPutzSetting: putzProfile)
         var userOrder: [String] = []
         var users: [User] = (putzProfile.participatingUsers?.toArray())!
         users.shuffle()
@@ -64,6 +91,7 @@ class PutzSettingsController: NSObject {
             let date = Date.today().previous(.monday,
                                              considerToday: true).add(days: (i*7*Int(newPutzItem.numberOfWeeks)))
             newPutzItem.weekStartDay = date as NSDate
+            newPutzItem.weekEndDate = date.add(days: ((7*Int(newPutzItem.numberOfWeeks))-1)) as NSDate
             newPutzItem.user = user
             user = withOrder.after(user, loop: true)!
             print(user.name)

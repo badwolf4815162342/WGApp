@@ -35,6 +35,10 @@
 		5F0A8ECC20F7605B00E06836 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8EC920F7605B00E06836 /* CustomCollectionViewController.swift */; };
 		5F0A8ED620F81D4100E06836 /* PutzItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */; };
 		5F1D3B8D20FD0069001BDCD6 /* UIPutzItemPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */; };
+		5F1D3B9020FD465E001BDCD6 /* ShowActPutzItems.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1D3B8E20FD465E001BDCD6 /* ShowActPutzItems.storyboard */; };
+		5F1D3B9220FD479F001BDCD6 /* ShowActPutzItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D3B9120FD479F001BDCD6 /* ShowActPutzItemsVC.swift */; };
+		5F1D3B9520FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D3B9320FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift */; };
+		5F1D3B9620FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D3B9420FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift */; };
 		5F44D62F20D01CA40014AB46 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D62E20D01CA40014AB46 /* Image.swift */; };
 		5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */; };
 		5F44D63420D01CCA0014AB46 /* UserProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */; };
@@ -71,8 +75,6 @@
 		8F31F46D20FB7B6100CEA6AB /* CheckMarkViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F31F46B20FB7B6100CEA6AB /* CheckMarkViewCell.xib */; };
 		8F31F46F20FB8DE100CEA6AB /* PurchasePriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F46E20FB8DE100CEA6AB /* PurchasePriceViewController.swift */; };
 		8F31F47120FBB2CA00CEA6AB /* PurchaseConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47020FBB2CA00CEA6AB /* PurchaseConfirmationViewController.swift */; };
-		8F31F48820FBC4E200CEA6AB /* PutzWeekItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47220FBC4E100CEA6AB /* PutzWeekItem+CoreDataClass.swift */; };
-		8F31F48920FBC4E200CEA6AB /* PutzWeekItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47320FBC4E100CEA6AB /* PutzWeekItem+CoreDataProperties.swift */; };
 		8F31F48A20FBC4E200CEA6AB /* PutzSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47420FBC4E100CEA6AB /* PutzSetting+CoreDataClass.swift */; };
 		8F31F48B20FBC4E200CEA6AB /* PutzSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47520FBC4E100CEA6AB /* PutzSetting+CoreDataProperties.swift */; };
 		8F31F48C20FBC4E200CEA6AB /* ListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F47620FBC4E100CEA6AB /* ListItem+CoreDataClass.swift */; };
@@ -146,7 +148,7 @@
 		5F0A8EB520F638EA00E06836 /* PutzProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilVC.swift; sourceTree = "<group>"; };
 		5F0A8EB720F6396900E06836 /* PutzProfilEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilEditVC.swift; sourceTree = "<group>"; };
 		5F0A8EB920F6397B00E06836 /* PutzProfilCalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilCalenderVC.swift; sourceTree = "<group>"; };
-		5F0A8EBC20F63ABD00E06836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/PutzProfile.storyboard; sourceTree = "<group>"; };
+		5F0A8EBC20F63ABD00E06836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PutzProfile.storyboard; sourceTree = "<group>"; };
 		5F0A8EBF20F63F4D00E06836 /* PutzprofilTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzprofilTableVC.swift; sourceTree = "<group>"; };
 		5F0A8EC120F63F6100E06836 /* PutzProfilEditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilEditDetailsVC.swift; sourceTree = "<group>"; };
 		5F0A8EC320F6421C00E06836 /* PutzProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,10 @@
 		5F0A8EC920F7605B00E06836 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzItemViewCell.swift; sourceTree = "<group>"; };
 		5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPutzItemPickerView.swift; sourceTree = "<group>"; };
+		5F1D3B8F20FD465E001BDCD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ShowActPutzItems.storyboard; sourceTree = "<group>"; };
+		5F1D3B9120FD479F001BDCD6 /* ShowActPutzItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowActPutzItemsVC.swift; sourceTree = "<group>"; };
+		5F1D3B9320FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5F1D3B9420FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F44D62E20D01CA40014AB46 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = WGApp/Model/UserModels/Image.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63020D01CCA0014AB46 /* UserProfilEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilEditVC.swift; path = WGApp/Controller/user/UserProfilEditVC.swift; sourceTree = SOURCE_ROOT; };
 		5F44D63120D01CCA0014AB46 /* UserProfilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfilVC.swift; path = WGApp/Controller/user/UserProfilVC.swift; sourceTree = SOURCE_ROOT; };
@@ -198,8 +204,6 @@
 		8F31F46B20FB7B6100CEA6AB /* CheckMarkViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckMarkViewCell.xib; path = WGApp/CheckMarkViewCell.xib; sourceTree = "<group>"; };
 		8F31F46E20FB8DE100CEA6AB /* PurchasePriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePriceViewController.swift; sourceTree = "<group>"; };
 		8F31F47020FBB2CA00CEA6AB /* PurchaseConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseConfirmationViewController.swift; sourceTree = "<group>"; };
-		8F31F47220FBC4E100CEA6AB /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8F31F47320FBC4E100CEA6AB /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F31F47420FBC4E100CEA6AB /* PutzSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8F31F47520FBC4E100CEA6AB /* PutzSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F31F47620FBC4E100CEA6AB /* ListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				5F0A8EB720F6396900E06836 /* PutzProfilEditVC.swift */,
 				5F0A8EBF20F63F4D00E06836 /* PutzprofilTableVC.swift */,
 				5F0A8EC120F63F6100E06836 /* PutzProfilEditDetailsVC.swift */,
+				5F1D3B9120FD479F001BDCD6 /* ShowActPutzItemsVC.swift */,
 			);
 			path = PutzProfile;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 		5F0A8EBE20F63B2800E06836 /* PutzProfile */ = {
 			isa = PBXGroup;
 			children = (
+				5F1D3B8E20FD465E001BDCD6 /* ShowActPutzItems.storyboard */,
 				5F0A8EBB20F63ABD00E06836 /* PutzProfile.storyboard */,
 				5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */,
 				5F0A8EC320F6421C00E06836 /* PutzProfileTableViewCell.swift */,
@@ -490,8 +496,8 @@
 		8F12379C20D7F9A60073AF5F /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				8F31F47220FBC4E100CEA6AB /* PutzWeekItem+CoreDataClass.swift */,
-				8F31F47320FBC4E100CEA6AB /* PutzWeekItem+CoreDataProperties.swift */,
+				5F1D3B9320FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift */,
+				5F1D3B9420FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift */,
 				8F31F47420FBC4E100CEA6AB /* PutzSetting+CoreDataClass.swift */,
 				8F31F47520FBC4E100CEA6AB /* PutzSetting+CoreDataProperties.swift */,
 				8F31F47620FBC4E100CEA6AB /* ListItem+CoreDataClass.swift */,
@@ -641,6 +647,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1D3B9020FD465E001BDCD6 /* ShowActPutzItems.storyboard in Resources */,
 				5FA47C5E20BAE9A60043B3C8 /* LaunchScreen.storyboard in Resources */,
 				5FE2899620EE9A040090193C /* Selection.storyboard in Resources */,
 				8F4399E820EB697000B063BB /* List.storyboard in Resources */,
@@ -680,7 +687,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F31F48920FBC4E200CEA6AB /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				8F31F49920FBC4E200CEA6AB /* User+CoreDataProperties.swift in Sources */,
 				5F0A8EC420F6421C00E06836 /* PutzProfileTableViewCell.swift in Sources */,
 				8F31F48C20FBC4E200CEA6AB /* ListItem+CoreDataClass.swift in Sources */,
@@ -720,12 +726,12 @@
 				5F09F1AC20C6FF12008407F6 /* StopLocationRMV.swift in Sources */,
 				5F09F1B620C6FF5E008407F6 /* UIStopLocationSearchTextField.swift in Sources */,
 				5F09F1C820C97FC2008407F6 /* BusprofileTableViewCell.swift in Sources */,
-				8F31F48820FBC4E200CEA6AB /* PutzWeekItem+CoreDataClass.swift in Sources */,
 				8F63293720EA68AD007175E8 /* UserCollectionViewCell.swift in Sources */,
 				5F639C4F20E682B8002CC7D4 /* BusTripTableViewCell.swift in Sources */,
 				5FE289AE20EF9D340090193C /* NoTripsVC.swift in Sources */,
 				5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */,
 				8F31F49220FBC4E200CEA6AB /* HomeProfil+CoreDataClass.swift in Sources */,
+				5F1D3B9620FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				5F639C5120E68688002CC7D4 /* BusDepartureTableViewCell.swift in Sources */,
 				8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */,
 				8F5F839D20FD242B0069730E /* DebtTableViewCell.swift in Sources */,
@@ -742,9 +748,11 @@
 				5F0A8ECC20F7605B00E06836 /* CustomCollectionViewController.swift in Sources */,
 				8F31F46F20FB8DE100CEA6AB /* PurchasePriceViewController.swift in Sources */,
 				5F0A8EBA20F6397B00E06836 /* PutzProfilCalenderVC.swift in Sources */,
+				5F1D3B9220FD479F001BDCD6 /* ShowActPutzItemsVC.swift in Sources */,
 				8F31F49D20FBC4E200CEA6AB /* Debt+CoreDataProperties.swift in Sources */,
 				8F31F49420FBC4E200CEA6AB /* StopLocation+CoreDataClass.swift in Sources */,
 				8F31F48A20FBC4E200CEA6AB /* PutzSetting+CoreDataClass.swift in Sources */,
+				5F1D3B9520FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift in Sources */,
 				8F31F48F20FBC4E200CEA6AB /* Profil+CoreDataProperties.swift in Sources */,
 				5F44D63320D01CCA0014AB46 /* UserProfilEditVC.swift in Sources */,
 				8F31F49120FBC4E200CEA6AB /* Purchase+CoreDataProperties.swift in Sources */,
@@ -805,6 +813,14 @@
 				5F0A8EBC20F63ABD00E06836 /* Base */,
 			);
 			name = PutzProfile.storyboard;
+			sourceTree = "<group>";
+		};
+		5F1D3B8E20FD465E001BDCD6 /* ShowActPutzItems.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F1D3B8F20FD465E001BDCD6 /* Base */,
+			);
+			name = ShowActPutzItems.storyboard;
 			sourceTree = "<group>";
 		};
 		5FA47C5720BAE9A60043B3C8 /* Main.storyboard */ = {

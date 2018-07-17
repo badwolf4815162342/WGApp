@@ -26,14 +26,15 @@ class PutzProfilVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         actContainer = putzProfilCalenderContainer
+        changeActViewContainer(destinationContainer: putzProfilEditContainer)
         tabBar.delegate = self
     }
     
 
     func changeActViewContainer(destinationContainer: UIView){
         UIView.animate(withDuration: 0.5, animations: {
-            destinationContainer.alpha = 1
             self.actContainer?.alpha = 0
+            destinationContainer.alpha = 1
         })
         actContainer = destinationContainer
     }
@@ -50,7 +51,7 @@ extension PutzProfilVC: UITabBarDelegate {
         } else if (item.title == "Putzkalender") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
             print("refresh \(self.putzProfilCalenderVC)")
-            self.putzProfilCalenderVC?.refresh()
+            putzProfilCalenderVC?.refresh()
         }
     }
 }

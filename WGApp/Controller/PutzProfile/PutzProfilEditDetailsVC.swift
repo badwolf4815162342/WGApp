@@ -85,6 +85,10 @@ class PutzProfilEditDetailsVC: UIViewController {
                 message += "Mit dem einschalten des Putzprofils werden die Reihenfolge und alle im Kaledender eingetragenen Putztermine generiert."
             }
         }
+        if (PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks != Int64(Int(stepper.value))) {
+            message += "Wenn die Wochenanzahl verändert wird, wird auch die Reihenfolge neu berechnet."
+        }
+        
         if (message == "") {
             message = "Wirklich speichern?"
         }
@@ -96,10 +100,10 @@ class PutzProfilEditDetailsVC: UIViewController {
         let alert = UIAlertController(title: "Achtung!", message: message, preferredStyle: UIAlertControllerStyle.alert)
       
         // alert button hinzufügen
-        let saveAction = UIAlertAction(title: "hinzufügen", style: .default) { (_) in
+        let saveAction = UIAlertAction(title: "Trotzdem weiter", style: .default) { (_) in
             self.save()
         }
-        let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
+        let cancleAction = UIAlertAction(title: "Abbrechen", style: .default) { (_) in }
         
         alert.addAction(saveAction)
         alert.addAction(cancleAction)
@@ -107,17 +111,21 @@ class PutzProfilEditDetailsVC: UIViewController {
     }
     
     func save() {
-        var leftTableChange = false
-        if (PutzprofilTableVC.selectedPutzProfile?.participatingUsers != NSSet(array : currentlySelectedUsers)) {
-            PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
-        }
+       var leftTableChange = false
+       var willCalculate = false
         if (PutzprofilTableVC.selectedPutzProfile?.aktiv != currentActiveButton.isOn) {
             PutzprofilTableVC.selectedPutzProfile?.aktiv = currentActiveButton.isOn
+            if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
+               willCalculate = true
+            } else {
+                PutzSettingsController.deleteAllItems(ofPutzSetting: PutzprofilTableVC.selectedPutzProfile!)
+            }
         }
-        
-        if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
-            PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
+        if (PutzprofilTableVC.selectedPutzProfile?.participatingUsers != NSSet(array : currentlySelectedUsers)) {
+            PutzprofilTableVC.selectedPutzProfile?.participatingUsers = NSSet(array : currentlySelectedUsers)
+            willCalculate = true
         }
+       
         if picturePicker.selectedIconName != PutzprofilTableVC.selectedPutzProfile?.profilIcon {
             PutzprofilTableVC.selectedPutzProfile?.profilIcon = picturePicker.selectedIconName
             leftTableChange = true
@@ -127,7 +135,16 @@ class PutzProfilEditDetailsVC: UIViewController {
             PutzprofilTableVC.selectedPutzProfile?.title = titleTextField.text
             leftTableChange = true
         }
-        PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks = Int64(Int(stepper.value))
+        if (PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks != Int64(Int(stepper.value))) {
+            PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks = Int64(Int(stepper.value))
+            willCalculate = true
+        }
+        
+        if (willCalculate) {
+            if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
+               PutzSettingsController.calculateOrder(putzProfile: PutzprofilTableVC.selectedPutzProfile!)
+            }
+        }
         PersistenceService.saveContext()
         if (leftTableChange) {
              NotificationCenter.default.post(name: NSNotification.Name("ReloadPutzProfileTable"), object: nil)
@@ -287,11 +304,11 @@ class PutzProfilEditDetailsVC: UIViewController {
         
         let index = currentlySelectedUsers.index(of: sender.user as! User)
         if (index != nil) {
-            sender.layer.borderColor = UIColor.lightGray.cgColor
             currentlySelectedUsers.remove(at: index!)
+            sender.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
         } else {
+           sender.layer.borderColor = UIColor(named: "YELLOW")?.cgColor
             currentlySelectedUsers.append(sender.user as! User)
-            sender.layer.borderColor = UIColor.darkGray.cgColor
         }
     }
     
