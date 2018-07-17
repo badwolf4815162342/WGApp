@@ -119,7 +119,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             // breite x mal (repeatEveryXWeeks)
                             calculatedCellWidth = Double(Int(CELL_WIDTH) * repeatEveryWeeks)
                             if (repeatEveryWeeks == 1) {
-                                xPos = Double(posDiff) + (Double(item/repeatEveryWeeks) * calculatedCellWidth)
+                                xPos = Double(posDiff) + (Double(item) * calculatedCellWidth)
                             } else {
                                 xPos = Double(posDiff) + (Double(item/repeatEveryWeeks) * calculatedCellWidth)
                             }
@@ -138,7 +138,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
  **/
                         if (section != 0) {
                             // jedes xte zeichnen, da es über x spalten geht
-                            if (((item - CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER) % repeatEveryWeeks) == 0) {
+                             if (((item - CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER) % repeatEveryWeeks) == 0) {
                                 calculatedCellHeight = CELL_HEIGHT_NORMAL
                                 yPos = (Double(section) * calculatedCellHeight) - calculatedCellHeight + CELL_HEIGHT_HEADER
                             } else {

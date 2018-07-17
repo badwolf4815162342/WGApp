@@ -24,11 +24,11 @@ class ShowActPutzItemsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("items refreshed")
         refreshContent()
     }
    
     func refreshContent(){
+        print("refresh")
         // load core data into collection view
         let request: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
          request.predicate =  NSPredicate(format: "(weekStartDay <= %@) AND (weekEndDate >= %@)", Date() as NSDate, Date() as NSDate)

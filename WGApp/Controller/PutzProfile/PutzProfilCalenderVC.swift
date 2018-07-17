@@ -65,7 +65,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         // down
-        return CONFIG.PUTZSETTINGS.NEXT_X_WEEKS_PUTZSETTINGS_ARE_CALCULATED_FOR + CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER
+        return CONFIG.PUTZSETTINGS.NEXT_X_WEEKS_PUTZSETTINGS_ARE_CALCULATED_FOR + CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER - 4
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
