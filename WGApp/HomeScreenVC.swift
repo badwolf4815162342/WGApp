@@ -11,6 +11,7 @@ import CoreData
 
 class HomeScreenVC: UIViewController {
     
+    @IBOutlet weak var overlayView: UIImageView!
     static var wg: HomeProfil?
     
     static var selectedUser: Profil?
@@ -112,11 +113,18 @@ class HomeScreenVC: UIViewController {
     @objc func more(sender: UIBarButtonItem){
         print("TOGGLE SIDE MENUE")
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        overlayView.isHidden = !overlayView.isHidden
+        if (overlayView.isHidden) {
+            self.view.isUserInteractionEnabled = true
+        } else {
+            self.view.isUserInteractionEnabled = false
+            overlayView.alpha = 0.6
+            
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         HomeScreenVC.thisWeekStart = Date.today().previous(.monday,
                                               considerToday: true)
         HomeScreenVC.thisWeekEnd = Date.today().previous(.monday,
@@ -145,6 +153,8 @@ class HomeScreenVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.isUserInteractionEnabled = true
+        overlayView.isHidden = true
         addNavigationBarItems()
     }
     
