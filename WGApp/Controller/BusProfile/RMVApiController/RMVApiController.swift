@@ -54,13 +54,12 @@ class RMVApiController: RMVApiControllerProtocol {
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: locationsPath)
-        print("Ready to execute network call of: '\(urlString)'")
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                print("ERROR: \(error!.localizedDescription)")
             }
             
             guard let data = data else { return }
@@ -75,15 +74,14 @@ class RMVApiController: RMVApiControllerProtocol {
                         stopLocations.append(location)
                     }
                 }
-                print("Network call done for path: '\(urlString)' with \(stopLocations.count) StopLocationsFound")
+                //print("Network call done for path: '\(urlString)' with \(stopLocations.count) StopLocationsFound")
                 // return completion
                 self.counter = self.counter + 1
-                print("request nr. \(self.counter)")
                 completion(stopLocations)
             } catch DecodingError.keyNotFound(let key, let context) {
-                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+                print("ERROR: coundn't find key \(key) in JSON: \(context.debugDescription)")
             } catch let jsonError {
-                print(jsonError)
+                print("ERROR: \(jsonError)")
             }
             }.resume()
     }
@@ -96,13 +94,13 @@ class RMVApiController: RMVApiControllerProtocol {
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: tripsPath)
-        print("Ready to execute network call of: '\(urlString)'")
+        //print("Ready to execute network call of: '\(urlString)'")
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                print("ERROR: \(error!.localizedDescription)")
             }
             
             guard let data = data else { return }
@@ -110,19 +108,15 @@ class RMVApiController: RMVApiControllerProtocol {
             //Implement JSON decoding and parsing
             do {
                 //Decode retrived data with JSONDecoder and assing type of Article object
-                let tripResponse = try JSONDecoder().decode(TripResponse.self, from: data)
-                
-                //departures = departureResponse.departure
-                print(tripResponse)
+                _ = try JSONDecoder().decode(TripResponse.self, from: data)
                 //print("Network call done for path: '\(urlString)' with \(departures.count) StopLocationsFound")
                 self.counter = self.counter + 1
-                print("request nr. \(self.counter)")
                 // return completion
                 completion()
             } catch DecodingError.keyNotFound(let key, let context) {
-                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+                print("ERROR: coundn't find key \(key) in JSON: \(context.debugDescription)")
             } catch let jsonError {
-                print(jsonError)
+                print("ERROR \(jsonError)")
             }
             }.resume()
     }
@@ -135,13 +129,13 @@ class RMVApiController: RMVApiControllerProtocol {
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: departuresPath)
-        print("Ready to execute network call of: '\(urlString)'")
+        //print("Ready to execute network call of: '\(urlString)'")
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                print("ERROR \(error!.localizedDescription)")
             }
             
             guard let data = data else { return }
@@ -153,15 +147,14 @@ class RMVApiController: RMVApiControllerProtocol {
                 
                 departures = departureResponse.departure
                 
-                print("Network call done for path: '\(urlString)' with \(departures.count) StopLocationsFound")
+                //print("Network call done for path: '\(urlString)' with \(departures.count) StopLocationsFound")
                 self.counter = self.counter + 1
-                print("request nr. \(self.counter)")
                 // return completion
                 completion(departures)
             } catch DecodingError.keyNotFound(let key, let context) {
-                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+                print("ERROR: coundn't find key \(key) in JSON: \(context.debugDescription)")
             } catch let jsonError {
-                print(jsonError)
+                print("ERROR: \(jsonError)")
             }
             }.resume()
     }
@@ -444,13 +437,13 @@ class RMVApiController: RMVApiControllerProtocol {
                     stopLocations.append(location)
                 }
             }
-            print("TestJson encoded with \(stopLocations.count) StopLocations found")
+            //print("TestJson encoded with \(stopLocations.count) StopLocations found")
             // return completion
             completion(stopLocations)
         } catch DecodingError.keyNotFound(let key, let context) {
-            print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+            print("ERROR: coundn't find key \(key) in JSON: \(context.debugDescription)")
         } catch let jsonError {
-            print(jsonError)
+            print("ERROR: \(jsonError)")
         }
  
     }
@@ -463,19 +456,16 @@ class RMVApiController: RMVApiControllerProtocol {
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: tripsPath)
-        print("Ready to execute network call of: '\(urlString)'")
+        //print("Ready to execute network call of: '\(urlString)'")
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                print("ERROR: \(error!.localizedDescription)")
             }
             
             guard let data = data else { return }
-            
-            print(data)
-            
             //Implement JSON decoding and parsing
             do {
                 //Decode retrived data with JSONDecoder and assing type of Article object
@@ -483,15 +473,14 @@ class RMVApiController: RMVApiControllerProtocol {
 
                 trips = tripResponse.trip
                 
-                print("Network call done for path: '\(urlString)' with \(trips.count) Trips found")
+                //print("Network call done for path: '\(urlString)' with \(trips.count) Trips found")
                 self.counter = self.counter + 1
-                print("request nr. \(self.counter)")
                 // return completion
                 completion(trips)
             } catch DecodingError.keyNotFound(let key, let context) {
-                print("coundn't find key \(key) in JSON: \(context.debugDescription)")
+                print("ERROR: coundn't find key \(key) in JSON: \(context.debugDescription)")
             } catch let jsonError {
-                print(jsonError)
+                print("ERROR: \(jsonError)")
             }
             }.resume()
     }

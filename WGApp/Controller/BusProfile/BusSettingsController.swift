@@ -65,30 +65,25 @@ class BusSettingsController: NSObject {
         PersistenceService.saveContext()
     }
     
+    /**
+     * Origin of Route deletion
+     **/
     class func deleteOriginStopLocationFromBusRoute(stopLocation: StopLocation, busRoute: BusRoute) {
-        //let context = PersistenceService.context
-        // if stoplocation is not in any other route -> Erstmal nicht löschen!!
-        //if (stopLocation.originOfBusRoutes?.count == 0 && stopLocation.destinationOfBusRoutes?.count == 0) {
-            
-        //}
         busRoute.origin = nil
-        //if (busRoute.destination == nil) {
-        //    deleteBusRoute(busRoute)
-        //}
-        try PersistenceService.saveContext()
+        PersistenceService.saveContext()
     }
     
+    /**
+     * Destination of Route deletion
+     **/
     class func deleteDestinationStopLocationFromBusRoute(stopLocation: StopLocation, busRoute: BusRoute) {
-        //let context = PersistenceService.context
-        // if stoplocation is not in any other route -> Erstmal nicht löschen!!
-        //if (stopLocation.originOfBusRoutes?.count == 0 && stopLocation.destinationOfBusRoutes?.count == 0) {
-        
-        //}
         busRoute.destination = nil
         PersistenceService.saveContext()
-
     }
     
+    /**
+     * find stopLocation to not create two stop location with same values
+     **/
     class func findStopLocationByNameAndId(name: String, id: String) -> StopLocation? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StopLocation")
         request.predicate = NSPredicate(format: "id = %@", id)
@@ -101,7 +96,7 @@ class BusSettingsController: NSObject {
             
             if let results = result as? [NSManagedObject] {
                 if (results.count == 1) {
-                    return results[0] as! StopLocation
+                    return results[0] as? StopLocation
                 } else if (results.count > 1) {
                     print("ERROR: More than one StopLocation in DB with same values")
                 } else {
@@ -109,11 +104,14 @@ class BusSettingsController: NSObject {
                 }
             }
         } catch {
-            print("Failed fetch for specific stoplocation")
+            print("ERROR: Failed fetch for specific stoplocation")
         }
         return nil
     }
     
+    /**
+     * get StopLocation in DB fitting RMVStopLocation from API
+     **/
     class func findStopLocationByRMVStopLocation(rmvStopLocation: StopLocationRMV) -> StopLocation? {
        return findStopLocationByNameAndId(name: rmvStopLocation.name, id: rmvStopLocation.id)
     }
@@ -131,23 +129,15 @@ class BusSettingsController: NSObject {
         // replace route
         newBusRoute.busSetting = busProfile
         PersistenceService.saveContext()
-        
         // delete oldbusRoute
         PersistenceService.context.delete(oldBusRoute)
-
-        // unconnect stoplocations
-        /** var origin = StopLocation(context: PersistenceService.context)
-        print(origin.originOfBusRoutes?.count)
-        origin = oldBusRoute.origin!
-        print(origin.originOfBusRoutes?.count)
-        var destination = StopLocation(context: PersistenceService.context)
-        print(origin.destinationOfBusRoutes?.count)
-        destination = oldBusRoute.destination!
-        print(origin.destinationOfBusRoutes?.count) **/       
         return busProfile
         
     }
     
+    /**
+     * Delete AllData of One Entity by String
+     **/
     class func deleteAllData(entity: String)
     {
         //let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -164,22 +154,14 @@ class BusSettingsController: NSObject {
                 managedContext.delete(managedObjectData)
             }
         } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+            print("ERROR: Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
     
-    class func printSettings(busProfile: BusSetting) {
-        print("------ BusSetiing: ",busProfile.title,":")
-        
-        for r in busProfile.routes! {
-            if let route = r as? BusRoute {
-                print("----- Route:s")
-                print("----- Origin: ",route.origin)
-                print("----- Destin: ",route.destination)
-            }
-        }
-    }
-    
+
+    /**
+     * Get all saved stoplocations for Textfieldproposals
+     **/
     class func getAllStopLocations() ->  [StopLocation] {
         var stops = [StopLocation]()
         let fetchRequest: NSFetchRequest<StopLocation> = StopLocation.fetchRequest()
@@ -192,10 +174,16 @@ class BusSettingsController: NSObject {
         return stops
     }
     
+    /**
+     * Delete single route of busprofile
+     **/
     class func deleteRouteFromBusProfile(busRoute: BusRoute, busProfile: BusSetting) {
         PersistenceService.context.delete(busRoute)
     }
     
+    /**
+     * delete busprofile and all routes but not stoplocations
+     **/
     class func deleteBusProfile(busProfile: BusSetting) {
         if let routes = busProfile.routes as? NSMutableSet {
             for busRoute in routes {
@@ -208,6 +196,9 @@ class BusSettingsController: NSObject {
         
     }
     
+    /**
+     * add bussetting to favorites of userProfile
+     **/
     class func changeProfilFavorite(busSetting: BusSetting, profil: Profil) {
         if (profil.favoriteBusSettings?.contains(busSetting))! {
             profil.removeFromFavoriteBusSettings(busSetting)
@@ -217,6 +208,9 @@ class BusSettingsController: NSObject {
         PersistenceService.saveContext()
     }
     
+    /**
+     * Get all trips of all routes per busprofile
+     **/
     class func getTrips(busProfile: BusSetting, completion: @escaping (Array<TripRMV>) -> ())  {
         if (busProfile.withDestinations) {
             var tripsRMV:[TripRMV] = [TripRMV]()
@@ -225,9 +219,7 @@ class BusSettingsController: NSObject {
                     if let route = busRoute as? BusRoute {
                         RMVApiController.getTrips(fromOriginId: (route.origin?.id)!, toDestinationId: (route.destination?.id)!, completion:{ trips in
                             DispatchQueue.main.async {
-                                print("---------------Trips without Dest from:",route.origin?.id)
-                                for trip in trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}) {
-                                    //print("Trip: ",trip)
+                                for _ in trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}) {
                                 }
                                 tripsRMV.append(contentsOf: trips.map({TripRMV.toTripRMV(trip: $0, stopLocationOrigin: route.origin!, stopLocationDestination: route.destination!)}))
                                 completion(tripsRMV)
@@ -243,6 +235,9 @@ class BusSettingsController: NSObject {
         
     }
     
+    /**
+     * Get all departures of all routes per busprofile
+     **/
     class func getDepartures(busProfile: BusSetting, completion: @escaping (Array<DepartureRMV>) -> ()) {
         if (busProfile.withDestinations) {
             print("ERROR")
@@ -253,9 +248,7 @@ class BusSettingsController: NSObject {
                     if let route = busRoute as? BusRoute {
                         RMVApiController.getDepartures(fromOriginId: (route.origin?.id!)!, completion:{ deps in
                             DispatchQueue.main.async {
-                                print("---------------Departures without Dest from:",route.origin?.id)
-                                for dep in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
-                                    //print("Trip: ",dep)
+                                for _ in deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}) {
                                 }
                                 departures.append(contentsOf: deps.map({DepartureRMV.toDepartureRMV(departure: $0, stopLocation: route.origin!)}))
                                 completion(departures)
@@ -267,6 +260,9 @@ class BusSettingsController: NSObject {
         }
     }
     
+    /**
+     * Get information how many minutes until bus departs as string
+     **/
     class func getMinutesLabel(minutes: Int, futureDeparture: Bool) -> String {
         if !(futureDeparture){
             return "-"+String(minutes)+" min"
@@ -275,25 +271,26 @@ class BusSettingsController: NSObject {
         }
     }
     
+    /**
+     * Get information how many minutes until bus departs as int
+     * and information if its in future or past
+     **/
     class func getMinutes(time: Date) -> (minutes :Int, futureDeparture: Bool) {
         let currentDateTime = Date()
         if (currentDateTime<time) {
             let minutes = time.minutes(from: currentDateTime)
-            //print("Time current: \(currentDateTime) time bus \(time) minutes \(minutes) future? \(true)")
             return (minutes, true)
         } else if (time>currentDateTime){
-            //print(currentDateTime)
-            //print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!>")
-            //print(time)
             let minutes = currentDateTime.minutes(from: time)
-            //print("Time current: \(currentDateTime) time bus \(time) minutes \(minutes) future? \(false)")
             return (minutes, false)
         } else {
-            //print("Time current: \(currentDateTime) time bus \(time) minutes \(0) future? \(true)")
             return (0, true)}
        
     }
     
+    /**
+     * Select colour of marked trip/departure
+     **/
     class func setSelectedColor(minutes: Int, futureDeparture: Bool) -> UIColor {
         if (futureDeparture) {
             if (minutes <= CONFIG.BUSSETTINGS.HIGH_PRIO_TRIP_MINUTES) {
@@ -305,42 +302,9 @@ class BusSettingsController: NSObject {
         return UIColor(named: "GREEN")!
     }
     
-    class func addTestBusSettings(){
-        let busProfile = BusSetting(context: PersistenceService.context)
-        busProfile.title = "Arbeit"
-        let busProfile2 = BusSetting(context: PersistenceService.context)
-        busProfile2.title = "NichtArbeit"
-        
-        let route = BusRoute(context: PersistenceService.context)
-        let route2 = BusRoute(context: PersistenceService.context)
-        let route3 = BusRoute(context: PersistenceService.context)
-        
-        let originStopLocation = StopLocation(context: PersistenceService.context)
-        originStopLocation.name =  "WI Hbf"
-        originStopLocation.id = "wiID"
-        let destStopLocation = StopLocation(context: PersistenceService.context)
-        destStopLocation.name = "Mz Hbf"
-        destStopLocation.id = "mzID"
-        let destStopLocation2 = StopLocation(context: PersistenceService.context)
-        destStopLocation2.name = "Fr Hbf"
-        destStopLocation2.id = "frID"
-        
-        
-        route.origin = originStopLocation // wi
-        route.destination = destStopLocation // mz
-        route2.origin = originStopLocation // wi
-        route2.destination = destStopLocation2 //fr
-        route3.origin = originStopLocation // wi
-        route3.destination = destStopLocation //mz
-        
-        busProfile2.addToRoutes(route)
-        busProfile2.addToRoutes(route2)
-        busProfile.addToRoutes(route3)
-        
-        PersistenceService.saveContext()
-    }
-    
-    
+    /**
+     * calculate dte from time and date string
+     **/
     class func calculateDate(ofTime: String, ofDate: String ) -> Date {
         let inDateFormatter = DateFormatter()
         inDateFormatter.dateFormat = "yyyy-MM-dd"
@@ -358,11 +322,8 @@ class BusSettingsController: NSObject {
         component.year = dateComponents?.year
         component.month = dateComponents?.month
         component.day = dateComponents?.day
-        Calendar.current.date(from: component)
-
-      
+        
         let finalDate: Date? = calendar.date(from: component)
-        //print(finalDate)
         return finalDate!
     }
     

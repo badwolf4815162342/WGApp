@@ -44,7 +44,7 @@ class BusProfilEditVC: UIViewController {
         footerView.backgroundColor = UIColor.init(named: "GRAY")
         routesTableView.tableFooterView = footerView
         // add new row by '+'
-        var addButton = UIButton()
+        let addButton = UIButton()
         addButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
         addButton.setTitle("+", for: [])
         addButton.setTitleColor(UIColor.init(named: "LIGHT_YELLOW"), for: .normal)
@@ -71,8 +71,6 @@ class BusProfilEditVC: UIViewController {
     @IBAction func withDestinationsChanged(_ sender: Any) {
         if (withDestinations.isOn) {
             BusProfileVC.selectedBusProfile?.withDestinations = true
-            //destinationLocationTextField.isHidden = false
-            //destinationLabel.text = "Ziel"
             if let routes = BusProfileVC.selectedBusProfile?.routes as? NSMutableSet {
                 for busRoute in routes {
                     if let route = busRoute as? BusRoute {
@@ -89,9 +87,6 @@ class BusProfilEditVC: UIViewController {
                     }
                 }
             }
-            //destinationLocationTextField.selectedStopLocation = nil
-            //destinationLocationTextField.isHidden = true
-            //destinationLabel.text = "Route ohne Ziel"
         }
         PersistenceService.saveContext()
         self.routesTableView.reloadData()
@@ -100,49 +95,42 @@ class BusProfilEditVC: UIViewController {
     // setNew BusRoute
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
         if let busRouteEditVC = sender.source as? BusRouteEditVC {
-            print("Unwind from BusRouteEditVC")
             // not edited route but created new one
             if (currentlyEditingRoute == nil) {
                 let newRoute = busRouteEditVC.busRoute!
                 newRoute.busSetting = BusProfileVC.selectedBusProfile
             }
             currentlyEditingRoute = nil
-            //BusSettingsController.printSettings(busProfile: actBusProfile)
             if let routesSet = BusProfileVC.selectedBusProfile?.routes {
                 routesForActBusProfile = routesSet.allObjects as! [BusRoute]
-                print(routesSet)
                 self.routesTableView.reloadData()
                 checkReachedMaxRoutes()
             }
         }
         if let userSelectionVC = sender.source as? UserSelectionVC {
-            print("Unwind from ChooseUserVC")
             if let profil = userSelectionVC.selectedProfil {
-                print(profil.name)
                 BusProfileVC.selectedBusProfile?.ofProfil = profil
                 PersistenceService.saveContext()
                 setOfProfil()
                 NotificationCenter.default.post(name: NSNotification.Name("ReloadBusProfileTable"), object: nil)
             }
         }
-        
-        
     }
     
 
     
     @objc func changeBusProfile(notification: NSNotification) {
-        BusProfileVC.selectedBusProfile = notification.object as! BusSetting
+        BusProfileVC.selectedBusProfile = notification.object as? BusSetting
         titleTextField.text = BusProfileVC.selectedBusProfile?.title
-        var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
+        let userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIcon.image = image
         } else {
             userIcon.image = UIImage(named: "info")
-            print("Picture of user could not be loaded !!! ")
+            print("ERROR: Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name
-        var subViews = self.view.subviews
+        let subViews = self.view.subviews
         for v in subViews {
             v.isHidden = false
         }
@@ -150,15 +138,9 @@ class BusProfilEditVC: UIViewController {
         withDestinations.isOn = (BusProfileVC.selectedBusProfile?.withDestinations)!
         if let routesSet = BusProfileVC.selectedBusProfile?.routes{
             routesForActBusProfile = routesSet.allObjects as! [BusRoute]
-            print(routesSet)
             self.routesTableView.reloadData()
             checkReachedMaxRoutes()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func showRouteForEdit(notification: NSNotification) {
@@ -176,7 +158,6 @@ class BusProfilEditVC: UIViewController {
         }
         if segue.identifier == "selectProfile" {
             if let destinationVC = segue.destination as? UserSelectionVC {
-                print("Select User")
                 destinationVC.dataType = UserSelectionVC.UserSelectionVCType.chooseSingleUser
             }
         }
@@ -190,10 +171,8 @@ class BusProfilEditVC: UIViewController {
     }
     
     @objc func setInitialBusProfile(){
-        print("Set initialBusProfile")
         // load core data into table
         if let profile = BusProfileVC.selectedBusProfile {
-            print(profile.title! + "found")
             titleTextField.text = profile.title
             withDestinations.isOn = profile.withDestinations
             setOfProfil()
@@ -207,7 +186,7 @@ class BusProfilEditVC: UIViewController {
             do {
                 let profiles = try PersistenceService.context.fetch(fetchRequest)
                 if (profiles.count <= 0) {
-                    var subViews = self.view.subviews
+                    let subViews = self.view.subviews
                     for v in subViews {
                         v.isHidden = true
                     }
@@ -228,12 +207,12 @@ class BusProfilEditVC: UIViewController {
     }
     
     func setOfProfil() {
-        var userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
+        let userIconString = BusProfileVC.selectedBusProfile?.ofProfil?.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIcon.image = image
         } else {
             userIcon.image = UIImage(named: "info")
-            print("Picture of user could not be loaded !!! ")
+            print("ERROR: Picture of user could not be loaded !!! ")
         }
         userNameLabel.text = BusProfileVC.selectedBusProfile?.ofProfil?.name
     }

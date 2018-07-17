@@ -13,8 +13,6 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
         
     var pages = [UIViewController]()
 
-    //var busSettingVCs = [BusSettings]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -22,6 +20,10 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
 
         // selected User changed
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name("globalSelectedUserChanged"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refresh()
     }
     
     @objc func refresh() {
@@ -48,14 +50,7 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
                     vc.tripsTableType = ShowBusTripsTableVC.TripsTableType.departure
                     pages.append(vc)
                 }
-                
-                /**else {
-                    let vc: ShowBusDepartureTableVC! = (storyboard?.instantiateViewController(withIdentifier: "busDeparturesTableView"))! as! ShowBusDepartureTableVC
-                    vc.selectedBusProfile = profile
-                    pages.append(vc)
-                }**/
             }
-            print("label found")
             if(profiles.count==0) {
                 let vc: NoTripsVC! = (storyboard?.instantiateViewController(withIdentifier: "noTripsView"))! as! NoTripsVC
                 pages.append(vc)
@@ -74,10 +69,6 @@ class ShowBusTripsSlideVC: UIPageViewController, UIPageViewControllerDataSource,
        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear of ShowBusTripsSlideVC")
-        refresh()
-    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController)-> UIViewController? {
         

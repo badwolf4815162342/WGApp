@@ -122,24 +122,14 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             // breite x mal (repeatEveryXWeeks)
                             calculatedCellWidth = Double(Int(CELL_WIDTH) * repeatEveryWeeks)
                             if (repeatEveryWeeks == 1) {
-                                xPos = Double(posDiff) + (Double(item) * calculatedCellWidth)
+                                xPos = (Double(item) * calculatedCellWidth)
                             } else {
-                                xPos = Double(posDiff) + (Double(item/repeatEveryWeeks) * calculatedCellWidth)
+                                xPos =  (Double(item/repeatEveryWeeks) * calculatedCellWidth)
                             }
                         } else {
                             calculatedCellWidth = CELL_WIDTH
                             xPos = Double(item) * calculatedCellWidth
                         }
-                        xPos = xPos - Double(posDiff)
-                        /**
-                        if section % 2 == 0 && section != 0  && item != 0 {
-                            calculatedCellWidth = CELL_WIDTH * 2
-                            xPos = Double(item) * calculatedCellWidth - CELL_WIDTH
-                        } else {
-                            calculatedCellWidth = CELL_WIDTH
-                            xPos = Double(item) * calculatedCellWidth
-                        }
- **/
                         if (section != 0) {
                             if (item<(posDiff/150)) {
                                 calculatedCellHeight = 0.0

@@ -39,7 +39,6 @@ class BusRouteEditVC: UIViewController {
         
         // busRoute is already there
         if let busRoute = busRoute {
-            print("busroute there")
             // set default origin text
             originLocationTextField.text = busRoute.origin?.name
             // set currently selected origin
@@ -55,7 +54,7 @@ class BusRouteEditVC: UIViewController {
             }
             destinationActivationChanged(withDestination: busRoute.withDestination)
         } else {
-            // TODO: WITHDESTINATION ????
+            // if busroutes have destination
             if let withDest = withDestinations {
                 originLocationTextField.text = "Start suchen"
                 destinationLocationTextField.text = "Ziel suchen"
@@ -68,7 +67,6 @@ class BusRouteEditVC: UIViewController {
         
     }
     
-    //todo
     func destinationActivationChanged(withDestination: Bool) {
         if (withDestination) {
             destinationLocationTextField.isHidden = false
@@ -97,14 +95,10 @@ class BusRouteEditVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepareForSegue");
-        print("ID: ",segue.identifier)
         if segue.identifier == "routeSaved" {
             if segue.destination is BusProfilEditVC {
                 if busRoute != nil {
                     // EDIT existing Route
-                    // ifChanges ???
-
                     BusSettingsController.saveOriginStopLocationRMVToBusRoute(rmvStopLocation: originLocationTextField.selectedStopLocation!, busRoute: busRoute!)
                     
                     if let dest = destinationLocationTextField.selectedStopLocation {
@@ -112,10 +106,9 @@ class BusRouteEditVC: UIViewController {
                     } else {
                         BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: nil, busRoute: busRoute!)
                     }
-                    //print("after setting:", busRoute?.origin?.name ," dest " , busRoute?.destination?.name)
                 } else {
                     // CREATE new Route
-                    var newBusRoute = BusRoute(context: PersistenceService.context)
+                    let newBusRoute = BusRoute(context: PersistenceService.context)
                     BusSettingsController.saveOriginStopLocationRMVToBusRoute(rmvStopLocation: originLocationTextField.selectedStopLocation!, busRoute: newBusRoute)
                     
                     if let dest = destinationLocationTextField.selectedStopLocation {
@@ -123,14 +116,10 @@ class BusRouteEditVC: UIViewController {
                     } else {
                         BusSettingsController.saveDestinationStopLocationRMVToBusRoute(rmvStopLocation: nil, busRoute: newBusRoute)
                     }
-                    
                     busRoute = newBusRoute
-                    
                 }
-                
             }
         }
-        
     }
     
     func showAlert(){

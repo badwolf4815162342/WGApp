@@ -21,7 +21,6 @@ class BusProfileVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        //BusSettingsController.addTestBusSettings()
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 0))
         tableView.tableFooterView = footerView
@@ -29,16 +28,11 @@ class BusProfileVC: UIViewController {
         // load core data into table
         self.refreshTable()
         
-        for bs in busSettings {
-            print(bs.routes!.count)
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name("ReloadBusProfileTable"), object: nil)
     }
     
  
     @IBAction func addBusProfile(_ sender: Any) {
-
-        
         // alert
         let alert = UIAlertController(title: "Titel des neuen BusProfils angeben:", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -50,26 +44,15 @@ class BusProfileVC: UIViewController {
         // alert button hinzufügen
         let saveAction = UIAlertAction(title: "hinzufügen", style: .default, handler: { (action) -> Void in
             let title = alert.textFields!.first!.text!
-            var newBusSetting = BusSetting(context: PersistenceService.context);
+            let newBusSetting = BusSetting(context: PersistenceService.context);
             newBusSetting.title = title
             newBusSetting.withDestinations = true
             newBusSetting.ofProfil = HomeScreenVC.wg
             BusProfileVC.selectedBusProfile = newBusSetting
-            //set User = WG
             PersistenceService.saveContext()
             self.refreshTable()
             NotificationCenter.default.post(name: NSNotification.Name("ShowBusprofileMsg"), object: newBusSetting)
         })
-        
-        /**
-         alert.addTextField(configurationHandler: { (textField) in
-         textField.placeholder = "Titel"
-         NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
-         saveAction.isEnabled = textField.text!.count > 0
-         }
-         })
-         **/
-
         let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
         
         alert.addAction(saveAction)

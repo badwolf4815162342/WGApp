@@ -57,31 +57,7 @@ class ShowBusTripsTableVC: UIViewController {
         self.view.addGestureRecognizer(longPressRecognizer)
     }
     
-    func activityIndicator(_ title: String) {
-        
-        strLabel.removeFromSuperview()
-        activityIndicator.removeFromSuperview()
-        effectView.removeFromSuperview()
-        
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 160, height: 46))
-        strLabel.text = title
-        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
-        
-        //effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2 , width: 160, height: 46)
-        effectView.frame = CGRect(x: 50, y: 50, width: 160, height: 46)
-        effectView.layer.cornerRadius = 15
-        effectView.layer.masksToBounds = true
-        
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
-        activityIndicator.startAnimating()
-        
-        effectView.contentView.addSubview(activityIndicator)
-        effectView.contentView.addSubview(strLabel)
-        view.addSubview(effectView)
-        UIApplication.shared.keyWindow!.bringSubview(toFront: effectView)
-    }
+    
     
     @IBAction func onReloadTapped(_ sender: Any) {
         refreshTable()
@@ -89,15 +65,14 @@ class ShowBusTripsTableVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear ShowBusTripsTableVC")
         if let busProfile = selectedBusProfile {
             busProfileName.text = busProfile.title
-            var userIconString = busProfile.ofProfil?.profilIcon
+            let userIconString = busProfile.ofProfil?.profilIcon
             if userIconString != nil, let image = UIImage(named: userIconString!) {
                 ofProfileImage.image = image
             } else {
                 ofProfileImage.image = UIImage(named: "info")
-                print("Picture of user could not be loaded !!! ")
+                print("ERROR: Picture of user could not be loaded !!! ")
             }
             if let type = tripsTableType {
                 switch type {
@@ -132,35 +107,23 @@ class ShowBusTripsTableVC: UIViewController {
     
   
     @objc func refreshTable(){
-        print("trips \(tripsTableType)")
         if (currentlyReloading) {
             return
-        }
-        self.activityIndicator("Aktualisieren")
-        print("ADD")
-        for s in self.selectedTrips {
-            print("LONG: \(s)")
         }
         // load core data into table
         if let type = tripsTableType {
             switch type {
             case .trip:
-                print("trip")
                 BusSettingsController.getTrips(busProfile: selectedBusProfile!, completion:{ rmvTrips in
                     DispatchQueue.main.async {
-                        print("trips \(rmvTrips.count)")
                         self.currentlyReloading = true
                         self.trips = rmvTrips
                         self.filterTripList()
                         if (self.trips.count == 0) {
-                            print("HERE")
-                            self.effectView.removeFromSuperview()
                             self.currentlyReloading = false
                         } else {
                             self.currentlyReloading = false
-                            self.effectView.removeFromSuperview()
                         }
-                       
                     }
                 })
             case .departure:
@@ -172,12 +135,9 @@ class ShowBusTripsTableVC: UIViewController {
                         self.departures = rmvDepartues
                         self.filterDepList()
                         if (self.departures.count == 0) {
-                            print("HERE")
-                            self.effectView.removeFromSuperview()
                             self.currentlyReloading = false
                         } else {
                             self.currentlyReloading = false
-                            self.effectView.removeFromSuperview()
                         }
 
                     }
@@ -199,7 +159,9 @@ class ShowBusTripsTableVC: UIViewController {
         showTripsTableView.reloadData(); // notify the table view the data has changed
     }
     
-    
+    /**
+     * Markiere Trip
+     **/
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if (currentlyReloading) {
             return
@@ -214,12 +176,12 @@ class ShowBusTripsTableVC: UIViewController {
                 if let type = tripsTableType {
                     switch type {
                     case .trip:
-                        var trip = trips[indexPath.row]
+                        let trip = trips[indexPath.row]
                         id = trip.id
                         infoString = trip.getShowString()
                         index = self.selectedTrips.index(of: id!)
                     case .departure:
-                        var trip = departures[indexPath.row]
+                        let trip = departures[indexPath.row]
                         id = trip.id
                         infoString = trip.getShowString()
                         index = self.selectedTrips.index(of: id!)
@@ -227,7 +189,7 @@ class ShowBusTripsTableVC: UIViewController {
                 }
                 var buttonTitle = ""
                 var mainTitle = ""
-                if let index = index {
+                if index != nil {
                     buttonTitle = "demarkieren"
                     mainTitle = "Bus Trip demarkieren:"
                 } else {
@@ -240,18 +202,13 @@ class ShowBusTripsTableVC: UIViewController {
                 
                 // alert button hinzufügen
                 let saveAction = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
-                    //print("LONG PRESS row: \(indexPath.row) \(trip.id)")
                     if let index = index {
-                        //print("LONG remove: \(trip.id)")
                         self.selectedTrips.remove(at: index)
                     } else {
-                        //print("LONG add: \(trip.id)")
                         self.selectedTrips.append(id!)
                     }
                     self.refreshTable()
                 })
-                
-                
                 let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
                 
                 alert.addAction(saveAction)
@@ -294,7 +251,6 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
                 return btCell
             case .departure:
                 let departure = departures[indexPath.row]
-                print("DEPS setDepCell \(departure)")
                 let cell = tableView.dequeueReusableCell(withIdentifier: "BusDepartureCell")
                 
                 let dCell = cell  as! BusDepartureTableViewCell
@@ -311,19 +267,15 @@ extension ShowBusTripsTableVC: UITableViewDelegate, UITableViewDataSource {
         if let type = tripsTableType {
             switch type {
             case .trip:
-                var trip = trips[indexPath.row]
+                let trip = trips[indexPath.row]
                 let alert = UIAlertController(title: "Info zur Fahrt", message: trip.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
-                
                 let cancleAction = UIAlertAction(title: "ok", style: .default) { (_) in }
-                
                 alert.addAction(cancleAction)
                 present(alert, animated: true, completion: nil)
             case .departure:
-                var dep = departures[indexPath.row]
+                let dep = departures[indexPath.row]
                 let alert = UIAlertController(title: "Info zur Fahrt", message: dep.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
-                
                 let cancleAction = UIAlertAction(title: "ok", style: .default) { (_) in }
-                
                 alert.addAction(cancleAction)
                 present(alert, animated: true, completion: nil)
             }
