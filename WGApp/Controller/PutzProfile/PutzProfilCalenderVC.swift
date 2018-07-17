@@ -75,9 +75,8 @@ class PutzProfilCalenderVC: UICollectionViewController {
         if (Int(indexPath.section.description) == 0) {
             //print("Weeks from current \(Int(indexPath.item.description)!)")
             cell.label.text = getWeekDates(weeksFromCurrent: Int(indexPath.item.description)!)
-            if (actWeekStart == HomeScreenVC.thisWeekStart) {
-                cell.backgroundColor = UIColor.init(named: "GREEN")
-            }
+            cell.setBackgroundColor(actWeekStart: actWeekStart!)
+            
         } else {
             let icell = collectionView.dequeueReusableCell(withReuseIdentifier: itemIdentifier, for: indexPath) as!
             PutzItemViewCell

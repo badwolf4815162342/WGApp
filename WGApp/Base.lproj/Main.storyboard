@@ -278,6 +278,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="DARK_GRAY"/>
+                                <gestureRecognizers/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="DARK_GRAY"/>
@@ -294,6 +295,7 @@
                         <segue destination="wHS-gX-Jjd" kind="show" identifier="ShowBusManagement" id="J5m-5L-QcM"/>
                         <segue destination="6SK-wc-hcA" kind="show" identifier="ShowUserManagement" id="9tp-00-k95"/>
                         <segue destination="v0u-xw-nKM" kind="show" identifier="ShowPutzManagement" id="9Xq-3c-Hw1"/>
+                        <segue destination="v0u-xw-nKM" kind="show" identifier="ShowPutzPlan" id="lNY-cA-Uar"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cY-ru-oC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -396,7 +398,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="lNY-cA-Uar"/>
         <segue reference="9tp-00-k95"/>
-        <segue reference="7At-4x-mH6"/>
+        <segue reference="J5m-5L-QcM"/>
     </inferredMetricsTieBreakers>
 </document>

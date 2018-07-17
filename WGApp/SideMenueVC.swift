@@ -20,7 +20,7 @@ class SideMenueVC: UITableViewController {
         case 3:
             NotificationCenter.default.post(name: NSNotification.Name("ShowPutzManagement"), object: nil)
         case 4:
-            NotificationCenter.default.post(name: NSNotification.Name("ShowPutzManagement"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("ShowPutzPlan"), object: nil)
         default:
             break
         }

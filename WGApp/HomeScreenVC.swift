@@ -11,6 +11,8 @@ import CoreData
 
 class HomeScreenVC: UIViewController {
     
+   
+    
     @IBOutlet weak var overlayView: UIImageView!
     static var wg: HomeProfil?
     
@@ -25,11 +27,7 @@ class HomeScreenVC: UIViewController {
 
     @IBOutlet weak var homeNavigationItem: UINavigationItem!
     
-    /*@IBAction func onMoreTabbed() {
-        print("TOGGLE SIDE MENUE")
-        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
-    }*/
-    
+
     
     func refreshUsers(){
         // load core data into users list
@@ -111,20 +109,27 @@ class HomeScreenVC: UIViewController {
     }
     
     @objc func more(sender: UIBarButtonItem){
-        print("TOGGLE SIDE MENUE")
+       toggleSideMenu()
+    }
+    
+    @objc func toggleSideMenu() {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
         overlayView.isHidden = !overlayView.isHidden
         if (overlayView.isHidden) {
-            self.view.isUserInteractionEnabled = true
+            overlayView.isUserInteractionEnabled = false
         } else {
-            self.view.isUserInteractionEnabled = false
             overlayView.alpha = 0.6
+            overlayView.isUserInteractionEnabled = true
             
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overlayView.isUserInteractionEnabled = false
+        self.view.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleSideMenu))
+        overlayView.addGestureRecognizer(tapRecognizer)
         HomeScreenVC.thisWeekStart = Date.today().previous(.monday,
                                               considerToday: true)
         HomeScreenVC.thisWeekEnd = Date.today().previous(.monday,
@@ -137,6 +142,7 @@ class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPutzManagement), name: NSNotification.Name("ShowPutzManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPutzPlan), name: NSNotification.Name("ShowPutzPlan"), object: nil)
 
         createWGUser()
         HomeScreenVC.selectedUser = HomeScreenVC.wg
@@ -179,6 +185,10 @@ class HomeScreenVC: UIViewController {
     
     @objc func showPutzManagement() {
         performSegue(withIdentifier: "ShowPutzManagement", sender: nil)
+    }
+    
+    @objc func showPutzPlan() {
+        performSegue(withIdentifier: "ShowPutzPlan", sender: nil)
     }
     
     func createWGUser () {
