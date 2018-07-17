@@ -62,7 +62,7 @@ extension TripPartRMV {
         } else {
             finalRArivalDate = finalPArivalDate
         }
-        var feet = false
+        let feet = false
         if (leg.product != nil){
             var feet = true
         }
