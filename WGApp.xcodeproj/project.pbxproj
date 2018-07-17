@@ -140,7 +140,7 @@
 		5F0A8EB520F638EA00E06836 /* PutzProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilVC.swift; sourceTree = "<group>"; };
 		5F0A8EB720F6396900E06836 /* PutzProfilEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilEditVC.swift; sourceTree = "<group>"; };
 		5F0A8EB920F6397B00E06836 /* PutzProfilCalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilCalenderVC.swift; sourceTree = "<group>"; };
-		5F0A8EBC20F63ABD00E06836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/PutzProfile.storyboard; sourceTree = "<group>"; };
+		5F0A8EBC20F63ABD00E06836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PutzProfile.storyboard; sourceTree = "<group>"; };
 		5F0A8EBF20F63F4D00E06836 /* PutzprofilTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzprofilTableVC.swift; sourceTree = "<group>"; };
 		5F0A8EC120F63F6100E06836 /* PutzProfilEditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfilEditDetailsVC.swift; sourceTree = "<group>"; };
 		5F0A8EC320F6421C00E06836 /* PutzProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		5F0A8EC920F7605B00E06836 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		5F0A8ED520F81D4100E06836 /* PutzItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutzItemViewCell.swift; sourceTree = "<group>"; };
 		5F1D3B8C20FD0069001BDCD6 /* UIPutzItemPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPutzItemPickerView.swift; sourceTree = "<group>"; };
-		5F1D3B8F20FD465E001BDCD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/ShowActPutzItems.storyboard; sourceTree = "<group>"; };
+		5F1D3B8F20FD465E001BDCD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ShowActPutzItems.storyboard; sourceTree = "<group>"; };
 		5F1D3B9120FD479F001BDCD6 /* ShowActPutzItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowActPutzItemsVC.swift; sourceTree = "<group>"; };
 		5F1D3B9320FD497E001BDCD6 /* PutzWeekItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5F1D3B9420FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PutzWeekItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
