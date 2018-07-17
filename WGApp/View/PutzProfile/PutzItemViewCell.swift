@@ -18,7 +18,7 @@ class PutzItemViewCell: UICollectionViewCell {
     
     var putzItem:PutzWeekItem?
     
-    func setPutzItem(putzProfile: PutzSetting, startDate: Date) {
+    func setPutzItemFromPutzProfile(putzProfile: PutzSetting, startDate: Date) {
         self.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
         self.layer.borderWidth = 10.0
         var putzItem = getPutzItem(putzProfile: putzProfile, startDate: startDate)
@@ -26,8 +26,13 @@ class PutzItemViewCell: UICollectionViewCell {
         outFormatter.dateFormat = "dd.MM.yy"
         if let putzItem = putzItem {
             self.putzItem = putzItem
-            putzItemImageView.image = UIImage(named: "Fish-icon")
-
+            let putzIconString = putzItem.putzSetting?.profilIcon
+            if putzIconString != nil, let image = UIImage(named: putzIconString!) {
+                putzItemImageView.image = image
+            } else {
+                putzItemImageView.image = UIImage(named: "info")
+                print("Picture of putzprofile could not be loaded !!! ")
+            }
             putzProfileTitle.text = "Sec " + (putzProfile.title)! + "/Item " + outFormatter.string(from: startDate)
             let userIconString = putzItem.user?.profilIcon
             if userIconString != nil, let image = UIImage(named: userIconString!) {
@@ -53,7 +58,30 @@ class PutzItemViewCell: UICollectionViewCell {
     }
     
     func setPutzItem(putzItem: PutzWeekItem){
-        
+        let outFormatter = DateFormatter()
+        outFormatter.dateFormat = "dd.MM.yy"
+        self.putzItem = putzItem
+        let putzIconString = putzItem.putzSetting?.profilIcon
+        if putzIconString != nil, let image = UIImage(named: putzIconString!) {
+            putzItemImageView.image = image
+        } else {
+            putzItemImageView.image = UIImage(named: "info")
+            print("Picture of putzprofile could not be loaded !!! ")
+        }
+        putzProfileTitle.text = "Bis: \((outFormatter.string(from: (putzItem.weekEndDate! as Date))))"
+        let userIconString = putzItem.user?.profilIcon
+        if userIconString != nil, let image = UIImage(named: userIconString!) {
+            userImageView.image = image
+        } else {
+            userImageView.image = UIImage(named: "Bear-icon")
+            print("Picture of putzprofile could not be loaded !!! ")
+        }
+        //setColor()
+        //setDone()
     }
+    
+    /**func setColor() {
+        
+    }**/
 
 }

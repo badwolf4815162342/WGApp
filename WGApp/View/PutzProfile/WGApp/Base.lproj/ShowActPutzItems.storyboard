@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Show Act Putz ItemsVC-->
         <scene sceneID="UhY-QZ-1om">
             <objects>
-                <viewController id="UaJ-LQ-cgn" sceneMemberID="viewController">
+                <viewController id="UaJ-LQ-cgn" customClass="ShowActPutzItemsVC" customModule="WGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="omm-zk-bk6">
                         <rect key="frame" x="0.0" y="0.0" width="692" height="181"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,9 +76,9 @@
                                         </constraints>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
-                                            <outlet property="putzItemImageView" destination="tPI-yF-1O7" id="khI-wK-5Pt"/>
-                                            <outlet property="putzProfileTitle" destination="VHp-dS-zEC" id="sn0-zq-3i0"/>
-                                            <outlet property="userImageView" destination="vWd-rh-4e8" id="v0A-0j-Fon"/>
+                                            <outlet property="putzItemImageView" destination="tPI-yF-1O7" id="Ucz-LK-aKw"/>
+                                            <outlet property="putzProfileTitle" destination="VHp-dS-zEC" id="7gb-a9-gP8"/>
+                                            <outlet property="userImageView" destination="vWd-rh-4e8" id="cBA-fz-bxh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -88,6 +88,9 @@
                         <viewLayoutGuide key="safeArea" id="INm-FK-NrD"/>
                     </view>
                     <size key="freeformSize" width="692" height="181"/>
+                    <connections>
+                        <outlet property="collectionView" destination="LNs-oW-ok2" id="bPf-p6-IWZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWg-1U-pv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

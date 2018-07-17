@@ -19,6 +19,7 @@ class ShowActPutzItemsVC: UIViewController {
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        refreshContent()
         super.viewDidLoad()
     }
    
@@ -32,6 +33,7 @@ class ShowActPutzItemsVC: UIViewController {
         fetchRequest.returnsObjectsAsFaults = false
         do {
             let items = try PersistenceService.context.fetch(fetchRequest)
+            print("items \(items.count)")
             self.items = items
             self.collectionView.reloadData()
         } catch {
@@ -51,7 +53,7 @@ extension ShowActPutzItemsVC: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "putzItemCell", for: indexPath) as! PutzItemViewCell
         let putzItem = items[indexPath.row]
-        cell.setPutzItem(putzItem: PutzWeekItem)
+        cell.setPutzItem(putzItem: putzItem)
         return cell
     }
     

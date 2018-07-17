@@ -75,7 +75,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
             PutzItemViewCell
             let actPutzSetting = PutzProfilCalenderVC.profiles![Int(indexPath.section.description)!-1]
             // Configure the cell
-            icell.setPutzItem(putzProfile: actPutzSetting, startDate: actWeekStart!)
+            icell.setPutzItemFromPutzProfile(putzProfile: actPutzSetting, startDate: actWeekStart!)
             return icell
         }
         return cell

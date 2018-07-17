@@ -64,7 +64,7 @@ class PutzSettingsController: NSObject {
             let date = Date.today().previous(.monday,
                                              considerToday: true).add(days: (i*7*Int(newPutzItem.numberOfWeeks)))
             newPutzItem.weekStartDay = date as NSDate
-            newPutzItem.weekEndDate = date.add(days: (7*Int(newPutzItem.numberOfWeeks))) as NSDate
+            newPutzItem.weekEndDate = date.add(days: ((7*Int(newPutzItem.numberOfWeeks))-1)) as NSDate
             newPutzItem.user = user
             user = withOrder.after(user, loop: true)!
             print(user.name)
