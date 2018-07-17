@@ -127,8 +127,9 @@ class HomeScreenVC: UIViewController {
     }
     
     @objc func tick() {
-
-        timeLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .medium)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss        dd. MMM yyyy "
+        timeLabel.text = formatter.string(from: Date())
     }
     
     override func viewDidLoad() {
