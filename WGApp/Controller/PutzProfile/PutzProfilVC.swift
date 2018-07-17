@@ -51,7 +51,7 @@ extension PutzProfilVC: UITabBarDelegate {
         } else if (item.title == "Putzkalender") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
             print("refresh \(self.putzProfilCalenderVC)")
-            self.putzProfilCalenderVC?.refresh()
+            putzProfilCalenderVC?.refresh()
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PutzItemViewCell: UICollectionViewCell {
 
@@ -34,12 +35,31 @@ class PutzItemViewCell: UICollectionViewCell {
     }
     
     func getPutzItem(putzProfile: PutzSetting, startDate: Date) -> PutzWeekItem? {
+        let outFormatter = DateFormatter()
+        outFormatter.dateFormat = "dd.MM.yy"
+        let request: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
+        request.predicate =  NSPredicate(format: "weekStartDay = %@ AND putzSetting = %@", startDate as NSDate, putzProfile)
+        request.returnsObjectsAsFaults = false
+        do {
+            var items = try PersistenceService.context.fetch(request)
+            if (items.count == 1){
+                return items[0]
+            } else if (items.count == 0){
+                print("ERROR: No than one item for \(putzProfile.title) on date \(outFormatter.string(from: startDate))")
+                return nil
+            } else {
+              print("ERROR: More than one (\(items.count) item for \(putzProfile.title) on date \(outFormatter.string(from: startDate))")
+            }
+        } catch {
+            print("core data couldn't be loaded")
+        }
+        /**
         for item in putzProfile.weekItems! {
             print("Item of \((item as! PutzWeekItem).user?.name) ond datestart \((item as! PutzWeekItem).weekStartDay)")
             if (startDate == ((item as! PutzWeekItem).weekStartDay! as Date) ) {
                 return (item as! PutzWeekItem)
             }
-        }
+        }**/
         return nil
     }
     
@@ -94,15 +114,38 @@ class PutzItemViewCell: UICollectionViewCell {
             self.backgroundColor = UIColor.init(named: "GRAY")
         }
     }
-
-}
-
-extension UIImage {
-    func image(alpha: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: .zero, blendMode: .normal, alpha: alpha)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
+    
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                // alert
+                if let item = self.putzItem {
+                    let alert = UIAlertController(title: "Erledigt?", message: item.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // alert button hinzufügen
+                    let saveAction = UIAlertAction(title: "Jap", style: .default) { (_) in
+                        if !(item.done) {
+                            item.done = true
+                            PersistenceService.saveContext()
+                            self.setDone(putzItem: item)
+                        }
+                    }
+                    let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
+                        if (item.done) {
+                            item.done = false
+                            PersistenceService.saveContext()
+                            self.setDone(putzItem: item)
+                        }
+                    }
+                    
+                    alert.addAction(saveAction)
+                    alert.addAction(cancleAction)
+                    UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+            } else {
+                // animate deselection
+            }
+        }
+        }
+        
     }
 }

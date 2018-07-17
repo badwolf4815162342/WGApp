@@ -30,11 +30,13 @@ class PutzProfilCalenderVC: UICollectionViewController {
     
     func refresh() {
         let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
+        fetchRequest.predicate =  NSPredicate(format: "aktiv = %@", NSNumber(value: true))
+        fetchRequest.returnsObjectsAsFaults = false
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             numberOfPutzSettings = profiles.count
             PutzProfilCalenderVC.profiles = profiles
-            setItems()
+            //setItems()
         } catch {
             print("core data couldn't be loaded")
         }
@@ -45,6 +47,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
         for profile in PutzProfilCalenderVC.profiles! {
             var putzItems = profile.weekItems?.allObjects as! [PutzWeekItem]
             putzItems = putzItems.sorted(by: { ($0.weekEndDate as! Date).compare($1.weekEndDate as! Date) == .orderedAscending })
+            putzItems = putzItems.filter{($0.weekEndDate as! Date) <= PutzProfilCalenderVC.calenderFirstWeekStart!}
             PutzProfilCalenderVC.items[profile] = putzItems
         }
     }
@@ -79,37 +82,17 @@ class PutzProfilCalenderVC: UICollectionViewController {
             let icell = collectionView.dequeueReusableCell(withReuseIdentifier: itemIdentifier, for: indexPath) as!
             PutzItemViewCell
             let actPutzSetting = PutzProfilCalenderVC.profiles![Int(indexPath.section.description)!-1]
+            //let actPutzSettingItem = PutzProfilCalenderVC.items[actPutzSetting]![indexPath.row]
             // Configure the cell
             icell.setPutzItemFromPutzProfile(putzProfile: actPutzSetting, startDate: actWeekStart!)
+            //icell.setPutzItem(putzItem: actPutzSettingItem)
             return icell
         }
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // alert
-        /**var item = items[indexPath.row]
-        let alert = UIAlertController(title: "Erledigt?", message: item.getShowString(), preferredStyle: UIAlertControllerStyle.alert)
         
-        // alert button hinzufügen
-        let saveAction = UIAlertAction(title: "Jap", style: .default) { (_) in
-            if !(item.done) {
-                item.done = true
-                PersistenceService.saveContext()
-                self.refresh()
-            }
-        }
-        let cancleAction = UIAlertAction(title: "Nö", style: .default) { (_) in
-            if (item.done) {
-                item.done = false
-                PersistenceService.saveContext()
-                self.refresh()
-            }
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancleAction)
-        present(alert, animated: true, completion: nil)**/
     }
     
     func getWeekDates(weeksFromCurrent: Int) -> String{

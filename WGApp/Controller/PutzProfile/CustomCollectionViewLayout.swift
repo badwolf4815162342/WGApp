@@ -138,7 +138,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
  **/
                         if (section != 0) {
                             // jedes xte zeichnen, da es über x spalten geht
-                            if (item % repeatEveryWeeks == 0) {
+                            if (((item - CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER) % repeatEveryWeeks) == 0) {
                                 calculatedCellHeight = CELL_HEIGHT_NORMAL
                                 yPos = (Double(section) * calculatedCellHeight) - calculatedCellHeight + CELL_HEIGHT_HEADER
                             } else {

@@ -86,7 +86,7 @@ class PutzProfilEditDetailsVC: UIViewController {
             }
         }
         if (PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks != Int64(Int(stepper.value))) {
-            message += "Wenn die Wochenanzahl verändert wird, wird auch die Reihenfolge neu berechnet"
+            message += "Wenn die Wochenanzahl verändert wird, wird auch die Reihenfolge neu berechnet."
         }
         
         if (message == "") {

@@ -92,6 +92,7 @@ extension ShowActPutzItemsVC: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
+
 extension PutzWeekItem {
     
     func getShowString() -> String {

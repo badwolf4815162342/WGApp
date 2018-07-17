@@ -39,6 +39,11 @@ class PutzSettingsController: NSObject {
     }
     
     class func deleteAllItems(ofPutzSetting: PutzSetting) {
+        ofPutzSetting.userOrder = nil
+        for item in ofPutzSetting.weekItems! {
+           PersistenceService.context.delete((item as! PutzWeekItem))
+        }
+        /**
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PutzWeekItem")
         fetch.predicate = NSPredicate(format: "putzSetting = %@", ofPutzSetting)
         let request = NSBatchDeleteRequest(fetchRequest: fetch)
@@ -46,9 +51,9 @@ class PutzSettingsController: NSObject {
             try PersistenceService.context.execute(request)
         } catch {
             fatalError("Failed to execute request: \(error)")
-        }
-        
-        let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
+        }**/
+        PersistenceService.saveContext()
+        /**let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
         do {
             print("deleted of \(ofPutzSetting.title)")
             let profiles = try PersistenceService.context.fetch(fetchRequest)
@@ -57,7 +62,7 @@ class PutzSettingsController: NSObject {
                     print ("Remaining Item of Profile \(ofPutzSetting.title): \((item as! PutzWeekItem).user?.name) start \((item as! PutzWeekItem).weekStartDay)")
                 }
             }
-        } catch {}
+        } catch {}**/
     }
     
     class func calculateOrder(putzProfile: PutzSetting){
