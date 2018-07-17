@@ -404,6 +404,9 @@
         <namedColor name="LIGHT_YELLOW">
             <color red="0.97299998998641968" green="0.9100000262260437" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="PETROL">
+            <color red="0.21199999749660492" green="0.50599998235702515" blue="0.5690000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="WHITE">
             <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

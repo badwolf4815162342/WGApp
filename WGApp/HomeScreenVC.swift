@@ -47,12 +47,14 @@ class HomeScreenVC: UIViewController {
        
         // left: burger menu
         let moreBtn: UIButton = UIButton(type: .custom)
-        moreBtn.setImage(UIImage(named: "burger"), for: .normal)
+        moreBtn.setImage(UIImage(named: "menu"), for: .normal)
         moreBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         moreBtn.addTarget(self, action: #selector(more(sender:)), for: .touchUpInside)
         moreBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let widthContraintsM =  NSLayoutConstraint(item: moreBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
+        let heightContraintsM = NSLayoutConstraint(item: moreBtn, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
+        NSLayoutConstraint.activate([heightContraintsM,widthContraintsM])
         let barButton = UIBarButtonItem(customView: moreBtn)
-        
         self.homeNavigationItem.leftBarButtonItem = barButton
         
         
