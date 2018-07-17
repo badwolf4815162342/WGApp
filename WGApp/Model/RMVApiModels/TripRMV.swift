@@ -64,7 +64,7 @@ extension TripPartRMV {
         }
         let feet = false
         if (leg.product != nil){
-            var feet = true
+            _ = true
         }
         let transportationType = leg.product?["catOut"]!
         let specificTransportationType = leg.product?["catOutL"]!
