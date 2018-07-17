@@ -101,7 +101,9 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                 // Cycle through each item in the section.
                 if let rowCount = collectionView?.numberOfItems(inSection: section), rowCount > 0 {
                     for item in 0...rowCount-1 {
-                        
+                        if (section==6) {
+                            print("hier")
+                        }
                         // Build the UICollectionVieLayoutAttributes for the cell.
                         let cellIndex = IndexPath(item: item, section: section)
                         
@@ -112,9 +114,10 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                         var yPos: Double
                         var preitem = item + CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER
                         var repeatEveryWeeks = 0
+                        var posDiff = 0
                         if (section != 0) {
                             var putzProfil = PutzProfilCalenderVC.profiles![section-1]
-                            var posDiff = posDiffFromStartDayOnTable(putzProfil: putzProfil)
+                            posDiff = posDiffFromStartDayOnTable(putzProfil: putzProfil)
                             repeatEveryWeeks = Int(PutzProfilCalenderVC.profiles![section-1].repeatEveryXWeeks)
                             // breite x mal (repeatEveryXWeeks)
                             calculatedCellWidth = Double(Int(CELL_WIDTH) * repeatEveryWeeks)
@@ -127,6 +130,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             calculatedCellWidth = CELL_WIDTH
                             xPos = Double(item) * calculatedCellWidth
                         }
+                        xPos = xPos - Double(posDiff)
                         /**
                         if section % 2 == 0 && section != 0  && item != 0 {
                             calculatedCellWidth = CELL_WIDTH * 2
@@ -137,8 +141,12 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                         }
  **/
                         if (section != 0) {
+                            if (item<(posDiff/150)) {
+                                calculatedCellHeight = 0.0
+                                calculatedCellWidth = 0.0
+                                yPos = (Double(section) * calculatedCellHeight) - calculatedCellHeight + CELL_HEIGHT_HEADER
                             // jedes xte zeichnen, da es über x spalten geht
-                             if (((item - CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER) % repeatEveryWeeks) == 0) {
+                            } else  if (((item - CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER) % repeatEveryWeeks) == 0) {
                                 calculatedCellHeight = CELL_HEIGHT_NORMAL
                                 yPos = (Double(section) * calculatedCellHeight) - calculatedCellHeight + CELL_HEIGHT_HEADER
                             } else {

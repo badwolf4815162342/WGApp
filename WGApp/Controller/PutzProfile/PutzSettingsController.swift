@@ -32,7 +32,7 @@ class PutzSettingsController: NSObject {
         //calculateOrder(putzProfile: newPutzProfile)
         newPutzProfile.aktiv = false
         newPutzProfile.startDate = (Date.today().previous(.monday,
-                                              considerToday: true)) as NSDate
+                                                          considerToday: true)).subtract(days:7) as NSDate
         newPutzProfile.profilIcon = "info"
         PersistenceService.saveContext()
         return newPutzProfile
