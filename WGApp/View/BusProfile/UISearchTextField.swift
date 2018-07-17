@@ -49,7 +49,6 @@ open class SearchTextField: UITextField {
     open var startVisibleWithoutInteraction = false {
         didSet {
             if startVisibleWithoutInteraction {
-                print("withoutInteraction")
                 textFieldDidChange()
             }
         }

@@ -10,18 +10,14 @@ import UIKit
 
 class UIPutzItemPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // TODO: load images from assets
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     func getAssets(){
-        print("assets?")
         if let path = Bundle.main.path(forResource: "assets/putzIcons", ofType: "json") {
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                print("data: ", data)
+                _ = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
             }
             catch {
-                // let jsonObj = JSON(data: data)
-                print("error"); // error in the above string (in this case, yes)!
+                print("Error"); // error in the above string (in this case, yes)!
             }
         }
     }

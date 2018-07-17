@@ -33,8 +33,6 @@ class PutzprofilTableVC: UIViewController {
     
     
     @IBAction func addPutzProfile(_ sender: Any) {
-        
-        
         // alert
         let alert = UIAlertController(title: "Titel des neuen PutzProfils angeben:", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -46,9 +44,8 @@ class PutzprofilTableVC: UIViewController {
         // alert button hinzufügen
         let saveAction = UIAlertAction(title: "hinzufügen", style: .default, handler: { (action) -> Void in
             let title = alert.textFields!.first!.text!
-            var newPutzSetting = PutzSettingsController.createEmptyPutzSetting(title: title)
+            let newPutzSetting = PutzSettingsController.createEmptyPutzSetting(title: title)
             PutzprofilTableVC.selectedPutzProfile = newPutzSetting
-            //set User = WG
             PersistenceService.saveContext()
             self.refreshTable()
             NotificationCenter.default.post(name: NSNotification.Name("ShowPutzprofileMsg"), object: newPutzSetting)
@@ -59,7 +56,6 @@ class PutzprofilTableVC: UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancleAction)
         present(alert, animated: true, completion: nil)
-        
     }
     
     
@@ -122,9 +118,6 @@ extension PutzprofilTableVC: UITableViewDelegate, UITableViewDataSource {
     {
         return 100;//Choose your custom row height
     }
-    
-    
-    
     
 }
 

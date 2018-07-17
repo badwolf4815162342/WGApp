@@ -29,7 +29,6 @@ class ShowActPutzItemsVC: UIViewController {
     }
    
     @objc func refreshContent(){
-        print("refresh")
         // load core data into collection view
         let request: NSFetchRequest<PutzWeekItem> = PutzWeekItem.fetchRequest()
          request.predicate =  NSPredicate(format: "(weekStartDay <= %@) AND (weekEndDate >= %@)", Date() as NSDate, Date() as NSDate)
@@ -40,7 +39,7 @@ class ShowActPutzItemsVC: UIViewController {
                 if $0.done != $1.done { // first, compare by last names
                     return !$0.done && $1.done
                 } else { // All other fields are tied, break ties by last name
-                   return ($0.weekEndDate as! Date).compare($1.weekEndDate as! Date) == .orderedAscending
+                    return ($0.weekEndDate! as Date).compare($1.weekEndDate! as Date) == .orderedAscending
                 }})
             print("items \(items.count)")
             self.items = items
@@ -76,7 +75,7 @@ extension PutzWeekItem {
     
     func getShowString() -> String {
         let outFormatter = DateFormatter()
-        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
+        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale?
         outFormatter.dateFormat = "dd.MM.yy"
         var ret = ""
         if let user = self.user {
@@ -84,7 +83,7 @@ extension PutzWeekItem {
         } else {
              ret += " Gelöschter User: \(self.putzSetting!.title!) \n"
         }
-        ret += "Zeiraum: " + outFormatter.string(from: (self.weekStartDay as! Date)) + " bis " + outFormatter.string(from: (self.weekEndDate as! Date))
+        ret += "Zeiraum: " + outFormatter.string(from: (self.weekStartDay! as Date)) + " bis " + outFormatter.string(from: (self.weekEndDate! as Date))
         return ret
     }
 }

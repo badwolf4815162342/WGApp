@@ -36,10 +36,8 @@ class PutzProfilEditDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // erstmal gehen wir von routes aus
         noPutzProfilesLabel.isHidden  = true
-    
         setInitialPutzProfile()
         //get Notification if BusProfile changes
         NotificationCenter.default.addObserver(self, selector: #selector(changePutzProfile), name: NSNotification.Name("ShowPutzprofileMsg"), object: nil)
@@ -88,7 +86,6 @@ class PutzProfilEditDetailsVC: UIViewController {
         if (PutzprofilTableVC.selectedPutzProfile?.repeatEveryXWeeks != Int64(Int(stepper.value))) {
             message += "Wenn die Wochenanzahl verändert wird, wird auch die Reihenfolge neu berechnet."
         }
-        
         if (message == "") {
             message = "Wirklich speichern?"
         }
@@ -153,9 +150,9 @@ class PutzProfilEditDetailsVC: UIViewController {
     }
     
     @objc func changePutzProfile(notification: NSNotification) {
-        PutzprofilTableVC.selectedPutzProfile = notification.object as! PutzSetting
+        PutzprofilTableVC.selectedPutzProfile = notification.object as? PutzSetting
         setInitValuesOfProfil()
-        var subViews = self.view.subviews
+        let subViews = self.view.subviews
         for v in subViews {
             v.isHidden = false
         }
@@ -163,7 +160,7 @@ class PutzProfilEditDetailsVC: UIViewController {
     }
     
     @IBAction func onWeekManipulated(_ sender: Any) {
-        var number = Int(stepper.value)
+        let number = Int(stepper.value)
         setWeekLabel(number: number)
         currentNumberOfWeeks = Int(stepper.value)
     }
@@ -172,7 +169,7 @@ class PutzProfilEditDetailsVC: UIViewController {
         if (number == 1) {
             weeksLabel.text = CONFIG.PUTZSETTINGS.ONE_WEEK_REPEAT_LABEL_TEXT
         } else {
-            var formattedString = String(format: CONFIG.PUTZSETTINGS.X_WEEK_REPEAT_LABEL_TEXT, number)
+            let formattedString = String(format: CONFIG.PUTZSETTINGS.X_WEEK_REPEAT_LABEL_TEXT, number)
             weeksLabel.text = formattedString
         }
     }
@@ -184,17 +181,15 @@ class PutzProfilEditDetailsVC: UIViewController {
 
 
     @objc func setInitialPutzProfile(){
-        print("Set initialPutzProfile")
         // load core data into table
-        if let profile = PutzprofilTableVC.selectedPutzProfile {
-            //print(profile.title! + "found")
+        if PutzprofilTableVC.selectedPutzProfile != nil {
             setInitValuesOfProfil()
         } else {
             let fetchRequest: NSFetchRequest<PutzSetting> = PutzSetting.fetchRequest()
             do {
                 let profiles = try PersistenceService.context.fetch(fetchRequest)
                 if (profiles.count <= 0) {
-                    var subViews = self.view.subviews
+                    let subViews = self.view.subviews
                     for v in subViews {
                         v.isHidden = true
                     }
@@ -213,14 +208,6 @@ class PutzProfilEditDetailsVC: UIViewController {
         userOrderStackView.subviews.forEach { $0.removeFromSuperview() }
         userSelectionStackView.subviews.forEach { $0.removeFromSuperview() }
         titleTextField.text = PutzprofilTableVC.selectedPutzProfile?.title
-        //PutzprofilTableVC.selectedPutzProfile?.profilIcon = "021-shower"
-        /*var profilIconString = PutzprofilTableVC.selectedPutzProfile?.profilIcon
-        if profilIconString != nil, let image = UIImage(named: profilIconString!) {
-            putzIcon.image = image
-        } else {
-            putzIcon.image = UIImage(named: "Fish-icon")
-            print("Picture of putzprofile could not be loaded !!! ")
-        }*/
         if let userSet = PutzprofilTableVC.selectedPutzProfile?.participatingUsers {
             currentlySelectedUsers = userSet.allObjects as! [User]
             addUserSelectionItems()
@@ -269,9 +256,6 @@ class PutzProfilEditDetailsVC: UIViewController {
         if (PutzprofilTableVC.selectedPutzProfile?.aktiv)! {
             let users: [User] = PutzSettingsController.getOrderedUsers(ofProfile: PutzprofilTableVC.selectedPutzProfile!)
             for user in users {
-                print(user.name)
-            }
-            for user in users {
                 let imageView: UIImageView = UIImageView()
                 imageView.image = UIImage(named: user.profilIcon!)
                 imageView.contentMode = UIViewContentMode.scaleAspectFit
@@ -292,16 +276,13 @@ class PutzProfilEditDetailsVC: UIViewController {
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             self.users = profiles
-            // self.collectionView.reloadData()
         } catch {
-            print("core data couldn't be loaded")
+            print("ERROR: core data couldn't be loaded")
         }
     }
     
     
     @objc func toggleUser(sender: UserUIButton){
-        print(sender.user?.name)
-        
         let index = currentlySelectedUsers.index(of: sender.user as! User)
         if (index != nil) {
             currentlySelectedUsers.remove(at: index!)
@@ -311,9 +292,6 @@ class PutzProfilEditDetailsVC: UIViewController {
             currentlySelectedUsers.append(sender.user as! User)
         }
     }
-    
-
-    
 }
 
 

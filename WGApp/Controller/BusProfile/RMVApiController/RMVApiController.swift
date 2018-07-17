@@ -90,7 +90,7 @@ class RMVApiController: RMVApiControllerProtocol {
         // add additional query params and replace spaces
         let additionalQueryDict = ["originId": fromOriginId, "destId": toDestinationId]
         
-        var departures = [Departure]()
+        _ = [Departure]()
         
         // generate Url
         let urlString = getUrl(withQueryDict: additionalQueryDict, ofPath: tripsPath)

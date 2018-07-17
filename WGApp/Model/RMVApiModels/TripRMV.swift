@@ -94,7 +94,7 @@ extension TripRMV {
     
     func getShowString() -> String {
         let outFormatter = DateFormatter()
-        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
+        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale?
         outFormatter.dateFormat = "hh:mm"
         var ret = ""
         var count = 1
@@ -120,10 +120,9 @@ extension TripRMV {
             var parts = durationMinutes.split(separator: "H")
             let hours = parts[0].trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
             let minutes = parts[1].trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
-            var ret = "\(hours)h \(minutes)m"
+            let ret = "\(hours)h \(minutes)m"
             return ret
         }
-        return self.durationMinutes
     }
 }
 

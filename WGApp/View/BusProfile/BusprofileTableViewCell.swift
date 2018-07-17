@@ -20,12 +20,12 @@ class BusprofileTableViewCell: UITableViewCell {
         busprofile = busSettings
         
         busprofileTitleLabel.text = busSettings.title
-        var userIconString = busprofile?.ofProfil?.profilIcon
+        let userIconString = busprofile?.ofProfil?.profilIcon
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userImageView.image = image
         } else {
             userImageView.image = UIImage(named: "info")
-            print("Picture of user could not be loaded !!! ")
+            print("ERROR: Picture of user could not be loaded !!! ")
         }
         
        

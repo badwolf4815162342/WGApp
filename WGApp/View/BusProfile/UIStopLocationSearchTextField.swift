@@ -76,8 +76,7 @@ class UIStopLocationSearchTextField: SearchTextField {
         RMVApiController.getStoplocations(withEntryString: self.text!, completion: { stopLocations in
             DispatchQueue.main.async {
                 self.showLoadingIndicator()
-                print("NetworkStoplocations for \(self.text!): \(stopLocations.count)")
-                //self.filterStrings(stopLocations.map { $0.name })
+                //print("NetworkStoplocations for \(self.text!): \(stopLocations.count)")
                 self.filterStopLocations(stopLocations: stopLocations)
                 self.filter(forceShowAll: addAll)
                 self.prepareDrawTableResult()
@@ -86,7 +85,7 @@ class UIStopLocationSearchTextField: SearchTextField {
                         headerLabel.text = ("\(self.filteredResults.count)/\(stopLocations.count): Onlineergebnisse")
                     }
                 }
-                print("NetworkStoplocations for \(self.text!): \(stopLocations.count) done!")
+                //print("NetworkStoplocations for \(self.text!): \(stopLocations.count) done!")
                 self.stopLoadingIndicator()
             }
             
@@ -113,7 +112,6 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     @objc override open func textFieldDidChange() {
-        print("-------------didchange")
         if !inlineMode && tableView == nil {
             buildSearchTableView()
         }
@@ -131,24 +129,11 @@ class UIStopLocationSearchTextField: SearchTextField {
             filterKnownStopLocations(forceShowAll: true)
         } else {
             if text!.count < minCharactersNumberToStartFiltering {
-                //print("Eingabetextlänge: \(text!.count), filterKnownStopLocations")
                 filterKnownStopLocations(forceShowAll: forceNoFiltering)
-            } else {//if text!.count == minCharactersNumberToStartFiltering {
-                //print("Eingabetextlänge: \(text!.count), filterNetworkStopLocations")
+            } else {
                 filterNewStopLocations(forceShowAll: forceNoFiltering)
             }
-           /** else {
-                //print("Eingabetextlänge: \(text!.count), filterActStopLocations")
-                filter(forceShowAll: forceNoFiltering)
-                prepareDrawTableResult()
-                if let header = self.resultsListHeader {
-                    if let headerLabel = header as? UILabel {
-                        headerLabel.text = ("\(filteredResults.count)/\(filterDataSource.count): Ergebnisse")
-                    }
-                }
-            }**/
         }
-        //self.stopLoadingIndicator()
         buildPlaceholderLabel()
     }
 

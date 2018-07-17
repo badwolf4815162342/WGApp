@@ -68,19 +68,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             
                             // For all other sections, we only need to update
                             // the x-position for the fist item.
-                        } else {
-                            /**
-                            // Build indexPath to get attributes from dictionary.
-                            let indexPath = IndexPath(item: 0, section: section)
-                            
-                            // Update y-position to follow user.
-                            if let attrs = cellAttrsDictionary[indexPath] {
-                                var frame = attrs.frame
-                                frame.origin.x = xOffset
-                                attrs.frame = frame
-                            }**/
-                            
-                        } // else
+                        }
                     } // num of items in section > 0
                 } // sections for loop
             } // num of sections > 0
@@ -101,9 +89,6 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                 // Cycle through each item in the section.
                 if let rowCount = collectionView?.numberOfItems(inSection: section), rowCount > 0 {
                     for item in 0...rowCount-1 {
-                        if (section==6) {
-                            print("hier")
-                        }
                         // Build the UICollectionVieLayoutAttributes for the cell.
                         let cellIndex = IndexPath(item: item, section: section)
                         
@@ -112,11 +97,10 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                         var calculatedCellHeight: Double
                         var xPos: Double
                         var yPos: Double
-                        var preitem = item + CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER
                         var repeatEveryWeeks = 0
                         var posDiff = 0
                         if (section != 0) {
-                            var putzProfil = PutzProfilCalenderVC.profiles![section-1]
+                            let putzProfil = PutzProfilCalenderVC.profiles![section-1]
                             posDiff = posDiffFromStartDayOnTable(putzProfil: putzProfil)
                             repeatEveryWeeks = Int(PutzProfilCalenderVC.profiles![section-1].repeatEveryXWeeks)
                             // breite x mal (repeatEveryXWeeks)
@@ -193,15 +177,14 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
     }
     
     func posDiffFromStartDayOnTable(putzProfil: PutzSetting) -> Int{
-        var length = Int(putzProfil.repeatEveryXWeeks)
-        var startDate: Date = putzProfil.startDate as! Date
-        var startDateOfCalender = PutzProfilCalenderVC.calenderFirstWeekStart
+        let length = Int(putzProfil.repeatEveryXWeeks)
+        var startDate: Date = putzProfil.startDate! as Date
+        let startDateOfCalender = PutzProfilCalenderVC.calenderFirstWeekStart
         while (startDate < startDateOfCalender!) {
             startDate = startDate.add(days: (length*7))
         }
-        var weekDiff = startDate.days(from: startDateOfCalender!)/7
-        var posDiff = Int(CELL_WIDTH) * weekDiff
-        print("posDiff \(posDiff)")
+        let weekDiff = startDate.days(from: startDateOfCalender!)/7
+        let posDiff = Int(CELL_WIDTH) * weekDiff
         return posDiff
     }
     

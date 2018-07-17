@@ -23,7 +23,7 @@ class PutzItemViewCell: UICollectionViewCell {
     func setPutzItemFromPutzProfile(putzProfile: PutzSetting, startDate: Date) {
         self.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
         self.layer.borderWidth = 10.0
-        var putzItem = getPutzItem(putzProfile: putzProfile, startDate: startDate)
+        let putzItem = getPutzItem(putzProfile: putzProfile, startDate: startDate)
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         if let putzItem = putzItem {
@@ -45,21 +45,14 @@ class PutzItemViewCell: UICollectionViewCell {
             if (items.count == 1){
                 return items[0]
             } else if (items.count == 0){
-                print("ERROR: No than one item for \(putzProfile.title) on date \(outFormatter.string(from: startDate))")
+                print("ERROR: No than one item for \(String(describing: putzProfile.title)) on date \(outFormatter.string(from: startDate))")
                 return nil
             } else {
-              print("ERROR: More than one (\(items.count) item for \(putzProfile.title) on date \(outFormatter.string(from: startDate))")
+                print("ERROR: More than one (\(items.count) item for \(String(describing: putzProfile.title)) on date \(outFormatter.string(from: startDate))")
             }
         } catch {
-            print("core data couldn't be loaded")
+            print("ERROR: core data couldn't be loaded")
         }
-        /**
-        for item in putzProfile.weekItems! {
-            print("Item of \((item as! PutzWeekItem).user?.name) ond datestart \((item as! PutzWeekItem).weekStartDay)")
-            if (startDate == ((item as! PutzWeekItem).weekStartDay! as Date) ) {
-                return (item as! PutzWeekItem)
-            }
-        }**/
         return nil
     }
     
@@ -73,7 +66,7 @@ class PutzItemViewCell: UICollectionViewCell {
             putzItemImageView.image = image
         } else {
             putzItemImageView.image = UIImage(named: "info")
-            print("Picture of putzprofile could not be loaded !!! ")
+            print("ERROR: Picture of putzprofile could not be loaded !!! ")
         }
         putzProfileTitle.text = "Bis: \((outFormatter.string(from: (putzItem.weekEndDate! as Date))))"
         let userIconString = putzItem.user?.profilIcon
@@ -81,7 +74,7 @@ class PutzItemViewCell: UICollectionViewCell {
             userImageView.image = image
         } else {
             userImageView.image = UIImage(named: "info")
-            print("Picture of putzprofile could not be loaded !!! ")
+            print("ERROR: Picture of putzprofile could not be loaded !!! ")
         }
         setColor(putzItem: self.putzItem!)
         setDone(putzItem: self.putzItem!)
@@ -100,15 +93,12 @@ class PutzItemViewCell: UICollectionViewCell {
     func setColor(putzItem: PutzWeekItem) {
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
-        var deadline = (putzItem.weekEndDate! as! Date)
-        print("DEADLINE \(outFormatter.string(from: deadline)) days \( deadline.days(from: Date())+1 ) <= \(CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_GREEN)")
+        let deadline = (putzItem.weekEndDate! as Date)
         if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_RED ) {
             self.backgroundColor = UIColor.init(named: "RED")
         } else if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_YELLOW ){
-            print("DEADLINE yellow")
             self.backgroundColor = UIColor.init(named: "YELLOW")
         } else if (deadline.days(from: Date())+1 <= CONFIG.PUTZSETTINGS.ITEM_DAYS_UNTIL_DEADLINE_GREEN ){
-            print("DEADLINE green")
             self.backgroundColor = UIColor.init(named: "GREEN")
         } else {
             self.backgroundColor = UIColor.init(named: "GRAY")
@@ -139,7 +129,6 @@ class PutzItemViewCell: UICollectionViewCell {
                             NotificationCenter.default.post(name: NSNotification.Name("RefreshHomeScreenPutzItems"), object: nil)
                         }
                     }
-                    
                     alert.addAction(saveAction)
                     alert.addAction(cancleAction)
                     UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)

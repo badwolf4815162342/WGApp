@@ -23,7 +23,7 @@ class PutzProfilCalenderVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // calculate first week viewed in calender
         PutzProfilCalenderVC.calenderFirstWeekStart = HomeScreenVC.thisWeekStart?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
         PutzProfilCalenderVC.calenderFirstlastWeekEnd = HomeScreenVC.thisWeekEnd?.subtract(days: (7*CONFIG.PUTZSETTINGS.WEEKS_BACK_IN_CALENDER))
         refresh()
@@ -39,18 +39,9 @@ class PutzProfilCalenderVC: UICollectionViewController {
             PutzProfilCalenderVC.profiles = profiles
             //setItems()
         } catch {
-            print("core data couldn't be loaded")
+            print("ERROR: core data couldn't be loaded")
         }
         self.collectionView?.reloadData()
-    }
-    
-    func setItems() {
-        for profile in PutzProfilCalenderVC.profiles! {
-            var putzItems = profile.weekItems?.allObjects as! [PutzWeekItem]
-            putzItems = putzItems.sorted(by: { ($0.weekEndDate as! Date).compare($1.weekEndDate as! Date) == .orderedAscending })
-            putzItems = putzItems.filter{($0.weekEndDate as! Date) <= PutzProfilCalenderVC.calenderFirstWeekStart!}
-            PutzProfilCalenderVC.items[profile] = putzItems
-        }
     }
 
    
@@ -74,7 +65,6 @@ class PutzProfilCalenderVC: UICollectionViewController {
         let actWeekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomCollectionViewCell
         if (Int(indexPath.section.description) == 0) {
-            //print("Weeks from current \(Int(indexPath.item.description)!)")
             cell.label.text = getWeekDates(weeksFromCurrent: Int(indexPath.item.description)!)
             cell.setBackgroundColor(actWeekStart: actWeekStart!)
             
@@ -82,10 +72,8 @@ class PutzProfilCalenderVC: UICollectionViewController {
             let icell = collectionView.dequeueReusableCell(withReuseIdentifier: itemIdentifier, for: indexPath) as!
             PutzItemViewCell
             let actPutzSetting = PutzProfilCalenderVC.profiles![Int(indexPath.section.description)!-1]
-            //let actPutzSettingItem = PutzProfilCalenderVC.items[actPutzSetting]![indexPath.row]
             // Configure the cell
             icell.setPutzItemFromPutzProfile(putzProfile: actPutzSetting, startDate: actWeekStart!)
-            //icell.setPutzItem(putzItem: actPutzSettingItem)
             return icell
         }
         return cell
@@ -96,9 +84,9 @@ class PutzProfilCalenderVC: UICollectionViewController {
     }
     
     func getWeekDates(weeksFromCurrent: Int) -> String{
-        var addingDays = (7 * (weeksFromCurrent))
-        var weekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
-        var weekEnd = PutzProfilCalenderVC.calenderFirstlastWeekEnd?.add(days: addingDays)
+        let addingDays = (7 * (weeksFromCurrent))
+        let weekStart = PutzProfilCalenderVC.calenderFirstWeekStart?.add(days: addingDays)
+        let weekEnd = PutzProfilCalenderVC.calenderFirstlastWeekEnd?.add(days: addingDays)
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         return "\(outFormatter.string(from: weekStart!)) bis \(outFormatter.string(from: weekEnd!))"

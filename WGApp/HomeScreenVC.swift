@@ -31,20 +31,51 @@ class HomeScreenVC: UIViewController {
     
 
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(tick),
+                                     userInfo: nil,
+                                     repeats: true)
+        overlayView.isUserInteractionEnabled = false
+        self.view.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleSideMenu))
+        overlayView.addGestureRecognizer(tapRecognizer)
+        HomeScreenVC.thisWeekStart = Date.today().previous(.monday,
+                                                           considerToday: true)
+        HomeScreenVC.thisWeekEnd = Date.today().previous(.monday,
+                                                         considerToday: true).add(days: 6)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPutzManagement), name: NSNotification.Name("ShowPutzManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPutzPlan), name: NSNotification.Name("ShowPutzPlan"), object: nil)
+        
+        createWGUser()
+        HomeScreenVC.selectedUser = HomeScreenVC.wg
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.isUserInteractionEnabled = true
+        overlayView.isHidden = true
+        addNavigationBarItems()
+    }
+    
     func refreshUsers(){
         // load core data into users list
         let fetchRequest: NSFetchRequest<Profil> = Profil.fetchRequest()
         do {
             let profiles = try PersistenceService.context.fetch(fetchRequest)
             self.profiles = profiles
-            // self.collectionView.reloadData()
         } catch {
-            print("core data couldn't be loaded")
+            print("ERROR: core data couldn't be loaded")
         }
     }
     
     func addNavigationBarItems(){
-       
         // left: burger menu
         let moreBtn: UIButton = UIButton(type: .custom)
         moreBtn.setImage(UIImage(named: "menu"), for: .normal)
@@ -56,11 +87,8 @@ class HomeScreenVC: UIViewController {
         NSLayoutConstraint.activate([heightContraintsM,widthContraintsM])
         let barButton = UIBarButtonItem(customView: moreBtn)
         self.homeNavigationItem.leftBarButtonItem = barButton
-        
-        
         // right: user icons
-        
-        refreshUsers()
+             refreshUsers()
         items = []
         
         let userIconsWidth: CGFloat = 420
@@ -133,54 +161,11 @@ class HomeScreenVC: UIViewController {
         formatter.dateFormat = "HH:mm:ss        dd. MMM yyyy "
         timeLabel.text = formatter.string(from: Date())
     }
+  
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: 1.0,
-            target: self,
-            selector: #selector(tick),
-            userInfo: nil,
-            repeats: true)
-        overlayView.isUserInteractionEnabled = false
-        self.view.isUserInteractionEnabled = true
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleSideMenu))
-        overlayView.addGestureRecognizer(tapRecognizer)
-        HomeScreenVC.thisWeekStart = Date.today().previous(.monday,
-                                              considerToday: true)
-        HomeScreenVC.thisWeekEnd = Date.today().previous(.monday,
-                                            considerToday: true).add(days: 6)
-        // DELETE all busprofile Data
-        //BusSettingsController.deleteAllData(entity: "PutzWeekItem")
-        //print("items deleted")
-        //BusSettingsController.deleteAllData(entity: "BusRoute")
-        //BusSettingsController.deleteAllData(entity: "StopLocation")
-        NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showPutzManagement), name: NSNotification.Name("ShowPutzManagement"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showPutzPlan), name: NSNotification.Name("ShowPutzPlan"), object: nil)
-
-        createWGUser()
-        HomeScreenVC.selectedUser = HomeScreenVC.wg
-        
-        //let mask = UIView(coder: self.nscoder)
-        //mask.set
-        /*mask = [[UIView alloc] initWithFrame:window.frame];
-        [mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.78]];
-        [self.view addSubview:mask];*/
-
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.isUserInteractionEnabled = true
-        overlayView.isHidden = true
-        addNavigationBarItems()
-    }
+  
     
     @objc func switchUser(sender: UserUIButton){
-        print(sender.user?.name)
         HomeScreenVC.selectedUser = sender.user
         for item in items {
             item.customView?.layer.borderColor = UIColor.lightGray.cgColor
@@ -222,7 +207,7 @@ class HomeScreenVC: UIViewController {
                 HomeScreenVC.wg = homes[0]
             }
         } catch {
-            print("core data couldn't be loaded")
+            print("ERROR: core data couldn't be loaded")
         }
         
     }

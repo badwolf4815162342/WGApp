@@ -33,19 +33,14 @@ extension DepartureRMV {
         let specificTransportationType = departure.product["catOutL"]!
         let transportationName = departure.productName
         let transportationNumber = departure.product["line"]!
-        //departureRMV.realDepartureTime = departure.rtTime
         let direction = departure.direction
         var finalPDate: Date? = nil
         var finalRDate: Date? = nil
-        print(transportationName)
-        print(departure)
         if let pTime: String = departure.time {
             finalPDate = BusSettingsController.calculateDate(ofTime: pTime,  ofDate: departure.date)
-            print(finalPDate)
         }
         if let rTime: String = departure.rtTime {
             finalRDate = BusSettingsController.calculateDate(ofTime: rTime,  ofDate: departure.rtDate!)
-            print(finalRDate)
         } else {
             finalRDate = finalPDate
         }
@@ -54,10 +49,10 @@ extension DepartureRMV {
     
     func getShowString() -> String {
         let outFormatter = DateFormatter()
-        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
+        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale?
         outFormatter.dateFormat = "hh:mm"
         var ret = ""
-        ret += " Mit " + (transportationName ?? "no name") + " Richtung " + (direction ?? "no dir") + "\n"
+        ret += " Mit " + (transportationName ) + " Richtung " + (direction ) + "\n"
         ret += " " + outFormatter.string(from: realDepartureTime) + "/" + outFormatter.string(from: plannedDepartureTime)
         ret += " Von: " + stopLocation.name! + "\n"
         return ret

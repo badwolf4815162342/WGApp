@@ -21,11 +21,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 5.0
     }
     
+    /**
+     * set actual week green
+     **/
     func setBackgroundColor(actWeekStart: Date){
         let outFormatter = DateFormatter()
         outFormatter.dateFormat = "dd.MM.yy"
         if (actWeekStart == HomeScreenVC.thisWeekStart) {
-            print("actweekstart \(outFormatter.string(from: actWeekStart)) == this \(outFormatter.string(from: HomeScreenVC.thisWeekStart!))")
             self.backgroundColor = UIColor.init(named: "GREEN")
         } else {
             self.backgroundColor = UIColor.init(named: "WHITE")

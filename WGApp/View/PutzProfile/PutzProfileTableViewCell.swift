@@ -22,7 +22,6 @@ class PutzProfileTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -34,8 +33,8 @@ class PutzProfileTableViewCell: UITableViewCell {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             putzIcon.image = image
         } else {
-            putzIcon.image = UIImage(named: "Fish-icon")
-            print("Picture of user could not be loaded !!! ")
+            putzIcon.image = UIImage(named: "info")
+            print("ERROR: Picture of user could not be loaded !!! ")
         }
         
     }

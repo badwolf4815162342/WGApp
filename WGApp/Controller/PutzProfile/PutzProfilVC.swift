@@ -12,8 +12,6 @@ class PutzProfilVC: UIViewController {
     
     static var typeEinst = true
 
-    //var user: Profil!
-    
     @IBOutlet weak var tabBar: UITabBar!
     
     @IBOutlet weak var putzProfilEditContainer: UIView!
@@ -52,15 +50,10 @@ class PutzProfilVC: UIViewController {
 
 extension PutzProfilVC: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(item.title)
         if (item.title == "Putzprofil Einstellungen") {
             self.changeActViewContainer(destinationContainer: self.putzProfilEditContainer)
-//            self.favorites?.refreshTable()
         } else if (item.title == "Putzplan") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
-            print("refresh \(self.putzProfilCalenderVC)")
-            NotificationCenter.default.post(name: NSNotification.Name("RefreshPutzPlan"), object: nil)
-            
         }
     }
 }

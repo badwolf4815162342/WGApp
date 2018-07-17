@@ -32,13 +32,11 @@ class BusDepartureTableViewCell: UITableViewCell {
         let futureDeparture = retValues.futureDeparture
         minutesLabel.text = BusSettingsController.getMinutesLabel(minutes: min, futureDeparture: futureDeparture)
         let outFormatter = DateFormatter()
-        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale!
+        outFormatter.locale = NSLocale(localeIdentifier: "de") as Locale?
         outFormatter.dateFormat = "HH:mm"
         startTime.text = outFormatter.string(from: departureRMV.plannedDepartureTime)
         realStratTime.text = outFormatter.string(from: departureRMV.realDepartureTime)
-        //print(departureRMV)
         if (selectedDepartures.contains(departureRMV.id)){
-            print("LONG: contains \(departureRMV.id) \(realStratTime.text)")
             self.backgroundColor = BusSettingsController.setSelectedColor(minutes: min, futureDeparture: futureDeparture)
         } else {
             self.backgroundColor = UIColor(named: "LIGHT_GRAY")
