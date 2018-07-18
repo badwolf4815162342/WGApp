@@ -33,10 +33,10 @@ struct StopLocationOrCoordLocation: Codable {
 }
 
 struct CoordLocation: Codable {
-    let links: [LinkElement]
+    let links: [LinkElement]?
     let title, description, type: String
     let lon, lat: Double
-    let refinable: Bool
+    let refinable: Bool?
     
     enum CodingKeys: String, CodingKey {
         case title = "id"
