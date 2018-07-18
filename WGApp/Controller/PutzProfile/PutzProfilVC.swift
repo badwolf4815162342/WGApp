@@ -45,6 +45,13 @@ class PutzProfilVC: UIViewController {
         actContainer = destinationContainer
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let putzProfilCalenderVC = segue.destination as? PutzProfilCalenderVC {
+            putzProfilCalenderVC.refresh()
+            self.putzProfilCalenderVC = putzProfilCalenderVC
+        }
+    }
+    
 
 }
 
@@ -54,6 +61,7 @@ extension PutzProfilVC: UITabBarDelegate {
             self.changeActViewContainer(destinationContainer: self.putzProfilEditContainer)
         } else if (item.title == "Putzplan") {
             self.changeActViewContainer(destinationContainer: self.putzProfilCalenderContainer)
+            //self.putzProfilCalenderVC?.refresh()
         }
     }
 }

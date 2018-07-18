@@ -18,6 +18,7 @@ class PutzSettingsController: NSObject {
         deleteAllItems(ofPutzSetting: putzProfile)
         PersistenceService.saveContext()
         PersistenceService.context.delete(putzProfile)
+        PersistenceService.saveContext()
     }
     
     /**
@@ -95,13 +96,15 @@ class PutzSettingsController: NSObject {
      * get Users who participate on putzProfile with specific order
      **/
     class func getOrderedUsers(ofProfile: PutzSetting) -> [User]{
-        let names: [String] = ofProfile.userOrder as! [String]
         var users: [User] = []
-        let partUsers: [User] = (ofProfile.participatingUsers?.toArray())!
-        for name in names {
-            for user in partUsers {
-                if(user.name == name) {
-                    users.append(user)
+        if let userOrder = ofProfile.userOrder {
+            let names: [String] = userOrder as! [String]
+            let partUsers: [User] = (ofProfile.participatingUsers?.toArray())!
+            for name in names {
+                for user in partUsers {
+                    if(user.name == name) {
+                        users.append(user)
+                    }
                 }
             }
         }
