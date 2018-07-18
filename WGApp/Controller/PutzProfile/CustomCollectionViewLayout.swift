@@ -106,7 +106,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             // breite x mal (repeatEveryXWeeks)
                             calculatedCellWidth = Double(Int(CELL_WIDTH) * repeatEveryWeeks)
                             if (repeatEveryWeeks == 1) {
-                                xPos = (Double(item) * calculatedCellWidth)
+                                xPos = ((Double(item) * calculatedCellWidth)) - Double(posDiff)
                             } else {
                                 xPos =  (Double(item/repeatEveryWeeks) * calculatedCellWidth)
                             }
@@ -115,6 +115,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             xPos = Double(item) * calculatedCellWidth
                         }
                         xPos = xPos + Double(posDiff)
+
                         if (section != 0) {
                             if (item<(posDiff/150)) {
                                 calculatedCellHeight = 0.0
