@@ -114,6 +114,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             calculatedCellWidth = CELL_WIDTH
                             xPos = Double(item) * calculatedCellWidth
                         }
+                        xPos = xPos + Double(posDiff)
                         if (section != 0) {
                             if (item<(posDiff/150)) {
                                 calculatedCellHeight = 0.0
