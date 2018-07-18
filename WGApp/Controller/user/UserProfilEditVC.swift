@@ -37,7 +37,7 @@ class UserProfilEditVC: UIViewController {
             user.name = name.text
             changed = true
         }
-        if let singleUser = user as? User {
+        if let singleUser = user {
             if mail.text != singleUser.mail && mail.text != ""{
                 singleUser.mail = mail.text
                 changed = true

@@ -91,7 +91,7 @@ class HomeScreenVC: UIViewController {
              refreshUsers()
         items = []
         
-        let userIconsWidth: CGFloat = 420
+        let userIconsWidth: CGFloat = 920
         
         let userSelectionStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))
         let userSelectionScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))

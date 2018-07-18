@@ -17,6 +17,8 @@ class SideMenueVC: UITableViewController {
             NotificationCenter.default.post(name: NSNotification.Name("ShowUserManagement"), object: nil)
         case 1:
             NotificationCenter.default.post(name: NSNotification.Name("ShowBusManagement"), object: nil)
+        case 2:
+            NotificationCenter.default.post(name: NSNotification.Name("ShowMoneyManagement"), object: nil)
         case 3:
             NotificationCenter.default.post(name: NSNotification.Name("ShowPutzManagement"), object: nil)
         case 4:

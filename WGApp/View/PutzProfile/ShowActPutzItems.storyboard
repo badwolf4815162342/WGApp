@@ -129,11 +129,8 @@
         <namedColor name="DARK_GRAY">
             <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="DARK_GRAY">
-            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="LIGHT_YELLOW">
-            <color red="0.97299999000000004" green="0.91000002619999998" blue="0.76099997760000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.97254901960784312" green="0.90980392156862744" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YELLOW">
             <color red="0.976000011" green="0.78799998760000001" blue="0.47099998589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

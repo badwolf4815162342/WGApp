@@ -12,39 +12,54 @@ import CoreData
 class UserMoneyVC: UIViewController {
 
     var user: User!
-    var purchases: [Purchase] = []
-    var otherUsers: [User] = []
-    var debts: [[Debt]] = []
+    
+    
+    var debtDataSource: CollectionViewDataSource!
+    var purchasesDataSource: TableViewDataSource!
 
     
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var purchaseList: UITableView!
-    @IBOutlet weak var debtCollectionView: UICollectionView!
-    
+    @IBOutlet weak var debtsCollectionView: UICollectionView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
-        loadViewData()
         
-        purchaseList.delegate = self
-        purchaseList.dataSource = self
+        self.purchasesDataSource = TableViewDataSource()
+        purchaseList.delegate = self.purchasesDataSource
+        purchaseList.dataSource = self.purchasesDataSource
         purchaseList.register(UINib.init(nibName: "PurchaseTableViewCell", bundle: nil), forCellReuseIdentifier: "PurchaseCellIdentifier")
 
-        //self.debtCollectionView.delegate = self
-        //self.debtCollectionView.dataSource = self
-        
-        //self.debtList.register(UINib.init(nibName: "DebtTableViewCell", bundle: nil), forCellReuseIdentifier: "DebtCellIdentifier")
-        //self.debtList.register(UINib.init(nibName: "DebtHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "DebtHeaderCellIdentifier")
+        self.debtDataSource = CollectionViewDataSource()
+        self.debtDataSource.setData(user: self.user)
+        self.debtsCollectionView.delegate = self.debtDataSource
+        self.debtsCollectionView.dataSource = self.debtDataSource
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func loadViewData(){
+    func refresh(){
+        // set label and icon
+        name.text = user.name
+        if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
+            userIcon.image = image
+        } else {
+            userIcon.image = UIImage(named: "info") 
+        }
+    }
+}
+
+class TableViewDataSource:NSObject,UITableViewDelegate, UITableViewDataSource {
+    
+    var purchases: [Purchase] = []
+    
+    override init(){
+        super.init()
         // load purchases form data base
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase")
         let sort = NSSortDescriptor(key: #keyPath(Purchase.date), ascending: false)
@@ -56,54 +71,8 @@ class UserMoneyVC: UIViewController {
         } catch {
             print("error when loading core data")
         }
-        // get all other users:
-        let fetchRequestUser = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        fetchRequestUser.predicate = NSPredicate(format: "self != %@", user)
-        do {
-            self.otherUsers = try PersistenceService.context.fetch(fetchRequestUser) as! [User]
-        } catch {
-            print("core data couldn't be loaded") // error
-        }
-        
-        // save debts for each otherUser
-        self.debts = []
-        for otherUser in otherUsers{
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-            fetchRequest.predicate = NSPredicate(format: "creditor = %@", user)
-            fetchRequest.predicate = NSPredicate(format: "debtor = %@", otherUser)
-            let sort = NSSortDescriptor(key: #keyPath(Purchase.date), ascending: false)
-            fetchRequest.sortDescriptors = [sort]
-            fetchRequest.returnsObjectsAsFaults = false
-            do {
-                let debts = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
-                self.debts.append(debts)
-            } catch {
-                print("error when loading core data")
-            }
-        }
-    }
-    
-    func refresh(){
-        name.text = user.name
-        if user.profilIcon != nil, let image = UIImage(named: user.profilIcon!) {
-            userIcon.image = image
-        } else {
-            userIcon.image = UIImage(named: "info") // TODO questionmark image
-            print("Picture of user could not be loaded !!! ")
-        }
-    }
-    
-
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
     }
 
-}
-
-extension UserMoneyVC: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return purchases.count
     }
@@ -124,6 +93,90 @@ extension UserMoneyVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    var otherUsers: [User] = []
+    var debts: [[Debt]] = []
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        var sections = 2
+        for debts in debts{
+            if (debts.count+1) > sections{
+                sections = debts.count+1
+            }
+        }
+        return sections
+    }
+    
+    func setData(user: User){
+        // get all other users:
+        let fetchRequestUser = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequestUser.predicate = NSPredicate(format: "self != %@", user)
+        do {
+            self.otherUsers = try PersistenceService.context.fetch(fetchRequestUser) as! [User]
+        } catch {
+            print("core data couldn't be loaded") // error
+        }
+        
+        // save debts for each otherUser
+        self.debts = []
+        for otherUser in otherUsers{
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
+            fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", user, otherUser)
+            let sort = NSSortDescriptor(key: #keyPath(Purchase.date), ascending: false)
+            fetchRequest.sortDescriptors = [sort]
+            fetchRequest.returnsObjectsAsFaults = false
+            do {
+                let debts = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
+                self.debts.append(debts)
+            } catch {
+                print("error when loading core data")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return otherUsers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewHeaderCell", for: indexPath) as! CollectionViewHeaderCell
+            print("(",otherUsers.count,")")
+            cell.userIcon.image = UIImage(named: self.otherUsers[indexPath.row].profilIcon!)
+            return cell
+        }
+        
+        // naming
+        let column = indexPath.row
+        let row = indexPath.section-1
+        
+        // other rows: debts
+        let debts = self.debts[column]
+        if row < debts.count{
+            let debt = debts[row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewDebtCell", for: indexPath) as! CollectionViewDebtCell
+            cell.debtLabel.text = String(format:"%.2f€", debt.balance)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            cell.dateLabel.text = dateFormatter.string(from: debt.date! as Date)
+            
+            if indexPath.section == 1 {
+                cell.button = UIButton(type: .custom)
+            }
+            
+            return cell
+        } else {
+            // empty cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmtpyCell", for: indexPath)
+            return cell
+        }
+    }
+    
+}
+
+/*
 extension UserMoneyVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -133,13 +186,13 @@ extension UserMoneyVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 10
-        /*var sections = 1
+        var sections = 1
         for debts in debts{
             if (debts.count+1) > sections{
                 sections = debts.count+1
             }
         }
-        return sections*/
+        return sections
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -148,7 +201,7 @@ extension UserMoneyVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.label.text = "section: \(indexPath.section) && row: \(indexPath.row)"
         return cell
 
-        /*let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 222, height: 74))
+        let cell = UICollectionViewCell(frame: CGRect(x: 0, y: 0, width: 222, height: 74))
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 222, height: 74))
         label.text = "section: \(indexPath.section) && row: \(indexPath.row)"
         cell.addSubview(label)
@@ -187,6 +240,6 @@ extension UserMoneyVC: UICollectionViewDelegate, UICollectionViewDataSource {
             // empty cell
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             return cell
-        }*/
+        }
     }
-}
+}*/

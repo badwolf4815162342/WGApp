@@ -113,8 +113,7 @@ class PurchaseConfirmationViewController: UIViewController {
                 
                 // search for last debts
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-                fetchRequest.predicate = NSPredicate(format: "creditor = %@", buyer)
-                fetchRequest.predicate = NSPredicate(format: "debtor = %@", participant)
+                fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", buyer, participant)
                 let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
                 fetchRequest.sortDescriptors = [sort]
                 fetchRequest.returnsObjectsAsFaults = false
@@ -126,8 +125,7 @@ class PurchaseConfirmationViewController: UIViewController {
                         lastDebt = debts[0] as! Debt
                         
                         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-                        fetchRequest.predicate = NSPredicate(format: "creditor = %@", participant)
-                        fetchRequest.predicate = NSPredicate(format: "debtor = %@", buyer)
+                        fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", participant, buyer)
                         let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
                         fetchRequest.sortDescriptors = [sort]
                         fetchRequest.returnsObjectsAsFaults = false
@@ -147,9 +145,41 @@ class PurchaseConfirmationViewController: UIViewController {
             }
         }
         PersistenceService.saveContext()
+        testSaving()
     }
-
     
+    func testSaving(){
+        var purchases: [Purchase] = []
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase")
+        let sort = NSSortDescriptor(key: #keyPath(Purchase.date), ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            purchases = try PersistenceService.context.fetch(fetchRequest) as! [Purchase]
+        } catch {
+            print("error when loading core data")
+        }
+        
+        for p in purchases{
+            print("purchase: ", p.buyer?.name)
+        }
+        
+        var debts: [Debt] = []
+        let fetchRequestb = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
+        let sortb = NSSortDescriptor(key: #keyPath(Debt.date), ascending: false)
+        fetchRequest.sortDescriptors = [sortb]
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            debts = try PersistenceService.context.fetch(fetchRequestb) as! [Debt]
+        } catch {
+            print("error when loading core data")
+        }
+        
+        for d in debts {
+            print("debt: creditor: ", d.creditor?.name, " debtor: ", d.debtor?.name, " balance: ", d.balance)
+        }
+        
+    }
 }
 
 

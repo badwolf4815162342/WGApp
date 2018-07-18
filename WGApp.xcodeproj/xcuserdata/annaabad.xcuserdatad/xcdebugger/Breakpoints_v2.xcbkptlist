@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WGApp/Controller/New Group/UserMoneyVC.swift"
-            timestampString = "553472175.491454"
+            timestampString = "553648481.6966161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WGApp/Controller/New Group/UserMoneyVC.swift"
-            timestampString = "553472175.492119"
+            timestampString = "553648481.697091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WGApp/Controller/New Group/UserMoneyVC.swift"
-            timestampString = "553472175.4924231"
+            timestampString = "553648481.6971999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
