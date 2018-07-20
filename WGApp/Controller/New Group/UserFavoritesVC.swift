@@ -47,7 +47,6 @@ class UserFavoritesVC: UIViewController {
         let fetchRequest: NSFetchRequest<BusSetting> = BusSetting.fetchRequest()
         do {
             let busSettings = try PersistenceService.context.fetch(fetchRequest)
-            print(busSettings.count)
             self.busSettings = busSettings
             self.tableView.reloadData()
         } catch {}
@@ -58,8 +57,7 @@ class UserFavoritesVC: UIViewController {
         if userIconString != nil, let image = UIImage(named: userIconString!) {
             userIconImageView.image = image
         } else {
-            userIconImageView.image = UIImage(named: "info") // TODO questionmark
-            print("Picture of user could not be loaded !!! ")
+            userIconImageView.image = UIImage(named: "info")
         }
         userNameLabel.text = user.name
     }

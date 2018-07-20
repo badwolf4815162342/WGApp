@@ -34,7 +34,6 @@ class PutzProfileTableViewCell: UITableViewCell {
             putzIcon.image = image
         } else {
             putzIcon.image = UIImage(named: "info")
-            print("ERROR: Picture of user could not be loaded !!! ")
         }
         
     }

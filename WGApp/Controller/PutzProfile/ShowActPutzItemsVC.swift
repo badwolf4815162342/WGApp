@@ -41,7 +41,6 @@ class ShowActPutzItemsVC: UIViewController {
                 } else { // All other fields are tied, break ties by last name
                     return ($0.weekEndDate! as Date).compare($1.weekEndDate! as Date) == .orderedAscending
                 }})
-            print("items \(items.count)")
             self.items = items
             self.collectionView.reloadData()
         } catch {

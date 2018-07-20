@@ -78,7 +78,6 @@ class UserProfilVC: UIViewController {
             icon.image = image
         } else {
             icon.image = UIImage(named: "info")
-            print("Picture of user could not be loaded !!! ") // TODO questionmark image
         }
     }
 }

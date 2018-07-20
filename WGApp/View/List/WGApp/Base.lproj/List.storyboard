@@ -114,7 +114,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="weiter"/>
                                 <connections>
-                                    <segue destination="PNV-g2-RaW" kind="show" identifier="ShowPurchasePrice" id="agl-0l-4g7"/>
+                                    <segue destination="PNV-g2-RaW" kind="show" identifier="ShowPurchasePrice" animates="NO" id="agl-0l-4g7"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c3e-tS-Y7K">
@@ -204,7 +204,7 @@
                         <outlet property="buyerIcon" destination="gdQ-hT-vE3" id="LzT-jM-eQR"/>
                         <outlet property="warnText" destination="ogv-9Y-mWx" id="dlw-V3-rGN"/>
                         <segue destination="vFL-De-4IC" kind="unwind" identifier="unwindCreatePurchaseFromPriceID" unwindAction="unwindCreatePurchaseFromPriceWithSender:" id="gAS-Dm-DvV"/>
-                        <segue destination="Gwp-ea-QyA" kind="show" identifier="ShowPurchaseConfirmation" id="iGW-FI-Ocv"/>
+                        <segue destination="Gwp-ea-QyA" kind="show" identifier="ShowPurchaseConfirmation" animates="NO" id="iGW-FI-Ocv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PfG-56-HT7" userLabel="First Responder" sceneMemberID="firstResponder"/>

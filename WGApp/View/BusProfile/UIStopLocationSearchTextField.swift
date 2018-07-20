@@ -107,7 +107,7 @@ class UIStopLocationSearchTextField: SearchTextField {
     }
     
     func getKnownStopLocations() -> Array<StopLocationRMV> {
-        var stopLocations = BusSettingsController.getAllStopLocations().map {StopLocationRMV.stopLocationToRmv(stopLocation: $0)}
+        let stopLocations = BusSettingsController.getAllStopLocations().map {StopLocationRMV.stopLocationToRmv(stopLocation: $0)}
         return stopLocations
     }
     

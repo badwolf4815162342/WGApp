@@ -77,11 +77,9 @@ class UserSelectionVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.viewWillAppear(true)
         if segue.identifier == "UserChosen" {
-            print("dest found")
-            
+            // print("dest found")
         }
         if segue.identifier == "ShowPurchaseItems" {
-            print("prepare show")
             if let purchaseItemsVC = segue.destination as? PurchaseItemsViewController {
                 purchaseItemsVC.buyer = sender as! User
             }

@@ -25,7 +25,6 @@ class BusprofileTableViewCell: UITableViewCell {
             userImageView.image = image
         } else {
             userImageView.image = UIImage(named: "info")
-            print("ERROR: Picture of user could not be loaded !!! ")
         }
         
        

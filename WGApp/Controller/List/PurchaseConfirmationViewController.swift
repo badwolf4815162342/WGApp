@@ -30,7 +30,7 @@ class PurchaseConfirmationViewController: UIViewController {
         if buyer.profilIcon != nil, let image = UIImage(named: buyer.profilIcon!) {
             buyerIcon.image = image
         } else {
-            print("Picture of user could not be loaded !!! ")
+            buyerIcon.image = UIImage(named: "info")
         }
         
         // price
@@ -101,7 +101,7 @@ class PurchaseConfirmationViewController: UIViewController {
                 // search for last debts
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
                 fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", buyer, participant)
-                let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
+                let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: false)
                 fetchRequest.sortDescriptors = [sort]
                 fetchRequest.returnsObjectsAsFaults = false
                 do {
@@ -110,13 +110,9 @@ class PurchaseConfirmationViewController: UIViewController {
                         
                         // existing debts!!
                         lastDebt = lastDebts[0]
-                        for debt in lastDebts{
-                            print("last debt: ", debt)
-                        }
-                        
                         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
                         fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", participant, buyer)
-                        let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
+                        let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: false)
                         fetchRequest.sortDescriptors = [sort]
                         fetchRequest.returnsObjectsAsFaults = false
                         let otherDebts = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
@@ -145,7 +141,6 @@ class PurchaseConfirmationViewController: UIViewController {
                 otherDebt.date = date
 
                 if lastDebts.count > 0{
-                    print(lastDebt.balance, " ", difference)
                     debt.balance = lastDebt.balance + difference
                     otherDebt.balance = lastOtherDebt.balance - difference
                 }

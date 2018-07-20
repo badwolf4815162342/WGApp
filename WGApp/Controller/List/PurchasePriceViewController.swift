@@ -25,7 +25,7 @@ class PurchasePriceViewController: UIViewController {
         if buyer.profilIcon != nil, let image = UIImage(named: buyer.profilIcon!) {
             buyerIcon.image = image
         } else {
-            print("Picture of user could not be loaded !!! ")
+            buyerIcon.image = UIImage(named: "info")
         }
         
         warnText.isHidden = true

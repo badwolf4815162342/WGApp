@@ -40,7 +40,7 @@ class PurchaseItemsViewController: UIViewController {
         if buyer.profilIcon != nil, let image = UIImage(named: buyer.profilIcon!) {
             buyerIcon.image = image
         } else {
-            print("Picture of user could not be loaded !!! ")
+            buyerIcon.image = UIImage(named: "info")
         }
         
         refreshContent()
@@ -198,14 +198,6 @@ extension PurchaseItemsViewController: UITableViewDelegate, UITableViewDataSourc
         view.backgroundColor = UIColor.clear
         return view
     }
-    
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark{
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-        }else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-        }
-    }*/
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight

@@ -45,7 +45,7 @@ class PutzItemViewCell: UICollectionViewCell {
             if (items.count == 1){
                 return items[0]
             } else if (items.count == 0){
-                print("ERROR: No than one item for \(String(describing: putzProfile.title)) on date \(outFormatter.string(from: startDate))")
+                //print("ERROR: No than one item for \(String(describing: putzProfile.title)) on date \(outFormatter.string(from: startDate))")
                 return nil
             } else {
                 print("ERROR: More than one (\(items.count) item for \(String(describing: putzProfile.title)) on date \(outFormatter.string(from: startDate))")
@@ -66,7 +66,6 @@ class PutzItemViewCell: UICollectionViewCell {
             putzItemImageView.image = image
         } else {
             putzItemImageView.image = UIImage(named: "info")
-            print("ERROR: Picture of putzprofile could not be loaded !!! ")
         }
         putzProfileTitle.text = "Bis: \((outFormatter.string(from: (putzItem.weekEndDate! as Date))))"
         let userIconString = putzItem.user?.profilIcon
@@ -74,7 +73,6 @@ class PutzItemViewCell: UICollectionViewCell {
             userImageView.image = image
         } else {
             userImageView.image = UIImage(named: "info")
-            print("ERROR: Picture of putzprofile could not be loaded !!! ")
         }
         setColor(putzItem: self.putzItem!)
         setDone(putzItem: self.putzItem!)

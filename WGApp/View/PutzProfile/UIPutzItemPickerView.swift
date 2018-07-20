@@ -10,17 +10,6 @@ import UIKit
 
 class UIPutzItemPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    func getAssets(){
-        if let path = Bundle.main.path(forResource: "assets/putzIcons", ofType: "json") {
-            do {
-                _ = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-            }
-            catch {
-                print("Error"); // error in the above string (in this case, yes)!
-            }
-        }
-    }
     private let putzIcons:[Image] = [
         Image(named: "008-vacuum"),
         Image(named: "009-mop"),
@@ -33,7 +22,6 @@ class UIPutzItemPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDe
         Image(named: "021-shower"),
         Image(named: "info")
     ]
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     var imageSize: CGFloat = 50
     var imageBounds: CGFloat = 60
