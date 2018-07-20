@@ -49,7 +49,7 @@ class UserProfilVC: UIViewController {
             fetchRequest.predicate = NSPredicate(format: "buyer = %@", self.user)
             fetchRequest.returnsObjectsAsFaults = false
             do {
-                let purchases = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
+                let purchases = try PersistenceService.context.fetch(fetchRequest) as! [Purchase]
                 for purchase in purchases {
                     PersistenceService.context.delete(purchase)
                 }

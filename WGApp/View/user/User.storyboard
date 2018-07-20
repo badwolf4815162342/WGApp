@@ -81,6 +81,9 @@
                                 <rect key="frame" x="113" y="65" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="onPlusTapped" destination="uzP-t9-ILm" eventType="touchUpInside" id="xZP-yE-XxX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="DARK_GRAY"/>
