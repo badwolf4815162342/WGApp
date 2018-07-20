@@ -53,8 +53,9 @@ class PutzprofilTableVC: UIViewController {
         
         let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
         
-        alert.addAction(saveAction)
+        
         alert.addAction(cancleAction)
+        alert.addAction(saveAction)
         present(alert, animated: true, completion: nil)
     }
     

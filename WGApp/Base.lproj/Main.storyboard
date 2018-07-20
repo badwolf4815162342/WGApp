@@ -144,10 +144,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="340" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broom" translatesAutoresizingMaskIntoConstraints="NO" id="72p-ES-eU9">
-                                                    <rect key="frame" x="24" y="7" width="31" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Putzprofil Einstellungen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v27-gx-iKM">
                                                     <rect key="frame" x="74" y="12" width="185" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -155,6 +151,10 @@
                                                     <color key="textColor" name="LIGHT_YELLOW"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broom" translatesAutoresizingMaskIntoConstraints="NO" id="72p-ES-eU9">
+                                                    <rect key="frame" x="22" y="5" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="PETROL"/>
                                         </tableViewCellContentView>
@@ -190,6 +190,13 @@
                             <outlet property="delegate" destination="fE1-yB-Iu9" id="N9t-SK-6gd"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="busCell" destination="FMJ-3n-aAn" id="rUh-vT-N9J"/>
+                        <outlet property="calendarCell" destination="OL9-s3-4ng" id="fMR-HR-O71"/>
+                        <outlet property="cleanCell" destination="DPF-hc-EGn" id="z1G-cr-vQH"/>
+                        <outlet property="moneyCell" destination="Jd9-d7-4Tn" id="sTj-8Z-FBE"/>
+                        <outlet property="userCell" destination="nGY-SN-FHG" id="71f-Ec-QyT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7Z-Mf-1vI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -292,6 +299,7 @@
                         <segue destination="6SK-wc-hcA" kind="show" identifier="ShowUserManagement" id="9tp-00-k95"/>
                         <segue destination="v0u-xw-nKM" kind="show" identifier="ShowPutzManagement" id="9Xq-3c-Hw1"/>
                         <segue destination="v0u-xw-nKM" kind="show" identifier="ShowPutzPlan" id="lNY-cA-Uar"/>
+                        <segue destination="u21-FB-q7Y" kind="show" identifier="HomeToSelection" id="95D-QT-4oh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cY-ru-oC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,6 +361,14 @@
             </objects>
             <point key="canvasLocation" x="1422" y="785"/>
         </scene>
+        <!--UserSelectionVC-->
+        <scene sceneID="l3m-cn-lfi">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UserSelectionVC" storyboardName="Selection" referencedIdentifier="UserSelectionVC" id="u21-FB-q7Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hfo-mZ-lZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1421" y="901"/>
+        </scene>
         <!--PutzProfile-->
         <scene sceneID="gZ7-HB-0jl">
             <objects>
@@ -385,7 +401,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="broom" width="1024" height="1024"/>
+        <image name="broom" width="64" height="64"/>
         <image name="bus" width="512" height="512"/>
         <image name="calendar" width="512" height="512"/>
         <image name="money" width="107" height="128"/>

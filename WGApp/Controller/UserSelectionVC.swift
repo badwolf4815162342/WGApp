@@ -16,6 +16,7 @@ class UserSelectionVC: UIViewController {
     enum UserSelectionVCType {
         case chooseSingleUser
         case choosePurchaseBuyer
+        case chooseMoneyProfil
     }
     
     var dataType: UserSelectionVCType?
@@ -29,6 +30,7 @@ class UserSelectionVC: UIViewController {
         
         if let type = self.dataType {
             switch type {
+            case .chooseMoneyProfil: fallthrough
             case .choosePurchaseBuyer:
                 let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
                 do {
@@ -63,7 +65,10 @@ class UserSelectionVC: UIViewController {
                 
             case UserSelectionVCType.choosePurchaseBuyer:
                 self.label.isHidden = false
-                self.label.text = "Wer zahlt gerade?"
+                self.label.text = "Wer zahlt den Einkauf?"
+            case .chooseMoneyProfil:
+                self.label.isHidden = false
+                self.label.text = "Zu wessen Profil möchtest du?"
             }
         }
         
@@ -81,15 +86,19 @@ class UserSelectionVC: UIViewController {
                 purchaseItemsVC.buyer = sender as! User
             }
         }
+        if segue.identifier == "ShowMoneyProfil" {
+            if let profilVC = segue.destination as? UserVC {
+                profilVC.user = sender as! User
+                profilVC.toMoney = true
+            }
+        }
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         refreshContent()
     }
-
-    
 }
+
 
 extension UserSelectionVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -109,13 +118,13 @@ extension UserSelectionVC: UICollectionViewDelegate, UICollectionViewDataSource 
             switch type {
             case UserSelectionVCType.chooseSingleUser:
                 self.selectedProfil = people[indexPath.row]
-                print("setUserAndGoBacks")
                 performSegue(withIdentifier: "UnwindToBusProfileEditVC", sender: people[indexPath.row])
-            
             case UserSelectionVCType.choosePurchaseBuyer:
                 self.selectedProfil = people[indexPath.row]
-                print("go to purchase")
                 performSegue(withIdentifier: "ShowPurchaseItems", sender: people[indexPath.row])
+            case .chooseMoneyProfil:
+                self.selectedProfil = people[indexPath.row]
+                performSegue(withIdentifier: "ShowMoneyProfil", sender: people[indexPath.row])
             }
         }
         

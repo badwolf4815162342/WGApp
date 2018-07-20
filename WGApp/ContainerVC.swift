@@ -20,8 +20,6 @@ class ContainerVC: UIViewController {
     }
 
     @objc func toggleSideMenu() {
-        print("toggeling")
-        print(sideMenuConstraint.constant)
         if sideMenuOpen {
             sideMenuConstraint.constant = -340
             
@@ -29,8 +27,6 @@ class ContainerVC: UIViewController {
             sideMenuConstraint.constant = 0
         }
         sideMenuOpen = !sideMenuOpen
-
-        print(sideMenuConstraint.constant)
     }
     
     override func viewWillAppear(_ animated: Bool) {

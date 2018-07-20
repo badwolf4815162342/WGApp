@@ -97,6 +97,8 @@
 		8F31F49F20FBEDDA00CEA6AB /* UserMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F31F49E20FBEDD900CEA6AB /* UserMoneyVC.swift */; };
 		8F367C2A20C57E1A00BEACA5 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */; };
 		8F37143820ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37143720ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift */; };
+		8F43628C2101EF0B0072C4B3 /* BusProfilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F43628A2101EF0B0072C4B3 /* BusProfilCell.swift */; };
+		8F43628D2101EF0B0072C4B3 /* BusProfilCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F43628B2101EF0B0072C4B3 /* BusProfilCell.xib */; };
 		8F4399E820EB697000B063BB /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F4399E620EB696F00B063BB /* List.storyboard */; };
 		8F4399EA20EB6EBE00B063BB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4399E920EB6EBE00B063BB /* ListViewController.swift */; };
 		8F449ADE20FFC07A00876782 /* DebtsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F449ADD20FFC07A00876782 /* DebtsLayout.swift */; };
@@ -222,6 +224,8 @@
 		8F31F49E20FBEDD900CEA6AB /* UserMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMoneyVC.swift; sourceTree = "<group>"; };
 		8F367C2920C57E1A00BEACA5 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		8F37143720ED8CCA00F4B7B0 /* UserUIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUIBarButtonItem.swift; sourceTree = "<group>"; };
+		8F43628A2101EF0B0072C4B3 /* BusProfilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusProfilCell.swift; path = WGApp/View/user/BusProfilCell.swift; sourceTree = SOURCE_ROOT; };
+		8F43628B2101EF0B0072C4B3 /* BusProfilCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BusProfilCell.xib; path = WGApp/View/user/BusProfilCell.xib; sourceTree = SOURCE_ROOT; };
 		8F4399E720EB696F00B063BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = WGApp/Base.lproj/List.storyboard; sourceTree = "<group>"; };
 		8F4399E920EB6EBE00B063BB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8F449ADD20FFC07A00876782 /* DebtsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsLayout.swift; sourceTree = "<group>"; };
@@ -349,6 +353,8 @@
 				8F5F839820FD19B00069730E /* PurchaseTableViewCell.xib */,
 				8F449ADF20FFCA8700876782 /* CollectionViewHeaderCell.swift */,
 				8F449AE120FFCA9F00876782 /* CollectionViewDebtCell.swift */,
+				8F43628A2101EF0B0072C4B3 /* BusProfilCell.swift */,
+				8F43628B2101EF0B0072C4B3 /* BusProfilCell.xib */,
 			);
 			name = User;
 			path = "New Group";
@@ -637,6 +643,7 @@
 			files = (
 				5F1D3B9020FD465E001BDCD6 /* ShowActPutzItems.storyboard in Resources */,
 				5FA47C5E20BAE9A60043B3C8 /* LaunchScreen.storyboard in Resources */,
+				8F43628D2101EF0B0072C4B3 /* BusProfilCell.xib in Resources */,
 				5FE2899620EE9A040090193C /* Selection.storyboard in Resources */,
 				8F4399E820EB697000B063BB /* List.storyboard in Resources */,
 				5FA47C5B20BAE9A60043B3C8 /* Assets.xcassets in Resources */,
@@ -716,6 +723,7 @@
 				5FE289AE20EF9D340090193C /* NoTripsVC.swift in Sources */,
 				5FC6852520E5299C00B37CF8 /* TripRMV.swift in Sources */,
 				8F31F49220FBC4E200CEA6AB /* HomeProfil+CoreDataClass.swift in Sources */,
+				8F43628C2101EF0B0072C4B3 /* BusProfilCell.swift in Sources */,
 				5F1D3B9620FD497E001BDCD6 /* PutzWeekItem+CoreDataProperties.swift in Sources */,
 				5F639C5120E68688002CC7D4 /* BusDepartureTableViewCell.swift in Sources */,
 				8F12379A20D7F8E90073AF5F /* UserVC.swift in Sources */,

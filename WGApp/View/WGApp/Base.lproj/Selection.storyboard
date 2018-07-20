@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +19,14 @@
             </objects>
             <point key="canvasLocation" x="2023" y="1135"/>
         </scene>
+        <!--UserProfilID-->
+        <scene sceneID="5GY-l2-nJA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="UserProfilID" id="vSP-om-rfD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knL-TM-zGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2049" y="1354"/>
+        </scene>
         <!--User SelectionVC-->
         <scene sceneID="UIV-kn-UVI">
             <objects>
@@ -29,7 +38,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-Rv-m7A">
                                 <rect key="frame" x="99" y="181" width="825" height="406"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="DARK_GRAY"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kuf-QC-DkZ">
                                     <size key="itemSize" width="191" height="179"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -53,11 +62,12 @@
                                                     <rect key="frame" x="47" y="148" width="97" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="WHITE"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" name="DARK_GRAY"/>
                                         <connections>
                                             <outlet property="icon" destination="vNL-gu-1jq" id="7Ab-K7-Eml"/>
                                             <outlet property="name" destination="UVw-5V-OeM" id="yUH-aP-ouT"/>
@@ -69,11 +79,11 @@
                                 <rect key="frame" x="180" y="90" width="662" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="WHITE"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="DARK_GRAY"/>
                         <viewLayoutGuide key="safeArea" id="9Yt-Dn-rPU"/>
                     </view>
                     <connections>
@@ -81,6 +91,7 @@
                         <outlet property="label" destination="57B-kq-ocq" id="HSv-1T-a6d"/>
                         <segue destination="GCJ-88-Jki" kind="unwind" identifier="UnwindToBusProfileEditVC" unwindAction="unwindToThisViewWithSender:" id="xpt-CB-vKm"/>
                         <segue destination="FeZ-pC-NWb" kind="show" identifier="ShowPurchaseItems" id="Lyf-f7-pbI"/>
+                        <segue destination="vSP-om-rfD" kind="show" identifier="ShowMoneyProfil" id="fiy-9t-6IO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9N8-6J-hY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -89,4 +100,12 @@
             <point key="canvasLocation" x="1608.984375" y="1258.59375"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="DARK_GRAY">
+            <color red="0.10999999940395355" green="0.16500000655651093" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WHITE">
+            <color red="0.98400002717971802" green="0.96100002527236938" blue="0.93699997663497925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

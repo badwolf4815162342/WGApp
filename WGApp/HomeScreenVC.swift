@@ -13,22 +13,18 @@ class HomeScreenVC: UIViewController {
     
    
     @IBOutlet weak var timeLabel: UILabel!
-    var timer = Timer()
-    
     @IBOutlet weak var overlayView: UIImageView!
-    static var wg: HomeProfil?
-    
-    static var selectedUser: Profil?
-    
-    var items:[UIBarButtonItem] = []
-    
-    var profiles: [Profil] = []
-    
-    static var thisWeekStart : Date?
-    static var thisWeekEnd: Date?
-
     @IBOutlet weak var homeNavigationItem: UINavigationItem!
     
+    var timer = Timer()
+    var items:[UIButton] = []
+    var profiles: [Profil] = []
+    var userStackView: UIStackView?
+    
+    static var wg: HomeProfil?
+    static var selectedUser: Profil?
+    static var thisWeekStart : Date?
+    static var thisWeekEnd: Date?
 
     
     override func viewDidLoad() {
@@ -50,12 +46,13 @@ class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showUserManagement), name: NSNotification.Name("ShowUserManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showBusManagement), name: NSNotification.Name("ShowBusManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPutzManagement), name: NSNotification.Name("ShowPutzManagement"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMoneyManagement), name: NSNotification.Name("ShowMoneyManagement"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showPutzPlan), name: NSNotification.Name("ShowPutzPlan"), object: nil)
         
         createWGUser()
         HomeScreenVC.selectedUser = HomeScreenVC.wg
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,6 +60,7 @@ class HomeScreenVC: UIViewController {
         overlayView.isHidden = true
         addNavigationBarItems()
     }
+    
     
     func refreshUsers(){
         // load core data into users list
@@ -74,6 +72,7 @@ class HomeScreenVC: UIViewController {
             print("ERROR: core data couldn't be loaded")
         }
     }
+    
     
     func addNavigationBarItems(){
         // left: burger menu
@@ -87,17 +86,17 @@ class HomeScreenVC: UIViewController {
         NSLayoutConstraint.activate([heightContraintsM,widthContraintsM])
         let barButton = UIBarButtonItem(customView: moreBtn)
         self.homeNavigationItem.leftBarButtonItem = barButton
+        
         // right: user icons
-             refreshUsers()
-        items = []
+        refreshUsers()
         
         let userIconsWidth: CGFloat = 920
         
-        let userSelectionStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))
-        let userSelectionScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 50))
+        let userSelectionStackView = UIStackView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 42))
+        let userSelectionScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: userIconsWidth, height: 42))
 
         let widthContraints =  NSLayoutConstraint(item: userSelectionScrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: userIconsWidth)
-        let heightContraints = NSLayoutConstraint(item: userSelectionScrollView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+        let heightContraints = NSLayoutConstraint(item: userSelectionScrollView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 42)
         NSLayoutConstraint.activate([heightContraints,widthContraints])
         
         // STackview in scrollview für userSelection
@@ -109,40 +108,46 @@ class HomeScreenVC: UIViewController {
         userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
         userSelectionScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": userSelectionStackView]))
         
-
+        self.items = []
+        
         for user in profiles {
             let button: UserUIButton = UserUIButton(type: .custom)
             button.setImage(UIImage(named: user.profilIcon!), for: .normal)
             button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
             button.layer.borderWidth = 1
             button.layer.cornerRadius = 5
-            button.layer.borderColor = UIColor.lightGray.cgColor
+            button.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
+            button.layer.borderWidth = 2.0
             button.addTarget(self, action: #selector(switchUser(sender:)), for: .touchUpInside)
 
             button.user = user
             
             
             button.translatesAutoresizingMaskIntoConstraints = false
+            items.append(button)
             userSelectionStackView.addArrangedSubview(button)
             
             // all constaints to set size IMPORTANT!!!!
-            let widthContraints =  NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
-            let heightContraints = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50)
+            let widthContraints =  NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 40)
+            let heightContraints = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 40)
             NSLayoutConstraint.activate([heightContraints,widthContraints])
-            
         }
-        
+        if items.count > 0 {
+            items[0].layer.borderColor = UIColor(named: "LIGHT_PETROL")?.cgColor
+        }
         userSelectionStackView.semanticContentAttribute = .forceRightToLeft
         userSelectionScrollView.transform = CGAffineTransform.init(scaleX: -1, y: 1)
         
         let barButtonsRight = UIBarButtonItem(customView: userSelectionScrollView)
         self.homeNavigationItem.rightBarButtonItem = barButtonsRight
-        
+        self.userStackView = userSelectionStackView
     }
+    
     
     @objc func more(sender: UIBarButtonItem){
        toggleSideMenu()
     }
+    
     
     @objc func toggleSideMenu() {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
@@ -152,7 +157,6 @@ class HomeScreenVC: UIViewController {
         } else {
             overlayView.alpha = 0.6
             overlayView.isUserInteractionEnabled = true
-            
         }
     }
     
@@ -161,17 +165,14 @@ class HomeScreenVC: UIViewController {
         formatter.dateFormat = "HH:mm:ss        dd. MMM yyyy "
         timeLabel.text = formatter.string(from: Date())
     }
-  
-    
-  
     
     @objc func switchUser(sender: UserUIButton){
         HomeScreenVC.selectedUser = sender.user
         for item in items {
-            item.customView?.layer.borderColor = UIColor.lightGray.cgColor
+            item.layer.borderColor = UIColor(named: "DARK_GRAY")?.cgColor
         }
-        sender.layer.borderColor = UIColor.darkGray.cgColor
-        
+        sender.layer.borderColor = UIColor(named: "LIGHT_PETROL")?.cgColor
+        self.userStackView?.reloadInputViews()
         NotificationCenter.default.post(name: NSNotification.Name("globalSelectedUserChanged"), object: nil)
     }
     
@@ -191,6 +192,19 @@ class HomeScreenVC: UIViewController {
     @objc func showPutzPlan() {
         PutzProfilVC.typeEinst = false
         performSegue(withIdentifier: "ShowPutzPlan", sender: nil)
+    }
+    
+    @objc func showMoneyManagement() {
+        PutzProfilVC.typeEinst = false
+        performSegue(withIdentifier: "HomeToSelection", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToSelection" {
+            if let destinationVC = segue.destination as? UserSelectionVC {
+                destinationVC.dataType = UserSelectionVC.UserSelectionVCType.chooseMoneyProfil
+            }
+        }
     }
     
     func createWGUser () {
@@ -213,5 +227,4 @@ class HomeScreenVC: UIViewController {
     }
     
     @IBAction func unwindCreatePurchase(sender: UIStoryboardSegue){}
-    
 }

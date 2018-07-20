@@ -18,18 +18,27 @@ class UserFavoritesVC: UIViewController {
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib.init(nibName: "BusProfilCell", bundle: nil), forCellReuseIdentifier: "BusPCell")
+
         //BusSettingsController.addTestBusSettings()
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 0))
         tableView.tableFooterView = footerView
         
         refresh()
+        refreshTable()
+        if busSettings.count == 0 {
+            textLabel.text = "Es sind noch keine Busprofile vorhanden."
+        } else {
+            textLabel.text = "Favorisiere deine Busprofile:"
+        }
     }
     
     
@@ -68,29 +77,26 @@ extension UserFavoritesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let busProfile = busSettings[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusProfileCell")
-        
-        let bpCell = cell  as! BusprofileTableViewCell
-        
-        bpCell.setBusprofile(busSettings: busProfile)
-        bpCell.setFavorite(busSetting: busProfile, profil: self.user)
-        
-        return bpCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusPCell") as! BusProfilCell
+        cell.setBusprofile(busSettings: busProfile)
+        cell.setFavorite(busSetting: busProfile, profil: self.user)
+        cell.favoriteImage.contentMode = UIViewContentMode.scaleAspectFit
+        cell.userImageView.contentMode = UIViewContentMode.scaleAspectFit
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("changeFavorite")
         BusSettingsController.changeProfilFavorite(busSetting: busSettings[indexPath.row], profil: self.user)
         let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
-        let bpCell = cell  as! BusprofileTableViewCell
+        cell?.selectionStyle = .none
+        let bpCell = cell  as! BusProfilCell
         bpCell.setBusprofile(busSettings: busSettings[indexPath.row])
         bpCell.setFavorite(busSetting: busSettings[indexPath.row], profil: self.user)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 50;//Choose your custom row height
+        return 50;
     }
   
     

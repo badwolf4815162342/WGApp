@@ -10,33 +10,27 @@ import UIKit
 
 class UIUserIconPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // TODO: load images from assets
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    func getAssets(){
-        print("assets?")
-        if let path = Bundle.main.path(forResource: "assets/userIcons", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                print("data: ", data)
-            }
-            catch {
-                // let jsonObj = JSON(data: data)
-                print("error"); // error in the above string (in this case, yes)!
-            }
-        }
-    }
     private let userIcons:[Image] = [
-        Image(named: "Bat-icon"),
-        Image(named: "Bear-icon"),
-        Image(named: "Beaver-icon"),
-        Image(named: "Bee-icon"),
-        Image(named: "Bee-icon20"),
-        Image(named: "Bull-icon"),
-        Image(named: "Cat-icon"),
+        Image(named: "Deer-icon"),
+        Image(named: "Fish-icon"),
+        Image(named: "Penguin-icon"),
+        Image(named: "Shark-icon"),
         Image(named: "Chicken-icon"),
-        Image(named: "wg-icon")
+        Image(named: "Dolphin-icon"),
+        Image(named: "Frog-icon"),
+        Image(named: "Gorilla-icon"),
+        Image(named: "Crocodile-icon"),
+        Image(named: "Kangaroo-icon"),
+        Image(named: "Lion-icon"),
+        Image(named: "Lizard-icon"),
+        Image(named: "Monkey-icon"),
+        Image(named: "Mouse-icon"),
+        Image(named: "Koala-icon"),
+        Image(named: "Bee-icon"),
+        Image(named: "Raccoon-icon"),
+        Image(named: "Turtle-icon"),
+        Image(named: "Rat-icon")
     ]
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     var imageSize: CGFloat = 50
     var imageBounds: CGFloat = 60

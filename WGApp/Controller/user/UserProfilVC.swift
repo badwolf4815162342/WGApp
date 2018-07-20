@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class UserProfilVC: UIViewController {
     
@@ -29,15 +30,42 @@ class UserProfilVC: UIViewController {
         let alert = UIAlertController(title: "Sicher, dass du den Mitbewohner löschen möchtest?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         // alert button hinzufügen
         let saveAction = UIAlertAction(title: "löschen", style: .default) { (_) in
-            print("delete")
+            
+            // delte debts
+            let fetchRequestD = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
+            fetchRequestD.predicate = NSPredicate(format: "creditor = %@", self.user)
+            fetchRequestD.predicate = NSPredicate(format: "debtor = %@", self.user)
+            fetchRequestD.returnsObjectsAsFaults = false
+            do {
+                let debts = try PersistenceService.context.fetch(fetchRequestD) as! [Debt]
+                for debt in debts {
+                    PersistenceService.context.delete(debt)
+                }
+            } catch{
+                print("error when deleting debts")
+            }
+            // delte purchases
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase")
+            fetchRequest.predicate = NSPredicate(format: "buyer = %@", self.user)
+            fetchRequest.returnsObjectsAsFaults = false
+            do {
+                let purchases = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
+                for purchase in purchases {
+                    PersistenceService.context.delete(purchase)
+                }
+            } catch{
+                print("error when deleting purchases")
+            }
+            
             PersistenceService.context.delete(self.user)
             PersistenceService.saveContext()
             self.performSegue(withIdentifier: "segue1DeleteUser", sender: self)
         }
         let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
         
-        alert.addAction(saveAction)
+        
         alert.addAction(cancleAction)
+        alert.addAction(saveAction)
         present(alert, animated: true, completion: nil)
     }
     

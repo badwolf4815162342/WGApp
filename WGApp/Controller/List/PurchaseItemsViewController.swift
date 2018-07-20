@@ -33,6 +33,7 @@ class PurchaseItemsViewController: UIViewController {
         listTableView.delegate = self
         listTableView.dataSource = self
         listTableView.register(UINib.init(nibName: "CheckMarkViewCell", bundle: nil), forCellReuseIdentifier: "CheckListIdentifier")
+        listTableView.backgroundColor = UIColor(named: "DARK_GRAY")
 
         // set buyer information
         self.questionLabel.text = questionText + buyer.name! + "?"
@@ -43,6 +44,9 @@ class PurchaseItemsViewController: UIViewController {
         }
         
         refreshContent()
+        if listItems.count == 0 {
+            self.questionLabel.text = "Es steht nichts auf der Einkaufsliste!"
+        }
         
         currentlySelectedUsers = []
         currentlySelectedUsers.append(contentsOf: users)
@@ -213,8 +217,8 @@ extension PurchaseItemsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.title.text = listItems[indexPath.section].value
         cell.selectionStyle = .none
         cell.checkMarkButton.addTarget(self, action: #selector(checkButtonClicked(sender:)), for: UIControlEvents.touchUpInside)
-        //cell.backgroundColor = UIColor(named: "GREY")
-        //cell.textLabel?.textColor = UIColor(named: "WHITE")
+        cell.backgroundColor = UIColor(named: "GREY")
+        cell.textLabel?.textColor = UIColor(named: "WHITE")
         return cell
     }
     

@@ -12,12 +12,10 @@ import CoreData
 class UserMoneyVC: UIViewController {
 
     var user: User!
-    
-    
+
     var debtDataSource: CollectionViewDataSource!
     var purchasesDataSource: TableViewDataSource!
 
-    
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var purchaseList: UITableView!
@@ -37,10 +35,52 @@ class UserMoneyVC: UIViewController {
         self.debtDataSource.setData(user: self.user)
         self.debtsCollectionView.delegate = self.debtDataSource
         self.debtsCollectionView.dataSource = self.debtDataSource
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(payDebt), name: NSNotification.Name("PayDebt"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func payDebt(n: Notification){
+        let debt = n.object as! Debt
+        let posBalance = debt.balance * -1
+
+        //let creditor = NSManagedObjectContext.init(coder: debt.creditor)
+        let message = String(format: "Hast du %@ %.2f € gezahlt? Falls ja, trag es hier ein! Ansonsten zahl erst deine Schulden!", debt.debtor!.name!, posBalance)
+        let alert = UIAlertController(title: "Bezahlt?", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let payAction = UIAlertAction(title: "Schulden bezahlt", style: .default) { (_) in
+            
+            // new debts!!
+            let date = NSDate.init()
+            
+            let debtOne = Debt(context: PersistenceService.context)
+            debtOne.creditor = debt.creditor
+            debtOne.debtor = debt.debtor
+            debtOne.balance = 0.0
+            debtOne.date = date
+            
+            let debtTwo = Debt(context: PersistenceService.context)
+            debtTwo.creditor = debt.debtor
+            debtTwo.debtor = debt.creditor
+            debtTwo.balance = 0.0
+            debtTwo.date = date
+            
+            PersistenceService.saveContext()
+            self.debtDataSource.setData(user: self.user)
+            
+            self.debtDataSource = CollectionViewDataSource()
+            self.debtDataSource.setData(user: self.user)
+            self.debtsCollectionView.delegate = self.debtDataSource
+            self.debtsCollectionView.dataSource = self.debtDataSource
+        }
+        let cancleAction = UIAlertAction(title: "Abbrechen", style: .default) { (_) in }
+        
+        alert.addAction(payAction)
+        alert.addAction(cancleAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func refresh(){
@@ -83,7 +123,7 @@ class TableViewDataSource:NSObject,UITableViewDelegate, UITableViewDataSource {
         cell.buyerImage.image = UIImage(named: (purchase.buyer?.profilIcon!)!)
         cell.buyerImage.contentMode = UIViewContentMode.scaleAspectFit
         
-        cell.sumLabel.text = String(format:"%.2f€", purchase.sum)
+        cell.sumLabel.text = String(format:"%.2f €", purchase.sum)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd. MMM yyyy"
@@ -107,7 +147,7 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollecti
         }
         return sections
     }
-    
+
     func setData(user: User){
         // get all other users:
         let fetchRequestUser = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -142,7 +182,6 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewHeaderCell", for: indexPath) as! CollectionViewHeaderCell
-            print("(",otherUsers.count,")")
             cell.userIcon.image = UIImage(named: self.otherUsers[indexPath.row].profilIcon!)
             return cell
         }
@@ -157,17 +196,40 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollecti
             let debt = debts[row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewDebtCell", for: indexPath) as! CollectionViewDebtCell
             cell.debtLabel.text = String(format:"%.2f€", debt.balance)
+            cell.debt = debt
+            // color and payment
+            cell.debtLabel.backgroundColor = UIColor(named: "DARK_GRAY")
+            // cell.button.isHidden = true
+            if row == 0 {
+                if debt.balance < -0.0001 {
+                    cell.debtLabel.backgroundColor = UIColor(named: "RED")
+                    cell.button.isHidden = false
+                } else if debt.balance > 0.0001 {
+                    cell.debtLabel.backgroundColor = UIColor(named: "GREEN")
+                }
+            }
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy"
             cell.dateLabel.text = dateFormatter.string(from: debt.date! as Date)
             
             if indexPath.section == 1 {
+                // TODO Btn
                 cell.button = UIButton(type: .custom)
             }
             
             return cell
         } else {
+            if row == 0 {
+                // no debts cell (first row)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewDebtCell", for: indexPath) as! CollectionViewDebtCell
+                cell.debtLabel.backgroundColor = UIColor(named: "DARK_GRAY")
+                cell.debtLabel.text = String(format:"%.2f€", 0.0)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+                cell.dateLabel.text = dateFormatter.string(from: NSDate.init() as Date)
+            }
+            
             // empty cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmtpyCell", for: indexPath)
             return cell

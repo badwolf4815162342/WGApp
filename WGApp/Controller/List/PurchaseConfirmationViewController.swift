@@ -39,6 +39,7 @@ class PurchaseConfirmationViewController: UIViewController {
         // items
         self.itemsTableView.delegate = self
         self.itemsTableView.dataSource = self
+        self.itemsTableView.register(UINib.init(nibName: "CheckMarkViewCell", bundle: nil), forCellReuseIdentifier: "CheckListIdentifier")
         
         // participants
         participantsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,6 +94,41 @@ class PurchaseConfirmationViewController: UIViewController {
         for participant in self.participants {
             if participant != buyer{
                 
+                var lastDebts: [Debt] = []
+                var lastDebt: Debt = Debt()
+                var lastOtherDebt: Debt = Debt()
+                
+                // search for last debts
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
+                fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", buyer, participant)
+                let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
+                fetchRequest.sortDescriptors = [sort]
+                fetchRequest.returnsObjectsAsFaults = false
+                do {
+                    lastDebts = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
+                    if lastDebts.count > 0{
+                        
+                        // existing debts!!
+                        lastDebt = lastDebts[0]
+                        for debt in lastDebts{
+                            print("last debt: ", debt)
+                        }
+                        
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
+                        fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", participant, buyer)
+                        let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
+                        fetchRequest.sortDescriptors = [sort]
+                        fetchRequest.returnsObjectsAsFaults = false
+                        let otherDebts = try PersistenceService.context.fetch(fetchRequest) as! [Debt]
+                        if otherDebts.count == 0{
+                            print("ERROR! debt wasn't saved twice")
+                        }
+                        lastOtherDebt = otherDebts[0]
+                    }
+                } catch {
+                    print("core data debts error")
+                }
+                
                 let date = NSDate.init()
                 
                 // new debts!!
@@ -103,82 +139,21 @@ class PurchaseConfirmationViewController: UIViewController {
                 debt.date = date
                 
                 let otherDebt = Debt(context: PersistenceService.context)
-                debt.creditor = participant
-                debt.debtor = buyer
-                debt.balance = difference * -1
-                debt.date = date
-                
-                var lastDebt: Debt
-                var lastOtherDebt: Debt
-                
-                // search for last debts
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-                fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", buyer, participant)
-                let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
-                fetchRequest.sortDescriptors = [sort]
-                fetchRequest.returnsObjectsAsFaults = false
-                do {
-                    let debts = try PersistenceService.context.fetch(fetchRequest)
-                    if debts.count > 0{
-                        
-                        // existing debts!!
-                        lastDebt = debts[0] as! Debt
-                        
-                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-                        fetchRequest.predicate = NSPredicate(format: "creditor = %@ and debtor = %@", participant, buyer)
-                        let sort = NSSortDescriptor(key: #keyPath(Debt.date), ascending: true)
-                        fetchRequest.sortDescriptors = [sort]
-                        fetchRequest.returnsObjectsAsFaults = false
-                        let otherDebts = try PersistenceService.context.fetch(fetchRequest)
-                        if otherDebts.count == 0{
-                            print("ERROR! debt wasn't saved twice")
-                        }
-                        lastOtherDebt = otherDebts[0] as! Debt
-                        
-                        debt.balance = lastDebt.balance + difference
-                        otherDebt.balance = lastOtherDebt.balance - difference
-                    }
-                    
-                } catch {
-                    print("core data debts error")
+                otherDebt.creditor = participant
+                otherDebt.debtor = buyer
+                otherDebt.balance = difference * -1
+                otherDebt.date = date
+
+                if lastDebts.count > 0{
+                    print(lastDebt.balance, " ", difference)
+                    debt.balance = lastDebt.balance + difference
+                    otherDebt.balance = lastOtherDebt.balance - difference
                 }
+                
             }
+            PersistenceService.saveContext()
         }
         PersistenceService.saveContext()
-        testSaving()
-    }
-    
-    func testSaving(){
-        var purchases: [Purchase] = []
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase")
-        let sort = NSSortDescriptor(key: #keyPath(Purchase.date), ascending: false)
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.returnsObjectsAsFaults = false
-        do {
-            purchases = try PersistenceService.context.fetch(fetchRequest) as! [Purchase]
-        } catch {
-            print("error when loading core data")
-        }
-        
-        for p in purchases{
-            print("purchase: ", p.buyer?.name)
-        }
-        
-        var debts: [Debt] = []
-        let fetchRequestb = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
-        let sortb = NSSortDescriptor(key: #keyPath(Debt.date), ascending: false)
-        fetchRequest.sortDescriptors = [sortb]
-        fetchRequest.returnsObjectsAsFaults = false
-        do {
-            debts = try PersistenceService.context.fetch(fetchRequestb) as! [Debt]
-        } catch {
-            print("error when loading core data")
-        }
-        
-        for d in debts {
-            print("debt: creditor: ", d.creditor?.name, " debtor: ", d.debtor?.name, " balance: ", d.balance)
-        }
-        
     }
 }
 
@@ -199,25 +174,18 @@ extension PurchaseConfirmationViewController: UITableViewDelegate, UITableViewDa
         view.backgroundColor = UIColor.clear
         return view
     }
-    
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark{
-     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-     }else {
-     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-     }
-     }*/
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = items[indexPath.section].value
-        //cell.backgroundColor = UIColor(named: "GREY")
-        //cell.textLabel?.textColor = UIColor(named: "WHITE")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListIdentifier") as! CheckMarkViewCell
+        cell.title.text = items[indexPath.section].value
+        cell.checkMarkButton.isSelected = true
+        cell.backgroundColor = UIColor(named: "GREY")
+        cell.textLabel?.textColor = UIColor(named: "WHITE")
         return cell
     }
     

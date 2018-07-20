@@ -9,9 +9,24 @@
 import UIKit
 
 class SideMenueVC: UITableViewController {
-
+    
+    @IBOutlet weak var userCell: UITableViewCell!
+    @IBOutlet weak var busCell: UITableViewCell!
+    @IBOutlet weak var moneyCell: UITableViewCell!
+    @IBOutlet weak var cleanCell: UITableViewCell!
+    @IBOutlet weak var calendarCell: UITableViewCell!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        userCell.selectionStyle = .none
+        busCell.selectionStyle = .none
+        moneyCell.selectionStyle = .none
+        cleanCell.selectionStyle = .none
+        calendarCell.selectionStyle = .none
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         switch indexPath.row {
         case 0:
             NotificationCenter.default.post(name: NSNotification.Name("ShowUserManagement"), object: nil)

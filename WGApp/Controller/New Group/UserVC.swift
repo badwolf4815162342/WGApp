@@ -26,6 +26,8 @@ class UserVC: UIViewController {
     var favorites: UserFavoritesVC?
     var money: UserMoneyVC?
     
+    var toMoney: Bool = false
+    
     var userProp: User {
         get{
             return user
@@ -47,7 +49,11 @@ class UserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         actContainer = profilContainer
-        tabBar.delegate = self
+        if toMoney{
+            toMoney = false
+            self.tabBar.selectedItem = self.tabBar.items![2] as UITabBarItem
+            changeActViewContainer(destinationContainer: self.profilMoneyContainer)
+        }
     }
     
     // change Profil and Edit
@@ -60,7 +66,6 @@ class UserVC: UIViewController {
         }
         // from Edit to Profil
         if let edit = sender.source as? UserProfilEditVC {
-            print("unwind and set user")
             changeActViewContainer(destinationContainer: self.profilContainer)
             userProp = edit.user
             self.profil?.refresh()
@@ -82,7 +87,6 @@ class UserVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
         if let userProfilVC = segue.destination as? UserProfilVC {
             userProfilVC.user = self.user
             self.profil = userProfilVC

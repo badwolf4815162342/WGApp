@@ -29,6 +29,7 @@ class PurchasePriceViewController: UIViewController {
         }
         
         warnText.isHidden = true
+        amountField.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {

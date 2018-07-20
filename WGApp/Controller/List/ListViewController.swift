@@ -129,13 +129,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let cancleAction = UIAlertAction(title: "abbrechen", style: .default) { (_) in }
             
-            alert.addAction(saveAction)
+            
             alert.addAction(cancleAction)
+            alert.addAction(saveAction)
             self.present(alert, animated: true, completion: nil)
             completionHandler(true)
         })
         editAction.image = UIImage(named: "edit")
-        editAction.backgroundColor = .green
+        editAction.backgroundColor =  UIColor(named: "GRAY")
         
         // delete Item
         let deleteAction =  UIContextualAction(style: .normal, title: "löschen", handler: { (action,view,completionHandler ) in
@@ -143,7 +144,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = UIAlertController(title: "Sicher, dass du das Element löschen möchtest?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             // alert button hinzufügen
             let saveAction = UIAlertAction(title: "löschen", style: .default) { (_) in
-                print("delete item")
                 PersistenceService.context.delete(self.listItems[indexPath.row])
                 PersistenceService.saveContext()
                 self.refreshContent()
@@ -156,7 +156,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         })
         deleteAction.image = UIImage(named: "delete")
-        deleteAction.backgroundColor = .red
+        //deleteAction.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        deleteAction.backgroundColor =  UIColor(named: "GRAY")
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         return configuration

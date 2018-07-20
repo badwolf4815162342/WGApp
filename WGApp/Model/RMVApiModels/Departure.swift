@@ -22,7 +22,7 @@ struct Departure: Codable {
     let rtTime, rtDate: String?
     let reachable: Bool
     let direction, trainNumber: String
-    let trainCategory: TrainCategory?
+    let trainCategory: String?
     
     enum CodingKeys: String, CodingKey {
         case journeyDetailRef = "JourneyDetailRef"
