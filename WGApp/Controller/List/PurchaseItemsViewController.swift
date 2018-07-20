@@ -50,7 +50,7 @@ class PurchaseItemsViewController: UIViewController {
         
         currentlySelectedUsers = []
         currentlySelectedUsers.append(contentsOf: users)
-        print(currentlySelectedUsers.count)
+
         self.participantsLabel.isHidden = true
         self.participantsScrollView.isHidden = true
         
@@ -125,7 +125,6 @@ class PurchaseItemsViewController: UIViewController {
     
     func addUserSelectionItems(){
         participantsStackView.subviews.forEach { $0.removeFromSuperview() }
-        print(currentlySelectedUsers.count)
         // je user buttons erstellen
         for user in users {
             let button: UserUIButton = UserUIButton(type: .custom)

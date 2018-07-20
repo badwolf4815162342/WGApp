@@ -95,8 +95,8 @@ class PurchaseConfirmationViewController: UIViewController {
             if participant != buyer{
                 
                 var lastDebts: [Debt] = []
-                var lastDebt: Debt = Debt()
-                var lastOtherDebt: Debt = Debt()
+                var lastDebt: Debt?
+                var lastOtherDebt: Debt?
                 
                 // search for last debts
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Debt")
@@ -141,8 +141,8 @@ class PurchaseConfirmationViewController: UIViewController {
                 otherDebt.date = date
 
                 if lastDebts.count > 0{
-                    debt.balance = lastDebt.balance + difference
-                    otherDebt.balance = lastOtherDebt.balance - difference
+                    debt.balance = (lastDebt?.balance)! + difference
+                    otherDebt.balance = (lastOtherDebt?.balance)! - difference
                 }
                 
             }

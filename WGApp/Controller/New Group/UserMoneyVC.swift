@@ -213,11 +213,6 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollecti
             dateFormatter.dateFormat = "dd.MM.yyyy"
             cell.dateLabel.text = dateFormatter.string(from: debt.date! as Date)
             
-            if indexPath.section == 1 {
-                // TODO Btn
-                cell.button = UIButton(type: .custom)
-            }
-            
             return cell
         } else {
             if row == 0 {
