@@ -1,2 +1,2 @@
 # AppArtement
-
+Is a Swift Application solely for tablet (iPad) usage. It serves as a digital information board for all members of a shared appartment. It has multiple features like money calculations for shared (even for subsets of the flat mates) costs, a cleaning plan calender, a shopping list and an connection to the local (Wiesbaden in our case) bus information API. This includes saving start and stop bus/train stops as connections and getting a live view of the next busses starting from bus stops nearby and going to the saved desired locations. An potential lookout might be the integration of a weather API.
